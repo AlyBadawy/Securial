@@ -1,4 +1,8 @@
 require_relative "./logger"
+
+require_relative "./errors/config_errors"
+require_relative "./errors/session_errors"
+
 require_relative "./configuration"
 
 require_relative "./helpers/auth_helper"
