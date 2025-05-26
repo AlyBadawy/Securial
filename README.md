@@ -1,8 +1,8 @@
 # Securial
 
-[![Gem Version](https://badge.fury.io/rb/securial.svg)](https://badge.fury.io/rb/securial)
+[![Gem Version](https://img.shields.io/gem/v/securial?logo=rubygems&logoColor=ffffff&logoSize=auto&label=version&color=violet&cacheSeconds=120)](https://rubygems.org/gems/securial)
 [![Gem Downloads](https://img.shields.io/gem/dt/securial.svg)](https://rubygems.org/gems/securial)
-![License](https://img.shields.io/badge/license-MIT-blue)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/AlyBadawy/Securial?tab=MIT-1-ov-file#readme)
 
 [![Tests](https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg)](https://github.com/alybadawy/securial/actions)
 [![Coverage Status](https://coveralls.io/repos/github/AlyBadawy/Securial/badge.svg?branch=main)](https://coveralls.io/github/AlyBadawy/Securial?branch=main)
