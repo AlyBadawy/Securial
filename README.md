@@ -13,44 +13,21 @@
 - ✅ Simple integration with web and mobile apps
 - ✅ Clean, JSON-based API responses
 
-## 🚀 Installation
-
-### For existing Rails applications:
-
-#### 1. Add this line to your Rails application's Gemfile:
+Next, mount the engine in `config/routes.rb`:
 
 ```ruby
-gem "securial"
+Rails.application.routes.draw do
+  mount Securial::Engine => "/securial"
+end
 ```
 
-#### 2. Run the commands
-
-Execute the following commands:
-
-```bash
-$ bundle install
-$ rails generate securial:install
-$ rails db:migrate
-```
-
-This will:
-
-- Install the Securial gem in the application
-- Create an initializer at `config/initializers/securial.rb`
-- Set up a log file at `log/securial.log`
-- Copy the migration files to your host Rails application
-- Run the migrations
-- Automatically included `Securial::Identity` concern in the ApplicationController of the host application. (read more about [Securial::Identity Concern](https://github.com/AlyBadawy/Securial/wiki/Securial::Identity-concern))
-
-### To create a new rails application with Securial
-
-> TODO: Add script to create a Rails application with Securial.
+Full installation steps are available in the [Wiki › Installation](https://github.com/AlyBadawy/Securial/wiki/Installation).
 
 ## ⚙️ Configuration
 
 Securial generates an initializer with sensible defaults and full control over logging, mailers, session settings, and roles.
 
-For all configuration options and examples, refer to the [Configuration Page](https://github.com/AlyBadawy/Securial/wiki/Configuration)
+For all configuration options and examples, refer to the [Wiki › Configuration](https://github.com/AlyBadawy/Securial/wiki/Configuration)
 
 ## 📦 Usage
 
@@ -63,7 +40,7 @@ After installation and mounting, Securial exposes endpoints like:
 
 Securial returns consistent JSON API responses.
 
-Full details, including authentication flows and protected routes, are available in the [Authentication module docs](https://github.com/AlyBadawy/Securial/wiki/Authentication).
+Full details, including authentication flows and protected routes, are available in the [Wiki › Authentication module docs](https://github.com/AlyBadawy/Securial/wiki/Authentication).
 
 🧩 Modules
 
