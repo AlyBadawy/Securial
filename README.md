@@ -1,7 +1,7 @@
 # Securial
 
 [![Gem Version](https://badge.fury.io/rb/securial.svg)](https://badge.fury.io/rb/securial)
-[![Gem Downloads](https://img.shields.io/gem/dt/rails.svg)](https://rubygems.org/gems/securial)
+[![Gem Downloads](https://img.shields.io/gem/dt/securial.svg)](https://rubygems.org/gems/securial)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 [![Tests](https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg)](https://github.com/alybadawy/securial/actions)
@@ -39,7 +39,7 @@ After installation and mounting, **Securial** exposes endpoints like:
 - GET /securial/status — Check service availability
 - POST /securial/sessions — Sign in (JWT or session)
 - DELETE /securial/sessions — Sign out
-- GET /securial/accounts/cool_username — get a user profile by username
+- GET /securial/accounts/cool_username — Get a user profile by username
 - GET /securial/admins/roles — View roles
 
 **Securial** returns consistent JSON API responses.
