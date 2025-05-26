@@ -1,6 +1,6 @@
 require_relative "./logger"
 
-Dir[File.join(__dir__, 'errors', '*.rb')].each { |f| require_relative f }
+Dir[File.join(__dir__, "errors", "*.rb")].each { |f| require_relative f }
 
 require_relative "./configuration"
 
