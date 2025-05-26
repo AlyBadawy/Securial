@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/d7cb9645-c28e-4cca-9c1b-5085a91c11d4)
+
+---
 # Securial
 
 [![Gem Version](https://img.shields.io/gem/v/securial?logo=rubygems&logoColor=ffffff&logoSize=auto&label=version&color=violet&cacheSeconds=120)](https://rubygems.org/gems/securial)
