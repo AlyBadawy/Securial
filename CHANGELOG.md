@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Change location of the Securial custom errors to be in `lib/errors/` instead of `app/errors/securial`
+- Change location of the Securial custom errors to be in `lib/securial/errors/` instead of `app/errors/securial`
 
 ## [0.4.0] - 2025-05-26
 
