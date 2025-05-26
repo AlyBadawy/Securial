@@ -1,9 +1,11 @@
 # Securial
 
+[![Gem Version](https://badge.fury.io/rb/securial.svg)](https://badge.fury.io/rb/securial)
+[![Gem Downloads](https://img.shields.io/gem/dt/rails.svg)](https://rubygems.org/gems/securial)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 [![Tests](https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg)](https://github.com/alybadawy/securial/actions)
 [![Coverage Status](https://coveralls.io/repos/github/AlyBadawy/Securial/badge.svg?branch=main)](https://coveralls.io/github/AlyBadawy/Securial?branch=main)
-[![Gem Version](https://badge.fury.io/rb/securial.svg)](https://badge.fury.io/rb/securial)
-![License](https://img.shields.io/badge/license-MIT-blue)
 
 **Securial** is a mountable Rails engine that provides robust, extensible authentication and access control for Rails applications. It supports:
 
@@ -12,6 +14,7 @@
 - ✅ Session-based auth
 - ✅ Simple integration with web and mobile apps
 - ✅ Clean, JSON-based API responses
+- ✅ Database-agnostic support
 
 Next, mount the engine in `config/routes.rb`:
 
@@ -25,26 +28,27 @@ Full installation steps are available in the [Wiki › Installation](https://git
 
 ## ⚙️ Configuration
 
-Securial generates an initializer with sensible defaults and full control over logging, mailers, session settings, and roles.
+**Securial** generates an initializer with sensible defaults and full control over logging, mailers, session settings, and roles.
 
 For all configuration options and examples, refer to the [Wiki › Configuration](https://github.com/AlyBadawy/Securial/wiki/Configuration)
 
 ## 📦 Usage
 
-After installation and mounting, Securial exposes endpoints like:
+After installation and mounting, **Securial** exposes endpoints like:
 
-- GET /securial/status – Check service availability
+- GET /securial/status — Check service availability
 - POST /securial/sessions — Sign in (JWT or session)
 - DELETE /securial/sessions — Sign out
-- GET /securial/admins/roles – View roles
+- GET /securial/accounts/cool_username — get a user profile by username
+- GET /securial/admins/roles — View roles
 
-Securial returns consistent JSON API responses.
+**Securial** returns consistent JSON API responses.
 
 Full details, including authentication flows and protected routes, are available in the [Wiki › Authentication module docs](https://github.com/AlyBadawy/Securial/wiki/Authentication).
 
 🧩 Modules
 
-Securial is organized into modular components including:
+**Securial** is organized into modular components including:
 
 - Authentication
 - User Management
@@ -64,7 +68,7 @@ $ bundle exec rspec
 
 View the coverage report:
 
-```
+```bash
 $ open coverage/index.html
 ```
 

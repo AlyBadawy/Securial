@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby
+
+require "fileutils"
+
+def run(command, chdir: nil)
+  puts "→ #{command}"
+  if chdir
+    Dir.chdir(chdir) do
+      system(command) || abort("❌ Command failed: #{command}")
+    end
+  else
+    system(command) || abort("❌ Command failed: #{command}")
+  end
+end
+
+
+def securial_new(app_name, rails_options)
+  puts "🛠  Creating new Rails app: #{app_name}"
+
+  # Step 1: Forward options to `rails new`
+  rails_command = ["rails", "new", app_name, *rails_options].join(" ")
+  run(rails_command)
+
+  # Step 2: Append securial gem to the Gemfile
+  gemfile_path = File.join(app_name, "Gemfile")
+  File.open(gemfile_path, "a") do |f|
+    f.puts "\ngem 'securial'"
+  end
+
+  # Step 3: Install gems
+  run("bundle install", chdir: app_name)
+
+  # Step 4: Install securial
+  run("bin/rails generate securial:install", chdir: app_name)
+  run("bin/rails db:migrate", chdir: app_name)
+
+  # Step 5: Mount the engine
+  routes_path = File.join(app_name, "config/routes.rb")
+  routes = File.read(routes_path)
+  updated = routes.sub("Rails.application.routes.draw do") do |match|
+    "#{match}\n  mount Securial::Engine => '/securial'"
+  end
+  File.write(routes_path, updated)
+
+  puts "\n✅ Done! Your app is ready at: ./#{app_name}"
+  puts "➡️  Next steps:"
+  puts "   cd #{app_name}"
+  puts "   rails server"
+end
+
+if ARGV[0] == "new" && ARGV[1]
+  app_name = ARGV[1]
+  rails_options = ARGV[2..] || []
+  securial_new(app_name, rails_options)
+else
+  puts "Usage: securial new app_name [rails_options...]"
+  puts "Example: securial new myapp --api --database=postgresql"
+end

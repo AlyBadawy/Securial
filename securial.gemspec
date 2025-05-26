@@ -5,10 +5,11 @@ Gem::Specification.new do |spec|
   spec.version = Securial::VERSION
   spec.authors = ["Aly Badawy"]
   spec.email = ["1198568+AlyBadawy@users.noreply.github.com"]
-  spec.homepage = "https://github.com/AlyBadawy/Securial"
+  spec.homepage = "https://github.com/AlyBadawy/Securial/wiki"
   spec.summary = "Authentication and access control Rails engine for your API."
   spec.description = "Securial is a mountable Rails engine that provides robust, extensible authentication and access control for Rails applications. It supports JWT, API tokens, session-based auth, and is designed for easy integration with modern web and mobile apps."
   spec.license = "MIT"
+  spec.executables = ["securial"]
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
