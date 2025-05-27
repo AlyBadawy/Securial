@@ -31,7 +31,7 @@ module Securial
       @password_expires_in = 90.days
       @reset_password_token_expires_in = 2.hours
       @reset_password_token_secret = "reset_secret"
-      @timestamps_in_response = :all
+      @timestamps_in_response = Rails.env.production? ? :admins_only : :all
     end
   end
 end
