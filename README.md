@@ -58,7 +58,7 @@ To add Securial to an existing Rails app:
 
 - Add `gem "securial"` to your GemFile
 - Run `bundle install`
-- run `rails generate securial:install`
+- Run `rails generate securial:install`
 - Mount the Securial engine in your Rails application `config/routes.rb` file:
   ```ruby
   Rails.application.routes.draw do
