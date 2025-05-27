@@ -19,15 +19,55 @@
 - ✅ Clean, JSON-based API responses
 - ✅ Database-agnostic support
 
-Next, mount the engine in `config/routes.rb`:
 
-```ruby
-Rails.application.routes.draw do
-  mount Securial::Engine => "/securial"
-end
-```
+### 🚀 Why Choose Securial?
 
-Full installation steps are available in the [Wiki › Installation](https://github.com/AlyBadawy/Securial/wiki/Installation).
+Securial isn't just another auth library — it's designed to give you control, flexibility, and peace of mind when building secure Rails APIs.
+
+**🔧 Built for Developers**  
+- Easy to mount and extend using familiar Rails conventions.  
+- Fully customizable controllers, serializers, and logic — no more black-box auth.
+
+**🧩 Modular by Design**  
+- Use only the components you need: JWT, sessions, API tokens — or all of them together.  
+- Clean separation of concerns makes testing and debugging simpler.
+
+**⚡ API-First Approach**  
+- JSON-only responses make Securial ideal for frontend frameworks and mobile apps.  
+- No HTML views or form helpers — just clean endpoints that work out of the box.
+
+**🛡️ Secure by Default**  
+- Uses industry best practices for token management and access control.  
+- No reliance on client-side sessions or cookies.
+
+**📦 Lightweight, Database-Agnostic**  
+- No assumptions about your schema or ORM — works with any relational database.  
+- Minimal dependencies, fast to integrate.
+
+**🌱 Ready to Grow With You**  
+- Start small with basic JWT auth, scale to multi-token API clients, admin scopes, or full RBAC.  
+- Perfect for startups, side projects, and production APIs alike.
+
+## 🚀 Installation
+
+Securial can be installed on an existing Rails application or use the `securial new app_name` command to create a new Securial-ready Rails app.
+
+### Installation on an existing Rails app:
+
+To add Securial to an existing Rails app:
+
+- Add `gem "securial"` to your GemFile
+- Run `bundle install`
+- Run `rails generate securial:install`
+- Mount the Securial engine in your Rails application `config/routes.rb` file:
+  ```ruby
+  Rails.application.routes.draw do
+    mount Securial::Engine => "/securial"
+  end
+  ```
+- Run the migrations by running the command: `rails db:migrate`
+
+💡 Full installation steps are available in the [Wiki › Installation](https://github.com/AlyBadawy/Securial/wiki/Installation).
 
 ## ⚙️ Configuration
 
@@ -56,17 +96,22 @@ Full details, including authentication flows and protected routes, are available
 - Authentication
 - User Management
 - Generators
-- Securial::Identity concern
+- Identity concern
+- Configuration
 
 Explore all modules in the [Wiki](https://github.com/AlyBadawy/Securial/wiki).
 
 ## 🛠 Development & Testing
 
+- Clone the repo on your computer
+- Run `bundle install`
+- Start coding right away 🏃‍♂️
+
+
 To run the test suite:
 
 ```bash
-$ RAILS_ENV=test bundle db:schema:load
-$ bundle exec rspec
+$ bin/test
 ```
 
 View the coverage report:
