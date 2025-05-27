@@ -89,7 +89,7 @@ After installation and mounting, **Securial** exposes endpoints like:
 
 Full details, including authentication flows and protected routes, are available in the [Wiki › Authentication module docs](https://github.com/AlyBadawy/Securial/wiki/Authentication).
 
-🧩 Modules
+## 🧩 Modules
 
 **Securial** is organized into modular components including:
 
