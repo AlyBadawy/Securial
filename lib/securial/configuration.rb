@@ -12,6 +12,7 @@ module Securial
     attr_accessor :password_expires_in
     attr_accessor :reset_password_token_expires_in
     attr_accessor :reset_password_token_secret
+    attr_accessor :timestamps_in_response
 
     def initialize
       @log_to_file = !Rails.env.test?
@@ -30,6 +31,7 @@ module Securial
       @password_expires_in = 90.days
       @reset_password_token_expires_in = 2.hours
       @reset_password_token_secret = "reset_secret"
+      @timestamps_in_response = :all
     end
   end
 end
