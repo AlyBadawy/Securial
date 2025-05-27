@@ -116,5 +116,5 @@ Securial.configure do |config|
   #   for regular users while still providing timestamps for admin users.
   # :all - the created_at and updated_at timestamps will be included
   #   for all users. This is useful for debugging and development purposes.
-  config.timestamps_in_response = :admins_only
+  config.timestamps_in_response = Rails.env.production? ? :admins_only : :all
 end

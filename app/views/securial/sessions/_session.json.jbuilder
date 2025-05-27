@@ -9,7 +9,6 @@ json.refresh_token_expires_at securial_session.refresh_token_expires_at
 json.revoked securial_session.revoked
 json.user_id securial_session.user_id
 
-json.created_at securial_session.created_at
-json.updated_at securial_session.updated_at
+json.partial! "securial/shared/timestamps", record: securial_session
 
 json.url "No URL available for this action"
