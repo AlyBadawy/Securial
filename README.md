@@ -52,7 +52,7 @@ Securial isn't just another auth library — it's designed to give you control, 
 
 Securial can be installed on an existing Rails application or use the `securial new app_name` command to create a new Securial-ready Rails app.
 
-### Installation on an exisitn rails app:
+### Installation on an existing Rails app:
 
 To add Securial to an existing Rails app:
 
