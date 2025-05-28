@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 module Securial
-  RSpec.describe RouteInspector do
+  RSpec.describe Inspectors::RouteInspector do
     before do
       class TestController < ApplicationController # rubocop:disable RSpec/LeakyConstantDeclaration
         def not_found; raise ActiveRecord::RecordNotFound; end

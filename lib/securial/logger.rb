@@ -7,13 +7,13 @@ module Securial
     def self.build
       outputs = []
 
-      if Securial.configuration.log_to_file
+      unless Securial.configuration.log_to_file == false
         log_file = Rails.root.join("log", "securial.log").open("a")
         log_file.sync = true
         outputs << log_file
       end
 
-      if Securial.configuration.log_to_stdout
+      unless Securial.configuration.log_to_stdout == false
         outputs << STDOUT
       end
 
