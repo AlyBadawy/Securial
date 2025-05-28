@@ -8,5 +8,6 @@ module Securial
 
     class ConfigMailerSenderError < StandardError; end
     class ConfigPasswordError < StandardError; end
+    class ConfigTimestampsInResponseError < StandardError; end
   end
 end

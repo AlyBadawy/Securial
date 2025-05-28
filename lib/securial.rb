@@ -19,6 +19,7 @@ module Securial
       validate_session_secret!
       validate_mailer_sender!
       validate_password_config!
+      validate_timestamps_in_response!
     end
 
     # Returns the pluralized form of the admin role.
@@ -56,7 +57,7 @@ module Securial
     def validate_session_algorithm!
       valid_algorithms = [:hs256, :hs384, :hs512]
       unless valid_algorithms.include?(configuration.session_algorithm)
-        error_message = "Invalid session algorithm. Valid options are: #{valid_algorithms.join(', ')}."
+        error_message = "Invalid session algorithm. Valid options are: #{valid_algorithms.map(&:inspect).join(', ')}."
         Securial::ENGINE_LOGGER.error(error_message)
         raise Securial::ConfigErrors::ConfigSessionAlgorithmError, error_message
       end
@@ -88,6 +89,15 @@ module Securial
         error_message = "Password reset email subject is not set."
         Securial::ENGINE_LOGGER.error(error_message)
         raise Securial::ConfigErrors::ConfigMailerSenderError, error_message
+      end
+    end
+
+    def validate_timestamps_in_response!
+      valid_options = [:all, :admins_only, :none]
+      unless valid_options.include?(configuration.timestamps_in_response)
+        error_message = "Invalid timestamps_in_response option. Valid options are: #{valid_options.map(&:inspect).join(', ')}."
+        Securial::ENGINE_LOGGER.error(error_message)
+        raise Securial::ConfigErrors::ConfigTimestampsInResponseError, error_message
       end
     end
   end

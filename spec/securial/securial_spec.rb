@@ -176,7 +176,7 @@ RSpec.describe Securial do
           described_class.send(:validate_session_algorithm!)
         }.to raise_error(
           Securial::ConfigErrors::ConfigSessionAlgorithmError,
-          "Invalid session algorithm. Valid options are: hs256, hs384, hs512."
+          "Invalid session algorithm. Valid options are: :hs256, :hs384, :hs512."
         )
       end
 
@@ -188,7 +188,7 @@ RSpec.describe Securial do
             described_class.send(:validate_session_algorithm!)
           }.to raise_error(
             Securial::ConfigErrors::ConfigSessionAlgorithmError,
-            "Invalid session algorithm. Valid options are: hs256, hs384, hs512."
+            "Invalid session algorithm. Valid options are: :hs256, :hs384, :hs512."
           )
         end
       end
@@ -350,6 +350,51 @@ RSpec.describe Securial do
         expect {
           described_class.validate_password_config!
         }.not_to raise_error
+      end
+    end
+  end
+
+  describe "validate_timestamps_in_response!" do
+    around do |example|
+      described_class.configuration = Securial::Configuration.new
+      example.run
+    end
+
+    context "when timestamps_in_response is invalid" do
+      it "raises ConfigTimestampsInResponseError for nil value" do
+        described_class.configuration.timestamps_in_response = nil
+        expect {
+          described_class.send(:validate_timestamps_in_response!)
+        }.to raise_error(
+          Securial::ConfigErrors::ConfigTimestampsInResponseError,
+          "Invalid timestamps_in_response option. Valid options are: :all, :admins_only, :none."
+        )
+      end
+
+
+      it "raises ConfigTimestampsInResponseError for invalid values" do
+        invalid_options = [:created_at, :updated_at, :invalid_option]
+        invalid_options.each do |option|
+          described_class.configuration.timestamps_in_response = option
+          expect {
+            described_class.send(:validate_timestamps_in_response!)
+          }.to raise_error(
+            Securial::ConfigErrors::ConfigTimestampsInResponseError,
+            "Invalid timestamps_in_response option. Valid options are: :all, :admins_only, :none."
+          )
+        end
+      end
+    end
+
+    context "when session_algorithm is valid" do
+      it "does not raise error for valid algorithms" do
+        valid_options = [:none, :admins_only, :all]
+        valid_options.each do |option|
+          described_class.configuration.timestamps_in_response = option
+          expect {
+            described_class.send(:validate_timestamps_in_response!)
+          }.not_to raise_error
+        end
       end
     end
   end
