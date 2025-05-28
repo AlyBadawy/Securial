@@ -102,7 +102,7 @@ module Securial
         end
 
         after do
-          Securial.configuration = Securial::Configuration.new
+          Securial.configuration = Securial::Config::Configuration.new
         end
 
         it 'still identifies admin correctly' do

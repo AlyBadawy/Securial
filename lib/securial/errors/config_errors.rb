@@ -1,13 +1,17 @@
 module Securial
   module ConfigErrors
-    class ConfigAdminRoleError < StandardError; end
+    class BaseConfigError < StandardError
+      def backtrace; []; end
+    end
 
-    class ConfigSessionExpirationDurationError < StandardError; end
-    class ConfigSessionAlgorithmError < StandardError; end
-    class ConfigSessionSecretError < StandardError; end
+    class ConfigAdminRoleError < BaseConfigError; end
 
-    class ConfigMailerSenderError < StandardError; end
-    class ConfigPasswordError < StandardError; end
-    class ConfigTimestampsInResponseError < StandardError; end
+    class ConfigSessionExpirationDurationError < BaseConfigError; end
+    class ConfigSessionAlgorithmError < BaseConfigError; end
+    class ConfigSessionSecretError < BaseConfigError; end
+
+    class ConfigMailerSenderError < BaseConfigError; end
+    class ConfigPasswordError < BaseConfigError; end
+    class ConfigTimestampsInResponseError < BaseConfigError; end
   end
 end

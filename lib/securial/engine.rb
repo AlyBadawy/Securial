@@ -2,7 +2,8 @@ require_relative "./logger"
 
 Dir[File.join(__dir__, "errors", "*.rb")].each { |f| require_relative f }
 
-require_relative "./configuration"
+require_relative "./config/configuration"
+require_relative "./config/validation"
 
 require_relative "./helpers/auth_helper"
 require_relative "./helpers/normalizing_helper"
@@ -31,7 +32,12 @@ module Securial
     end
 
     initializer "securial.engine_initialized" do |app|
-      Securial::ENGINE_LOGGER.info("[Securial] Engine mounted. Host app: #{app.class.name}")
+      Securial::ENGINE_LOGGER.info("[Securial] Initializing Engine... Host app: #{app.class.name}")
+    end
+
+    initializer "securial.config" do
+      Securial::ENGINE_LOGGER.info("[Securial] Validating configuration in `config/initializers/securial.rb`...")
+      Securial::Config::Validation.validate_all!(Securial.configuration)
     end
 
     initializer "securial.factories", after: "factory_bot.set_factory_paths" do

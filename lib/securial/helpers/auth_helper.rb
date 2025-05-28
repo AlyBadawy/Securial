@@ -28,17 +28,17 @@ module Securial
       private
 
       def secret
-        Securial.validate_session_secret!
+        # Config::Validation.validate_session_secret!(Securial.configuration)
         Securial.configuration.session_secret
       end
 
       def algorithm
-        Securial.validate_session_algorithm!
+        # Config::Validation.validate_session_algorithm!(Securial.configuration)
         Securial.configuration.session_algorithm.to_s.upcase
       end
 
       def expiry_duration
-        Securial.validate_session_expiry_duration!
+        # Config::Validation.validate_session_expiry_duration!(Securial.configuration)
         Securial.configuration.session_expiration_duration
       end
     end

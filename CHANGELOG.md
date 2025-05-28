@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Implement timestamp configuration in JSON responses
 
+### Changed
+
+- Refactor the configurations and validations; and extract them in their own module
+
 ## [0.4.2] - 2025-05-27
 
 ### Changed
