@@ -61,7 +61,7 @@ RSpec.describe Securial::AccountsController, type: :request do
         it "returns an error message" do
           get securial.me_url, headers: @invalid_headers
           res_body = JSON.parse(response.body)
-          expect(res_body["error"]).to eq("Invalid token: Not enough or too many segments")
+          expect(res_body["error"]).to eq("Invalid token: Failed to decode session token: Not enough or too many segments")
         end
 
         it "does not return the user profile" do
@@ -69,7 +69,7 @@ RSpec.describe Securial::AccountsController, type: :request do
           res_body = JSON.parse(response.body)
           expected_keys = ["error"]
           expect(res_body.keys).to include(*expected_keys)
-          expect(res_body["error"]).to eq("Invalid token: Not enough or too many segments")
+          expect(res_body["error"]).to eq("Invalid token: Failed to decode session token: Not enough or too many segments")
         end
       end
     end

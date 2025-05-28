@@ -15,8 +15,8 @@ module Securial
     end
 
     def refresh!
-      raise Securial::SessionErrors::SessionRevokedError, "Session is revoked" if revoked
-      raise Securial::SessionErrors::SessionExpiredError, "Session is expired" if refresh_token_expires_at < Time.current
+      raise Securial::Sessions::Errors::SessionRevokedError, "Session is revoked" if revoked
+      raise Securial::Sessions::Errors::SessionExpiredError, "Session is expired" if refresh_token_expires_at < Time.current
 
       update!(refresh_token: SecureRandom.hex(64),
               refresh_count: self.refresh_count + 1,

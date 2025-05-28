@@ -41,7 +41,7 @@ module Securial
     let(:securial_user) { create(:securial_user) }
     let(:securial_session) { create(:securial_session, user: securial_user) }
     let(:valid_headers) {
-      token = AuthHelper.encode(securial_session)
+      token = Securial::Sessions::SessionEncoder.encode(securial_session)
       { "Authorization" => "Bearer #{token}" }
     }
 
@@ -63,7 +63,7 @@ module Securial
         it "returns JSON error message of Invalid encoding" do
           get "/securial/authenticate", headers: { "Authorization" => "Bearer invalid token" }, as: :json
 
-          expect(JSON.parse(response.body)).to include("error" => "Invalid token: Not enough or too many segments")
+          expect(JSON.parse(response.body)).to include("error" => "Invalid token: Failed to decode session token: Not enough or too many segments")
         end
       end
 
@@ -113,7 +113,7 @@ module Securial
         let(:admin_session) { create(:securial_session, user: admin_user) }
 
         it "grants admin access" do
-          valid_admin_headers = { "Authorization" => "Bearer #{AuthHelper.encode(admin_session)}" }
+          valid_admin_headers = { "Authorization" => "Bearer #{Securial::Sessions::SessionEncoder.encode(admin_session)}" }
           get "/securial/admin", headers: valid_admin_headers, as: :json
           expect(response).to have_http_status(:ok)
           expect(JSON.parse(response.body)).to include("message" => "Admin access granted")
