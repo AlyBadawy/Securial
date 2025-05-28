@@ -386,7 +386,7 @@ RSpec.describe Securial do
       end
     end
 
-    context "when session_algorithm is valid" do
+    context "when timestamps_in_response is valid" do
       it "does not raise error for valid algorithms" do
         valid_options = [:none, :admins_only, :all]
         valid_options.each do |option|
