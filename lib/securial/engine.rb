@@ -1,15 +1,8 @@
 require_relative "./logger"
-
-Dir[File.join(__dir__, "errors", "*.rb")].each { |f| require_relative f }
-
-require_relative "./config/configuration"
-require_relative "./config/validation"
-
-require_relative "./helpers/auth_helper"
-require_relative "./helpers/normalizing_helper"
-require_relative "./helpers/regex_helper"
-
-require_relative "./route_inspector"
+require_relative "./sessions/_index"
+require_relative "./config/_index"
+require_relative "./helpers/_index"
+require_relative "./inspectors/_index"
 
 require_relative "./middleware/request_logger_tag"
 require "jwt"

@@ -28,7 +28,7 @@ RSpec.describe Securial::Config::Validation do
         config.admin_role = nil
         expect {
           described_class.send(:validate_admin_role!, config)
-        }.to raise_error(Securial::ConfigErrors::ConfigAdminRoleError, "Admin role is not set.")
+        }.to raise_error(Securial::Config::Errors::ConfigAdminRoleError, "Admin role is not set.")
       end
     end
 
@@ -37,14 +37,14 @@ RSpec.describe Securial::Config::Validation do
         config.admin_role = ""
         expect {
           described_class.send(:validate_admin_role!, config)
-        }.to raise_error(Securial::ConfigErrors::ConfigAdminRoleError, "Admin role is not set.")
+        }.to raise_error(Securial::Config::Errors::ConfigAdminRoleError, "Admin role is not set.")
       end
 
       it "raises ConfigAdminRoleError for whitespace string" do
         config.admin_role = "   "
         expect {
           described_class.send(:validate_admin_role!, config)
-        }.to raise_error(Securial::ConfigErrors::ConfigAdminRoleError, "Admin role is not set.")
+        }.to raise_error(Securial::Config::Errors::ConfigAdminRoleError, "Admin role is not set.")
       end
     end
 
@@ -53,14 +53,14 @@ RSpec.describe Securial::Config::Validation do
         config.admin_role = 123
         expect {
           described_class.send(:validate_admin_role!, config)
-        }.to raise_error(Securial::ConfigErrors::ConfigAdminRoleError, "Admin role must be a Symbol or String.")
+        }.to raise_error(Securial::Config::Errors::ConfigAdminRoleError, "Admin role must be a Symbol or String.")
       end
 
       it "raises ConfigAdminRoleError for Array" do
         config.admin_role = [:admin]
         expect {
           described_class.send(:validate_admin_role!, config)
-        }.to raise_error(Securial::ConfigErrors::ConfigAdminRoleError, "Admin role must be a Symbol or String.")
+        }.to raise_error(Securial::Config::Errors::ConfigAdminRoleError, "Admin role must be a Symbol or String.")
       end
     end
 
@@ -70,7 +70,7 @@ RSpec.describe Securial::Config::Validation do
 
         expect {
           described_class.send(:validate_admin_role!, config)
-        }.to raise_error(Securial::ConfigErrors::ConfigAdminRoleError, error_message)
+        }.to raise_error(Securial::Config::Errors::ConfigAdminRoleError, error_message)
       end
 
       it 'raises error when admin_role is "accounts"' do
@@ -78,7 +78,7 @@ RSpec.describe Securial::Config::Validation do
 
         expect {
           described_class.send(:validate_admin_role!, config)
-        }.to raise_error(Securial::ConfigErrors::ConfigAdminRoleError, error_message)
+        }.to raise_error(Securial::Config::Errors::ConfigAdminRoleError, error_message)
       end
     end
 
@@ -117,7 +117,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_expiry_duration!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionExpirationDurationError,
+          Securial::Config::Errors::ConfigSessionExpirationDurationError,
           "Session expiration duration is not set."
         )
       end
@@ -129,7 +129,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_expiry_duration!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionExpirationDurationError,
+          Securial::Config::Errors::ConfigSessionExpirationDurationError,
           "Session expiration duration must be an ActiveSupport::Duration."
         )
       end
@@ -141,7 +141,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_expiry_duration!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionExpirationDurationError,
+          Securial::Config::Errors::ConfigSessionExpirationDurationError,
           "Session expiration duration must be greater than 0."
         )
       end
@@ -151,7 +151,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_expiry_duration!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionExpirationDurationError,
+          Securial::Config::Errors::ConfigSessionExpirationDurationError,
           "Session expiration duration must be greater than 0."
         )
       end
@@ -177,7 +177,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_algorithm!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionAlgorithmError,
+          Securial::Config::Errors::ConfigSessionAlgorithmError,
           "Session algorithm is not set."
         )
       end
@@ -189,7 +189,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_algorithm!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionAlgorithmError,
+          Securial::Config::Errors::ConfigSessionAlgorithmError,
           "Session algorithm must be a Symbol."
         )
       end
@@ -203,7 +203,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_session_algorithm!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigSessionAlgorithmError,
+            Securial::Config::Errors::ConfigSessionAlgorithmError,
             "Invalid session algorithm. Valid options are: :hs256, :hs384, :hs512."
           )
         end
@@ -230,7 +230,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_secret!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionSecretError,
+          Securial::Config::Errors::ConfigSessionSecretError,
           "Session secret is not set."
         )
       end
@@ -240,7 +240,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_secret!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionSecretError,
+          Securial::Config::Errors::ConfigSessionSecretError,
           "Session secret is not set."
         )
       end
@@ -250,7 +250,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_secret!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionSecretError,
+          Securial::Config::Errors::ConfigSessionSecretError,
           "Session secret is not set."
         )
       end
@@ -262,7 +262,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_secret!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionSecretError,
+          Securial::Config::Errors::ConfigSessionSecretError,
           "Session secret must be a String."
         )
       end
@@ -272,7 +272,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_session_secret!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigSessionSecretError,
+          Securial::Config::Errors::ConfigSessionSecretError,
           "Session secret must be a String."
         )
       end
@@ -302,7 +302,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_mailer_sender!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigMailerSenderError,
+          Securial::Config::Errors::ConfigMailerSenderError,
           "Mailer sender is not set."
         )
       end
@@ -314,7 +314,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_mailer_sender!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigMailerSenderError,
+          Securial::Config::Errors::ConfigMailerSenderError,
           "Mailer sender is not set."
         )
       end
@@ -326,7 +326,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_mailer_sender!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigMailerSenderError,
+          Securial::Config::Errors::ConfigMailerSenderError,
           "Mailer sender is not a valid email address."
         )
       end
@@ -367,7 +367,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password reset email subject is not set."
         )
       end
@@ -379,7 +379,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password reset email subject is not set."
         )
       end
@@ -391,7 +391,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password reset email subject must be a String."
         )
       end
@@ -401,7 +401,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password reset email subject must be a String."
         )
       end
@@ -425,7 +425,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_password_config!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigPasswordError,
+            Securial::Config::Errors::ConfigPasswordError,
             "Password minimum length must be a positive integer."
           )
         end
@@ -437,7 +437,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_password_config!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigPasswordError,
+            Securial::Config::Errors::ConfigPasswordError,
             "Password minimum length must be a positive integer."
           )
         end
@@ -447,7 +447,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_password_config!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigPasswordError,
+            Securial::Config::Errors::ConfigPasswordError,
             "Password minimum length must be a positive integer."
           )
         end
@@ -459,7 +459,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_password_config!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigPasswordError,
+            Securial::Config::Errors::ConfigPasswordError,
             "Password minimum length must be a positive integer."
           )
         end
@@ -469,7 +469,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_password_config!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigPasswordError,
+            Securial::Config::Errors::ConfigPasswordError,
             "Password minimum length must be a positive integer."
           )
         end
@@ -495,7 +495,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_password_config!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigPasswordError,
+            Securial::Config::Errors::ConfigPasswordError,
             "Password maximum length must be an integer greater than or equal to the minimum length."
           )
         end
@@ -507,7 +507,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_password_config!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigPasswordError,
+            Securial::Config::Errors::ConfigPasswordError,
             "Password maximum length must be an integer greater than or equal to the minimum length."
           )
         end
@@ -517,7 +517,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_password_config!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigPasswordError,
+            Securial::Config::Errors::ConfigPasswordError,
             "Password maximum length must be an integer greater than or equal to the minimum length."
           )
         end
@@ -531,7 +531,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_password_config!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigPasswordError,
+            Securial::Config::Errors::ConfigPasswordError,
             "Password maximum length must be an integer greater than or equal to the minimum length."
           )
         end
@@ -558,7 +558,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password complexity regex is not set or is not a valid Regexp."
         )
       end
@@ -570,7 +570,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password complexity regex is not set or is not a valid Regexp."
         )
       end
@@ -580,7 +580,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password complexity regex is not set or is not a valid Regexp."
         )
       end
@@ -603,7 +603,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password expiration duration is not set or is not a valid ActiveSupport::Duration."
         )
       end
@@ -615,7 +615,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password expiration duration is not set or is not a valid ActiveSupport::Duration."
         )
       end
@@ -627,7 +627,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password expiration duration is not set or is not a valid ActiveSupport::Duration."
         )
       end
@@ -637,7 +637,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Password expiration duration is not set or is not a valid ActiveSupport::Duration."
         )
       end
@@ -663,7 +663,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Reset password token secret is not set."
         )
       end
@@ -675,7 +675,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Reset password token secret must be a String."
         )
       end
@@ -685,7 +685,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_password_config!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigPasswordError,
+          Securial::Config::Errors::ConfigPasswordError,
           "Reset password token secret must be a String."
         )
       end
@@ -708,7 +708,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_timestamps_in_response!, config)
         }.to raise_error(
-          Securial::ConfigErrors::ConfigTimestampsInResponseError,
+          Securial::Config::Errors::ConfigTimestampsInResponseError,
           "Invalid timestamps_in_response option. Valid options are: :all, :admins_only, :none."
         )
       end
@@ -720,7 +720,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_timestamps_in_response!, config)
           }.to raise_error(
-            Securial::ConfigErrors::ConfigTimestampsInResponseError,
+            Securial::Config::Errors::ConfigTimestampsInResponseError,
             "Invalid timestamps_in_response option. Valid options are: :all, :admins_only, :none."
           )
         end

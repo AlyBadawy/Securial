@@ -18,19 +18,19 @@ module Securial
           if config.admin_role.nil? || config.admin_role.to_s.strip.empty?
             error_message = "Admin role is not set."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigAdminRoleError, error_message
+            raise Securial::Config::Errors::ConfigAdminRoleError, error_message
           end
 
           unless config.admin_role.is_a?(Symbol) || config.admin_role.is_a?(String)
             error_message = "Admin role must be a Symbol or String."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigAdminRoleError, error_message
+            raise Securial::Config::Errors::ConfigAdminRoleError, error_message
           end
 
           if config.admin_role.to_s.pluralize.downcase == "accounts"
             error_message = "The admin role cannot be 'account' or 'accounts' as it conflicts with the default routes."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigAdminRoleError, error_message
+            raise Securial::Config::Errors::ConfigAdminRoleError, error_message
           end
         end
 
@@ -44,16 +44,16 @@ module Securial
           if config.session_expiration_duration.nil?
             error_message = "Session expiration duration is not set."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigSessionExpirationDurationError, error_message
+            raise Securial::Config::Errors::ConfigSessionExpirationDurationError, error_message
           end
           if config.session_expiration_duration.class != ActiveSupport::Duration
             error_message = "Session expiration duration must be an ActiveSupport::Duration."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigSessionExpirationDurationError, error_message
+            raise Securial::Config::Errors::ConfigSessionExpirationDurationError, error_message
           end
           if config.session_expiration_duration <= 0
             Securial::ENGINE_LOGGER.error("Session expiration duration must be greater than 0.")
-            raise Securial::ConfigErrors::ConfigSessionExpirationDurationError, "Session expiration duration must be greater than 0."
+            raise Securial::Config::Errors::ConfigSessionExpirationDurationError, "Session expiration duration must be greater than 0."
           end
         end
 
@@ -61,18 +61,18 @@ module Securial
           if config.session_algorithm.blank?
             error_message = "Session algorithm is not set."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigSessionAlgorithmError, error_message
+            raise Securial::Config::Errors::ConfigSessionAlgorithmError, error_message
           end
           unless config.session_algorithm.is_a?(Symbol)
             error_message = "Session algorithm must be a Symbol."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigSessionAlgorithmError, error_message
+            raise Securial::Config::Errors::ConfigSessionAlgorithmError, error_message
           end
           valid_algorithms = Securial::Config::VALID_SESSION_ENCRYPTION_ALGORITHMS
           unless valid_algorithms.include?(config.session_algorithm)
             error_message = "Invalid session algorithm. Valid options are: #{valid_algorithms.map(&:inspect).join(', ')}."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigSessionAlgorithmError, error_message
+            raise Securial::Config::Errors::ConfigSessionAlgorithmError, error_message
           end
         end
 
@@ -80,12 +80,12 @@ module Securial
           if config.session_secret.blank?
             error_message = "Session secret is not set."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigSessionSecretError, error_message
+            raise Securial::Config::Errors::ConfigSessionSecretError, error_message
           end
           unless config.session_secret.is_a?(String)
             error_message = "Session secret must be a String."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigSessionSecretError, error_message
+            raise Securial::Config::Errors::ConfigSessionSecretError, error_message
           end
         end
 
@@ -93,12 +93,12 @@ module Securial
           if config.mailer_sender.blank?
             error_message = "Mailer sender is not set."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigMailerSenderError, error_message
+            raise Securial::Config::Errors::ConfigMailerSenderError, error_message
           end
           if config.mailer_sender !~  URI::MailTo::EMAIL_REGEXP
             error_message = "Mailer sender is not a valid email address."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigMailerSenderError, error_message
+            raise Securial::Config::Errors::ConfigMailerSenderError, error_message
           end
         end
 
@@ -114,12 +114,12 @@ module Securial
           if config.reset_password_token_secret.blank?
             error_message = "Reset password token secret is not set."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigPasswordError, error_message
+            raise Securial::Config::Errors::ConfigPasswordError, error_message
           end
           unless config.reset_password_token_secret.is_a?(String)
             error_message = "Reset password token secret must be a String."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigPasswordError, error_message
+            raise Securial::Config::Errors::ConfigPasswordError, error_message
           end
         end
 
@@ -127,12 +127,12 @@ module Securial
           if config.password_reset_email_subject.blank?
             error_message = "Password reset email subject is not set."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigPasswordError, error_message
+            raise Securial::Config::Errors::ConfigPasswordError, error_message
           end
           unless config.password_reset_email_subject.is_a?(String)
             error_message = "Password reset email subject must be a String."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigPasswordError, error_message
+            raise Securial::Config::Errors::ConfigPasswordError, error_message
           end
         end
 
@@ -140,12 +140,12 @@ module Securial
           unless config.password_min_length.is_a?(Integer) && config.password_min_length > 0
             error_message = "Password minimum length must be a positive integer."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigPasswordError, error_message
+            raise Securial::Config::Errors::ConfigPasswordError, error_message
           end
           unless config.password_max_length.is_a?(Integer) && config.password_max_length >= config.password_min_length
             error_message = "Password maximum length must be an integer greater than or equal to the minimum length."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigPasswordError, error_message
+            raise Securial::Config::Errors::ConfigPasswordError, error_message
           end
         end
 
@@ -153,7 +153,7 @@ module Securial
           if config.password_complexity.nil? || !config.password_complexity.is_a?(Regexp)
             error_message = "Password complexity regex is not set or is not a valid Regexp."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigPasswordError, error_message
+            raise Securial::Config::Errors::ConfigPasswordError, error_message
           end
         end
 
@@ -161,7 +161,7 @@ module Securial
           if config.password_expires_in.nil? || !config.password_expires_in.is_a?(ActiveSupport::Duration) || config.password_expires_in <= 0
             error_message = "Password expiration duration is not set or is not a valid ActiveSupport::Duration."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigPasswordError, error_message
+            raise Securial::Config::Errors::ConfigPasswordError, error_message
           end
         end
 
@@ -170,7 +170,7 @@ module Securial
           unless valid_options.include?(config.timestamps_in_response)
             error_message = "Invalid timestamps_in_response option. Valid options are: #{valid_options.map(&:inspect).join(', ')}."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::ConfigErrors::ConfigTimestampsInResponseError, error_message
+            raise Securial::Config::Errors::ConfigTimestampsInResponseError, error_message
           end
         end
       end
