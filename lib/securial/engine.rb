@@ -1,8 +1,7 @@
 require_relative "./logger"
-require_relative "./sessions/_index"
 require_relative "./config/_index"
 require_relative "./helpers/_index"
-require_relative "./inspectors/_index"
+require_relative "./sessions/_index"
 require_relative "./inspectors/_index"
 
 require_relative "./middleware/request_logger_tag"

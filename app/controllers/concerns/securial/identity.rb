@@ -34,7 +34,7 @@ module Securial
         begin
           decoded_token = Securial::Sessions::SessionEncoder.decode(token)
           Current.session = Session.find_by!(id: decoded_token["jti"], revoked: false)
-        rescue Sessions::Errors::SessionDecodeError, ActiveRecord::RecordNotFound => e
+        rescue Securial::Sessions::Errors::SessionDecodeError, ActiveRecord::RecordNotFound => e
           render status: :unauthorized, json: { error: "Invalid token: #{e.message}" } and return
         end
       else
