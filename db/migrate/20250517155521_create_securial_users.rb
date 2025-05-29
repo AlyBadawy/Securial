@@ -1,13 +1,16 @@
 class CreateSecurialUsers < ActiveRecord::Migration[8.0]
   def change
     create_table :securial_users, id: :string do |t|
-      t.string :email_address
-      t.string :password_digest
-      t.string :first_name
-      t.string :last_name
-      t.string :phone
-      t.string :username
-      t.string :bio
+      t.string    :email_address
+      t.string    :first_name
+      t.string    :last_name
+      t.string    :phone
+      t.string    :username
+      t.string    :bio
+      t.string    :password_digest
+      t.string    :reset_password_token
+      t.datetime  :reset_password_token_created_at
+      t.datetime  :password_changed_at
 
       t.timestamps
     end

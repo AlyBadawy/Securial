@@ -13,7 +13,7 @@ module Securial
       attr_accessor :password_reset_email_subject
       attr_accessor :password_min_length, :password_max_length
       attr_accessor :password_complexity
-      attr_accessor :password_expires_in
+      attr_accessor :password_expires, :password_expires_in
       attr_accessor :reset_password_token_expires_in
       attr_accessor :reset_password_token_secret
       attr_accessor :timestamps_in_response
@@ -32,6 +32,7 @@ module Securial
         @password_min_length = 8
         @password_max_length = 128
         @password_complexity = Securial::RegexHelper::PASSWORD_REGEX
+        @password_expires = true
         @password_expires_in = 90.days
         @reset_password_token_expires_in = 2.hours
         @reset_password_token_secret = "reset_secret"

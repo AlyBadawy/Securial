@@ -5,6 +5,8 @@ module Securial
     included do
       has_secure_password
 
+      before_save :update_password_changed_at, if: :will_save_change_to_password_digest?
+
       validates :password,
                 length: {
                   minimum: Securial.configuration.password_min_length,
@@ -42,6 +44,19 @@ module Securial
         reset_password_token: nil,
         reset_password_token_created_at: nil
       )
+    end
+
+    def password_expired?
+      return false unless Securial.configuration.password_expires
+      return true unless password_changed_at
+
+      password_changed_at < Securial.configuration.password_expires_in.ago
+    end
+
+    private
+
+    def update_password_changed_at
+      self.password_changed_at = Time.current
     end
   end
 end

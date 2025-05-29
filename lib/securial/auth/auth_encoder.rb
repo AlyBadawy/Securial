@@ -1,6 +1,6 @@
 module Securial
-  module Sessions
-    module SessionEncoder
+  module Auth
+    module AuthEncoder
       class << self
         def encode(session)
           return nil unless session && session.class == Securial::Session
@@ -21,7 +21,7 @@ module Securial
           begin
             JWT.encode(payload, secret, algorithm, { kid: "hmac" })
           rescue JWT::EncodeError => e
-            raise Errors::SessionEncodeError, "Failed to encode session: #{e.message}"
+            raise Errors::AuthEncodeError, "Failed to encode session: #{e.message}"
           end
         end
 
@@ -29,7 +29,7 @@ module Securial
           begin
           decoded = JWT.decode(token, secret, true, { algorithm: algorithm, verify_jti: true, iss: "securial" })
           rescue JWT::DecodeError => e
-            raise Securial::Sessions::Errors::SessionDecodeError, "Failed to decode session token: #{e.message}"
+            raise Securial::Auth::Errors::AuthDecodeError, "Failed to decode session token: #{e.message}"
           end
           decoded.first
         end
