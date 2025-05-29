@@ -41,7 +41,7 @@ module Securial
     let(:securial_user) { create(:securial_user) }
     let(:securial_session) { create(:securial_session, user: securial_user) }
     let(:valid_headers) {
-      token = Securial::Sessions::SessionEncoder.encode(securial_session)
+      token = Securial::Auth::AuthEncoder.encode(securial_session)
       { "Authorization" => "Bearer #{token}" }
     }
 
@@ -113,7 +113,7 @@ module Securial
         let(:admin_session) { create(:securial_session, user: admin_user) }
 
         it "grants admin access" do
-          valid_admin_headers = { "Authorization" => "Bearer #{Securial::Sessions::SessionEncoder.encode(admin_session)}" }
+          valid_admin_headers = { "Authorization" => "Bearer #{Securial::Auth::AuthEncoder.encode(admin_session)}" }
           get "/securial/admin", headers: valid_admin_headers, as: :json
           expect(response).to have_http_status(:ok)
           expect(JSON.parse(response.body)).to include("message" => "Admin access granted")

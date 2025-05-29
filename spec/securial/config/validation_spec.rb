@@ -597,6 +597,50 @@ RSpec.describe Securial::Config::Validation do
   end
 
   describe "validate_password_expiration!" do
+    context "when password_expires is not set" do
+      it "raises ConfigPasswordError" do
+        config.password_expires = nil
+        expect {
+          described_class.send(:validate_password_config!, config)
+        }.to raise_error(
+          Securial::Config::Errors::ConfigPasswordError,
+          "Password expiration must be a boolean value."
+        )
+      end
+    end
+
+    context "when password_expires is not a boolean" do
+      it "raises ConfigPasswordError for String" do
+        config.password_expires = "true"
+        expect {
+          described_class.send(:validate_password_config!, config)
+        }.to raise_error(
+          Securial::Config::Errors::ConfigPasswordError,
+          "Password expiration must be a boolean value."
+        )
+      end
+
+      it "raises ConfigPasswordError for Integer" do
+        config.password_expires = 1
+        expect {
+          described_class.send(:validate_password_config!, config)
+        }.to raise_error(
+          Securial::Config::Errors::ConfigPasswordError,
+          "Password expiration must be a boolean value."
+        )
+      end
+    end
+
+    context "when password_expires is false and password_expires_in is not set" do
+      it "does not raise error" do
+        config.password_expires = false
+        config.password_expires_in = nil
+        expect {
+          described_class.send(:validate_password_config!, config)
+        }.not_to raise_error
+      end
+    end
+
     context "when password_expires_in is not set" do
       it "raises ConfigPasswordError" do
         config.password_expires_in = nil

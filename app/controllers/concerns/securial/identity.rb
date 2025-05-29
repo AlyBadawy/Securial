@@ -32,9 +32,9 @@ module Securial
       if auth_header.present? && auth_header.start_with?("Bearer ")
         token = auth_header.split(" ").last
         begin
-          decoded_token = Securial::Sessions::SessionEncoder.decode(token)
+          decoded_token = Securial::Auth::AuthEncoder.decode(token)
           Current.session = Session.find_by!(id: decoded_token["jti"], revoked: false)
-        rescue Securial::Sessions::Errors::SessionDecodeError, ActiveRecord::RecordNotFound => e
+        rescue Securial::Auth::Errors::AuthDecodeError, ActiveRecord::RecordNotFound => e
           render status: :unauthorized, json: { error: "Invalid token: #{e.message}" } and return
         end
       else
@@ -43,19 +43,11 @@ module Securial
     end
 
     def start_new_session_for(user)
-      user.sessions.create!(
-        user_agent: request.user_agent,
-        ip_address: request.remote_ip,
-        refresh_token: SecureRandom.hex(64),
-        last_refreshed_at: Time.current,
-        refresh_token_expires_at: 1.week.from_now,
-      ).tap do |session|
-        Current.session = session
-      end
+      Securial::Auth::SessionCreator.create_session(user, request)
     end
 
     def create_jwt_for_current_session
-      Securial::Sessions::SessionEncoder.encode(Current.session)
+      Securial::Auth::AuthEncoder.encode(Current.session)
     end
 
     def internal_rails_request?

@@ -5,7 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## ## [0.5.0] - 2025-05-28
+## [Unreleased]
+
+### Added
+
+- Add a dedicated SessionCreator in Securial::Auth
+- Implement password expiration feature
+
+## [0.5.0] - 2025-05-28
 
 ### Added
 
@@ -15,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Refactor the configurations and validations; and extract them in their own module
 - Organize error handling and validation structure
-- Replace AuthHelper with SessionEncoder
+- Replace AuthHelper with AuthEncoder
 
 ## [0.4.2] - 2025-05-27
 

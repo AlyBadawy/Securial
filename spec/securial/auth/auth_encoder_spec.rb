@@ -1,7 +1,7 @@
 require "rails_helper"
 
 module Securial
-  RSpec.describe Securial::Sessions::SessionEncoder, type: :helper do
+  RSpec.describe Auth::AuthEncoder do
     let(:securial_session) { create(:securial_session) }
 
     describe "The .encode class method" do
@@ -31,10 +31,10 @@ module Securial
           allow(Securial.configuration).to receive(:session_algorithm).and_return("invalid_algorithm")
         end
 
-        it "raises a SessionEncodeError" do
+        it "raises a AuthEncodeError" do
           expect {
             described_class.encode(securial_session)
-          }.to raise_error(Securial::Sessions::Errors::SessionEncodeError, "Failed to encode session: Unsupported signing method")
+          }.to raise_error(Securial::Auth::Errors::AuthEncodeError, "Failed to encode session: Unsupported signing method")
         end
       end
     end
@@ -108,7 +108,7 @@ module Securial
         it "raises a JWT::DecodeError" do
           expect {
             described_class.decode("invalid.token")
-          }.to raise_error(Securial::Sessions::Errors::SessionDecodeError)
+          }.to raise_error(Securial::Auth::Errors::AuthDecodeError)
         end
       end
 
@@ -119,7 +119,7 @@ module Securial
           travel_to 4.minutes.from_now do
             expect {
               described_class.decode(expired_token)
-            }.to raise_error(Securial::Sessions::Errors::SessionDecodeError)
+            }.to raise_error(Securial::Auth::Errors::AuthDecodeError)
           end
         end
       end

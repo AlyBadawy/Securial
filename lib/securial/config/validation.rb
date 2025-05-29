@@ -158,7 +158,17 @@ module Securial
         end
 
         def validate_password_expiration!(config)
-          if config.password_expires_in.nil? || !config.password_expires_in.is_a?(ActiveSupport::Duration) || config.password_expires_in <= 0
+          unless config.password_expires.is_a?(TrueClass) || config.password_expires.is_a?(FalseClass)
+            error_message = "Password expiration must be a boolean value."
+            Securial::ENGINE_LOGGER.error(error_message)
+            raise Securial::Config::Errors::ConfigPasswordError, error_message
+          end
+
+          if config.password_expires == true && (
+              config.password_expires_in.nil? ||
+              !config.password_expires_in.is_a?(ActiveSupport::Duration) ||
+              config.password_expires_in <= 0
+            )
             error_message = "Password expiration duration is not set or is not a valid ActiveSupport::Duration."
             Securial::ENGINE_LOGGER.error(error_message)
             raise Securial::Config::Errors::ConfigPasswordError, error_message

@@ -76,6 +76,39 @@ RSpec.describe Securial::PasswordResettable, type: :model do
     end
   end
 
+  describe "#password_expired?" do
+    context "when password expiration is disabled" do
+      before do
+        allow(Securial.configuration).to receive(:password_expires).and_return(false)
+      end
+
+      it "returns false" do
+        expect(user.password_expired?).to be false
+      end
+    end
+
+    context "when password expiration is enabled" do
+      before do
+        allow(Securial.configuration).to receive(:password_expires_in).and_return(90.days)
+      end
+
+      it "returns true if password was set more than 90 days ago" do
+        user.update!(password_changed_at: 91.days.ago)
+        expect(user.password_expired?).to be true
+      end
+
+      it "returns false if password was set within the last 90 days" do
+        user.update!(password_changed_at: 30.days.ago)
+        expect(user.password_expired?).to be false
+      end
+
+      it "returns true if password_changed_at is nil" do
+        user.update!(password_changed_at: nil)
+        expect(user.password_expired?).to be true
+      end
+    end
+  end
+
   describe "password encryption" do
     it "encrypts the password" do
       my_user = test_class.create(email_address: "test@example.com", password: "Password!1", password_confirmation: "Password!1")
