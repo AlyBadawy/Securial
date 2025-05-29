@@ -11,7 +11,7 @@ module Securial
       def call(env)
         if env["CONTENT_TYPE"]&.include?("application/json") && Securial.configuration.response_keys_format != :snake_case
           req = Rack::Request.new(env)
-          if req.body&.size || 0 > 0
+          if (req.body&.size || 0) > 0
             raw = req.body.read
             req.body.rewind
             begin
