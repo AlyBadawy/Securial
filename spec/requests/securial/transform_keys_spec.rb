@@ -5,8 +5,6 @@ RSpec.describe "Key transformation middlewares" do
     create(:securial_user, password: "TestPass.01", password_confirmation: "TestPass.01")
   end
 
-
-
   context "when response_keys_format is :lowerCamelCase" do
     before do
       allow(Securial.configuration).to receive(:response_keys_format).and_return(:lowerCamelCase)
