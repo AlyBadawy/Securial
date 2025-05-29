@@ -53,7 +53,7 @@ module Securial
     end
 
     initializer "securial.middleware" do |app|
-      app.middleware.use Securial::Middleware::RequestLoggerTag
+      middleware.use Securial::Middleware::RequestLoggerTag
       middleware.use Securial::Middleware::TransformRequestKeys
       middleware.use Securial::Middleware::TransformResponseKeys
     end
@@ -81,7 +81,7 @@ module Securial
     private
 
     def log(message)
-      Securial::ENGINE_LOGGER&.info("[Securial] #{message}")
+      Securial::ENGINE_LOGGER.info("[Securial] #{message}")
     end
   end
 end

@@ -2,6 +2,10 @@ require "rails_helper"
 RSpec.describe Securial::Config::Validation do
   let(:config) { Securial::Config::Configuration.new }
 
+  before do
+    allow(config).to receive(:validate!).and_return(true)
+  end
+
   describe ".validate_all!" do
     it "validates all configuration settings" do
       allow(described_class).to receive(:validate_admin_role!)
