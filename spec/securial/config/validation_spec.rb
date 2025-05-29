@@ -745,6 +745,57 @@ RSpec.describe Securial::Config::Validation do
     end
   end
 
+  describe "validate_response_config!" do
+    it "validates all response configuration settings" do
+      allow(described_class).to receive(:validate_timestamps_in_response!)
+      allow(described_class).to receive(:validate_response_keys_format!)
+
+      described_class.send(:validate_response_config!, config)
+
+      expect(described_class).to have_received(:validate_timestamps_in_response!).with(config)
+      expect(described_class).to have_received(:validate_response_keys_format!).with(config)
+    end
+  end
+
+  describe "validate_response_keys_format!" do
+    context "when response_keys_format is invalid" do
+      it "raises ConfigResponseKeysFormatError for nil value" do
+        config.response_keys_format = nil
+        expect {
+          described_class.send(:validate_response_keys_format!, config)
+        }.to raise_error(
+          Securial::Config::Errors::ConfigResponseError,
+          "Invalid response_keys_format option. Valid options are: :snake_case, :lowerCamelCase, :UpperCamelCase."
+        )
+      end
+
+      it "raises ConfigResponseKeysFormatError for invalid values" do
+        invalid_formats = [:invalid_format, :another_invalid]
+        invalid_formats.each do |format|
+          config.response_keys_format = format
+          expect {
+            described_class.send(:validate_response_keys_format!, config)
+          }.to raise_error(
+            Securial::Config::Errors::ConfigResponseError,
+            "Invalid response_keys_format option. Valid options are: :snake_case, :lowerCamelCase, :UpperCamelCase."
+          )
+        end
+      end
+    end
+
+    context "when response_keys_format is valid" do
+      it "does not raise error for valid formats" do
+        valid_formats = [:snake_case, :lowerCamelCase, :UpperCamelCase]
+        valid_formats.each do |format|
+          config.response_keys_format = format
+          expect {
+            described_class.send(:validate_response_keys_format!, config)
+          }.not_to raise_error
+        end
+      end
+    end
+  end
+
   describe "validate_timestamps_in_response!" do
     context "when timestamps_in_response is invalid" do
       it "raises ConfigTimestampsInResponseError for nil value" do
@@ -752,7 +803,7 @@ RSpec.describe Securial::Config::Validation do
         expect {
           described_class.send(:validate_timestamps_in_response!, config)
         }.to raise_error(
-          Securial::Config::Errors::ConfigTimestampsInResponseError,
+          Securial::Config::Errors::ConfigResponseError,
           "Invalid timestamps_in_response option. Valid options are: :all, :admins_only, :none."
         )
       end
@@ -764,7 +815,7 @@ RSpec.describe Securial::Config::Validation do
           expect {
             described_class.send(:validate_timestamps_in_response!, config)
           }.to raise_error(
-            Securial::Config::Errors::ConfigTimestampsInResponseError,
+            Securial::Config::Errors::ConfigResponseError,
             "Invalid timestamps_in_response option. Valid options are: :all, :admins_only, :none."
           )
         end

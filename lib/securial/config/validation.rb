@@ -9,7 +9,7 @@ module Securial
           validate_session_config!(config)
           validate_mailer_sender!(config)
           validate_password_config!(config)
-          validate_timestamps_in_response!(config)
+          validate_response_config!(config)
         end
 
         private
@@ -175,12 +175,26 @@ module Securial
           end
         end
 
+        def validate_response_config!(config)
+          validate_response_keys_format!(config)
+          validate_timestamps_in_response!(config)
+        end
+
+        def validate_response_keys_format!(config)
+          valid_formats = Securial::Config::VALID_RESPONSE_KEYS_FORMATS
+          unless valid_formats.include?(config.response_keys_format)
+            error_message = "Invalid response_keys_format option. Valid options are: #{valid_formats.map(&:inspect).join(', ')}."
+            Securial::ENGINE_LOGGER.error(error_message)
+            raise Securial::Config::Errors::ConfigResponseError, error_message
+          end
+        end
+
         def validate_timestamps_in_response!(config)
           valid_options = Securial::Config::VALID_TIMESTAMP_OPTIONS
           unless valid_options.include?(config.timestamps_in_response)
             error_message = "Invalid timestamps_in_response option. Valid options are: #{valid_options.map(&:inspect).join(', ')}."
             Securial::ENGINE_LOGGER.error(error_message)
-            raise Securial::Config::Errors::ConfigTimestampsInResponseError, error_message
+            raise Securial::Config::Errors::ConfigResponseError, error_message
           end
         end
       end

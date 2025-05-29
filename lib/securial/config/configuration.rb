@@ -2,6 +2,7 @@ module Securial
   module Config
     VALID_SESSION_ENCRYPTION_ALGORITHMS = [:hs256, :hs384, :hs512].freeze
     VALID_TIMESTAMP_OPTIONS = [:all, :admins_only, :none].freeze
+    VALID_RESPONSE_KEYS_FORMATS = [:snake_case, :lowerCamelCase, :UpperCamelCase].freeze
 
     class Configuration
       attr_accessor :log_to_file, :log_to_stdout
@@ -17,6 +18,7 @@ module Securial
       attr_accessor :reset_password_token_expires_in
       attr_accessor :reset_password_token_secret
       attr_accessor :timestamps_in_response
+      attr_accessor :response_keys_format
 
       def initialize
         @log_to_file = !Rails.env.test?
@@ -37,6 +39,7 @@ module Securial
         @reset_password_token_expires_in = 2.hours
         @reset_password_token_secret = "reset_secret"
         @timestamps_in_response = :all
+        @response_keys_format = :snake_case
       end
     end
   end
