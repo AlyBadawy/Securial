@@ -9,7 +9,6 @@ module Securial
         desc "Copies Securial model-related views to your application for customization."
 
         def copy_model_views
-          # Recursively copy everything except 'mailer'
           Dir.glob(File.join(self.class.source_root, "**/*")).each do |path|
             relative_path = Pathname.new(path).relative_path_from(Pathname.new(self.class.source_root))
 
