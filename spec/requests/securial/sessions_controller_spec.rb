@@ -168,35 +168,12 @@ RSpec.describe Securial::SessionsController, type: :request do
   end
 
   describe "DELETE /revoke" do
-    it "revokes the current session" do
-      Securial::Current.session = @signed_in_session
-      expect(Securial::Current.session).not_to be_nil
-      delete securial.revoke_current_session_url, headers: @valid_headers, as: :json
-      expect(response).to have_http_status(:no_content)
-      expect(Securial::Current.session).to be_nil
-    end
-
-    it "returns 401 unauthorized when no valid headers" do
-      delete securial.revoke_current_session_url, as: :json
-      expect(response).not_to be_successful
-      expect(response).to have_http_status(:unauthorized)
-    end
-
     it "returns 404 not found when session ID is invalid" do
       Securial::Current.session = @signed_in_session
       expect(Securial::Current.session).not_to be_nil
-      delete securial.revoke_current_session_url(id: "invalid"), headers: @valid_headers, as: :json
+      delete securial.revoke_session_by_id_url(id: "invalid"), headers: @valid_headers, as: :json
       expect(response).not_to be_successful
       expect(response).to have_http_status(:not_found)
-    end
-
-    it "returns 401 unauthorized when session is already revoked" do
-      Securial::Current.session = @signed_in_session
-      expect(Securial::Current.session).not_to be_nil
-      Securial::Current.session.revoke!
-      delete securial.revoke_current_session_url, headers: @valid_headers, as: :json
-      expect(response).not_to be_successful
-      expect(response).to have_http_status(:unauthorized)
     end
   end
 

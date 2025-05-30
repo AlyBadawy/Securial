@@ -14,13 +14,7 @@ module Securial
     def login
       params.require([:email_address, :password])
       if user = User.authenticate_by(params.permit([:email_address, :password]))
-        start_new_session_for user
-        render status: :created,
-               json: {
-                 access_token: create_jwt_for_current_session,
-                 refresh_token: Current.session.refresh_token,
-                 refresh_token_expires_at: Current.session.refresh_token_expires_at,
-               }
+        render_login_response(user)
       else
         render status: :unauthorized,
                json: {
@@ -71,6 +65,24 @@ module Securial
     def set_session
       id = params[:id]
       @securial_session = id ? Current.user.sessions.find(params.expect(:id)) : Current.session
+    end
+
+    def render_login_response(user)
+      if user.password_expired?
+        render status: :unprocessable_entity,
+               json: {
+                 error: "Password expired",
+                 fix: "Please reset your password before logging in.",
+               }
+      else
+        start_new_session_for user
+        render status: :created,
+               json: {
+                 access_token: create_jwt_for_current_session,
+                 refresh_token: Current.session.refresh_token,
+                 refresh_token_expires_at: Current.session.refresh_token_expires_at,
+               }
+      end
     end
   end
 end
