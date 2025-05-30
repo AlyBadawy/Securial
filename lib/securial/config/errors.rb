@@ -14,6 +14,7 @@ module Securial
       class ConfigMailerSenderError < BaseConfigError; end
       class ConfigPasswordError < BaseConfigError; end
       class ConfigResponseError < BaseConfigError; end
+      class ConfigSecurityError < BaseConfigError; end
     end
   end
 end

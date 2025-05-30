@@ -3,13 +3,14 @@ require "securial/logger"
 module Securial
   module Config
     module Validation
-      class << self
+      class << self # rubocop:disable Metrics/ClassLength
         def validate_all!(config)
           validate_admin_role!(config)
           validate_session_config!(config)
           validate_mailer_sender!(config)
           validate_password_config!(config)
           validate_response_config!(config)
+          validate_security_config!(config)
         end
 
         private
@@ -195,6 +196,51 @@ module Securial
             error_message = "Invalid timestamps_in_response option. Valid options are: #{valid_options.map(&:inspect).join(', ')}."
             Securial::ENGINE_LOGGER.error(error_message)
             raise Securial::Config::Errors::ConfigResponseError, error_message
+          end
+        end
+
+        def validate_security_config!(config)
+          validate_security_headers!(config)
+          validate_rate_limiting!(config)
+        end
+
+        def validate_security_headers!(config)
+          valid_options = Securial::Config::VALID_SECURITY_HEADERS
+          unless valid_options.include?(config.security_headers)
+            error_message = "Invalid security_headers option. Valid options are: #{valid_options.map(&:inspect).join(', ')}."
+            Securial::ENGINE_LOGGER.error(error_message)
+            raise Securial::Config::Errors::ConfigSecurityError, error_message
+          end
+        end
+
+        def validate_rate_limiting!(config) # rubocop:disable Metrics/MethodLength
+          unless config.enable_rate_limiting.is_a?(TrueClass) || config.enable_rate_limiting.is_a?(FalseClass)
+            error_message = "enable_rate_limiting must be a boolean value."
+            Securial::ENGINE_LOGGER.error(error_message)
+            raise Securial::Config::Errors::ConfigSecurityError, error_message
+          end
+
+          return unless config.enable_rate_limiting
+
+          unless
+              config.rate_limit_requests_per_minute.is_a?(Integer) &&
+              config.rate_limit_requests_per_minute > 0
+
+            error_message = "rate_limit_requests_per_minute must be a positive integer when rate limiting is enabled."
+            Securial::ENGINE_LOGGER.error(error_message)
+            raise Securial::Config::Errors::ConfigSecurityError, error_message
+          end
+
+          unless config.rate_limit_response_status.is_a?(Integer) && config.rate_limit_response_status.between?(400, 599)
+            error_message = "rate_limit_response_status must be an HTTP status code between 4xx and 5xx."
+            Securial::ENGINE_LOGGER.error(error_message)
+            raise Securial::Config::Errors::ConfigSecurityError, error_message
+          end
+
+          unless config.rate_limit_response_message.is_a?(String) && !config.rate_limit_response_message.strip.empty?
+            error_message = "rate_limit_response_message must be a non-empty String."
+            Securial::ENGINE_LOGGER.error(error_message)
+            raise Securial::Config::Errors::ConfigSecurityError, error_message
           end
         end
       end
