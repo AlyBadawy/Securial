@@ -19,7 +19,7 @@ module Securial
         render status: :unauthorized,
                json: {
                  error: "Invalid email address or password.",
-                 fix: "Make sure to send the correct 'email_address' and 'password' in the payload",
+                 instructions: "Make sure to send the correct 'email_address' and 'password' in the payload",
                }
       end
     end
@@ -72,7 +72,7 @@ module Securial
         render status: :unprocessable_entity,
                json: {
                  error: "Password expired",
-                 fix: "Please reset your password before logging in.",
+                 instructions: "Please reset your password before logging in.",
                }
       else
         start_new_session_for user
