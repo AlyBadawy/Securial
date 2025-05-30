@@ -29,7 +29,7 @@ module Securial
           timestamps_in_response: :all,
           response_keys_format: :snake_case,
           security_headers: :strict,
-          enable_rate_limiting: true,
+          rate_limiting_enabled: true,
           rate_limit_requests_per_minute: 60,
           rate_limit_response_status: 429,
           rate_limit_response_message: "Too many requests, please try again later.",

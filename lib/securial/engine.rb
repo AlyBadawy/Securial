@@ -56,6 +56,11 @@ module Securial
       middleware.use Securial::Middleware::RequestLoggerTag
       middleware.use Securial::Middleware::TransformRequestKeys
       middleware.use Securial::Middleware::TransformResponseKeys
+      if Securial.configuration.rate_limiting_enabled
+        require "rack/attack"
+        require_relative "./rack_attack"
+        middleware.use Rack::Attack
+      end
     end
 
     initializer "securial.log_ready", after: :load_config_initializers do
