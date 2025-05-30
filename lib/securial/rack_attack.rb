@@ -18,6 +18,20 @@ Rails.application.config.to_prepare do
       end
     end
 
+    ### TODO: Add throttling for other endpoints as needed ###
+    # Example: Throttle password reset requests by email
+    throttle("securial/password_resets/ip", limit: 5, period: 1.minute) do |req|
+      if req.path.include?("password/forgot") && req.post?
+        req.ip
+      end
+    end
+
+    throttle("securial/password_resets/email", limit: 5, period: 1.minute) do |req|
+      if req.path.include?("password/forgot") && req.post?
+        req.params["email_address"].to_s.downcase.strip
+      end
+    end
+
     ### Custom response ###
     self.throttled_responder = lambda do |request|
       retry_after = (request.env["rack.attack.match_data"] || {})[:period]
