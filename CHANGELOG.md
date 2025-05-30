@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add a dedicated SessionCreator in Securial::Auth
 - Implement password expiration feature
+- Configuration validations on setting
+- JSON key transformation middleware
+- Password expiration configurations
 
 ## [0.5.0] - 2025-05-28
 
