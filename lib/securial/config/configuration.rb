@@ -4,6 +4,7 @@ module Securial
     VALID_SESSION_ENCRYPTION_ALGORITHMS = [:hs256, :hs384, :hs512].freeze
     VALID_TIMESTAMP_OPTIONS = [:all, :admins_only, :none].freeze
     VALID_RESPONSE_KEYS_FORMATS = [:snake_case, :lowerCamelCase, :UpperCamelCase].freeze
+    VALID_SECURITY_HEADERS = [:strict, :default, :none].freeze
 
     class Configuration
       def self.config_attributes # rubocop:disable Metrics/MethodLength
@@ -11,7 +12,7 @@ module Securial
           log_to_file: !Rails.env.test?,
           log_to_stdout: !Rails.env.test?,
           log_file_level: :info,
-          log_stdout_level: :info,
+          log_stdout_level: :debug,
           admin_role: :admin,
           session_expiration_duration: 3.minutes,
           session_secret: "secret",
@@ -27,6 +28,11 @@ module Securial
           reset_password_token_secret: "reset_secret",
           timestamps_in_response: :all,
           response_keys_format: :snake_case,
+          security_headers: :strict,
+          enable_rate_limiting: true,
+          rate_limit_requests_per_minute: 60,
+          rate_limit_response_status: 429,
+          rate_limit_response_message: "Too many requests, please try again later.",
         }
       end
 

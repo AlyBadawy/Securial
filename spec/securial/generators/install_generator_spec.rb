@@ -77,7 +77,7 @@ RSpec.describe Securial::Generators::InstallGenerator, type: :generator do
     end
   end
 
-  it "creates the initializer file" do
+  it "creates the initializer file for logging" do
     run_generator
 
     assert_file File.join(destination_root, "config", "initializers", "securial.rb") do |content|
@@ -85,8 +85,12 @@ RSpec.describe Securial::Generators::InstallGenerator, type: :generator do
       assert_match(/config.log_to_file = true/, content)
       assert_match(/config.log_to_stdout = true/, content)
       assert_match(/config.log_file_level = :info/, content)
-      assert_match(/config.log_stdout_level = :info/, content)
+      assert_match(/config.log_stdout_level = :debug/, content)
     end
+  end
+
+  it "creates the initializer file for configuration" do
+    skip "Skipping test for configuration initializer; to be completed later"
   end
 
   it "creates the log directory if it doesn't exist" do
