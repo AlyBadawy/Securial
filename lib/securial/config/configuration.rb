@@ -12,7 +12,7 @@ module Securial
           log_to_file: !Rails.env.test?,
           log_to_stdout: !Rails.env.test?,
           log_file_level: :info,
-          log_stdout_level: :info,
+          log_stdout_level: :debug,
           admin_role: :admin,
           session_expiration_duration: 3.minutes,
           session_secret: "secret",

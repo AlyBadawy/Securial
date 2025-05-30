@@ -14,7 +14,7 @@ Securial.configure do |config|
   config.log_file_level = :info
 
   # Set log level for stdout logger
-  config.log_stdout_level = :info
+  config.log_stdout_level = :debug
 
   ##### User Roles
   ## Set the role for admin users
@@ -140,7 +140,7 @@ Securial.configure do |config|
   # This is the maximum number of requests that a user can make
   # in a given time period. The default is 60 requests per minute.
   # This is only applied if `enable_rate_limiting` is set to true.
-  config.rate_limit_per_minute = 60
+  config.rate_limit_requests_per_minute = 60
   ## Set the rate limit response status code
   # This is the status code that will be returned when a user exceeds
   # the rate limit. The status code should be a 4xx or 5xx code
