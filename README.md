@@ -1,6 +1,3 @@
-![image](https://github.com/user-attachments/assets/d7cb9645-c28e-4cca-9c1b-5085a91c11d4)
-
----
 # Securial
 
 [![Gem Version](https://img.shields.io/gem/v/securial?logo=rubygems&logoColor=ffffff&logoSize=auto&label=version&color=violet&cacheSeconds=120)](https://rubygems.org/gems/securial)
@@ -9,6 +6,16 @@
 
 [![Tests](https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg)](https://github.com/alybadawy/securial/actions)
 [![Coverage Status](https://coveralls.io/repos/github/AlyBadawy/Securial/badge.svg?branch=main)](https://coveralls.io/github/AlyBadawy/Securial?branch=main)
+
+> [!WARNING]
+>
+> **Securial is currently in active development (major version zero).**
+>
+> While the gem is functional and versioned, it is not yet considered stable. Until v1.0.0 is released, any updates may introduce breaking changes as the API and features continue to evolve. If you plan to use Securial in production, please do so with caution and pin a specific version.
+>
+> You can track the roadmap and remaining tasks for the v1.0.0 release in [this GitHub issue](https://github.com/AlyBadawy/Securial/issues/64).
+
+---
 
 **Securial** is a mountable Rails engine that provides robust, extensible authentication and access control for Rails applications. It supports:
 
@@ -20,33 +27,13 @@
 - ✅ Database-agnostic support
 
 
-### 🚀 Why Choose Securial?
+### 🚀 Why Securial?
 
-Securial isn't just another auth library — it's designed to give you control, flexibility, and peace of mind when building secure Rails APIs.
+Securial was built to offer a clean, modular, and API-first authentication system for Rails developers who want full control without the black-box complexity. Whether you're building for the web, mobile, or both, Securial gives you the flexibility to implement exactly what you need — from simple JWT authentication to more advanced setups involving sessions, API tokens, and role-based access.
 
-**🔧 Built for Developers**  
-- Easy to mount and extend using familiar Rails conventions.  
-- Fully customizable controllers, serializers, and logic — no more black-box auth.
+It follows familiar Rails conventions, stays lightweight and database-agnostic, and keeps security at the core. With fully customizable controllers, serializers, and logic, Securial is designed to grow with your project — making it an ideal choice for everything from side projects to production-grade APIs.
 
-**🧩 Modular by Design**  
-- Use only the components you need: JWT, sessions, API tokens — or all of them together.  
-- Clean separation of concerns makes testing and debugging simpler.
 
-**⚡ API-First Approach**  
-- JSON-only responses make Securial ideal for frontend frameworks and mobile apps.  
-- No HTML views or form helpers — just clean endpoints that work out of the box.
-
-**🛡️ Secure by Default**  
-- Uses industry best practices for token management and access control.  
-- No reliance on client-side sessions or cookies.
-
-**📦 Lightweight, Database-Agnostic**  
-- No assumptions about your schema or ORM — works with any relational database.  
-- Minimal dependencies, fast to integrate.
-
-**🌱 Ready to Grow With You**  
-- Start small with basic JWT auth, scale to multi-token API clients, admin scopes, or full RBAC.  
-- Perfect for startups, side projects, and production APIs alike.
 
 ## 🚀 Installation
 
@@ -133,3 +120,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/alybad
 ## ⚖️ License
 
 The gem is available as open source under the terms of the [MIT license](https://github.com/AlyBadawy/Securial?tab=MIT-1-ov-file#readme).
+
+---
+
+![image](https://github.com/user-attachments/assets/d7cb9645-c28e-4cca-9c1b-5085a91c11d4)
