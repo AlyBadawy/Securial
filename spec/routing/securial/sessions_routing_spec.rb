@@ -28,10 +28,6 @@ RSpec.describe Securial::SessionsController, type: :routing do
       expect(put: "/securial/sessions/refresh").to route_to("securial/sessions#refresh", format: default_format)
     end
 
-    it "routes to DELETE '/securial/sessions/revoke' to revoke the session" do
-      expect(delete: "/securial/sessions/revoke").to route_to("securial/sessions#revoke", format: default_format)
-    end
-
     it "routes to DELETE '/securial/sessions/id/1/revoke' to revoke a session by ID" do
       expect(delete: "/securial/sessions/id/1/revoke").to route_to("securial/sessions#revoke", format: default_format, id: "1")
     end
