@@ -1,15 +1,21 @@
 require_relative "./logger"
+require_relative "./key_transformer"
 require_relative "./config/_index"
 require_relative "./helpers/_index"
 require_relative "./auth/_index"
 require_relative "./inspectors/_index"
 
-require_relative "./middleware/request_logger_tag"
+require_relative "./middleware/_index"
 require "jwt"
 
 module Securial
   class Engine < ::Rails::Engine
     isolate_namespace Securial
+
+    # Set API-only mode and autoload custom generator paths
+    config.api_only = true
+    config.generators.api_only = true
+    config.autoload_paths += Dir["#{config.root}/lib/generators"]
 
     initializer "securial.filter_parameters" do |app|
       app.config.filter_parameters += [
@@ -24,42 +30,42 @@ module Securial
       Securial.const_set(:ENGINE_LOGGER, Securial::Logger.build)
     end
 
-    initializer "securial.engine_initialized" do |app|
-      Securial::ENGINE_LOGGER.info("[Securial] Initializing Engine... Host app: #{app.class.name}")
+    initializer "securial.log_initialization" do |app|
+      log "[Initializing Engine] Host app: #{app.class.name}"
     end
 
-    initializer "securial.config" do
-      Securial::ENGINE_LOGGER.info("[Securial] Validating configuration in `config/initializers/securial.rb`...")
+    initializer "securial.validate_config" do
+      log "[Validating configuration] from `config/initializers/securial.rb`..."
       Securial::Config::Validation.validate_all!(Securial.configuration)
     end
 
-    initializer "securial.factories", after: "factory_bot.set_factory_paths" do
-      if defined?(FactoryBot)
-        FactoryBot.definition_file_paths << Engine.root.join("lib", "securial", "factories")
-      end
+    initializer "securial.extend_application_controller" do
+      ActiveSupport.on_load(:action_controller_base) { include Securial::Identity }
+      ActiveSupport.on_load(:action_controller_api)  { include Securial::Identity }
     end
 
-    initializer "securial.load_factory_bot_generator" do
+    initializer "securial.factory_bot", after: "factory_bot.set_factory_paths" do
+      FactoryBot.definition_file_paths << Engine.root.join("lib", "securial", "factories") if defined?(FactoryBot)
+    end
+
+    initializer "securial.factory_bot_generator" do
       require_relative "../generators/factory_bot/model/model_generator"
     end
 
-    initializer "securial.extend_application_controller" do
-      ActiveSupport.on_load(:action_controller_base) do
-        include Securial::Identity
-      end
+    initializer "securial.middleware" do |app|
+      middleware.use Securial::Middleware::RequestLoggerTag
+      middleware.use Securial::Middleware::TransformRequestKeys
+      middleware.use Securial::Middleware::TransformResponseKeys
+    end
 
-      ActiveSupport.on_load(:action_controller_api) do
-        include Securial::Identity
+    initializer "securial.log_ready", after: :load_config_initializers do
+      Rails.application.config.after_initialize do
+        log "[Engine fully initialized] Environment: #{Rails.env}"
       end
     end
 
-    config.generators.api_only = true
-
-    config.autoload_paths += Dir["#{config.root}/lib/generators"]
-
     config.generators do |g|
       g.orm :active_record, primary_key_type: :string
-
       g.test_framework :rspec,
                        fixtures: false,
                        view_specs: false,
@@ -68,21 +74,14 @@ module Securial
                        controller_specs: true,
                        request_specs: true,
                        model_specs: true
-
       g.fixture_replacement :factory_bot, dir: "lib/securial/factories"
-
-      # Add JBuilder configuration
       g.template_engine :jbuilder
     end
 
-    initializer "securial.middleware" do |app|
-      app.middleware.use Securial::Middleware::RequestLoggerTag
-    end
+    private
 
-    initializer "securial.log_engine_loaded", after: :load_config_initializers do
-      Rails.application.config.after_initialize do
-        Securial::ENGINE_LOGGER.info("[Securial] Engine fully initialized in #{Rails.env} environment.")
-      end
+    def log(message)
+      Securial::ENGINE_LOGGER.info("[Securial] #{message}")
     end
   end
 end

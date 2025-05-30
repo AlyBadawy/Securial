@@ -5,10 +5,15 @@ require "jbuilder"
 
 module Securial
   class << self
-    attr_writer :configuration
+    attr_accessor :configuration
 
     def configuration
       @configuration ||= Securial::Config::Configuration.new
+    end
+
+    def configuration=(config)
+      @configuration = config
+      Securial::Config::Validation.validate_all!(configuration)
     end
 
     def configure
