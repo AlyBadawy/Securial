@@ -905,43 +905,43 @@ RSpec.describe Securial::Config::Validation do
 
     describe ".validate_rate_limiting!" do
       # Implementation of rate limiting validation will be added here.
-      context "when enable_rate_limiting is not set" do
+      context "when rate_limiting_enabled is not set" do
         it "raises ConfigSecurityError for nil value" do
-          config.enable_rate_limiting = nil
+          config.rate_limiting_enabled = nil
           expect {
             described_class.send(:validate_rate_limiting!, config)
           }.to raise_error(
             Securial::Config::Errors::ConfigSecurityError,
-            "enable_rate_limiting must be a boolean value."
+            "rate_limiting_enabled must be a boolean value."
           )
         end
 
-        context "when enable_rate_limiting is not a boolean" do
+        context "when rate_limiting_enabled is not a boolean" do
           it "raises ConfigSecurityError for String" do
-            config.enable_rate_limiting = "true"
+            config.rate_limiting_enabled = "true"
             expect {
               described_class.send(:validate_rate_limiting!, config)
             }.to raise_error(
               Securial::Config::Errors::ConfigSecurityError,
-              "enable_rate_limiting must be a boolean value."
+              "rate_limiting_enabled must be a boolean value."
             )
           end
 
           it "raises ConfigSecurityError for Integer" do
-            config.enable_rate_limiting = 1
+            config.rate_limiting_enabled = 1
             expect {
               described_class.send(:validate_rate_limiting!, config)
             }.to raise_error(
               Securial::Config::Errors::ConfigSecurityError,
-              "enable_rate_limiting must be a boolean value."
+              "rate_limiting_enabled must be a boolean value."
             )
           end
         end
 
-        context "when enable_rate_limiting is true" do
+        context "when rate_limiting_enabled is true" do
           context "when rate_limit_requests_per_minute is not set" do
             it "raises ConfigSecurityError" do
-              config.enable_rate_limiting = true
+              config.rate_limiting_enabled = true
               config.rate_limit_requests_per_minute = nil
               expect {
                 described_class.send(:validate_rate_limiting!, config)
@@ -1115,7 +1115,7 @@ RSpec.describe Securial::Config::Validation do
 
           context "when all rate limiting settings are valid" do
             it "does not raise error for valid settings" do
-              config.enable_rate_limiting = true
+              config.rate_limiting_enabled = true
               config.rate_limit_requests_per_minute = 60
               config.rate_limit_response_status = 429
               config.rate_limit_response_message = "Too many requests, please try again later."
@@ -1126,9 +1126,9 @@ RSpec.describe Securial::Config::Validation do
           end
         end
 
-        context "when enable_rate_limiting is false" do
+        context "when rate_limiting_enabled is false" do
           it "does not raise error for any rate limiting settings" do
-            config.enable_rate_limiting = false
+            config.rate_limiting_enabled = false
             config.rate_limit_requests_per_minute = nil
             config.rate_limit_response_status = nil
             config.rate_limit_response_message = nil
@@ -1138,7 +1138,7 @@ RSpec.describe Securial::Config::Validation do
           end
 
           it "does not raise error even if other rate limiting settings are set" do
-            config.enable_rate_limiting = false
+            config.rate_limiting_enabled = false
             config.rate_limit_requests_per_minute = 60
             config.rate_limit_response_status = 429
             config.rate_limit_response_message = "Too many requests, please try again later."
@@ -1148,9 +1148,9 @@ RSpec.describe Securial::Config::Validation do
           end
         end
 
-        context "when enable_rate_limiting is true but rate limiting settings are not set" do
+        context "when rate_limiting_enabled is true but rate limiting settings are not set" do
           it "raises ConfigSecurityError for missing rate limit settings" do
-            config.enable_rate_limiting = true
+            config.rate_limiting_enabled = true
             config.rate_limit_requests_per_minute = nil
             config.rate_limit_response_status = nil
             config.rate_limit_response_message = nil
@@ -1163,9 +1163,9 @@ RSpec.describe Securial::Config::Validation do
           end
         end
 
-        context "when enable_rate_limiting is true but rate_limit_requests_per_minute is not set" do
+        context "when rate_limiting_enabled is true but rate_limit_requests_per_minute is not set" do
           it "raises ConfigSecurityError for missing rate limit requests per minute" do
-            config.enable_rate_limiting = true
+            config.rate_limiting_enabled = true
             config.rate_limit_requests_per_minute = nil
             config.rate_limit_response_status = 429
             config.rate_limit_response_message = "Too many requests, please try again later."
@@ -1178,9 +1178,9 @@ RSpec.describe Securial::Config::Validation do
           end
         end
 
-        context "when enable_rate_limiting is true but rate_limit_response_status is not set" do
+        context "when rate_limiting_enabled is true but rate_limit_response_status is not set" do
           it "raises ConfigSecurityError for missing rate limit response status" do
-            config.enable_rate_limiting = true
+            config.rate_limiting_enabled = true
             config.rate_limit_requests_per_minute = 60
             config.rate_limit_response_status = nil
             config.rate_limit_response_message = "Too many requests, please try again later."
@@ -1193,9 +1193,9 @@ RSpec.describe Securial::Config::Validation do
           end
         end
 
-        context "when enable_rate_limiting is true but rate_limit_response_message is not set" do
+        context "when rate_limiting_enabled is true but rate_limit_response_message is not set" do
           it "raises ConfigSecurityError for missing rate limit response message" do
-            config.enable_rate_limiting = true
+            config.rate_limiting_enabled = true
             config.rate_limit_requests_per_minute = 60
             config.rate_limit_response_status = 429
             config.rate_limit_response_message = nil

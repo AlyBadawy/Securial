@@ -214,13 +214,13 @@ module Securial
         end
 
         def validate_rate_limiting!(config) # rubocop:disable Metrics/MethodLength
-          unless config.enable_rate_limiting.is_a?(TrueClass) || config.enable_rate_limiting.is_a?(FalseClass)
-            error_message = "enable_rate_limiting must be a boolean value."
+          unless config.rate_limiting_enabled.is_a?(TrueClass) || config.rate_limiting_enabled.is_a?(FalseClass)
+            error_message = "rate_limiting_enabled must be a boolean value."
             Securial::ENGINE_LOGGER.fatal(error_message)
             raise Securial::Config::Errors::ConfigSecurityError, error_message
           end
 
-          return unless config.enable_rate_limiting
+          return unless config.rate_limiting_enabled
 
           unless
               config.rate_limit_requests_per_minute.is_a?(Integer) &&

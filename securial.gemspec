@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency                 "jbuilder", "~> 2.11"
   spec.add_dependency                 "jwt", "~> 2.10"
   spec.add_dependency                 "ostruct", "~> 0.6"
+  spec.add_dependency                 "rack-attack", "~> 6.7"
 
   spec.add_development_dependency     "capybara", "~> 3.40"
   spec.add_development_dependency     "coveralls-lcov", "~> 1.7"

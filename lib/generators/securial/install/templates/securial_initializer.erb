@@ -135,23 +135,23 @@ Securial.configure do |config|
   config.security_headers = :strict
   ## set whether to enable request rate limiting
   # This is useful for preventing abuse and denial of service attacks.
-  config.enable_rate_limiting = true
+  config.rate_limiting_enabled = true
   ## Set the rate limit for requests
   # This is the maximum number of requests that a user can make
   # in a given time period. The default is 60 requests per minute.
-  # This is only applied if `enable_rate_limiting` is set to true.
+  # This is only applied if `rate_limiting_enabled` is set to true.
   config.rate_limit_requests_per_minute = 60
   ## Set the rate limit response status code
   # This is the status code that will be returned when a user exceeds
   # the rate limit. The status code should be a 4xx or 5xx code
   # to indicate an error. Commonly used codes are 429 Too Many Requests
   # or 503 Service Unavailable. The default is 429 Too Many Requests.
-  # This is only applied if `enable_rate_limiting` is set to true.
+  # This is only applied if `rate_limiting_enabled` is set to true.
   config.rate_limit_response_status = 429
   ## Set the rate limit response message
   # This is the message that will be returned when a user exceeds
   # the rate limit. The default is "Too many requests, please try again later."
-  # This is only applied if `enable_rate_limiting` is set to true.
+  # This is only applied if `rate_limiting_enabled` is set to true.
   config.rate_limit_response_message = "Too many requests, please try again later."
 
 
