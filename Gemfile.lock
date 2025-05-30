@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    securial (0.6.0)
+    securial (0.6.1)
       bcrypt (~> 3.1)
       jbuilder (~> 2.11)
       jwt (~> 2.10)
@@ -357,7 +357,7 @@ PLATFORMS
 DEPENDENCIES
   brakeman
   capybara (~> 3.40)
-  coveralls-lcov (~> 1.7)
+  coveralls-lcov
   database_cleaner (~> 2.1)
   debug
   dotenv-rails
@@ -365,22 +365,22 @@ DEPENDENCIES
   faker (~> 3.5)
   fasterer
   generator_spec (~> 0.10)
-  overcommit (~> 0.67)
+  overcommit
   propshaft
   pry-byebug
   pry-rails
   puma
   rspec-rails (~> 7.1)
-  rubocop (~> 1.75)
-  rubocop-config-prettier (~> 0.1.13)
-  rubocop-performance (~> 1.25)
-  rubocop-rails (~> 2.32)
-  rubocop-rails-omakase (~> 1.1)
-  rubocop-rspec (~> 3.6)
+  rubocop
+  rubocop-config-prettier
+  rubocop-performance
+  rubocop-rails
+  rubocop-rails-omakase
+  rubocop-rspec
   securial!
   shoulda-matchers (~> 6.5)
-  simplecov (~> 0.22)
-  simplecov-lcov (~> 0.8.0)
+  simplecov
+  simplecov-lcov
   sqlite3
 
 BUNDLED WITH

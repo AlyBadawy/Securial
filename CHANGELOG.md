@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 // Nothing to add yet
 
+## [0.6.1]
+
+### Fixed
+
+- A broken configuration option in the Initializer template.
+
 ## [0.6.0] - 2025-05-30
 
 ### Added
