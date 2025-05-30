@@ -69,7 +69,7 @@ module Securial
 
     def render_login_response(user)
       if user.password_expired?
-        render status: :unprocessable_entity,
+        render status: :forbidden,
                json: {
                  error: "Password expired",
                  instructions: "Please reset your password before logging in.",

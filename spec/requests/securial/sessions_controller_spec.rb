@@ -86,16 +86,33 @@ RSpec.describe Securial::SessionsController, type: :request do
     }
 
     context "with valid parameters" do
-      it "signs in the user and returns tokens" do
-        headers = { "User-Agent" => "RSpec" }
-        post securial.login_url, params: valid_attributes, headers: headers, as: :json
-        expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including("application/json"))
-        expect(response.body).to include(
-          "access_token",
-          "refresh_token",
-          "refresh_token_expires_at"
-        )
+      context "when password is not yet expired" do
+        it "signs in the user and returns tokens" do
+          headers = { "User-Agent" => "RSpec" }
+          post securial.login_url, params: valid_attributes, headers: headers, as: :json
+          expect(response).to have_http_status(:created)
+          expect(response.content_type).to match(a_string_including("application/json"))
+          expect(response.body).to include(
+            "access_token",
+            "refresh_token",
+            "refresh_token_expires_at"
+          )
+        end
+      end
+
+      context "when password is expired" do
+        it "returns 403 forbidden and instructions to reset password" do
+          new_user.update!(password_changed_at: 10.years.ago)
+          headers = { "User-Agent" => "RSpec" }
+          post securial.login_url, params: valid_attributes, headers: headers, as: :json
+          expect(response).to have_http_status(:forbidden)
+          expect(response.content_type).to match(a_string_including("application/json"))
+          json_response = JSON.parse(response.body)
+          expect(json_response).to include(
+            "error" => "Password expired",
+            "instructions" => "Please reset your password before logging in."
+          )
+        end
       end
     end
 
