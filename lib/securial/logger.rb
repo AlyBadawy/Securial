@@ -29,17 +29,13 @@ module Securial
       unless Securial.configuration.log_to_stdout == false
         stdout_logger = ::Logger.new(STDOUT)
         stdout_logger.level = resolve_level(Securial.configuration.log_stdout_level)
-          # if !Rails.env.test?
-          stdout_logger.formatter = proc do |severity, timestamp, progname, msg|
-            color = COLORS[severity] || CLEAR
-            padded = severity.ljust(SEVERITY_WIDTH)
-            formatted = "#{timestamp.strftime("%Y-%m-%d %H:%M:%S")} #{padded} -- : #{msg}\n"
-            "#{color}#{formatted}#{CLEAR}"
-          end
-          colorize_stdout = true
-        # else
-        #   stdout_logger.formatter = ::Logger::Formatter.new
-        # end
+        stdout_logger.formatter = proc do |severity, timestamp, progname, msg|
+          color = COLORS[severity] || CLEAR
+          padded = severity.ljust(SEVERITY_WIDTH)
+          formatted = "#{timestamp.strftime("%Y-%m-%d %H:%M:%S")} #{padded} -- : #{msg}\n"
+          "#{color}#{formatted}#{CLEAR}"
+        end
+        colorize_stdout = true
         loggers << stdout_logger
       end
 

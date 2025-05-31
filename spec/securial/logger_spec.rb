@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 RSpec.describe Securial::Logger do
   let(:log_file_path) { Rails.root.join("log", "securial_test.log") }
