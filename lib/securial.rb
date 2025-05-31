@@ -6,6 +6,7 @@ require "jbuilder"
 module Securial
   class << self
     attr_accessor :configuration
+    attr_accessor :logger
 
     def configuration
       @configuration ||= Securial::Config::Configuration.new
