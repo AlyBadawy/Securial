@@ -1,5 +1,5 @@
 require "rails_helper"
-require "securial/generators/scaffold/scaffold_generator"
+require "generators/securial/scaffold/scaffold_generator"
 
 RSpec.describe Securial::Generators::ScaffoldGenerator do
   subject(:generator) { described_class.new([name, *attributes]) }

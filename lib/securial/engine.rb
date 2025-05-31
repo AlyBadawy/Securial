@@ -49,7 +49,7 @@ module Securial
     end
 
     initializer "securial.factory_bot_generator" do
-      require_relative "./generators/factory_bot/model/model_generator"
+      require_relative "../generators/factory_bot/model/model_generator"
     end
 
     initializer "securial.middleware" do |app|
