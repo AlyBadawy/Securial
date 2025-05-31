@@ -7,7 +7,7 @@ require "securial/helpers"
 require "securial/auth"
 require "securial/inspectors"
 require "securial/middlewares"
-
+require "securial/version_checker"
 module Securial
   class Engine < ::Rails::Engine
     isolate_namespace Securial
@@ -64,11 +64,11 @@ module Securial
       end
     end
 
-    # initializer "securial.version_check" do
-    #   config.after_initialize do
-    #     Securial::VersionCheck.check_latest_version
-    #   end
-    # end
+    initializer "securial.version_check" do
+      config.after_initialize do
+        Securial::VersionChecker.check_latest_version
+      end
+    end
 
     initializer "securial.log_ready", after: :load_config_initializers do
       Rails.application.config.after_initialize do
