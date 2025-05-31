@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module Securial
-  RSpec.describe RegexHelper do
+  RSpec.describe Helpers::RegexHelper do
     describe 'EMAIL_REGEX' do
       it 'matches valid email addresses' do
         valid_emails = [

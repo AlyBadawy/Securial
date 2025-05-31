@@ -2,15 +2,16 @@ require "net/http"
 require "json"
 
 module Securial
-  module VersionCheck
-    RUBYGEMS_API_URL = "https://rubygems.org/api/v1/versions/securial/latest.json"
+  module VersionChecker
+    module_function
 
-    def self.check_latest_version # rubocop:disable Metrics/MethodLength
+    def check_latest_version
       begin
-        uri = URI(RUBYGEMS_API_URL)
+        rubygems_api_url = "https://rubygems.org/api/v1/versions/securial/latest.json"
+        uri = URI(rubygems_api_url)
         http = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https", open_timeout: 5, read_timeout: 5)
         response = http.request(Net::HTTP::Get.new(uri))
-        latest = JSON.parse(response)["version"]
+        latest = JSON.parse(response.body)["version"]
 
         current = Securial::VERSION
         if Gem::Version.new(latest) > Gem::Version.new(current)

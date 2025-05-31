@@ -1,6 +1,6 @@
 module Securial
   class Role < ApplicationRecord
-    normalizes :role_name, with: ->(e) { Securial::NormalizingHelper.normalize_role_name(e) }
+    normalizes :role_name, with: ->(e) { Securial::Helpers::NormalizingHelper.normalize_role_name(e) }
 
     validates :role_name, presence: true, uniqueness: { case_sensitive: false }
 

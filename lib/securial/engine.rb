@@ -1,13 +1,13 @@
-require_relative "./logger"
-require_relative "./key_transformer"
-require_relative "./config/_index"
-require_relative "./helpers/_index"
-require_relative "./auth/_index"
-require_relative "./inspectors/_index"
-require_relative "./initializers/version_check"
-require_relative "./middleware/_index"
 require "jwt"
 
+require "securial/logger"
+require "securial/key_transformer"
+require "securial/config"
+require "securial/helpers"
+require "securial/auth"
+require "securial/inspectors"
+require "securial/middlewares"
+require "securial/version_checker"
 module Securial
   class Engine < ::Rails::Engine
     isolate_namespace Securial
@@ -28,7 +28,6 @@ module Securial
 
     initializer "securial.logger" do
       Securial.const_set(:ENGINE_LOGGER, Securial::Logger.build)
-      Securial.logger = Securial::Logger.build
     end
 
     initializer "securial.log_initialization" do |app|
@@ -66,7 +65,7 @@ module Securial
 
     initializer "securial.version_check" do
       config.after_initialize do
-        Securial::VersionCheck.check_latest_version
+        Securial::VersionChecker.check_latest_version
       end
     end
 
