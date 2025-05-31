@@ -1,5 +1,6 @@
 require "securial/version"
 require "securial/engine"
+require "securial/logger"
 
 require "jbuilder"
 
@@ -19,6 +20,10 @@ module Securial
 
     def configure
       yield(configuration)
+    end
+
+    def logger
+      @logger ||= Securial::Logger.build
     end
 
     # Returns the pluralized form of the admin role.

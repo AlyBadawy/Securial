@@ -28,7 +28,6 @@ module Securial
 
     initializer "securial.logger" do
       Securial.const_set(:ENGINE_LOGGER, Securial::Logger.build)
-      Securial.logger = Securial::Logger.build
     end
 
     initializer "securial.log_initialization" do |app|
