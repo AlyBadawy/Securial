@@ -4,7 +4,7 @@ require_relative "./config/_index"
 require_relative "./helpers/_index"
 require_relative "./auth/_index"
 require_relative "./inspectors/_index"
-
+require_relative "./initializers/version_check"
 require_relative "./middleware/_index"
 require "jwt"
 
@@ -61,6 +61,12 @@ module Securial
         require "rack/attack"
         require_relative "./rack_attack"
         middleware.use Rack::Attack
+      end
+    end
+
+    initializer "securial.version_check" do
+      config.after_initialize do
+        Securial::VersionCheck.check_latest_version
       end
     end
 
