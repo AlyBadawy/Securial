@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Implemented ViewsGenerator to copy model-related views for customization.
 - Introduced middleware for transforming request and response keys.
-- logging capabilities with a new logger structure and broadcaster.
+- Logging capabilities with a new logger structure and broadcaster.
 - Implemented version checker to notify users of available updates.
 
 ### Changed:
