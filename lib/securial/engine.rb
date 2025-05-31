@@ -1,12 +1,12 @@
-require_relative "./logger"
-require_relative "./key_transformer"
-require_relative "./config/_index"
-require_relative "./helpers/_index"
-require_relative "./auth/_index"
-require_relative "./inspectors/_index"
-require_relative "./initializers/version_check"
-require_relative "./middleware/_index"
 require "jwt"
+
+require "securial/logger"
+require "securial/key_transformer"
+require "securial/config"
+require "securial/helpers"
+require "securial/auth"
+require "securial/inspectors"
+require "securial/middlewares"
 
 module Securial
   class Engine < ::Rails::Engine
@@ -50,7 +50,7 @@ module Securial
     end
 
     initializer "securial.factory_bot_generator" do
-      require_relative "../generators/factory_bot/model/model_generator"
+      require_relative "./generators/factory_bot/model/model_generator"
     end
 
     initializer "securial.middleware" do |app|
@@ -64,11 +64,11 @@ module Securial
       end
     end
 
-    initializer "securial.version_check" do
-      config.after_initialize do
-        Securial::VersionCheck.check_latest_version
-      end
-    end
+    # initializer "securial.version_check" do
+    #   config.after_initialize do
+    #     Securial::VersionCheck.check_latest_version
+    #   end
+    # end
 
     initializer "securial.log_ready", after: :load_config_initializers do
       Rails.application.config.after_initialize do

@@ -2,7 +2,7 @@ module Securial
   class User < ApplicationRecord
     include Securial::PasswordResettable
 
-    normalizes :email_address, with: ->(e) { Securial::NormalizingHelper.normalize_email_address(e) }
+    normalizes :email_address, with: ->(e) { Securial::Helpers::NormalizingHelper.normalize_email_address(e) }
 
     validates :email_address,
               presence: true,
@@ -12,7 +12,7 @@ module Securial
                 maximum: 255,
               },
               format: {
-                with: Securial::RegexHelper::EMAIL_REGEX,
+                with: Securial::Helpers::RegexHelper::EMAIL_REGEX,
                 message: "must be a valid email address",
               }
 
@@ -21,7 +21,7 @@ module Securial
               uniqueness: { case_sensitive: false },
               length: { maximum: 20 },
               format: {
-                with: Securial::RegexHelper::USERNAME_REGEX,
+                with: Securial::Helpers::RegexHelper::USERNAME_REGEX,
                 message: "can only contain letters, numbers, underscores, and periods, but cannot start with a number or contain consecutive underscores or periods",
               }
 

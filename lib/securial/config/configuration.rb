@@ -1,4 +1,4 @@
-require_relative "../helpers/_index"
+require "securial/helpers"
 module Securial
   module Config
     VALID_SESSION_ENCRYPTION_ALGORITHMS = [:hs256, :hs384, :hs512].freeze
@@ -21,7 +21,7 @@ module Securial
           password_reset_email_subject: "SECURIAL: Password Reset Instructions",
           password_min_length: 8,
           password_max_length: 128,
-          password_complexity: Securial::RegexHelper::PASSWORD_REGEX,
+          password_complexity: Securial::Helpers::RegexHelper::PASSWORD_REGEX,
           password_expires: true,
           password_expires_in: 90.days,
           reset_password_token_expires_in: 2.hours,

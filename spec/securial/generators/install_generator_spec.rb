@@ -1,5 +1,5 @@
 require "rails_helper"
-require "generators/securial/install/install_generator"
+require "securial/generators/install/install_generator"
 
 RSpec.describe Securial::Generators::InstallGenerator, type: :generator do
   let(:destination_root) { Securial::Engine.root.join("tmp") }

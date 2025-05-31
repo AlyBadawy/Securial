@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module Securial
-  RSpec.describe NormalizingHelper do
+  RSpec.describe Helpers::NormalizingHelper do
     describe '.normalize_email_address' do
       context 'with valid email addresses' do
         it 'strips whitespace and downcases' do

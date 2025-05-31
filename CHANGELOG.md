@@ -7,7 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-// Nothing to add yet
+### Added:
+
+- Implemented ViewsGenerator to copy model-related views for customization.
+- Introduced middleware for transforming request and response keys.
+- logging capabilities with a new logger structure and broadcaster.
+- Implemented version checker to notify users of available updates.
+
+### Changed:
+
+- Refactor generators for views, Jbuilder, and scaffold in Securial
+- Refactored JbuilderGenerator to generate Jbuilder templates for resource representation.
+- Refactors scaffold generator to streamline the creation of models, controllers, views, and specs.
+- Refactored helper modules for better organization and accessibility.
+- Updated specs to reflect new module structures and paths.
 
 ## [0.6.1]
 

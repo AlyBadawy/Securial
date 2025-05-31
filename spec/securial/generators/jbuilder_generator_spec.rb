@@ -1,5 +1,5 @@
 require "spec_helper"
-require "generators/securial/jbuilder/jbuilder_generator"
+require "securial/generators/jbuilder/jbuilder_generator"
 
 RSpec.describe Securial::Generators::JbuilderGenerator, type: :generator do
   destination File.expand_path("../../../tmp", __FILE__)
