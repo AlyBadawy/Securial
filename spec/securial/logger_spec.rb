@@ -1,198 +1,174 @@
-require "rails_helper"
-require "ostruct"
+require "spec_helper"
 
 RSpec.describe Securial::Logger do
-  let(:log_path) { Rails.root.join("log", "securial_test.log") }
-  let(:rails_root) { Pathname.new(File.expand_path("../dummy", __dir__)) }
+  let(:log_file_path) { Rails.root.join("log", "securial_test.log") }
+  let(:file_content) { File.exist?(log_file_path) ? File.read(log_file_path) : "" }
 
   before do
-    # Stub the Securial configuration for controlled tests
-    allow(Securial).to receive(:configuration).and_return(OpenStruct.new(
-      log_to_file: false,
-      log_to_stdout: false,
-      log_file_level: :info,
-      log_stdout_level: :debug,
-    ))
-    FileUtils.rm_f(log_path)
-  end
+    File.delete(log_file_path) if File.exist?(log_file_path)
+    Securial.instance_variable_set(:@logger, nil)
 
-  describe ".build" do
-    context "when logging to nothing" do
-      it "returns a TaggedLogging wrapping a null logger" do
-        logger = described_class.build
-        expect(logger).to be_a(::Logger)
-        expect(logger.instance_variable_get(:@logdev)).to be_nil
-      end
-    end
-
-    context "when logging to file only" do
-      before do
-        allow(Securial.configuration).to receive(:log_to_file).and_return(true)
-        allow(Rails).to receive(:root).and_return(rails_root)
-        allow(rails_root).to receive(:join).with("log", "securial.log").and_return(log_path)
-      end
-
-      it "writes log to file" do
-        logger = described_class.build
-        logger.tagged("FILE") { logger.info("Test log to file") }
-
-        expect(File.read(log_path)).to include("Test log to file")
-      end
-    end
-
-    context "when logging to stdout only" do
-      before do
-        allow(Securial.configuration).to receive(:log_to_stdout).and_return(true)
-      end
-
-      it "writes to STDOUT" do
-        logger = described_class.build
-
-        expect {
-          logger.info("Test log to stdout")
-        }.to output(/I, \[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+ #\d+\]  INFO -- : Test log to stdout\n/).to_stdout_from_any_process
-      end
-    end
-
-    context "when logging to both file and stdout" do
-      before do
-        allow(Securial.configuration).to receive_messages(log_to_file: true, log_to_stdout: true)
-        allow(Rails).to receive(:root).and_return(rails_root)
-        allow(rails_root).to receive(:join).with("log", "securial.log").and_return(log_path)
-      end
-
-      it "writes to both destinations" do
-        expect {
-          logger = described_class.build
-          logger.info("Test log to both")
-        }.to output(/I, \[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+ #\d+\]  INFO -- : Test log to both\n/).to_stdout_from_any_process
-
-        expect(File.read(log_path)).to include("Test log to both")
-      end
-    end
-
-    describe ".resolve_log_level" do
-      it "returns the lower of the two log levels" do
-        allow(Securial.configuration).to receive_messages(log_file_level: :warn, log_stdout_level: :debug)
-
-        level = described_class.resolve_log_level
-        expect(level).to eq(::Logger::DEBUG)
+    # Patch Rails.root.join to give us the test log file when called from Securial::Logger
+    allow(Rails.root).to receive(:join).and_wrap_original do |m, *args|
+      if args == ["log", "securial.log"]
+        log_file_path
+      else
+        m.call(*args)
       end
     end
   end
 
-  describe ".resolve_log_level" do
-    before do
-      allow(Securial).to receive(:configuration).and_return(OpenStruct.new(
-        log_file_level: nil,
-        log_stdout_level: nil,
-      ))
-    end
+  after do
+    File.delete(log_file_path) if File.exist?(log_file_path)
+    Securial.instance_variable_set(:@logger, nil)
+  end
 
-    it "returns INFO level when no levels are configured" do
-      expect(described_class.resolve_log_level).to eq(::Logger::INFO)
-    end
+  def with_config(file: true, stdout: true, file_level: :info, stdout_level: :info, stdout_io: nil)
+    allow(Securial.configuration).to receive_messages(log_to_file: file, log_to_stdout: stdout, log_file_level: file_level, log_stdout_level: stdout_level)
+    yield(stdout_io)
+  end
 
-    it "returns the file level when only file level is set" do
-      allow(Securial.configuration).to receive(:log_file_level).and_return(:debug)
-      expect(described_class.resolve_log_level).to eq(::Logger::DEBUG)
-    end
+  it "logs to both file and stdout with correct levels" do
+    stdout_io = StringIO.new
+    with_config(file: true, stdout: true, file_level: :warn, stdout_level: :debug, stdout_io: stdout_io) do |stdout|
+      # Patch Logger.new(STDOUT) to use our StringIO instead
+      allow(::Logger).to receive(:new).and_wrap_original do |orig, output, *args|
+        if output == STDOUT
+          orig.call(stdout_io, *args)
+        else
+          orig.call(output, *args)
+        end
+      end
 
-    it "returns the stdout level when only stdout level is set" do
-      allow(Securial.configuration).to receive(:log_stdout_level).and_return(:error)
-      expect(described_class.resolve_log_level).to eq(::Logger::ERROR)
-    end
+      logger = described_class.build
 
-    it "returns the more verbose level when both levels are set" do
-      allow(Securial.configuration).to receive_messages(
-        log_file_level: :warn,
-        log_stdout_level: :debug,
-      )
+      logger.debug("debug message")
+      logger.info("info message")
+      logger.warn("warn message")
+      logger.error("error message")
 
-      expect(described_class.resolve_log_level).to eq(::Logger::DEBUG)
-    end
+      logger.warn("warn to file")
+      logger.error("error to file")
 
-    it "handles invalid log levels by returning INFO" do
-      allow(Securial.configuration).to receive_messages(
-        log_file_level: :invalid,
-        log_stdout_level: nil,
-      )
-      expect(described_class.resolve_log_level).to eq(::Logger::INFO)
-    end
+      # Flush file logger to ensure content is written
+      targets = logger.instance_variable_get(:@logger)&.instance_variable_get(:@targets) ||
+                logger.instance_variable_get(:@targets)
+      targets&.each { |l| l.flush if l.respond_to?(:flush) }
 
-    it "compares all standard log levels correctly" do
-      log_levels = %i[debug info warn error fatal]
-      log_level_constants = log_levels.map { |level| ::Logger.const_get(level.to_s.upcase) }
-
-      expect(log_level_constants).to eq(log_level_constants.sort)
+      expect(stdout_io.string).to match(/debug message.*info message.*warn message.*error message/m)
+      expect(file_content).to include("warn to file")
+      expect(file_content).to include("error to file")
+      expect(file_content).not_to include("debug message")
+      expect(file_content).not_to include("info message")
     end
   end
 
-  describe "MultiIO" do
-    let(:target_one) { instance_spy(IO) }
-    let(:target_two) { instance_spy(IO) }
-    let(:multi_io) { described_class::MultiIO.new(target_one, target_two) }
-
-    describe "#close" do
-      it "does not close STDOUT or STDERR but closes other targets" do
-        stdout = instance_spy(IO, write: nil, tty?: true)
-        stderr = instance_spy(IO, write: nil, tty?: true)
-        targets = [target_one, target_two, stdout, stderr]
-        target_io = described_class::MultiIO.new(*targets)
-
-        stub_const("STDOUT", stdout)
-        stub_const("STDERR", stderr)
-        target_io.close
-
-        expect(target_one).to have_received(:close)
-        expect(target_two).to have_received(:close)
-        expect(stdout).not_to have_received(:close)
-        expect(stderr).not_to have_received(:close)
+  it "does not log to file if file output is disabled" do
+    stdout_io = StringIO.new
+    with_config(file: false, stdout: true, stdout_io: stdout_io) do |stdout|
+      allow(::Logger).to receive(:new).and_wrap_original do |orig, output, *args|
+        if output == STDOUT
+          orig.call(stdout_io, *args)
+        else
+          orig.call(output, *args)
+        end
       end
+
+      logger = described_class.build
+      logger.info("should only go to stdout")
+      targets = logger.instance_variable_get(:@logger)&.instance_variable_get(:@targets) ||
+                logger.instance_variable_get(:@targets)
+      targets&.each { |l| l.flush if l.respond_to?(:flush) }
+      expect(File).not_to exist(log_file_path)
     end
+  end
 
-    describe "#flush" do
-      context "when targets respond to flush" do
-        before do
-          allow(target_one).to receive(:respond_to?).with(:flush).and_return(true)
-          allow(target_two).to receive(:respond_to?).with(:flush).and_return(true)
-        end
+  it "does not log to stdout if stdout is disabled" do
+    with_config(file: true, stdout: false) do |_|
+      logger = described_class.build
+      logger.info("should only go to file")
+      targets = logger.instance_variable_get(:@logger)&.instance_variable_get(:@targets) ||
+                logger.instance_variable_get(:@targets)
+      targets&.each { |l| l.flush if l.respond_to?(:flush) }
+      expect(file_content).to include("should only go to file")
+    end
+  end
 
-        it "flushes all targets" do
-          multi_io.flush
-
-          expect(target_one).to have_received(:flush)
-          expect(target_two).to have_received(:flush)
-        end
-      end
-
-      context "when targets don't respond to flush" do
-        before do
-          allow(target_one).to receive(:respond_to?).with(:flush).and_return(false)
-          allow(target_two).to receive(:respond_to?).with(:flush).and_return(false)
-        end
-
-        it "skips flushing those targets" do
-          multi_io.flush
-
-          expect(target_one).not_to have_received(:flush)
-          expect(target_two).not_to have_received(:flush)
+  it "respects per-output log levels" do
+    stdout_io = StringIO.new
+    with_config(file: true, stdout: true, file_level: :error, stdout_level: :debug, stdout_io: stdout_io) do |stdout|
+      allow(::Logger).to receive(:new).and_wrap_original do |orig, output, *args|
+        if output == STDOUT
+          orig.call(stdout_io, *args)
+        else
+          orig.call(output, *args)
         end
       end
 
-      context "when some targets respond to flush" do
-        before do
-          allow(target_one).to receive(:respond_to?).with(:flush).and_return(true)
-          allow(target_two).to receive(:respond_to?).with(:flush).and_return(false)
-        end
+      logger = described_class.build
+      logger.debug("debug only to stdout")
+      logger.info("info only to stdout")
+      logger.error("error to both")
+      targets = logger.instance_variable_get(:@logger)&.instance_variable_get(:@targets) ||
+                logger.instance_variable_get(:@targets)
+      targets&.each { |l| l.flush if l.respond_to?(:flush) }
+      expect(stdout_io.string).to match(/debug only to stdout.*info only to stdout.*error to both/m)
+      expect(file_content).to include("error to both")
+      expect(file_content).not_to include("debug only to stdout")
+      expect(file_content).not_to include("info only to stdout")
+    end
+  end
 
-        it "flushes only responding targets" do
-          multi_io.flush
-
-          expect(target_one).to have_received(:flush)
-          expect(target_two).not_to have_received(:flush)
+  it "outputs color codes to stdout in development (not in test)" do
+    stdout_io = StringIO.new
+    with_config(file: false, stdout: true, stdout_level: :info, stdout_io: stdout_io) do |stdout|
+      allow(::Logger).to receive(:new).and_wrap_original do |orig, output, *args|
+        if output == STDOUT
+          orig.call(stdout_io, *args)
+        else
+          orig.call(output, *args)
         end
       end
+
+      # Simulate Rails.env.development? for this test
+      allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("development"))
+
+      logger = described_class.build
+      logger.info("color test")
+      expect(stdout_io.string).to include("\e[32m")
+      expect(stdout_io.string).to include("color test")
+      expect(stdout_io.string).to include("\e[0m")
+    end
+  end
+
+  it "outputs plain format to file" do
+    with_config(file: true, stdout: false, file_level: :info) do |_|
+      logger = described_class.build
+      logger.info("plain file format")
+      targets = logger.instance_variable_get(:@logger)&.instance_variable_get(:@targets) ||
+                logger.instance_variable_get(:@targets)
+      targets&.each { |l| l.flush if l.respond_to?(:flush) }
+      expect(file_content).to include("plain file format")
+      expect(file_content).not_to match(/\e\[\d+m/)
+    end
+  end
+
+  it "handles TaggedLogging tags" do
+    with_config(file: true, stdout: false) do |_|
+      logger = described_class.build
+      logger.tagged("TAG1", "TAG2") { logger.info("tagged message") }
+      targets = logger.instance_variable_get(:@logger)&.instance_variable_get(:@targets) ||
+                logger.instance_variable_get(:@targets)
+      targets&.each { |l| l.flush if l.respond_to?(:flush) }
+      expect(file_content).to include("[TAG1] [TAG2] tagged message")
+    end
+  end
+
+  it "logs nothing if both outputs are disabled" do
+    with_config(file: false, stdout: false) do |_|
+      logger = described_class.build
+      logger.info("should not log")
+      expect(File).not_to exist(log_file_path)
     end
   end
 end

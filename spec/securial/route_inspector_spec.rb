@@ -22,8 +22,8 @@ module Securial
         get "/test/expired_signature", to: "test#expired_signature"
       end
 
-      # Mock the logger
-      allow(Securial::ENGINE_LOGGER).to receive(:debug)
+      fake_logger = double("Logger").as_null_object # rubocop:disable RSpec/VerifiedDoubles
+      allow(Securial).to receive(:logger).and_return(fake_logger)
     end
 
     after do
@@ -36,26 +36,26 @@ module Securial
       it "prints headers and route details" do
         described_class.print_routes
 
-        expect(Securial::ENGINE_LOGGER).to have_received(:debug).with("Securial engine routes:")
-        expect(Securial::ENGINE_LOGGER).to have_received(:debug).with(/-{120}/).twice
-        expect(Securial::ENGINE_LOGGER).to have_received(:debug).with(/Verb.*Path.*Controller#Action/)
+        expect(Securial.logger).to have_received(:debug).with("Securial engine routes:")
+        expect(Securial.logger).to have_received(:debug).with(/-{120}/).twice
+        expect(Securial.logger).to have_received(:debug).with(/Verb.*Path.*Controller#Action/)
 
         route_details = /test#not_found|test#bad_request|test#invalid_encoding|test#expired_signature/
-        expect(Securial::ENGINE_LOGGER).to have_received(:debug).with(route_details)
+        expect(Securial.logger).to have_received(:debug).with(route_details)
       end
 
       it "prints only matching controller routes when filtered" do
         described_class.print_routes(controller: "test")
 
-        expect(Securial::ENGINE_LOGGER).to have_received(:debug).with("Filtered by controller: test")
+        expect(Securial.logger).to have_received(:debug).with("Filtered by controller: test")
         route_details = /test#not_found|test#bad_request|test#invalid_encoding|test#expired_signature/
-        expect(Securial::ENGINE_LOGGER).to have_received(:debug).with(route_details)
+        expect(Securial.logger).to have_received(:debug).with(route_details)
       end
 
       it "prints appropriate message when no controller matches" do
         described_class.print_routes(controller: "fake")
-        expect(Securial::ENGINE_LOGGER).to have_received(:debug).with("Filtered by controller: fake")
-        expect(Securial::ENGINE_LOGGER).to have_received(:debug).with("No routes found for controller: fake")
+        expect(Securial.logger).to have_received(:debug).with("Filtered by controller: fake")
+        expect(Securial.logger).to have_received(:debug).with("No routes found for controller: fake")
       end
 
       it "prints appropriate message when no routes exist" do
@@ -63,7 +63,7 @@ module Securial
 
         described_class.print_routes
 
-        expect(Securial::ENGINE_LOGGER).to have_received(:debug).with("No routes found for Securial engine")
+        expect(Securial.logger).to have_received(:debug).with("No routes found for Securial engine")
       end
     end
   end
