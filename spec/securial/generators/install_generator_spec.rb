@@ -84,7 +84,7 @@ RSpec.describe Securial::Generators::InstallGenerator, type: :generator do
       assert_match(/Securial.configure do \|config\|/, content)
       assert_match(/config.log_to_file = true/, content)
       assert_match(/config.log_to_stdout = true/, content)
-      assert_match(/config.log_file_level = :info/, content)
+      assert_match(/config.log_file_level = :debug/, content)
       assert_match(/config.log_stdout_level = :debug/, content)
     end
   end
