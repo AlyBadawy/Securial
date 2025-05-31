@@ -93,7 +93,7 @@ module Securial
     private
 
     def log(message)
-      Securial::ENGINE_LOGGER.info("[Securial] #{message}")
+      Securial.logger.info("[Securial] #{message}")
     end
   end
 end

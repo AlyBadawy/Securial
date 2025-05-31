@@ -17,27 +17,27 @@ module Securial
 
         # rubocop:disable Rails/Output
         def print_headers(filtered, controller)
-          Securial::ENGINE_LOGGER.debug "Securial engine routes:"
-          Securial::ENGINE_LOGGER.debug "Total routes: #{filtered.size}"
-          Securial::ENGINE_LOGGER.debug "Filtered by controller: #{controller}" if controller
-          Securial::ENGINE_LOGGER.debug "Filtered routes: #{filtered.size}" if controller
-          Securial::ENGINE_LOGGER.debug "-" * 120
-          Securial::ENGINE_LOGGER.debug "#{'Verb'.ljust(8)} #{'Path'.ljust(45)} #{'Controller#Action'.ljust(40)} Name"
-          Securial::ENGINE_LOGGER.debug "-" * 120
+          Securial.logger.debug "Securial engine routes:"
+          Securial.logger.debug "Total routes: #{filtered.size}"
+          Securial.logger.debug "Filtered by controller: #{controller}" if controller
+          Securial.logger.debug "Filtered routes: #{filtered.size}" if controller
+          Securial.logger.debug "-" * 120
+          Securial.logger.debug "#{'Verb'.ljust(8)} #{'Path'.ljust(45)} #{'Controller#Action'.ljust(40)} Name"
+          Securial.logger.debug "-" * 120
         end
 
         def print_details(filtered, controller) # rubocop:disable Rails/Output
           if filtered.empty?
             if controller
-              Securial::ENGINE_LOGGER.debug "No routes found for controller: #{controller}"
+              Securial.logger.debug "No routes found for controller: #{controller}"
             else
-              Securial::ENGINE_LOGGER.debug "No routes found for Securial engine"
+              Securial.logger.debug "No routes found for Securial engine"
             end
-            Securial::ENGINE_LOGGER.debug "-" * 120
+            Securial.logger.debug "-" * 120
             return
           end
 
-          Securial::ENGINE_LOGGER.debug filtered.map { |r|
+          Securial.logger.debug filtered.map { |r|
             name = r.name || ""
             verb = r.verb.to_s.ljust(8)
             path = r.path.spec.to_s.sub(/\(\.:format\)/, "").ljust(45)
