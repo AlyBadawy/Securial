@@ -1,4 +1,4 @@
-require_relative "auth/errors"
+require "securial/auth/errors"
 require_relative "auth/auth_encoder"
 require_relative "auth/session_creator"
 
