@@ -13,7 +13,7 @@ module Securial
       return if self.id.present?
       return unless [:string, :uuid].include?(self.class.type_for_attribute(:id).type)
 
-      self.id ||= Random.uuid_v7
+      self.id = Random.uuid_v7
     end
   end
 end
