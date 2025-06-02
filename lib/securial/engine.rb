@@ -1,3 +1,5 @@
+require "securial/logger"
+
 module Securial
   class Engine < ::Rails::Engine
     isolate_namespace Securial
