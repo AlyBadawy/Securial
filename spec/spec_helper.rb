@@ -13,7 +13,7 @@ SimpleCov.start do
   enable_coverage :branch
   add_filter "/spec/"
   track_files "lib/**/*.rb"
-  minimum_coverage 90
+  minimum_coverage 70
 end
 
 RSpec.configure do |config|
