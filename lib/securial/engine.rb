@@ -1,4 +1,5 @@
 require "securial/logger"
+require "securial/middleware"
 
 module Securial
   class Engine < ::Rails::Engine

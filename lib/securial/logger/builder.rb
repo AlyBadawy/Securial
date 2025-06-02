@@ -3,7 +3,7 @@ require "active_support/logger"
 require "active_support/tagged_logging"
 
 require "securial/logger/broadcaster"
-require "securial/logger/colors"
+require "securial/logger/formatter"
 
 module Securial
   module Logger
@@ -13,12 +13,15 @@ module Securial
 
         file_logger = ::Logger.new(Rails.root.join("log", "securial.log"))
         file_logger.progname = "Securial"
-        loggers << file_logger
+        file_logger.formatter = Formatter::PlainFormatter.new
+        tagged_file_logger = ActiveSupport::TaggedLogging.new(file_logger)
+        loggers << tagged_file_logger
 
         stdout_logger = ::Logger.new($stdout)
         stdout_logger.progname = "Securial"
-        stdout_logger.formatter = Colors::Formatter.new
-        loggers << stdout_logger
+        stdout_logger.formatter = Formatter::ColorfulFormatter.new
+        tagged_stdout_logger = ActiveSupport::TaggedLogging.new(stdout_logger)
+        loggers << tagged_stdout_logger
 
         br = Broadcaster.new(loggers)
 
