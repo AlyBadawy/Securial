@@ -17,3 +17,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - For development: Configure CI pipelines
 - Add `Securial` bin script
 - For development: Add script to run tests
+- For development: Add generators for models, factory bot, scaffold, jbuilder
+- Add UUIDv7 as the default database key generator
