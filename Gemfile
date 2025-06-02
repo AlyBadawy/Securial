@@ -3,6 +3,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in securial.gemspec.
 gemspec
 
+gem "brakeman"
 gem "bundler-audit"
 gem "fasterer"
 gem "overcommit"
