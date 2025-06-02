@@ -3,8 +3,8 @@ require_relative "lib/securial/version"
 Gem::Specification.new do |spec|
   spec.name        = "securial"
   spec.version     = Securial::VERSION
-  spec.authors     = [ "Aly Badawy" ]
-  spec.email       = [ "1198568+AlyBadawy@users.noreply.github.com" ]
+  spec.authors     = ["Aly Badawy"]
+  spec.email       = ["1198568+AlyBadawy@users.noreply.github.com"]
   spec.homepage    = "TODO"
   spec.summary     = "TODO: Summary of Securial."
   spec.description = "TODO: Description of Securial."
