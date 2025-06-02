@@ -5,7 +5,9 @@ gemspec
 
 gem "brakeman"
 gem "bundler-audit"
+gem "factory_bot_rails"
 gem "fasterer"
+gem "generator_spec"
 gem "overcommit"
 gem "propshaft"
 gem "puma"

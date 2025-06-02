@@ -1,0 +1,9 @@
+json.id <%= singular_table_name %>.id
+
+<% attributes_names.each do |attr| -%>
+json.<%= attr %> <%= singular_table_name %>.<%= attr %>
+<% end -%>
+
+json.partial! "securial/shared/timestamps", record: <%= singular_table_name %>
+
+json.url securial.<%= name.pluralize.downcase %>_url(<%= singular_table_name %>, format: :json)

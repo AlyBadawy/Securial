@@ -12,8 +12,9 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 SimpleCov.start do
   enable_coverage :branch
   add_filter "/spec/"
+  add_filter "/lib/securial/version.rb"
   track_files "lib/**/*.rb"
-  minimum_coverage 70
+  minimum_coverage 95
 end
 
 RSpec.configure do |config|
