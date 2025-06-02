@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     securial (1.0.0)
-      rails (>= 8.0.2)
+      rails (~> 8.0)
 
 GEM
   remote: https://rubygems.org/
