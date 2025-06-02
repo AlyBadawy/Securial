@@ -5,11 +5,11 @@ RSpec.describe Securial::StatusController, type: :request do
     it "returns a successful status response" do
       get "/securial/status"
       expect(response).to have_http_status(:ok)
+      expect(response.content_type).to eq("application/json; charset=utf-8")
 
       json = JSON.parse(response.body)
       expect(json["status"]).to eq("ok")
       expect(json).to have_key("timestamp")
-      expect(json).to have_key("version")
       expect(json["version"]).to eq(Securial::VERSION)
     end
   end
