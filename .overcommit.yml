@@ -1,0 +1,67 @@
+PostCheckout:
+  BundleInstall:
+    enabled: true
+
+PreCommit:
+  ALL:
+    problem_on_unmodified_line: error
+    requires_files: true
+    required: false
+    quiet: false
+  AuthorName:
+    enabled: false
+  BundleAudit:
+    enabled: true
+    flags: ['--update']
+  BundleCheck:
+    enabled: true
+  Fasterer:
+    enabled: true
+    exclude:
+      - 'vendor/**/*.rb'
+      - 'db/schema.rb'
+  ForbiddenBranches:
+    enabled: true
+    branch_patterns: ['main']
+  MergeConflicts:
+    enabled: true
+    exclude:
+      - '**/conflict/file_spec.rb'
+      - '**/git/conflict/parser_spec.rb'
+  RuboCop:
+    enabled: true
+    command: ['bundle', 'exec', 'rubocop']
+  MarkdownLint:
+    enabled: true
+    description: 'Lint documentation for Markdown errors'
+    required_executable: 'node_modules/.bin/markdownlint'
+    flags: ['--config', '.markdownlint.yml', 'doc/**/*.md']
+    install_command: 'yarn install'
+    include:
+      - 'doc/**/*.md'
+
+PrePush:
+  RSpec:
+    enabled: true
+    command: ['bundle', 'exec', 'rspec']
+    on_warn: fail
+  BundleInstall:
+    enabled: true
+    on_warn: fail
+
+CommitMsg:
+  TextWidth:
+    enabled: true
+    min_subject_width: 8
+    max_subject_width: 72
+    quiet: false
+  EmptyMessage:
+    enabled: true
+    required: true
+    description: 'Checking for empty commit message'
+  RegexMatch:
+    enabled: true
+    description: 'Commit message must start with Chore:, Feat:, Docs:, Fix:, or Style:'
+    pattern: '^(Chore: |Feat: |Docs: |Fix: |Style: )'
+    exclude_tags: []
+    required: true
