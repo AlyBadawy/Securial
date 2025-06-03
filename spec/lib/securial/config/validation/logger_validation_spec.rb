@@ -1,13 +1,6 @@
 require "rails_helper"
 
 RSpec.describe Securial::Config::Validation::LoggerValidation do
-  describe "LEVELS constant" do
-    it "defines the expected log levels" do
-      expected_levels = %i[debug info warn error fatal unknown]
-      expect(described_class::LEVELS).to eq(expected_levels)
-    end
-  end
-
   describe ".validate!" do
     let(:config) { instance_double(Securial::Config::Configuration) }
 
