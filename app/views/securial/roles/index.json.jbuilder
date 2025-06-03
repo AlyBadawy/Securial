@@ -4,4 +4,3 @@ end
 
 json.count @securial_roles.count
 json.url securial.roles_url(format: :json)
-
