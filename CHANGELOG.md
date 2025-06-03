@@ -25,3 +25,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implement `Securial.configuration` method with underlying classes
 - Implement configuration validation for logger settings
 - Add helper modules normalization, and regex validations
+- Scaffold the `Role` model and controller.
