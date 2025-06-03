@@ -27,6 +27,10 @@ module Securial
         nil
       end
 
+      def loggers
+        @loggers
+      end
+
       def tagged(*tags, &block)
         # If all loggers support tagged, nest the calls, otherwise just yield.
         taggable_loggers = @loggers.select { |logger| logger.respond_to?(:tagged) }
