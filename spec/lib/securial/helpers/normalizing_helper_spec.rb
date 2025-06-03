@@ -48,7 +48,7 @@ module Securial
       end
 
       context 'with invalid input' do
-        it 'returns nil for empty string' do
+        it 'returns empty string for empty string' do
           expect(described_class.normalize_role_name('')).to eq("")
         end
 
