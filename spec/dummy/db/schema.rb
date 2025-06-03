@@ -10,5 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 0) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_03_130214) do
+  create_table "securial_roles", id: :string, force: :cascade do |t|
+    t.string "role_name"
+    t.boolean "hide_from_profile", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 end
