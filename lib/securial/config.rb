@@ -1,4 +1,5 @@
 require "securial/config/configuration"
+require "securial/config/validation"
 
 module Securial
   class << self
@@ -11,8 +12,9 @@ module Securial
     def configuration=(config)
       if config.is_a?(Config::Configuration)
         @configuration = config
+        Securial::Config::Validation.validate_all!(configuration)
       else
-        raise ArgumentError, "Expected an instance of Config::Configuration"
+        raise ArgumentError, "Expected an instance of Securial::Config::Configuration"
       end
     end
 

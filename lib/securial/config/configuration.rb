@@ -1,3 +1,5 @@
+require "securial/config/validation"
+
 module Securial
   module Config
     class Configuration
@@ -29,7 +31,7 @@ module Securial
       private
 
       def validate!
-        # TODO: write validation logic for configuration attributes
+        Securial::Config::Validation.validate_all!(self)
       end
     end
   end
