@@ -9,6 +9,8 @@ module Securial
           log_to_stdout: !Rails.env.test?,
           log_file_level: :debug,
           log_stdout_level: :debug,
+
+          timestamps_in_response: :all,
         }
       end
 
