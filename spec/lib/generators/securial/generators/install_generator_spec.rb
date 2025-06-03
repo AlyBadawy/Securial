@@ -1,13 +1,5 @@
-# Suppress Ruby warnings in this spec file
-# Loading the realities of the Rails environment for the generator tests
-# causes the generator to output warnings, which can clutter the test output.
-# Suppressing them here to keep the output clean.
-# The warnings are still logged in the Rails log file.
-# The warning was: "warning: already initialized constant STATS_DIRECTORIES"
-$VERBOSE = nil
-
-require "rails_helper"
-require "generators/securial/install/install_generator"
+  require "rails_helper"
+  require "generators/securial/install/install_generator"
 
 RSpec.describe Securial::Generators::InstallGenerator, type: :generator do
   let(:destination_root) { Securial::Engine.root.join("tmp") }
@@ -16,6 +8,8 @@ RSpec.describe Securial::Generators::InstallGenerator, type: :generator do
   destination Securial::Engine.root.join("tmp")
 
   before do
+    @original_verbose = $VERBOSE
+    $VERBOSE = nil
     prepare_destination
     allow(Rails).to receive(:root).and_return(destination_root)
     allow(destination_root).to receive(:join) { |*args| Pathname.new(File.join(destination_root, *args)) }
@@ -23,6 +17,7 @@ RSpec.describe Securial::Generators::InstallGenerator, type: :generator do
 
   after do
     FileUtils.rm_rf(destination_root)
+    $VERBOSE = @original_verbose
   end
 
   describe "copy_initializer" do
