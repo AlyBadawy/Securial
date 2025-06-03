@@ -1,3 +1,11 @@
+# Suppress Ruby warnings in this spec file
+# Loading the realities of the Rails environment for the generator tests
+# causes the generator to output warnings, which can clutter the test output.
+# Suppressing them here to keep the output clean.
+# The warnings are still logged in the Rails log file.
+# The warning was: "warning: already initialized constant STATS_DIRECTORIES"
+$VERBOSE = nil
+
 require "rails_helper"
 require "generators/securial/install/install_generator"
 
