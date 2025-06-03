@@ -22,3 +22,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Custom logger and broadcaster module
 - Add tags to logger (request Id, IP address, User agent)
 - Separate Log files per environment
+- Implement `Securial.configuration` method with underlying classes
