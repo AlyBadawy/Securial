@@ -28,7 +28,6 @@ module Securial
       end
 
       def ip_from_env(env)
-        # This will extract the remote IP address
         env["action_dispatch.remote_ip"]&.to_s || env["REMOTE_ADDR"]
       end
 

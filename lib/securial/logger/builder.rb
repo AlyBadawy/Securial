@@ -11,8 +11,9 @@ module Securial
       def self.build
         loggers = []
         progname = "Securial"
+        rails_env = Rails.env
 
-        file_logger = ::Logger.new(Rails.root.join("log", "securial.log"))
+        file_logger = ::Logger.new(Rails.root.join("log", "securial-#{rails_env}.log"))
         file_logger.progname = progname
         file_logger.formatter = Formatter::PlainFormatter.new
         tagged_file_logger = ActiveSupport::TaggedLogging.new(file_logger)
