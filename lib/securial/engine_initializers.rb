@@ -15,5 +15,9 @@ module Securial
         require_relative "../generators/factory_bot/model/model_generator"
       end
     end
+
+    initializer "securial.logger_middleware" do |app|
+      app.middleware.use Securial::Middleware::RequestTagLogger
+    end
   end
 end

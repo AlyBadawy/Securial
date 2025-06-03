@@ -5,44 +5,6 @@ describe "Securial::Engine Initializers" do
   let(:engine) { Securial::Engine.instance }
   let(:destination_root) { Securial::Engine.root.join("tmp") }
 
-  describe "securial.factory_bot" do
-    context "when FactoryBot is defined" do
-      before do
-        stub_const("FactoryBot", Module.new do
-          def self.definition_file_paths
-            @paths ||= []
-          end
-
-          def self.definition_file_paths=(paths)
-            @paths = paths
-          end
-        end)
-        allow(engine).to receive(:root).and_return(Pathname.new("/dummy/path"))
-      end
-
-      it "adds engine factories path to FactoryBot definition paths" do
-        FactoryBot.definition_file_paths = []
-
-        engine.initializers.find { |i| i.name == "securial.factory_bot" }.run(app)
-
-        expected_path = engine.root.join("lib", "securial", "factories")
-        expect(FactoryBot.definition_file_paths).to include(expected_path)
-      end
-    end
-
-    context "when FactoryBot is not defined" do
-      before do
-        hide_const("FactoryBot") if defined?(FactoryBot)
-      end
-
-      it "does not raise error" do
-        expect {
-          engine.initializers.find { |i| i.name == "securial.factory_bot" }.run(app)
-        }.not_to raise_error
-      end
-    end
-  end
-
   describe "filter_parameters initializer" do
     let(:app) { instance_double(Rails::Application, config: config) }
     let(:initial_filter_parameters) { [:existing_param] }
@@ -81,6 +43,56 @@ describe "Securial::Engine Initializers" do
 
       # Verify total count (1 existing + 4 new parameters)
       expect(initial_filter_parameters.length).to eq(5)
+    end
+  end
+
+  describe "securial.factory_bot" do
+    context "when FactoryBot is defined" do
+      before do
+        stub_const("FactoryBot", Module.new do
+          def self.definition_file_paths
+            @paths ||= []
+          end
+
+          def self.definition_file_paths=(paths)
+            @paths = paths
+          end
+        end)
+        allow(engine).to receive(:root).and_return(Pathname.new("/dummy/path"))
+      end
+
+      it "adds engine factories path to FactoryBot definition paths" do
+        FactoryBot.definition_file_paths = []
+
+        engine.initializers.find { |i| i.name == "securial.factory_bot" }.run(app)
+
+        expected_path = engine.root.join("lib", "securial", "factories")
+        expect(FactoryBot.definition_file_paths).to include(expected_path)
+      end
+    end
+
+    context "when FactoryBot is not defined" do
+      before do
+        hide_const("FactoryBot") if defined?(FactoryBot)
+      end
+
+      it "does not raise error" do
+        expect {
+          engine.initializers.find { |i| i.name == "securial.factory_bot" }.run(app)
+        }.not_to raise_error
+      end
+    end
+  end
+
+  describe "securial.logger_middleware" do
+    it "adds RequestTagLogger middleware" do
+      fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
+      app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
+      engine = Securial::Engine.instance
+
+      engine.initializers.find { |i| i.name == "securial.logger_middleware" }.run(app)
+
+      expect(fake_middleware).to have_received(:use).with(Securial::Middleware::RequestTagLogger)
     end
   end
 end

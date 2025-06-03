@@ -5,6 +5,7 @@ gemspec
 
 gem "brakeman"
 gem "bundler-audit"
+gem "debug"
 gem "factory_bot_rails"
 gem "fasterer"
 gem "generator_spec"

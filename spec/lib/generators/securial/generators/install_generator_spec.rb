@@ -68,7 +68,7 @@ RSpec.describe Securial::Generators::InstallGenerator, type: :generator do
     end
   end
 
-  describe "install_migrations" do
-    skip "does not invoke migration task in test environment"
-  end
+  # describe "install_migrations" do
+  #   skip "does not invoke migration task in test environment"
+  # end
 end

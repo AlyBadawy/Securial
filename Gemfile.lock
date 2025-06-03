@@ -95,6 +95,9 @@ GEM
     connection_pool (2.5.3)
     crass (1.0.6)
     date (3.4.1)
+    debug (1.10.0)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
     diff-lcs (1.5.1)
     docile (1.4.1)
     drb (2.2.1)
@@ -308,6 +311,7 @@ PLATFORMS
 DEPENDENCIES
   brakeman
   bundler-audit
+  debug
   factory_bot_rails
   fasterer
   generator_spec
