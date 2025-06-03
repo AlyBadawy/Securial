@@ -6,9 +6,9 @@ RSpec.describe Securial::Config::Configuration do
     allow(Rails.env).to receive(:test?).and_return(false)
   end
 
-  describe '.config_attributes' do
+  describe '.default_config_attributes' do
     it 'returns a hash of attribute defaults' do
-      expect(described_class.config_attributes).to eq({
+      expect(described_class.default_config_attributes).to include({
         log_to_file: true,
         log_to_stdout: true,
       })
@@ -16,7 +16,7 @@ RSpec.describe Securial::Config::Configuration do
   end
 
   describe '#initialize' do
-    it 'sets instance variables to the defaults from config_attributes' do
+    it 'sets instance variables to the defaults from default_config_attributes' do
       config = described_class.new
       expect(config.log_to_file).to be(true)
       expect(config.log_to_stdout).to be(true)

@@ -29,7 +29,7 @@ RSpec.describe "Securial Config" do
     it "raises ArgumentError if not a Config::Configuration" do
       expect {
         Securial.configuration = Object.new
-      }.to raise_error(ArgumentError, "Expected an instance of Config::Configuration")
+      }.to raise_error(ArgumentError, "Expected an instance of Securial::Config::Configuration")
     end
   end
 
