@@ -29,6 +29,7 @@ module Securial
 
     def destroy
       @securial_role.destroy
+      head :no_content
     end
 
     private

@@ -29,6 +29,7 @@ module Securial
 
     def destroy
       @<%= singular_table_name %>.destroy
+      head :no_content
     end
 
     private
