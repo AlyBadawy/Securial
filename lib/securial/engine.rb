@@ -1,4 +1,5 @@
 require "securial/config"
+require "securial/helpers"
 require "securial/logger"
 require "securial/middleware"
 
