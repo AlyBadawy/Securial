@@ -15,7 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add a simple smoke test
 - Add a status route with controller
 - For development: Configure CI pipelines
-- Add `Securial` bin script
+- Add `securial` bin script
 - For development: Add script to run tests
 - For development: Add generators for models, factory bot, scaffold, jbuilder
 - Add UUIDv7 as the default database key generator
+- Add Custom logger and broadcaster module
+- Add tags to logger (request Id, IP address, User agent)
+- Separate Log files per environment
