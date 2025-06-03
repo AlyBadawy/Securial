@@ -14,7 +14,7 @@ module Securial
 
       class ColorfulFormatter
         def call(severity, timestamp, progname, msg)
-          color = COLORS[severity] || RESET
+          color = COLORS[severity] || CLEAR
           padded_severity = severity.ljust(SEVERITY_WIDTH)
           formatted = "[#{progname}][#{timestamp.strftime("%Y-%m-%d %H:%M:%S")}] #{padded_severity} -- #{msg}\n"
 
