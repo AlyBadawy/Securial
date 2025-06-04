@@ -9,7 +9,8 @@ RSpec.describe Securial::Config::Validation::SessionValidation do
         allow(config).to receive_messages(
           session_expiration_duration: 1.hour,
           session_algorithm: :hs256,
-          session_secret: "supersecret"
+          session_secret: "supersecret",
+          session_refresh_token_expires_in: 1.week
         )
       end
 
@@ -23,7 +24,8 @@ RSpec.describe Securial::Config::Validation::SessionValidation do
         allow(config).to receive_messages(
           session_expiration_duration: nil,
           session_algorithm: :hs256,
-          session_secret: "supersecret"
+          session_secret: "supersecret",
+          session_refresh_token_expires_in: 1.week
         )
       end
 
@@ -40,7 +42,8 @@ RSpec.describe Securial::Config::Validation::SessionValidation do
         allow(config).to receive_messages(
           session_expiration_duration: "1 hour", # Not an ActiveSupport::Duration
           session_algorithm: :hs256,
-          session_secret: "supersecret"
+          session_secret: "supersecret",
+          session_refresh_token_expires_in: 1.week
         )
       end
 
@@ -57,7 +60,8 @@ RSpec.describe Securial::Config::Validation::SessionValidation do
         allow(config).to receive_messages(
           session_expiration_duration: 0.seconds,
           session_algorithm: :hs256,
-          session_secret: "supersecret"
+          session_secret: "supersecret",
+          session_refresh_token_expires_in: 1.week
         )
       end
 
@@ -74,7 +78,8 @@ RSpec.describe Securial::Config::Validation::SessionValidation do
         allow(config).to receive_messages(
           session_expiration_duration: 1.hour,
           session_algorithm: nil,
-          session_secret: "supersecret"
+          session_secret: "supersecret",
+          session_refresh_token_expires_in: 1.week
         )
       end
 
@@ -91,7 +96,8 @@ RSpec.describe Securial::Config::Validation::SessionValidation do
         allow(config).to receive_messages(
           session_expiration_duration: 1.hour,
           session_algorithm: 12345, # Not a Symbol
-          session_secret: "supersecret"
+          session_secret: "supersecret",
+          session_refresh_token_expires_in: 1.week
         )
       end
 
@@ -108,7 +114,8 @@ RSpec.describe Securial::Config::Validation::SessionValidation do
         allow(config).to receive_messages(
           session_expiration_duration: 1.hour,
           session_algorithm: :invalid_algorithm,
-          session_secret: "supersecret"
+          session_secret: "supersecret",
+          session_refresh_token_expires_in: 1.week
         )
       end
 
@@ -125,7 +132,8 @@ RSpec.describe Securial::Config::Validation::SessionValidation do
         allow(config).to receive_messages(
           session_expiration_duration: 1.hour,
           session_algorithm: :hs256,
-          session_secret: nil
+          session_secret: nil,
+          session_refresh_token_expires_in: 1.week
         )
       end
 
@@ -142,7 +150,8 @@ RSpec.describe Securial::Config::Validation::SessionValidation do
         allow(config).to receive_messages(
           session_expiration_duration: 1.hour,
           session_algorithm: :hs256,
-          session_secret: 12345 # Not a String
+          session_secret: 12345, # Not a String
+          session_refresh_token_expires_in: 1.week
         )
       end
 
@@ -150,6 +159,60 @@ RSpec.describe Securial::Config::Validation::SessionValidation do
         expect { described_class.validate!(config) }.to raise_error(
           Securial::Error::Config::SessionValidationError,
           "Session secret must be a String."
+        )
+      end
+    end
+
+    context "with missing session refresh token expiration" do
+      before do
+        allow(config).to receive_messages(
+          session_expiration_duration: 1.hour,
+          session_algorithm: :hs256,
+          session_secret: 'supersecret',
+          session_refresh_token_expires_in: nil
+        )
+      end
+
+      it "raises SessionValidationError" do
+        expect { described_class.validate!(config) }.to raise_error(
+          Securial::Error::Config::SessionValidationError,
+          "Session refresh token expiration duration is not set."
+        )
+      end
+    end
+
+    context "with invalid session refresh token expiration type" do
+      before do
+        allow(config).to receive_messages(
+          session_expiration_duration: 1.hour,
+          session_algorithm: :hs256,
+          session_secret: "supersecret",
+          session_refresh_token_expires_in: "1 week" # Not an ActiveSupport::Duration
+        )
+      end
+
+      it "raises SessionValidationError" do
+        expect { described_class.validate!(config) }.to raise_error(
+          Securial::Error::Config::SessionValidationError,
+          "Session refresh token expiration duration must be an ActiveSupport::Duration."
+        )
+      end
+    end
+
+    context "with zero session refresh token expiration" do
+      before do
+        allow(config).to receive_messages(
+          session_expiration_duration: 1.hour,
+          session_algorithm: :hs256,
+          session_secret: "supersecret",
+          session_refresh_token_expires_in: 0.seconds
+        )
+      end
+
+      it "raises SessionValidationError" do
+        expect { described_class.validate!(config) }.to raise_error(
+          Securial::Error::Config::SessionValidationError,
+          "Session refresh token expiration duration must be greater than 0."
         )
       end
     end

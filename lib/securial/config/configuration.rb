@@ -18,6 +18,7 @@ module Securial
           session_expiration_duration: 3.minutes,
           session_secret: "secret",
           session_algorithm: :hs256,
+          session_refresh_token_expires_in: 1.week,
 
           # Mailer configuration
           mailer_sender: "no-reply@example.com",

@@ -11,6 +11,7 @@ module Securial
             validate_session_expiry_duration!(securial_config)
             validate_session_algorithm!(securial_config)
             validate_session_secret!(securial_config)
+            validate_session_refresh_token!(securial_config)
           end
 
           private
@@ -60,6 +61,23 @@ module Securial
               error_message = "Session secret must be a String."
               Securial.logger.fatal(error_message)
               raise Securial::Error::Config::SessionValidationError, error_message
+            end
+          end
+
+          def validate_session_refresh_token!(securial_config)
+            if securial_config.session_refresh_token_expires_in.nil?
+              error_message = "Session refresh token expiration duration is not set."
+              Securial.logger.fatal(error_message)
+              raise Securial::Error::Config::SessionValidationError, error_message
+            end
+            if securial_config.session_refresh_token_expires_in.class != ActiveSupport::Duration
+              error_message = "Session refresh token expiration duration must be an ActiveSupport::Duration."
+              Securial.logger.fatal(error_message)
+              raise Securial::Error::Config::SessionValidationError, error_message
+            end
+            if securial_config.session_refresh_token_expires_in <= 0
+              Securial.logger.fatal("Session refresh token expiration duration must be greater than 0.")
+              raise Securial::Error::Config::SessionValidationError, "Session refresh token expiration duration must be greater than 0."
             end
           end
         end
