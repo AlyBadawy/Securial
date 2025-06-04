@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 require "jwt"
 
->>>>>>> 22959db (Feat: Implement authentication module)
 module Securial
   module Auth
     module AuthEncoder
@@ -25,15 +22,9 @@ module Securial
 
         payload = base_payload.merge(session_payload)
         begin
-<<<<<<< HEAD
-          JWT.encode(payload, secret, algorithm, { kid: "hmac" })
-        rescue JWT::EncodeError => e
-          raise Errors::AuthEncodeError, "Failed to encode session: #{e.message}"
-=======
           ::JWT.encode(payload, secret, algorithm, { kid: "hmac" })
         rescue JWT::EncodeError
           raise Securial::Error::Auth::TokenEncodeError
->>>>>>> 22959db (Feat: Implement authentication module)
         end
       end
 
