@@ -5,6 +5,10 @@ Securial::Engine.routes.draw do
     scope Securial.protected_namespace do
       resources :roles
       resources :users
+      namespace :role_assignments, as: "role_assignments" do
+        post "assign", action: :create, as: "assign"
+        delete "revoke", action: :destroy, as: "revoke"
+      end
     end
   end
 end

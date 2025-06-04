@@ -39,16 +39,14 @@ module Securial
               length: { maximum: 1000 },
               allow_blank: true
 
-    # has_many :role_assignments, dependent: :destroy
-    # has_many :roles, through: :role_assignments
+    has_many :role_assignments, dependent: :destroy
+    has_many :roles, through: :role_assignments
 
-    # has_many :sessions, dependent: :destroy
+    has_many :sessions, dependent: :destroy
 
 
-    # def is_admin?
-    #   titleized_role_name = Securial.configuration.admin_role.to_s.strip.titleize
-
-    #   roles.exists?(role_name: titleized_role_name)
-    # end
+    def is_admin?
+      roles.exists?(role_name: Securial.titleized_admin_role)
+    end
   end
 end

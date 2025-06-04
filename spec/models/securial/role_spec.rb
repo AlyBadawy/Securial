@@ -34,8 +34,8 @@ RSpec.describe Securial::Role, type: :model do
     end
   end
 
-  # describe "Associations" do
-  #   it { is_expected.to have_many(:role_assignments).dependent(:destroy) }
-  #   it { is_expected.to have_many(:users).through(:role_assignments) }
-  # end
+  describe "Associations" do
+    it { is_expected.to have_many(:role_assignments).dependent(:destroy) }
+    it { is_expected.to have_many(:users).through(:role_assignments) }
+  end
 end

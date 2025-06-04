@@ -4,7 +4,7 @@ module Securial
 
     validates :role_name, presence: true, uniqueness: { case_sensitive: false }
 
-    # has_many :role_assignments, dependent: :destroy
-    # has_many :users, through: :role_assignments
+    has_many :role_assignments, dependent: :destroy
+    has_many :users, through: :role_assignments
   end
 end

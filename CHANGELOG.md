@@ -35,3 +35,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Scaffold the `Role` model and controller.
 - Implement `User` management with scaffolding and validations
 - Add RolesHelper
+- Add `RoleAssignment` model to assign and revoke roles to users.
+- Created a controller to manage `RoleAssignment`
