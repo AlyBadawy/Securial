@@ -37,3 +37,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add RolesHelper
 - Add `RoleAssignment` model to assign and revoke roles to users.
 - Created a controller to manage `RoleAssignment`
+- Add custom Errors for Config validations, and authorization

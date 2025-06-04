@@ -1,5 +1,6 @@
 require "securial/error/base_securial_error"
 require "securial/error/config"
+require "securial/error/auth"
 
 module Securial
   module Error
