@@ -245,7 +245,7 @@ RSpec.describe Securial::Error do
 
       it "uses default message when no message provided" do
         error = described_class.new
-        expect(error.message).to eq("Error encoding authentication token")
+        expect(error.message).to eq("Error while encoding session token")
       end
 
       it "uses custom message when provided" do
@@ -271,7 +271,7 @@ RSpec.describe Securial::Error do
 
       it "uses default message when no message provided" do
         error = described_class.new
-        expect(error.message).to eq("Error decoding authentication token")
+        expect(error.message).to eq("Error while decoding session token")
       end
 
       it "uses custom message when provided" do
@@ -297,7 +297,7 @@ RSpec.describe Securial::Error do
 
       it "uses default message when no message provided" do
         error = described_class.new
-        expect(error.message).to eq("Auth token has been revoked")
+        expect(error.message).to eq("Session token is revoked")
       end
 
       it "uses custom message when provided" do
@@ -323,7 +323,7 @@ RSpec.describe Securial::Error do
 
       it "uses default message when no message provided" do
         error = described_class.new
-        expect(error.message).to eq("Auth token has expired")
+        expect(error.message).to eq("Session token is expired")
       end
 
       it "uses custom message when provided" do

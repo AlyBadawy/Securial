@@ -40,3 +40,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add custom Errors for Config validations, and authorization
 - Add a security policy
 - Add post-install message
+- Implement session management with creation, validation, and refresh logic
