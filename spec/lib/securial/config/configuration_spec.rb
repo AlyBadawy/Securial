@@ -21,15 +21,6 @@ RSpec.describe Securial::Config::Configuration do
       expect(config.log_to_file).to be(true)
       expect(config.log_to_stdout).to be(true)
     end
-
-    it 'calls validate! once on initialization' do
-      skip "This test is skipped"
-      config = described_class.allocate
-      # Use a verifying double for validate!
-      allow(config).to receive(:validate!).and_call_original
-      config.send(:initialize)
-      expect(config).to have_received(:validate!).once
-    end
   end
 
   describe 'attribute accessors' do
