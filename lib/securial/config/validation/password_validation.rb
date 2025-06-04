@@ -26,6 +26,11 @@ module Securial
               Securial.logger.fatal(error_message)
               raise Securial::Error::Config::PasswordValidationError, error_message
             end
+            unless securial_config.reset_password_token_expires_in.is_a?(ActiveSupport::Duration) && securial_config.reset_password_token_expires_in > 0
+              error_message = "Reset password token expiration must be a valid ActiveSupport::Duration greater than 0."
+              Securial.logger.fatal(error_message)
+              raise Securial::Error::Config::PasswordValidationError, error_message
+            end
           end
 
           def validate_password_reset_subject!(securial_config)

@@ -1,52 +1,36 @@
 module Securial
   module Error
     module Config
-      class InvalidConfigurationError < Securial::Error::BaseSecurialError
-        def initialize(message = nil)
-          super(message || "Invalid configuration for Securial")
-        end
+      class InvalidConfigurationError < Securial::Error::BaseError
+        default_message "Invalid configuration for Securial"
       end
 
       class LoggerValidationError < InvalidConfigurationError
-        def initialize(message = nil)
-          super(message || "Logger configuration validation failed")
-        end
+        default_message "Logger configuration validation failed"
       end
 
       class RolesValidationError < InvalidConfigurationError
-        def initialize(message = nil)
-          super(message || "Roles configuration validation failed")
-        end
+        default_message "Roles configuration validation failed"
       end
 
       class SessionValidationError < InvalidConfigurationError
-        def initialize(message = nil)
-          super(message || "Session configuration validation failed")
-        end
+        default_message "Session configuration validation failed"
       end
 
       class MailerValidationError < InvalidConfigurationError
-        def initialize(message = nil)
-          super(message || "Mailer configuration validation failed")
-        end
+        default_message "Mailer configuration validation failed"
       end
 
       class PasswordValidationError < InvalidConfigurationError
-        def initialize(message = nil)
-          super(message || "Password configuration validation failed")
-        end
+        default_message "Password configuration validation failed"
       end
 
       class ResponseValidationError < InvalidConfigurationError
-        def initialize(message = nil)
-          super(message || "Response configuration validation failed")
-        end
+        default_message "Response configuration validation failed"
       end
 
       class SecurityValidationError < InvalidConfigurationError
-        def initialize(message = nil)
-          super(message || "Security configuration validation failed")
-        end
+        default_message "Security configuration validation failed"
       end
     end
   end

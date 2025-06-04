@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Securial::Error do
-  describe Securial::Error::BaseSecurialError do
+  describe Securial::Error::BaseError do
     it "can be raised" do
       expect { raise described_class }.to raise_error(described_class)
     end
@@ -25,8 +25,8 @@ RSpec.describe Securial::Error do
 
   describe Securial::Error::Config do
     describe Securial::Error::Config::InvalidConfigurationError do
-      it "inherits from BaseSecurialError" do
-        expect(described_class.superclass).to eq(Securial::Error::BaseSecurialError)
+      it "inherits from BaseError" do
+        expect(described_class.superclass).to eq(Securial::Error::BaseError)
       end
 
       it "can be raised" do
@@ -51,7 +51,7 @@ RSpec.describe Securial::Error do
     end
 
     describe Securial::Error::Config::LoggerValidationError do
-      it "inherits from BaseSecurialError" do
+      it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::Config::InvalidConfigurationError)
       end
 
@@ -77,7 +77,7 @@ RSpec.describe Securial::Error do
     end
 
     describe Securial::Error::Config::RolesValidationError do
-      it "inherits from BaseSecurialError" do
+      it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::Config::InvalidConfigurationError)
       end
 
@@ -103,7 +103,7 @@ RSpec.describe Securial::Error do
     end
 
     describe Securial::Error::Config::SessionValidationError do
-      it "inherits from BaseSecurialError" do
+      it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::Config::InvalidConfigurationError)
       end
 
@@ -129,7 +129,7 @@ RSpec.describe Securial::Error do
     end
 
     describe Securial::Error::Config::MailerValidationError do
-      it "inherits from BaseSecurialError" do
+      it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::Config::InvalidConfigurationError)
       end
 
@@ -155,7 +155,7 @@ RSpec.describe Securial::Error do
     end
 
     describe Securial::Error::Config::PasswordValidationError do
-      it "inherits from BaseSecurialError" do
+      it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::Config::InvalidConfigurationError)
       end
 
@@ -181,7 +181,7 @@ RSpec.describe Securial::Error do
     end
 
     describe Securial::Error::Config::ResponseValidationError do
-      it "inherits from BaseSecurialError" do
+      it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::Config::InvalidConfigurationError)
       end
 
@@ -207,7 +207,7 @@ RSpec.describe Securial::Error do
     end
 
     describe Securial::Error::Config::SecurityValidationError do
-      it "inherits from BaseSecurialError" do
+      it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::Config::InvalidConfigurationError)
       end
 

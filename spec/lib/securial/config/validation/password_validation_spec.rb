@@ -4,20 +4,22 @@ RSpec.describe Securial::Config::Validation::PasswordValidation do
   let(:config) do
     Struct.new(
       :reset_password_token_secret,
+      :reset_password_token_expires_in,
       :password_reset_email_subject,
       :password_min_length,
       :password_max_length,
       :password_complexity,
       :password_expires,
-      :password_expires_in
+      :password_expires_in,
     ).new(
       "secret",
+      10.minutes,
       "Reset your password",
       8,
       64,
       /(?=.*[A-Z])/,
       true,
-      30.days
+      30.days,
     )
   end
 
@@ -247,6 +249,32 @@ RSpec.describe Securial::Config::Validation::PasswordValidation do
       expect {
         described_class.send(:validate_password_reset_token!, config)
       }.to raise_error(Securial::Error::Config::PasswordValidationError, "Reset password token secret must be a String.")
+    end
+
+    it "raises if reset_password_token_expires_in is not a valid ActiveSupport::Duration" do
+      config.reset_password_token_expires_in = "30 minutes"
+      expect {
+        described_class.send(:validate_password_reset_token!, config)
+      }.to raise_error(Securial::Error::Config::PasswordValidationError, "Reset password token expiration must be a valid ActiveSupport::Duration greater than 0.")
+    end
+
+    it "raises if reset_password_token_expires_in is <= 0" do
+      config.reset_password_token_expires_in = 0.minutes
+      expect {
+        described_class.send(:validate_password_reset_token!, config)
+      }.to raise_error(Securial::Error::Config::PasswordValidationError, "Reset password token expiration must be a valid ActiveSupport::Duration greater than 0.")
+
+      config.reset_password_token_expires_in = -1.hour
+      expect {
+        described_class.send(:validate_password_reset_token!, config)
+      }.to raise_error(Securial::Error::Config::PasswordValidationError, "Reset password token expiration must be a valid ActiveSupport::Duration greater than 0.")
+    end
+
+    it "raises if reset_password_token_expires_in is not set" do
+      config.reset_password_token_expires_in = nil
+      expect {
+        described_class.send(:validate_password_reset_token!, config)
+      }.to raise_error(Securial::Error::Config::PasswordValidationError, "Reset password token expiration must be a valid ActiveSupport::Duration greater than 0.")
     end
 
     it "does not raise for valid secret" do
