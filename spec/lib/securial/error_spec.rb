@@ -232,4 +232,110 @@ RSpec.describe Securial::Error do
       end
     end
   end
+
+  describe Securial::Error::Auth do
+    describe Securial::Error::Auth::AuthEncodeError do
+      it "inherits from BaseError" do
+        expect(described_class.superclass).to eq(Securial::Error::BaseError)
+      end
+
+      it "can be raised" do
+        expect { raise described_class }.to raise_error(described_class)
+      end
+
+      it "uses default message when no message provided" do
+        error = described_class.new
+        expect(error.message).to eq("Error encoding authentication token")
+      end
+
+      it "uses custom message when provided" do
+        custom_message = "Custom auth encode error message"
+        error = described_class.new(custom_message)
+        expect(error.message).to eq(custom_message)
+      end
+
+      it "returns empty backtrace inherited from parent" do
+        error = described_class.new
+        expect(error.backtrace).to eq([])
+      end
+    end
+
+    describe Securial::Error::Auth::AuthDecodeError do
+      it "inherits from BaseError" do
+        expect(described_class.superclass).to eq(Securial::Error::BaseError)
+      end
+
+      it "can be raised" do
+        expect { raise described_class }.to raise_error(described_class)
+      end
+
+      it "uses default message when no message provided" do
+        error = described_class.new
+        expect(error.message).to eq("Error decoding authentication token")
+      end
+
+      it "uses custom message when provided" do
+        custom_message = "Custom auth decode error message"
+        error = described_class.new(custom_message)
+        expect(error.message).to eq(custom_message)
+      end
+
+      it "returns empty backtrace inherited from parent" do
+        error = described_class.new
+        expect(error.backtrace).to eq([])
+      end
+    end
+
+    describe Securial::Error::Auth::AuthRevokedError do
+      it "inherits from BaseError" do
+        expect(described_class.superclass).to eq(Securial::Error::BaseError)
+      end
+
+      it "can be raised" do
+        expect { raise described_class }.to raise_error(described_class)
+      end
+
+      it "uses default message when no message provided" do
+        error = described_class.new
+        expect(error.message).to eq("Auth token has been revoked")
+      end
+
+      it "uses custom message when provided" do
+        custom_message = "Custom auth revoked error message"
+        error = described_class.new(custom_message)
+        expect(error.message).to eq(custom_message)
+      end
+
+      it "returns empty backtrace inherited from parent" do
+        error = described_class.new
+        expect(error.backtrace).to eq([])
+      end
+    end
+
+    describe Securial::Error::Auth::AuthExpiredError do
+      it "inherits from BaseError" do
+        expect(described_class.superclass).to eq(Securial::Error::BaseError)
+      end
+
+      it "can be raised" do
+        expect { raise described_class }.to raise_error(described_class)
+      end
+
+      it "uses default message when no message provided" do
+        error = described_class.new
+        expect(error.message).to eq("Auth token has expired")
+      end
+
+      it "uses custom message when provided" do
+        custom_message = "Custom auth expired error message"
+        error = described_class.new(custom_message)
+        expect(error.message).to eq(custom_message)
+      end
+
+      it "returns empty backtrace inherited from parent" do
+        error = described_class.new
+        expect(error.backtrace).to eq([])
+      end
+    end
+  end
 end
