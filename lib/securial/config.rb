@@ -20,6 +20,7 @@ module Securial
 
     def configure
       yield(configuration) if block_given?
+      Securial::Config::Validation.validate_all!(configuration)
     end
   end
 end

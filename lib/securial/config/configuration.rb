@@ -49,7 +49,6 @@ module Securial
         self.class.default_config_attributes.each do |attr, default_value|
           instance_variable_set("@#{attr}", default_value)
         end
-        validate!
       end
 
       default_config_attributes.each_key do |attr|

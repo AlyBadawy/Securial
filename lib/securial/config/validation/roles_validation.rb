@@ -18,7 +18,8 @@ module Securial
               raise Securial::Error::Config::RolesValidationError, error_message
             end
 
-            if securial_config.admin_role.to_s.pluralize.downcase == "accounts"
+            admin_role_downcase = securial_config.admin_role.to_s.downcase
+            if admin_role_downcase == "account" || admin_role_downcase == "accounts"
               error_message = "The admin role cannot be 'account' or 'accounts' as it conflicts with the default routes."
               Securial.logger.fatal(error_message)
               raise Securial::Error::Config::RolesValidationError, error_message

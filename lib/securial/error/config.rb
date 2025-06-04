@@ -1,5 +1,3 @@
-require "securial/error"
-
 module Securial
   module Error
     module Config
