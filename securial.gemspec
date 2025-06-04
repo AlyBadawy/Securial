@@ -44,6 +44,6 @@ Gem::Specification.new do |spec|
       changes and how to use this gem/engine:
       [changelog]:  https://github.com/AlyBadawy/Securial/blob/main/CHANGELOG.md
       [WIKI]:       https://github.com/AlyBadawy/Securial/wiki
-    --
+    ---
   )
 end

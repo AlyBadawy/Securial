@@ -1,3 +1,4 @@
+require "securial/auth"
 require "securial/config"
 require "securial/helpers"
 require "securial/logger"

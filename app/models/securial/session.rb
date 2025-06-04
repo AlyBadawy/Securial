@@ -18,7 +18,7 @@ module Securial
       raise Securial::Error::Auth::TokenRevokedError if revoked?
       raise Securial::Error::Auth::TokenExpiredError if expired?
 
-      new_refresh_token = SecureRandom.hex(32) # TODO: Use a more secure token generation method
+      new_refresh_token = Securial::Auth::TokenGenerator.generate_refresh_token
 
       refresh_token_duration = Securial.configuration.session_refresh_token_expires_in
 
