@@ -60,10 +60,10 @@ module Securial
       end
     end
 
-    describe "Associations", skip: "Associations are not yet implemented" do
+    describe "Associations" do
       it { is_expected.to have_many(:role_assignments).dependent(:destroy) }
       it { is_expected.to have_many(:roles).through(:role_assignments) }
-      it { is_expected.to have_many(:sessions).dependent(:destroy) }
+      xit { is_expected.to have_many(:sessions).dependent(:destroy) } # rubocop:disable RSpec/PendingWithoutReason
     end
 
     describe "normalizations" do
@@ -77,7 +77,7 @@ module Securial
 
     describe '#is_admin?', skip: "is_admin? method is not yet implemented" do
       let(:user) { create(:securial_user) }
-      let(:admin_role) { create(:securial_role, role_name: Securial.configuration.admin_role.to_s.strip.titleize) }
+      let(:admin_role) { create(:securial_role, role_name: Securial.titleized_admin_role) }
 
       context 'when user has admin role' do
         before do
