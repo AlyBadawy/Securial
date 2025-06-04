@@ -1,3 +1,5 @@
+require "securial/auth/auth_encoder"
+require "securial/auth/session_creator"
 require "securial/auth/token_generator"
 
 module Securial
