@@ -1,19 +1,19 @@
 module Securial
   module Error
     module Auth
-      class AuthEncodeError < BaseError
+      class TokenEncodeError < BaseError
         default_message "Error encoding authentication token"
       end
 
-      class AuthDecodeError < BaseError
+      class TokenDecodeError < BaseError
         default_message "Error decoding authentication token"
       end
 
-      class AuthRevokedError < BaseError
+      class TokenRevokedError < BaseError
         default_message "Auth token has been revoked"
       end
 
-      class AuthExpiredError < BaseError
+      class TokenExpiredError < BaseError
         default_message "Auth token has expired"
       end
     end

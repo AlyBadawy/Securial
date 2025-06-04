@@ -234,7 +234,7 @@ RSpec.describe Securial::Error do
   end
 
   describe Securial::Error::Auth do
-    describe Securial::Error::Auth::AuthEncodeError do
+    describe Securial::Error::Auth::TokenEncodeError do
       it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::BaseError)
       end
@@ -260,7 +260,7 @@ RSpec.describe Securial::Error do
       end
     end
 
-    describe Securial::Error::Auth::AuthDecodeError do
+    describe Securial::Error::Auth::TokenDecodeError do
       it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::BaseError)
       end
@@ -286,7 +286,7 @@ RSpec.describe Securial::Error do
       end
     end
 
-    describe Securial::Error::Auth::AuthRevokedError do
+    describe Securial::Error::Auth::TokenRevokedError do
       it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::BaseError)
       end
@@ -312,7 +312,7 @@ RSpec.describe Securial::Error do
       end
     end
 
-    describe Securial::Error::Auth::AuthExpiredError do
+    describe Securial::Error::Auth::TokenExpiredError do
       it "inherits from BaseError" do
         expect(described_class.superclass).to eq(Securial::Error::BaseError)
       end
