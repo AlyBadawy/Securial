@@ -16,11 +16,26 @@ end
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+  config.include GeneratorSpec::TestCase, type: :generator
+  config.include ActiveSupport::Testing::TimeHelpers
 
-  config.use_transactional_fixtures = true
   config.filter_rails_from_backtrace!
-
   config.infer_spec_type_from_file_location!
+  config.use_transactional_fixtures = true
+
+
+  ActiveRecord::Migration.suppress_messages do
+    ActiveRecord::Schema.define do
+      create_table :test_users, force: true do |t|
+        t.string :email_address
+        t.string :password_digest
+        t.string :reset_password_token
+        t.datetime :reset_password_token_created_at
+        t.datetime :password_changed_at
+        t.timestamps
+      end
+    end
+  end
 
   FactoryBot.definition_file_paths = [
     File.expand_path("factories", __dir__)

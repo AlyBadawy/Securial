@@ -33,3 +33,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Configuration and validation for JSON responses
 - Add Configuration and validation for Engine Security
 - Scaffold the `Role` model and controller.
+- Implement `User` management with scaffolding and validations

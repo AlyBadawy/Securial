@@ -30,5 +30,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency         "rails", "~> 8.0"
 
+  spec.add_dependency                 "bcrypt", "~> 3.1"
   spec.add_dependency                 "jbuilder", "~> 2.11"
+  spec.add_dependency                 "jwt", "~> 2.10"
 end

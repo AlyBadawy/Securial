@@ -4,6 +4,7 @@ Securial::Engine.routes.draw do
 
     scope Securial.protected_namespace do
       resources :roles
+      resources :users
     end
   end
 end

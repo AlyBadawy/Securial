@@ -2,7 +2,9 @@ PATH
   remote: .
   specs:
     securial (1.0.0)
+      bcrypt (~> 3.1)
       jbuilder (~> 2.11)
+      jwt (~> 2.10)
       rails (~> 8.0)
 
 GEM
@@ -81,6 +83,7 @@ GEM
       uri (>= 0.13.1)
     ast (2.4.3)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     benchmark (0.4.0)
     bigdecimal (3.1.9)
     brakeman (7.0.2)
@@ -107,6 +110,8 @@ GEM
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     fasterer (0.11.0)
       ruby_parser (>= 3.19.1)
     generator_spec (0.10.0)
@@ -126,6 +131,8 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.11.3)
+    jwt (2.10.1)
+      base64
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -313,6 +320,7 @@ DEPENDENCIES
   bundler-audit
   debug
   factory_bot_rails
+  faker
   fasterer
   generator_spec
   overcommit
