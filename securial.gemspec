@@ -33,4 +33,17 @@ Gem::Specification.new do |spec|
   spec.add_dependency                 "bcrypt", "~> 3.1"
   spec.add_dependency                 "jbuilder", "~> 2.11"
   spec.add_dependency                 "jwt", "~> 2.10"
+
+  spec.post_install_message = %q(
+    ---
+    [SECURIAL] Thank you for installing Securial!
+
+    Securial is a mountable Rails engine that provides robust,
+    extensible authentication and access control for Rails applications.
+      Please review the [changelog] and [WIKI] for more info on the latest
+      changes and how to use this gem/engine:
+      [changelog]:  https://github.com/AlyBadawy/Securial/blob/main/CHANGELOG.md
+      [WIKI]:       https://github.com/AlyBadawy/Securial/wiki
+    --
+  )
 end
