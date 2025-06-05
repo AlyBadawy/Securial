@@ -3,22 +3,11 @@ require "rails_helper"
 RSpec.describe Securial::RoleAssignmentsController, type: :request do
   let (:securial_role) { create(:securial_role) }
   let (:securial_user) { create(:securial_user) }
-  let(:valid_attributes) {
-    {
-      role_id: securial_role.id,
-      user_id: securial_user.id,
-    }
-  }
-
-  let(:invalid_attributes) {
-    {
-      role_id: securial_role.id,
-      user_id: nil,
-    }
-  }
+  let(:valid_attributes) { { role_id: securial_role.id, user_id: securial_user.id } }
+  let(:invalid_attributes) { { role_id: securial_role.id, user_id: nil } }
 
   before do
-    @admin_headers = auth_headers(admin: true)
+    @admin_headers =  auth_headers(admin: true)
   end
 
   describe "POST /create" do

@@ -2,17 +2,8 @@ require "rails_helper"
 
 RSpec.describe Securial::RolesController, type: :request do
   let(:securial_role) { create(:securial_role) }
-
-  let(:valid_attributes) {
-    {
-      role_name: "Hero",
-      hide_from_profile: true,
-    }
-  }
-
-  let(:invalid_attributes) {
-    { role_name: nil }
-  }
+  let(:valid_attributes) { { role_name: "Hero", hide_from_profile: true } }
+  let(:invalid_attributes) { { role_name: nil } }
 
   before do
     @admin_headers = auth_headers(admin: true)
