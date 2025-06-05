@@ -5,7 +5,8 @@
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/AlyBadawy/Securial?tab=MIT-1-ov-file#readme)
 
 [![Tests](https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg)](https://github.com/alybadawy/securial/actions)
-[![Coveralls](https://img.shields.io/coverallsCoverage/github/AlyBadawy/Securial?branch=main&logo=coveralls&logoColor=3FF767)](https://coveralls.io/github/AlyBadawy/Securial?branch=main)
+[![Coveralls](https://img.shields.io/coverallsCoverage/github/AlyBadawy/Securial?branch=main&logo=coveralls&logoColor=%233F5767&labelColor=ddeedd)
+](https://coveralls.io/github/AlyBadawy/Securial?branch=main)
 
 > [!WARNING]
 >
