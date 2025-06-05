@@ -14,6 +14,10 @@ module Securial
       revoked? || expired? ? false : true
     end
 
+    def is_valid_session_request?(request)
+      is_valid_session? && ip_address == request.ip && user_agent == request.user_agent
+    end
+
     def refresh!
       raise Securial::Error::Auth::TokenRevokedError if revoked?
       raise Securial::Error::Auth::TokenExpiredError if expired?
@@ -27,8 +31,6 @@ module Securial
               last_refreshed_at: Time.current,
               refresh_token_expires_at: refresh_token_duration.from_now)
     end
-
-    private
 
     def revoked?; revoked; end
     def expired?; refresh_token_expires_at < Time.current; end
