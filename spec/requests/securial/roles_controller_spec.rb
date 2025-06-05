@@ -194,9 +194,9 @@ RSpec.describe Securial::RolesController, type: :request do
     end
 
     describe "unauthorized access", skip: "authentication is not implemented yet" do
-      it_behaves_like "unauthorized request", :put, -> { role_path(securial_role) }, :no_token, -> { { securial_role: new_attributes } }
-      it_behaves_like "unauthorized request", :put, -> { role_path(securial_role) }, :invalid_token, -> { { securial_role: new_attributes } }
-      it_behaves_like "unauthorized request", :put, -> { role_path(securial_role) }, :regular_user, -> { { securial_role: new_attributes } }
+      it_behaves_like "unauthorized request", :put, -> { securial.role_path(securial_role) }, :no_token, -> { { securial_role: new_attributes } }
+      it_behaves_like "unauthorized request", :put, -> { securial.role_path(securial_role) }, :invalid_token, -> { { securial_role: new_attributes } }
+      it_behaves_like "unauthorized request", :put, -> { securial.role_path(securial_role) }, :regular_user, -> { { securial_role: new_attributes } }
     end
   end
 
