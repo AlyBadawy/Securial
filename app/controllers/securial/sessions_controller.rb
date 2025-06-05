@@ -31,7 +31,7 @@ module Securial
     end
 
     def refresh
-      if Current.session = Session.find_by(refresh_token: params[:refresh_token])
+      if Current.session = Securial::Session.find_by(refresh_token: params[:refresh_token])
         if Current.session.is_valid_session_request?(request)
           Current.session.refresh!
           render status: :created,
