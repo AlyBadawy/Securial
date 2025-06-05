@@ -15,6 +15,7 @@ Securial::Engine.routes.draw do
       end
     end
 
+    # Placeholder for future account-related routes
     scope "accounts" do
     end
 
