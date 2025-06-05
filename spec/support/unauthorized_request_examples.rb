@@ -6,17 +6,20 @@ RSpec.shared_examples "unauthorized request" do |http_method, path_lambda, type,
   let(:params) { params_lambda ? instance_exec(&params_lambda) : {} }
 
   it "returns 401 Unauthorized with #{type.to_s.titleize}" do
-    method = http_method.to_sym
     case type
     when :no_token
       headers = {}
     when :invalid_token
       headers = { "Authorization" => "Bearer INVALID" }
     when :regular_user
-      headers = auth_headers
+      headers = {
+        'Authorization' => Securial::Auth::AuthEncoder.encode(create(:securial_session)),
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json', "User-Agent" => "Ruby/RSpec",
+      }
     end
 
-    case method
+    case http_method.to_sym
     when :get
       get path, headers: headers, as: :json
     when :post

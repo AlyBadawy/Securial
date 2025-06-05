@@ -147,7 +147,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
       end
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :post, -> { securial.role_assignments_assign_url }, :no_token, -> { { securial_role_assignment: valid_attributes } }
       it_behaves_like "unauthorized request", :post, -> { securial.role_assignments_assign_url }, :invalid_token, -> { { securial_role_assignment: valid_attributes } }
       it_behaves_like "unauthorized request", :post, -> { securial.role_assignments_assign_url }, :regular_user, -> { { securial_role_assignment: valid_attributes } }
@@ -281,7 +281,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
       end
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :delete, -> { securial.role_assignments_revoke_url }, :no_token, -> { { securial_role_assignment: valid_attributes } }
       it_behaves_like "unauthorized request", :delete, -> { securial.role_assignments_revoke_url }, :invalid_token, -> { { securial_role_assignment: valid_attributes } }
       it_behaves_like "unauthorized request", :delete, -> { securial.role_assignments_revoke_url }, :regular_user, -> { { securial_role_assignment: valid_attributes } }

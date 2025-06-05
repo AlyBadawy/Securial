@@ -49,7 +49,7 @@ RSpec.describe Securial::UsersController, type: :request do
       expect(records[1]["username"]).to eq(securial_user.username)
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :get, -> { securial.users_path }, :no_token
       it_behaves_like "unauthorized request", :get, -> { securial.users_path }, :invalid_token
       it_behaves_like "unauthorized request", :get, -> { securial.users_path }, :regular_user
@@ -75,7 +75,7 @@ RSpec.describe Securial::UsersController, type: :request do
       expect(response_body.keys).not_to include("password_digest")
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :get, -> { securial.user_path(securial_user) }, :no_token
       it_behaves_like "unauthorized request", :get, -> { securial.user_path(securial_user) }, :invalid_token
       it_behaves_like "unauthorized request", :get, -> { securial.user_path(securial_user) }, :regular_user
@@ -128,7 +128,7 @@ RSpec.describe Securial::UsersController, type: :request do
       end
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :post, -> { securial.users_path }, :no_token, -> { { securial_user: valid_attributes } }
       it_behaves_like "unauthorized request", :post, -> { securial.users_path }, :invalid_token, -> { { securial_user: valid_attributes } }
       it_behaves_like "unauthorized request", :post, -> { securial.users_path }, :regular_user, -> { { securial_user: valid_attributes } }
@@ -136,8 +136,7 @@ RSpec.describe Securial::UsersController, type: :request do
   end
 
   describe "PUT /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
+    let(:new_attributes) {
         {
           username: "John.doe",
           first_name: "John",
@@ -147,6 +146,7 @@ RSpec.describe Securial::UsersController, type: :request do
         }
       }
 
+    context "with valid parameters" do
       it "updates the requested securial_user" do
         put securial.user_path(securial_user), params: { securial_user: new_attributes }, headers: @admin_headers, as: :json
         securial_user.reload
@@ -171,7 +171,7 @@ RSpec.describe Securial::UsersController, type: :request do
       end
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :put, -> { securial.user_path(securial_user) }, :no_token, -> { { securial_user: new_attributes } }
       it_behaves_like "unauthorized request", :put, -> { securial.user_path(securial_user) }, :invalid_token, -> { { securial_user: new_attributes } }
       it_behaves_like "unauthorized request", :put, -> { securial.user_path(securial_user) }, :regular_user, -> { { securial_user: new_attributes } }
@@ -192,7 +192,7 @@ RSpec.describe Securial::UsersController, type: :request do
       expect(response).to have_http_status(:no_content)
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :delete, -> { securial.user_path(securial_user) }, :no_token
       it_behaves_like "unauthorized request", :delete, -> { securial.user_path(securial_user) }, :invalid_token
       it_behaves_like "unauthorized request", :delete, -> { securial.user_path(securial_user) }, :regular_user

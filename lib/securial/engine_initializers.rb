@@ -19,5 +19,10 @@ module Securial
     initializer "securial.logger_middleware" do |app|
       app.middleware.use Securial::Middleware::RequestTagLogger
     end
+
+    initializer "securial.extend_application_controller" do
+      ActiveSupport.on_load(:action_controller_base) { include Securial::Identity }
+      ActiveSupport.on_load(:action_controller_api)  { include Securial::Identity }
+    end
   end
 end

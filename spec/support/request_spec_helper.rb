@@ -8,12 +8,12 @@ module RequestSpecHelper
 
   def auth_headers(token: nil, user: nil, admin: false, extra_headers: {})
     auth_token = "Bearer #{token ? token : create_auth_trio(user: user, admin: admin).third}"
-    {
-      'Accept' => 'application/json',
-      'Authorization' => auth_token,
-      'Content-Type' => 'application/json',
-      "User-Agent" => "Ruby/RSpec",
-    }.merge(extra_headers)
+      {
+        'Accept' => 'application/json',
+        'Authorization' => auth_token,
+        'Content-Type' => 'application/json',
+        "User-Agent" => "Ruby/RSpec",
+      }.merge(extra_headers)
   end
 
   def admin_auth_headers(extra_headers: {})

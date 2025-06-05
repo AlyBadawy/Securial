@@ -55,7 +55,7 @@ RSpec.describe Securial::RolesController, type: :request do
       expect(records.length).to eq(2)
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :get, -> { securial.roles_path }, :no_token
       it_behaves_like "unauthorized request", :get, -> { securial.roles_path }, :invalid_token
       it_behaves_like "unauthorized request", :get, -> { securial.roles_path }, :regular_user
@@ -79,7 +79,7 @@ RSpec.describe Securial::RolesController, type: :request do
       expect(res_body.keys).to eq(%w[id role_name hide_from_profile created_at updated_at url])
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :get, -> { securial.role_path(securial_role) }, :no_token
       it_behaves_like "unauthorized request", :get, -> { securial.role_path(securial_role) }, :invalid_token
       it_behaves_like "unauthorized request", :get, -> { securial.role_path(securial_role) }, :regular_user
@@ -136,7 +136,7 @@ RSpec.describe Securial::RolesController, type: :request do
       end
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :post, -> { securial.roles_path }, :no_token, -> { { securial_role: valid_attributes } }
       it_behaves_like "unauthorized request", :post, -> { securial.roles_path }, :invalid_token, -> { { securial_role: valid_attributes } }
       it_behaves_like "unauthorized request", :post, -> { securial.roles_path }, :regular_user, -> { { securial_role: valid_attributes } }
@@ -144,14 +144,9 @@ RSpec.describe Securial::RolesController, type: :request do
   end
 
   describe "PUT /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        {
-          role_name: "User",
-          hide_from_profile: false,
-        }
-      }
+    let(:new_attributes) { { role_name: "User", hide_from_profile: false } }
 
+    context "with valid parameters" do
       it "updates the requested securial_role" do
         put securial.role_path(securial_role),
             params: { securial_role: new_attributes },
@@ -184,7 +179,7 @@ RSpec.describe Securial::RolesController, type: :request do
       end
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :put, -> { securial.role_path(securial_role) }, :no_token, -> { { securial_role: new_attributes } }
       it_behaves_like "unauthorized request", :put, -> { securial.role_path(securial_role) }, :invalid_token, -> { { securial_role: new_attributes } }
       it_behaves_like "unauthorized request", :put, -> { securial.role_path(securial_role) }, :regular_user, -> { { securial_role: new_attributes } }
@@ -208,7 +203,7 @@ RSpec.describe Securial::RolesController, type: :request do
       expect(response).to have_http_status(:no_content)
     end
 
-    describe "unauthorized access", skip: "authentication is not implemented yet" do
+    describe "unauthorized access" do
       it_behaves_like "unauthorized request", :delete, -> { role_path(securial_role) }, :no_token
       it_behaves_like "unauthorized request", :delete, -> { role_path(securial_role) }, :invalid_token
       it_behaves_like "unauthorized request", :delete, -> { role_path(securial_role) }, :regular_user
