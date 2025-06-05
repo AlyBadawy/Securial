@@ -11,6 +11,8 @@ json.locked securial_user.locked
 json.locked_at securial_user.locked_at
 
 # json.password_expired securial_user.password_expired?
+# This field is currently commented out because it is not required in the JSON response.
+# Uncomment this line if the `password_expired` field needs to be included in the future.
 
 json.roles securial_user.roles, partial: "securial/roles/securial_role", as: :securial_role
 
