@@ -42,3 +42,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add post-install message
 - Implement session management with creation, validation, and refresh logic
 - Implement Authentication module with creation, token generation, and JWT encoding/decoding
+- Enhance Securial controllers and specs with error handling and authorization checks
