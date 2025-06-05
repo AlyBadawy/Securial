@@ -1,4 +1,4 @@
-Rails.application.routes.default_url_options[:host] = "http://localhost:3000"
+Rails.application.routes.default_url_options = { host: "localhost", port: 3000, protocol: "http" }
 
 Securial::Engine.routes.draw do
   default_url_options host: "example.com"
