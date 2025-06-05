@@ -3,7 +3,7 @@ module Securial
     def create
       return unless define_user_and_role
 
-      if @securial_user.roles.exists?(@role.id)
+      if @securial_user.roles.exists?(@securial_role.id)
         render json: { error: "Role already assigned to user" }, status: :unprocessable_entity
         return
       end

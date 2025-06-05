@@ -6,7 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 
 require "rspec/rails"
 
-Rails.root.glob("spec/support/**/*.rb").sort.each { |f| require f }
+Securial::Engine.root.glob("spec/support/**/*.rb").sort.each { |f| require f }
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -15,13 +15,17 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
-  config.include FactoryBot::Syntax::Methods
+  config.include RequestSpecHelper, type: :request
   config.include GeneratorSpec::TestCase, type: :generator
+  config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
+
+  config.include Securial::Engine.routes.url_helpers
 
   config.filter_rails_from_backtrace!
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = true
+  Rails.application.routes.default_url_options[:host] = "test.host"
 
 
   ActiveRecord::Migration.suppress_messages do
