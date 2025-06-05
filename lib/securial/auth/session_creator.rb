@@ -3,7 +3,7 @@ module Securial
     module SessionCreator
       module_function
 
-      def create_session(user, request)
+      def create_session!(user, request)
         valid_user = user && user.is_a?(Securial::User) && user.persisted?
         valid_request = request.is_a?(ActionDispatch::Request)
 

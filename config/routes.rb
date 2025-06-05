@@ -14,5 +14,19 @@ Securial::Engine.routes.draw do
         delete "revoke", action: :destroy, as: "revoke"
       end
     end
+
+    scope "accounts" do
+    end
+
+    scope "sessions" do
+      get "", to: "sessions#index", as: :index_sessions
+      get "current", to: "sessions#show", as: :current_session
+      get "id/:id", to: "sessions#show", as: :session
+      post "login", to: "sessions#login", as: :login
+      delete "logout", to: "sessions#logout", as: :logout
+      put "refresh", to: "sessions#refresh", as: :refresh_session
+      delete "id/:id/revoke", to: "sessions#revoke", as: :revoke_session_by_id
+      delete "revoke_all", to: "sessions#revoke_all", as: :revoke_all_sessions
+    end
   end
 end
