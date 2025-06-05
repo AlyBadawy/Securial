@@ -45,7 +45,9 @@ module Securial
                       :first_name,
                       :last_name,
                       :phone,
-                      :bio
+                      :bio,
+                      :password,
+                      :password_confirmation
         ])
     end
   end
