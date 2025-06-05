@@ -62,7 +62,7 @@ module Securial
 
     def set_session
       id = params[:id]
-      @securial_session = id ? Current.user.sessions.find(params.expect(:id)) : Current.session
+      @securial_session = id ? Current.user.sessions.find(params[:id]) : Current.session
     end
 
     def render_login_response(user)
