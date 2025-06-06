@@ -27,7 +27,7 @@ module Securial
 
     initializer "securial.action_mailer.preview_path", after: "action_mailer.set_configs" do |app|
       app.config.action_mailer.preview_paths ||= []
-      app.config.action_mailer.preview_paths << root.join("spec/mailers/previews").to_s
+      app.config.action_mailer.preview_paths |= [root.join("spec/mailers/previews").to_s]
     end
   end
 end
