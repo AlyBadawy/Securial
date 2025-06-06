@@ -51,3 +51,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add accounts controller
 - Templated the engine initializer file. Copied on installation
 - Standardized Configuration Signature
+- Seed the default Roles and users.
