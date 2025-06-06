@@ -5,7 +5,7 @@ RSpec.describe Securial::Config::Validation::PasswordValidation do
     Struct.new(
       :reset_password_token_secret,
       :reset_password_token_expires_in,
-      :password_reset_email_subject,
+      :mailer_forgot_password_subject,
       :password_min_length,
       :password_max_length,
       :password_complexity,
@@ -47,29 +47,29 @@ RSpec.describe Securial::Config::Validation::PasswordValidation do
   end
 
   describe ".validate_password_reset_subject!" do
-    it "raises if password_reset_email_subject is blank" do
-      config.password_reset_email_subject = ""
+    it "raises if mailer_forgot_password_subject is blank" do
+      config.mailer_forgot_password_subject = ""
       expect {
         described_class.send(:validate_password_reset_subject!, config)
       }.to raise_error(Securial::Error::Config::PasswordValidationError, "Password reset email subject is not set.")
     end
 
-    it "raises if password_reset_email_subject is nil" do
-      config.password_reset_email_subject = nil
+    it "raises if mailer_forgot_password_subject is nil" do
+      config.mailer_forgot_password_subject = nil
       expect {
         described_class.send(:validate_password_reset_subject!, config)
       }.to raise_error(Securial::Error::Config::PasswordValidationError, "Password reset email subject is not set.")
     end
 
-    it "raises if password_reset_email_subject is not a String" do
-      config.password_reset_email_subject = 123
+    it "raises if mailer_forgot_password_subject is not a String" do
+      config.mailer_forgot_password_subject = 123
       expect {
         described_class.send(:validate_password_reset_subject!, config)
       }.to raise_error(Securial::Error::Config::PasswordValidationError, "Password reset email subject must be a String.")
     end
 
     it "does not raise on valid subject" do
-      config.password_reset_email_subject = "Reset your password"
+      config.mailer_forgot_password_subject = "Reset your password"
       expect {
         described_class.send(:validate_password_reset_subject!, config)
       }.not_to raise_error

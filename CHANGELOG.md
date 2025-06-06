@@ -46,3 +46,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implement authentication and authorization mechanisms in Securial controllers
 - implement authenticate_admin! for actions that require admin/superuser role
 - Implement sign-in, sign-out, refresh token, revoke token functionality
+- Create a Securial Mailer to send notification emails

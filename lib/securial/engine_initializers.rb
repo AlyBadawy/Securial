@@ -24,5 +24,10 @@ module Securial
       ActiveSupport.on_load(:action_controller_base) { include Securial::Identity }
       ActiveSupport.on_load(:action_controller_api)  { include Securial::Identity }
     end
+
+    initializer "securial.action_mailer.preview_path", after: "action_mailer.set_configs" do |app|
+      app.config.action_mailer.preview_paths ||= []
+      app.config.action_mailer.preview_paths << root.join("spec/mailers/previews").to_s
+    end
   end
 end

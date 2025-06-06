@@ -1,0 +1,31 @@
+<h1>Sign-in Alert for <%= Securial.configuration.app_name || Rails.application.class.module_parent_name %></h1>
+<p>
+  Hello <%= @user.first_name || @user.email_address %>,
+</p>
+<p>
+  We noticed a sign-in to your account.
+</p>
+<table style="border-collapse: collapse;">
+  <tr>
+    <td style="padding: 4px 8px; font-weight: bold;">IP Address:</td>
+    <td style="padding: 4px 8px;"><%= @session.ip_address %></td>
+  </tr>
+  <tr>
+    <td style="padding: 4px 8px; font-weight: bold;">Device/Browser:</td>
+    <td style="padding: 4px 8px;"><%= @session.user_agent %></td>
+  </tr>
+  <% if @session.respond_to?(:created_at) %>
+  <tr>
+    <td style="padding: 4px 8px; font-weight: bold;">Time:</td>
+    <td style="padding: 4px 8px;"><%= @session.created_at.strftime("%B %d, %Y at %H:%M %Z") %></td>
+  </tr>
+  <% end %>
+</table>
+<p>
+  If this was you, you can safely ignore this message.<br>
+  If you did not sign in, please reset your password immediately or contact support.
+</p>
+<p>
+  Best regards,<br>
+  The <%= Securial.configuration.app_name || Rails.application.class.module_parent_name %> Team
+</p>

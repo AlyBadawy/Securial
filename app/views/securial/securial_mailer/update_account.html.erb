@@ -1,0 +1,15 @@
+<h1>Your Account Has Been Updated on <%= Securial.configuration.app_name || Rails.application.class.module_parent_name %></h1>
+<p>
+  Hello <%= @user.first_name || @user.email_address %>,
+</p>
+<p>
+  This is a confirmation that changes were made to your account.
+</p>
+<p>
+  If you made these changes, you do not need to do anything further.<br>
+  If you did not update your account, please review your account security or contact support immediately.
+</p>
+<p>
+  Best regards,<br>
+  The <%= Securial.configuration.app_name || Rails.application.class.module_parent_name %> Team
+</p>
