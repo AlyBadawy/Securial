@@ -17,8 +17,7 @@ module Securial
         end
 
         def generate_password_reset_token
-          chars = ("A".."Z").to_a + ("a".."z").to_a + ("0".."9").to_a
-          token = Array.new(12) { chars.sample }.join
+          token = SecureRandom.alphanumeric(12)
           "#{token[0, 6]}-#{token[6, 6]}"
         end
       end
