@@ -7,12 +7,12 @@ module Securial
     end
 
     def show
-      @securial_user = User.find_by(username: params.expect(:username))
+      @securial_user = Securial::User.find_by(username: params.expect(:username))
       render_user_profile
     end
 
     def register
-      @securial_user = User.new(user_params)
+      @securial_user = Securial::User.new(user_params)
       if @securial_user.save
         render :show, status: :created, location: @securial_user
       else
