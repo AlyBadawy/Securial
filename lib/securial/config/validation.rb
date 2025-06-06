@@ -61,6 +61,7 @@ module Securial
         end
 
         def raise_error(msg)
+          Securial.logger.fatal msg
           raise Securial::Error::Config::InvalidConfigurationError, msg
         end
       end
