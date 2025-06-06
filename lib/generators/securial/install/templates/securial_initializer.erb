@@ -77,7 +77,7 @@ Securial.configure do |config|
   # requirements for a password. The default is a regex that
   # requires at least one uppercase letter, one lowercase letter,
   # one digit, and one special character.
-  config.password_complexity = Securial::RegexHelper::PASSWORD_REGEX
+  config.password_complexity = Securial::Helpers::RegexHelper::PASSWORD_REGEX
 
   ## Set the password expiration duration
   # This is the time after which a password will be considered expired.
