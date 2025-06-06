@@ -38,12 +38,24 @@ Gem::Specification.new do |spec|
     ---
     [SECURIAL] Thank you for installing Securial!
 
-    Securial is a mountable Rails engine that provides robust,
-    extensible authentication and access control for Rails applications.
-      Please review the [changelog] and [WIKI] for more info on the latest
+    Securial is a mountable Rails engine that provides robust, extensible
+    authentication and access control for Rails applications. It supports JWT,
+    API tokens, session-based auth, and is designed for easy integration with
+    modern web and mobile apps.
+
+    Usage:
+      securial new APP_NAME [rails_options...]    # Create a new Rails app with Securial pre-installed
+      securial -v, --version                      # Show the Securial gem version
+      securial -h, --help                         # Show this help message
+
+    Example:
+      securial new myapp --api --database=postgresql -T
+
+    More Info:
+      review the [changelog] and [WIKI] for more info on the latest
       changes and how to use this gem/engine:
-      [changelog]:  https://github.com/AlyBadawy/Securial/blob/main/CHANGELOG.md
-      [WIKI]:       https://github.com/AlyBadawy/Securial/wiki
+        [changelog]:  https://github.com/AlyBadawy/Securial/blob/main/CHANGELOG.md
+        [WIKI]:       https://github.com/AlyBadawy/Securial/wiki
     ---
   )
 end
