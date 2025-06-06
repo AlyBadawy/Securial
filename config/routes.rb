@@ -15,8 +15,14 @@ Securial::Engine.routes.draw do
       end
     end
 
-    # Placeholder for future account-related routes
     scope "accounts" do
+      get "me", to: "accounts#me", as: :me
+      get "account/:username", to: "accounts#show", as: :account_by_username
+      post "register", to: "accounts#register", as: :register
+      put "update", to: "accounts#update_profile", as: :update_profile
+      # post "update_avatar", to: "accounts#update_avatar"
+      # post "update_notification_settings", to: "accounts#update_notification_settings"
+      delete "delete_account", to: "accounts#delete_account", as: :delete_account
     end
 
     scope "sessions" do

@@ -25,7 +25,7 @@ module Securial
 
     def generate_reset_password_token!
       update!(
-        reset_password_token: SecureRandom.urlsafe_base64,
+        reset_password_token: Auth::TokenGenerator.generate_password_reset_token,
         reset_password_token_created_at: Time.current
       )
     end
