@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_04_184841) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_06_182648) do
   create_table "securial_role_assignments", id: :string, force: :cascade do |t|
     t.string "user_id", null: false
     t.string "role_id", null: false

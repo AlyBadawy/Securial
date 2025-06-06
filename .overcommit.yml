@@ -43,7 +43,7 @@ PreCommit:
 PrePush:
   RSpec:
     enabled: true
-    command: ['bundle', 'exec', 'rspec']
+    command: ['bin/test']
     on_warn: fail
   BundleInstall:
     enabled: true
