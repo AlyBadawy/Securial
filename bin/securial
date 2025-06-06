@@ -2,6 +2,41 @@
 
 require "fileutils"
 
+def show_version
+  begin
+    require "securial/version"
+    puts "Securial v#{Securial::VERSION}"
+  rescue LoadError
+    puts "Securial version information not available."
+  end
+end
+
+def show_help
+  puts <<~HELP
+    Securial CLI
+
+    Securial is a mountable Rails engine that provides robust, extensible
+    authentication and access control for Rails applications. It supports JWT,
+    API tokens, session-based auth, and is designed for easy integration with
+    modern web and mobile apps.
+
+    Usage:
+      securial new APP_NAME [rails_options...]    # Create a new Rails app with Securial pre-installed
+      securial -v, --version                      # Show the Securial gem version
+      securial -h, --help                         # Show this help message
+
+    Example:
+      securial new myapp --api --database=postgresql -T
+    
+    More Info:
+      review the [changelog] and [WIKI] for more info on the latest
+      changes and how to use this gem/engine:
+        [changelog]:  https://github.com/AlyBadawy/Securial/blob/main/CHANGELOG.md
+        [WIKI]:       https://github.com/AlyBadawy/Securial/wiki
+
+  HELP
+end
+
 def run(command, chdir: nil)
   puts "→ #{command}"
   if chdir
@@ -12,7 +47,6 @@ def run(command, chdir: nil)
     system(command) || abort("❌ Command failed: #{command}")
   end
 end
-
 
 def securial_new(app_name, rails_options)
   puts "🛠  Creating new Rails app: #{app_name}"
@@ -48,11 +82,21 @@ def securial_new(app_name, rails_options)
   puts "   rails server"
 end
 
-if ARGV[0] == "new" && ARGV[1]
-  app_name = ARGV[1]
-  rails_options = ARGV[2..] || []
-  securial_new(app_name, rails_options)
+case ARGV[0]
+when "-v", "--version"
+  show_version
+when "-h", "--help"
+  show_help
+when "new"
+  if ARGV[1]
+    app_name = ARGV[1]
+    rails_options = ARGV[2..] || []
+    securial_new(app_name, rails_options)
+  else
+    show_help
+    exit(1)
+  end
 else
-  puts "Usage: securial new app_name [rails_options...]"
-  puts "Example: securial new myapp --api --database=postgresql"
+  show_help
+  exit(1)
 end
