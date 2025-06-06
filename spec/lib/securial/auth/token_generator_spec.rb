@@ -53,7 +53,6 @@ RSpec.describe Securial::Auth::TokenGenerator do
 
   describe ".generate_password_reset_token" do
     before do
-      stub_const("Securial::Auth::TokenGenerator", described_class)
     end
 
     it "generates a token with the format XXXXXX-XXXXXX" do
