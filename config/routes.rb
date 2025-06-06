@@ -29,5 +29,10 @@ Securial::Engine.routes.draw do
       delete "id/:id/revoke", to: "sessions#revoke", as: :revoke_session_by_id
       delete "revoke_all", to: "sessions#revoke_all", as: :revoke_all_sessions
     end
+
+    scope "password" do
+      post "forgot", to: "passwords#forgot_password", as: :forgot_password
+      put "reset", to: "passwords#reset_password", as: :reset_password
+    end
   end
 end

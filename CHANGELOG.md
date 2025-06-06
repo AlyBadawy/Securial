@@ -47,3 +47,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - implement authenticate_admin! for actions that require admin/superuser role
 - Implement sign-in, sign-out, refresh token, revoke token functionality
 - Create a Securial Mailer to send notification emails
+- Implement forgot password and reset password functionalities
