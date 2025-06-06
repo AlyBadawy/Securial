@@ -1,5 +1,7 @@
 require "securial/config/configuration"
+require "securial/config/signature"
 require "securial/config/validation"
+
 
 module Securial
   class << self
