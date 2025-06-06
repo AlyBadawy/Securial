@@ -11,14 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial project structure.
 - Basic Rails engine setup.
-- For development: Setup Rubocop, Overcommit, Rspec
+- _For development_: Setup `Rubocop`, `Overcommit`, `RSpec`
 - Add a simple smoke test
 - Add a status route with controller
-- For development: Configure CI pipelines
+- _For development_: Configure CI pipelines
 - Add `securial` bin script
-- For development: Add script to run tests
-- For development: Add generators for models, factory bot, scaffold, jbuilder
-- Add UUIDv7 as the default database key generator
+- _For development_: Add script to run tests
+- _For development_: Add generators for models, factory bot, scaffold, jbuilder
+- Add `UUIDv7` as the default database ID key generator
 - Add Custom logger and broadcaster module
 - Add tags to logger (request Id, IP address, User agent)
 - Separate Log files per environment
@@ -34,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Configuration and validation for Engine Security
 - Scaffold the `Role` model and controller.
 - Implement `User` management with scaffolding and validations
-- Add RolesHelper
+- Add `RolesHelper`
 - Add `RoleAssignment` model to assign and revoke roles to users.
 - Created a controller to manage `RoleAssignment`
 - Add custom Errors for Config validations, and authorization
@@ -46,9 +46,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implement authentication and authorization mechanisms in Securial controllers
 - implement authenticate_admin! for actions that require admin/superuser role
 - Implement sign-in, sign-out, refresh token, revoke token functionality
-- Create a Securial Mailer to send notification emails
+- Create a `SecurialMailer` to send notification emails
 - Implement forgot password and reset password functionalities
 - Add accounts controller
 - Templated the engine initializer file. Copied on installation
 - Standardized Configuration Signature
-- Seed the default Roles and users.
+- Seed the default Roles and Users
+- Add `--help` and `--version` to the `securial` CLI
