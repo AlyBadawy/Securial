@@ -7,7 +7,6 @@ RSpec.describe Securial::Auth::TokenGenerator do
 
     before do
       stub_const("Securial::Auth::TokenGenerator", described_class)
-      # Use instance_double instead of regular double
       allow(Securial).to receive(:configuration).and_return(config)
       # Freeze SecureRandom output for predictability
       allow(SecureRandom).to receive(:hex).with(32).and_return("a" * 64)
@@ -48,6 +47,24 @@ RSpec.describe Securial::Auth::TokenGenerator do
       allow(SecureRandom).to receive(:hex).with(32).and_call_original
       tokens = Array.new(5) { described_class.generate_refresh_token }
       expect(tokens.uniq.length).to eq(5)
+    end
+  end
+
+  describe ".generate_password_reset_token" do
+    it "generates a token with the format XXXXXX-XXXXXX" do
+      token = described_class.generate_password_reset_token
+      expect(token).to match(/\A[a-zA-Z0-9]{6}-[a-zA-Z0-9]{6}\z/)
+    end
+
+    it "generates a different token each time" do
+      token1 = described_class.generate_password_reset_token
+      token2 = described_class.generate_password_reset_token
+      expect(token1).not_to eq(token2)
+    end
+
+    it "generates only alphanumeric characters and a dash" do
+      token = described_class.generate_password_reset_token
+      expect(token.delete('-')).to match(/\A[a-zA-Z0-9]{12}\z/)
     end
   end
 end

@@ -34,12 +34,12 @@ module Securial
           end
 
           def validate_password_reset_subject!(securial_config)
-            if securial_config.password_reset_email_subject.blank?
+            if securial_config.mailer_forgot_password_subject.blank?
               error_message = "Password reset email subject is not set."
               Securial.logger.fatal(error_message)
               raise Securial::Error::Config::PasswordValidationError, error_message
             end
-            unless securial_config.password_reset_email_subject.is_a?(String)
+            unless securial_config.mailer_forgot_password_subject.is_a?(String)
               error_message = "Password reset email subject must be a String."
               Securial.logger.fatal(error_message)
               raise Securial::Error::Config::PasswordValidationError, error_message

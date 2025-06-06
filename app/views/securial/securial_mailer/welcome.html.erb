@@ -1,0 +1,11 @@
+<h1>Welcome to <%= Securial.configuration.app_name || Rails.application.class.module_parent_name %>, <%= @user.first_name || @user.email_address %>!</h1>
+<p>
+  Thank you for signing up. We're excited to have you on board.
+</p>
+<p>
+  If you have any questions or need help getting started, feel free to reply to this email.
+</p>
+<p>
+  Best regards,<br>
+  The <%= Securial.configuration.app_name || Rails.application.class.module_parent_name %> Team
+</p>

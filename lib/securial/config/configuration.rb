@@ -6,6 +6,9 @@ module Securial
     class Configuration
       def self.default_config_attributes # rubocop:disable Metrics/MethodLength
         {
+          # General configuration
+          app_name: "Securial",
+
           # Logger configuration
           log_to_file: !Rails.env.test?,
           log_to_stdout: !Rails.env.test?,
@@ -22,9 +25,15 @@ module Securial
 
           # Mailer configuration
           mailer_sender: "no-reply@example.com",
+          mailer_sign_up_enabled: true,
+          mailer_sign_up_subject: "SECURIAL: Welcome to Our Service",
+          mailer_sign_in_enabled: true,
+          mailer_sign_in_subject: "SECURIAL: Sign In Notification",
+          mailer_update_account_enabled: true,
+          mailer_update_account_subject: "SECURIAL: Account Update Notification",
+          mailer_forgot_password_subject: "SECURIAL: Password Reset Instructions",
 
           # Password configuration
-          password_reset_email_subject: "SECURIAL: Password Reset Instructions",
           password_min_length: 8,
           password_max_length: 128,
           password_complexity: Securial::Helpers::RegexHelper::PASSWORD_REGEX,
