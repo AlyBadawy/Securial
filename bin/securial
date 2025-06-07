@@ -56,6 +56,7 @@ def securial_new(app_name, rails_options)
   run(rails_command)
 
   # Step 2: Append securial gem to the Gemfile
+  puts "📦  Adding Securial gem to Gemfile"
   gemfile_path = File.join(app_name, "Gemfile")
   File.open(gemfile_path, "a") do |f|
     f.puts "\ngem 'securial'"
@@ -65,10 +66,12 @@ def securial_new(app_name, rails_options)
   run("bundle install", chdir: app_name)
 
   # Step 4: Install securial
+  puts "🔧  Installing Securial"
   run("bin/rails generate securial:install", chdir: app_name)
   run("bin/rails db:migrate", chdir: app_name)
 
   # Step 5: Mount the engine
+  puts "🔗  Mounting Securial engine in routes"
   routes_path = File.join(app_name, "config/routes.rb")
   routes = File.read(routes_path)
   updated = routes.sub("Rails.application.routes.draw do") do |match|
@@ -76,10 +79,13 @@ def securial_new(app_name, rails_options)
   end
   File.write(routes_path, updated)
 
-  puts "\n✅ Done! Your app is ready at: ./#{app_name}"
+  puts "🎉  Securial has been successfully installed in your Rails app!"
+  puts "✅  Your app is ready at: ./#{app_name}"
+  puts ""
   puts "➡️  Next steps:"
-  puts "   cd #{app_name}"
-  puts "   rails server"
+  puts "    cd #{app_name}"
+  puts "⚙️  Optional: Configure Securial in config/initializers/securial.rb"
+  puts "    rails server"
 end
 
 case ARGV[0]
