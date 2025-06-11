@@ -1,8 +1,10 @@
-# lib/securial/middleware/transform_request_keys.rb
-require "json"
-
 module Securial
   module Middleware
+    # This middleware transforms request keys to a specified format.
+    # It uses the KeyTransformer helper to apply the transformation.
+    #
+    # It reads the request body if the content type is JSON and transforms
+    # the keys to underscore format. If the body is not valid JSON, it does nothing.
     class TransformRequestKeys
       def initialize(app)
         @app = app

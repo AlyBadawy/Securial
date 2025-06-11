@@ -2,10 +2,12 @@ module Securial
   module Middleware
     # This middleware transforms response keys to a specified format.
     # It uses the KeyTransformer helper to apply the transformation.
+    #
+    # It reads the response body if the content type is JSON and transforms
+    # the keys to the specified format (default is lowerCamelCase).
     class TransformResponseKeys
       def initialize(app, format: :lowerCamelCase)
         @app = app
-        @format = format
       end
 
       def call(env)

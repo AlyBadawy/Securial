@@ -21,8 +21,7 @@ module Securial
     end
 
     initializer "securial.transform_response_keys" do |app|
-      format = Securial.configuration.response_keys_format || :lowerCamelCase
-      app.middleware.use Middleware::TransformResponseKeys, format: format
+      app.middleware.use Securial::Middleware::TransformResponseKeys
     end
 
     initializer "securial.logger_middleware" do |app|
