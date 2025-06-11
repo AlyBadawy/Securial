@@ -16,6 +16,14 @@ module Securial
       end
     end
 
+    initializer "securial.transform_request_keys" do |app|
+      app.middleware.use Securial::Middleware::TransformRequestKeys
+    end
+
+    initializer "securial.transform_response_keys" do |app|
+      app.middleware.use Securial::Middleware::TransformResponseKeys
+    end
+
     initializer "securial.logger_middleware" do |app|
       app.middleware.use Securial::Middleware::RequestTagLogger
     end

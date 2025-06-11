@@ -1,6 +1,7 @@
 require "securial/helpers/normalizing_helper"
 require "securial/helpers/regex_helper"
 require "securial/helpers/roles_helper"
+require "securial/helpers/key_transformer"
 
 module Securial
   module Helpers

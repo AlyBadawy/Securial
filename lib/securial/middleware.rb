@@ -1,4 +1,6 @@
 require "securial/middleware/request_tag_logger"
+require "securial/middleware/transform_request_keys"
+require "securial/middleware/transform_response_keys"
 
 module Securial
   module Middleware
