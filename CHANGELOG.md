@@ -53,3 +53,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Standardized Configuration Signature
 - Seed the default Roles and Users
 - Add `--help` and `--version` to the `securial` CLI
+- Add Keys Transformer
+- Always transform request keys (deep transform) to snake_case
+- Configurable: transform response keys to either: snake_case, lowerCamelCase, or UpperCamelCase

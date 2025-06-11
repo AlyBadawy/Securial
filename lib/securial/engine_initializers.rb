@@ -16,6 +16,15 @@ module Securial
       end
     end
 
+    initializer "securial.transform_request_keys" do |app|
+      app.middleware.use Securial::Middleware::TransformRequestKeys
+    end
+
+    initializer "securial.transform_response_keys" do |app|
+      format = Securial.configuration.response_keys_format || :lowerCamelCase
+      app.middleware.use Middleware::TransformResponseKeys, format: format
+    end
+
     initializer "securial.logger_middleware" do |app|
       app.middleware.use Securial::Middleware::RequestTagLogger
     end
