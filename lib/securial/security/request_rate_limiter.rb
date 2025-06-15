@@ -26,6 +26,7 @@ module Securial
             end
           end
         end
+
         # Custom response for throttled requests
         Rack::Attack.throttled_responder = lambda do |request|
           retry_after = (request.env["rack.attack.match_data"] || {})[:period]
