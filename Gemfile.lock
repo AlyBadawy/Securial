@@ -5,6 +5,7 @@ PATH
       bcrypt (~> 3.1)
       jbuilder (~> 2.11)
       jwt (~> 2.10)
+      rack-attack (~> 6.5)
       rails (~> 8.0)
 
 GEM
@@ -186,6 +187,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.16)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)

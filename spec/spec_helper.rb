@@ -10,7 +10,7 @@ SimpleCov::Formatter::LcovFormatter.config.output_directory = "coverage"
 SimpleCov::Formatter::LcovFormatter.config.lcov_file_name = "lcov.info"
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::HTMLFormatter,
-  SimpleCov::Formatter::LcovFormatter
+  SimpleCov::Formatter::LcovFormatter,
 ])
 
 SimpleCov.start do

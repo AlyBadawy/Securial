@@ -5,7 +5,7 @@ module Securial
         :password,
         :password_confirmation,
         :password_reset_token,
-        :reset_password_token
+        :reset_password_token,
       ]
     end
 
@@ -26,6 +26,13 @@ module Securial
 
     initializer "securial.logger_middleware" do |app|
       app.middleware.use Securial::Middleware::RequestTagLogger
+    end
+
+    initializer "securial.security.request_rate_limiter" do |app|
+      if Securial.configuration.rate_limiting_enabled
+        Securial::Security::RequestRateLimiter.apply!
+        app.middleware.use Rack::Attack
+      end
     end
 
     initializer "securial.extend_application_controller" do

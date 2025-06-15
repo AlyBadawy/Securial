@@ -8,7 +8,7 @@ module Securial
           'user@example.com',
           'user.name@example.com',
           'user+label@example.com',
-          'user@sub.example.com'
+          'user@sub.example.com',
         ]
 
         expect(valid_emails).to all(match(described_class::EMAIL_REGEX))
@@ -21,7 +21,7 @@ module Securial
           'user@.com',
           'user@example.',
           'user name@example.com',
-          'user@exam ple.com'
+          'user@exam ple.com',
         ]
 
         aggregate_failures do
@@ -39,7 +39,7 @@ module Securial
           'jane.doe',
           'user123',
           'a_b_c',
-          'example'
+          'example',
         ]
 
         expect(valid_usernames).to all(match(described_class::USERNAME_REGEX))
@@ -53,7 +53,7 @@ module Securial
           'user_',             # ends with underscore
           'user.',             # ends with dot
           'user name',         # contains space
-          'user@name'         # contains special character
+          'user@name',         # contains special character
         ]
 
         aggregate_failures do

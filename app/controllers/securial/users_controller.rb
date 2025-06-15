@@ -47,7 +47,7 @@ module Securial
                       :phone,
                       :bio,
                       :password,
-                      :password_confirmation
+                      :password_confirmation,
         ])
     end
   end
