@@ -28,6 +28,13 @@ module Securial
       app.middleware.use Securial::Middleware::RequestTagLogger
     end
 
+    initializer "securial.security.request_rate_limiter" do |app|
+      if Securial.configuration.rate_limiting_enabled
+        Securial::Security::RequestRateLimiter.apply!
+        Rails.application.config.middleware.use Rack::Attack
+      end
+    end
+
     initializer "securial.extend_application_controller" do
       ActiveSupport.on_load(:action_controller_base) { include Securial::Identity }
       ActiveSupport.on_load(:action_controller_api)  { include Securial::Identity }
