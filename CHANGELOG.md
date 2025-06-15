@@ -57,3 +57,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Always transform request keys (deep transform) to snake_case
 - Configurable: transform response keys to either: snake_case, lowerCamelCase, or UpperCamelCase
 - Implement request rate limiting using Rack::Attack
+- Add Securial's response headers
