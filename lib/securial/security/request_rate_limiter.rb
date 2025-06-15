@@ -1,6 +1,5 @@
 require "rack/attack"
 require "securial/config"
-require "securial/logger"
 
 module Securial
   module Security
