@@ -10,46 +10,23 @@ module Securial
       def apply! # rubocop:disable Metrics/MethodLength
         resp_status = Securial.configuration.rate_limit_response_status
         resp_message = Securial.configuration.rate_limit_response_message
-        # Throttle login attempts by IP
-        Rack::Attack.throttle("securial/logins/ip",
-                              limit: ->(_req) { Securial.configuration.rate_limit_requests_per_minute },
-                              period: 1.minute
-        ) do |req|
-          if req.path.include?("sessions/login") && req.post?
-            req.ip
+        throttle_configs = [
+          { name: "securial/logins/ip", path: "sessions/login", key: ->(req) { req.ip } },
+          { name: "securial/logins/email", path: "sessions/login", key: ->(req) { req.params["email_address"].to_s.downcase.strip } },
+          { name: "securial/password_resets/ip", path: "password/forgot", key: ->(req) { req.ip } },
+          { name: "securial/password_resets/email", path: "password/forgot", key: ->(req) { req.params["email_address"].to_s.downcase.strip } }
+        ]
+
+        throttle_configs.each do |config|
+          Rack::Attack.throttle(config[:name],
+                                limit: ->(_req) { Securial.configuration.rate_limit_requests_per_minute },
+                                period: 1.minute
+          ) do |req|
+            if req.path.include?(config[:path]) && req.post?
+              config[:key].call(req)
+            end
           end
         end
-
-        # Throttle login attempts by username/email
-        Rack::Attack.throttle("securial/logins/email",
-                              limit: ->(_req) { Securial.configuration.rate_limit_requests_per_minute },
-                              period: 1.minute
-        ) do |req|
-          if req.path.include?("sessions/login") && req.post?
-            req.params["email_address"].to_s.downcase.strip
-          end
-        end
-
-        # Throttle password reset requests by IP
-        Rack::Attack.throttle("securial/password_resets/ip",
-                              limit: ->(_req) { Securial.configuration.rate_limit_requests_per_minute },
-                              period: 1.minute
-        ) do |req|
-          if req.path.include?("password/forgot") && req.post?
-            req.ip
-          end
-        end
-
-        # Throttle password reset requests by email
-        Rack::Attack.throttle("securial/password_resets/email",
-                              limit: ->(_req) { Securial.configuration.rate_limit_requests_per_minute },
-                              period: 1.minute
-        ) do |req|
-          if req.path.include?("password/forgot") && req.post?
-            req.params["email_address"].to_s.downcase.strip
-          end
-        end
-
         # Custom response for throttled requests
         Rack::Attack.throttled_responder = lambda do |request|
           retry_after = (request.env["rack.attack.match_data"] || {})[:period]
