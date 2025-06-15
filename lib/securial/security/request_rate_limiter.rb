@@ -59,7 +59,7 @@ module Securial
               "Content-Type" => "application/json",
               "Retry-After" => retry_after.to_s,
             },
-            [{ error: resp_message }.to_json]
+            [{ error: resp_message }.to_json],
           ]
         end
       end

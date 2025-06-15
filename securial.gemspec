@@ -26,14 +26,14 @@ Gem::Specification.new do |spec|
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   end
 
-  spec.required_ruby_version          = ">= 3.4.0"
+  spec.required_ruby_version                        = ">= 3.4.0"
 
-  spec.add_runtime_dependency         "rails", "~> 8.0"
+  spec.add_runtime_dependency         "rails",        "~> 8.0"
 
-  spec.add_dependency                 "bcrypt", "~> 3.1"
-  spec.add_dependency                 "jbuilder", "~> 2.11"
-  spec.add_dependency                 "jwt", "~> 2.10"
-  spec.add_dependency                 "rack-attack", "~> 6.5"
+  spec.add_dependency                 "bcrypt",       "~> 3.1"
+  spec.add_dependency                 "jbuilder",     "~> 2.11"
+  spec.add_dependency                 "jwt",          "~> 2.10"
+  spec.add_dependency                 "rack-attack",  "~> 6.5"
 
   spec.post_install_message = %q(
     ---

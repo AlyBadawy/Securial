@@ -21,7 +21,7 @@ RSpec.describe Securial::Config::Signature do
         :password_expires_in, :reset_password_token_expires_in, :reset_password_token_secret,
         :response_keys_format, :timestamps_in_response,
         :security_headers, :rate_limiting_enabled, :rate_limit_requests_per_minute,
-        :rate_limit_response_status, :rate_limit_response_message
+        :rate_limit_response_status, :rate_limit_response_message,
       ]
       expect(config_signature.keys).to include(*expected_keys)
     end

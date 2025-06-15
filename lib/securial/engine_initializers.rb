@@ -5,7 +5,7 @@ module Securial
         :password,
         :password_confirmation,
         :password_reset_token,
-        :reset_password_token
+        :reset_password_token,
       ]
     end
 

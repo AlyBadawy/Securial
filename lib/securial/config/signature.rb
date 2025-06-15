@@ -18,7 +18,7 @@ module Securial
           mailer_signature,
           password_signature,
           response_signature,
-          security_signature
+          security_signature,
         ].reduce({}, :merge)
       end
 

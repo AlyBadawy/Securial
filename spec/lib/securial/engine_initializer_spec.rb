@@ -31,7 +31,7 @@ describe "Securial::Engine Initializers" do
         :password,
         :password_confirmation,
         :password_reset_token,
-        :reset_password_token
+        :reset_password_token,
       ]
 
       sensitive_params.each do |param|

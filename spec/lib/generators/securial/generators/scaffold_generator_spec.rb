@@ -125,7 +125,7 @@ RSpec.describe Securial::Generators::ScaffoldGenerator do
           "controller specs:",
           generator.send(:request_spec_path).to_s,
           generator.send(:routing_spec_path).to_s,
-          "Scaffold complete ✨✨"
+          "Scaffold complete ✨✨",
         ]
 
         # Use the output matcher
