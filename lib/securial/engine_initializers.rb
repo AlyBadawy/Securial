@@ -31,7 +31,7 @@ module Securial
     initializer "securial.security.request_rate_limiter" do |app|
       if Securial.configuration.rate_limiting_enabled
         Securial::Security::RequestRateLimiter.apply!
-        Rails.application.config.middleware.use Rack::Attack
+        app.middleware.use Rack::Attack
       end
     end
 
