@@ -13,7 +13,7 @@ module Securial
           { name: "securial/logins/ip", path: "sessions/login", key: ->(req) { req.ip } },
           { name: "securial/logins/email", path: "sessions/login", key: ->(req) { req.params["email_address"].to_s.downcase.strip } },
           { name: "securial/password_resets/ip", path: "password/forgot", key: ->(req) { req.ip } },
-          { name: "securial/password_resets/email", path: "password/forgot", key: ->(req) { req.params["email_address"].to_s.downcase.strip } }
+          { name: "securial/password_resets/email", path: "password/forgot", key: ->(req) { req.params["email_address"].to_s.downcase.strip } },
         ]
 
         throttle_configs.each do |config|
