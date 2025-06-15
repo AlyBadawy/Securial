@@ -84,15 +84,72 @@ describe "Securial::Engine Initializers" do
     end
   end
 
-  describe "securial.logger_middleware" do
+  describe "securial.middleware.transform_request_keys" do
+    it "adds TransformRequestKeys middleware" do
+      fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
+      app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
+      engine = Securial::Engine.instance
+
+      engine.initializers.find { |i| i.name == "securial.middleware.transform_request_keys" }.run(app)
+
+      expect(fake_middleware).to have_received(:use).with(Securial::Middleware::TransformRequestKeys)
+    end
+  end
+
+  describe "securial.middleware.transform_response_keys" do
+    it "adds TransformResponseKeys middleware" do
+      fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
+      app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
+      engine = Securial::Engine.instance
+      engine.initializers.find { |i| i.name == "securial.middleware.transform_response_keys" }.run(app)
+      expect(fake_middleware).to have_received(:use).with(Securial::Middleware::TransformResponseKeys)
+    end
+  end
+
+  describe "securial.middleware.logger" do
     it "adds RequestTagLogger middleware" do
       fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
       app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
       engine = Securial::Engine.instance
 
-      engine.initializers.find { |i| i.name == "securial.logger_middleware" }.run(app)
+      engine.initializers.find { |i| i.name == "securial.middleware.logger" }.run(app)
 
       expect(fake_middleware).to have_received(:use).with(Securial::Middleware::RequestTagLogger)
+    end
+  end
+
+  describe "securial.security.request_rate_limiter" do
+    let(:middleware_stack) { instance_double(ActionDispatch::MiddlewareStack) }
+
+    before do
+      allow(app).to receive(:middleware).and_return(middleware_stack)
+      allow(middleware_stack).to receive(:use)
+    end
+
+    context "when rate limiting is enabled" do
+      before do
+        allow(Securial.configuration).to receive(:rate_limiting_enabled).and_return(true)
+        allow(Securial::Security::RequestRateLimiter).to receive(:apply!)
+      end
+
+      it "applies the request rate limiter and uses Rack::Attack" do
+        engine.initializers.find { |i| i.name == "securial.security.request_rate_limiter" }.run(app)
+        expect(Securial::Security::RequestRateLimiter).to have_received(:apply!)
+        expect(middleware_stack).to have_received(:use).with(Rack::Attack)
+      end
+    end
+
+    context "when rate limiting is disabled" do
+      before do
+        allow(Securial.configuration).to receive(:rate_limiting_enabled).and_return(false)
+        allow(Securial::Security::RequestRateLimiter).to receive(:apply!)
+      end
+
+      it "does not apply the request rate limiter or use Rack::Attack" do
+        engine.initializers.find { |i| i.name == "securial.security.request_rate_limiter" }.run(app)
+        expect(Securial::Security::RequestRateLimiter).not_to have_received(:apply!)
+        expect(middleware_stack).not_to have_received(:use).with(Rack::Attack)
+      end
     end
   end
 
