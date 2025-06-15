@@ -1,6 +1,7 @@
 require "securial/middleware/request_tag_logger"
 require "securial/middleware/transform_request_keys"
 require "securial/middleware/transform_response_keys"
+require "securial/middleware/response_headers.rb"
 
 module Securial
   module Middleware

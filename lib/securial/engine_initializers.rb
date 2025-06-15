@@ -16,6 +16,13 @@ module Securial
       end
     end
 
+    initializer "securial.security.request_rate_limiter" do |app|
+      if Securial.configuration.rate_limiting_enabled
+        Securial::Security::RequestRateLimiter.apply!
+        app.middleware.use Rack::Attack
+      end
+    end
+
     initializer "securial.middleware.transform_request_keys" do |app|
       app.middleware.use Securial::Middleware::TransformRequestKeys
     end
@@ -28,11 +35,8 @@ module Securial
       app.middleware.use Securial::Middleware::RequestTagLogger
     end
 
-    initializer "securial.security.request_rate_limiter" do |app|
-      if Securial.configuration.rate_limiting_enabled
-        Securial::Security::RequestRateLimiter.apply!
-        app.middleware.use Rack::Attack
-      end
+    initializer "securial.middleware.response_headers" do |app|
+      app.middleware.use Securial::Middleware::ResponseHeaders
     end
 
     initializer "securial.extend_application_controller" do
