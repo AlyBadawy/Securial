@@ -49,7 +49,7 @@ def run(command, chdir: nil)
 end
 
 def securial_new(app_name, rails_options)
-  puts "🛠  Creating new Rails app: #{app_name}"
+  puts "🏗️  Creating new Rails app: #{app_name}"
 
   # Step 1: Forward options to `rails new`
   rails_command = ["rails", "new", app_name, *rails_options].join(" ")

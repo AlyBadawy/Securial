@@ -244,10 +244,6 @@ module Securial
         let(:invalid_token) { Securial::Auth::AuthEncoder.encode(invalid_session) }
         let(:invalid_headers) { auth_headers(token: invalid_token) }
 
-        before do
-          allow(Securial::Current).to receive(:session).and_return(invalid_session)
-        end
-
         it "returns unauthorized when session does not match request" do
           get "/securial/authenticate", headers: invalid_headers, as: :json
 

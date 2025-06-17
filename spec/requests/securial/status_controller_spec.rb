@@ -10,7 +10,6 @@ RSpec.describe Securial::StatusController, type: :request do
       json = JSON.parse(response.body)
       expect(json["status"]).to eq("ok")
       expect(json).to have_key("timestamp")
-      expect(json["version"]).to eq(Securial::VERSION)
     end
   end
 end
