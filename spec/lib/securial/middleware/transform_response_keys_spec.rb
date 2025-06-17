@@ -27,7 +27,7 @@ RSpec.describe Securial::Middleware::TransformResponseKeys do
 
   before do
     allow(Securial).to receive(:configuration).and_return(
-      object_double(response_keys_format: key_format)
+      double(response_keys_format: key_format) # rubocop:disable RSpec/VerifiedDoubles
     )
   end
 
