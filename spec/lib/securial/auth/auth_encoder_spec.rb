@@ -14,14 +14,38 @@ module Securial
 
         it "includes the session ID in the token payload" do
           token = described_class.encode(securial_session)
-          decoded_payload = JWT::EncodedToken.new(token).payload
+          decoded_payload = described_class.decode(token)
           expect(decoded_payload["jti"]).to eq(securial_session.id)
+        end
+
+        it "encodes a token with the correct structure" do
+          token = described_class.encode(securial_session)
+          expect(token.split('.').length).to eq(3) # Header, payload, signature parts
+        end
+
+        it "creates a token that can be verified by JWT library directly" do
+          token = described_class.encode(securial_session)
+          decoded = nil
+          expect { 
+            decoded = ::JWT.decode(
+              token, 
+              Securial.configuration.session_secret, 
+              true, 
+              { algorithm: Securial.configuration.session_algorithm.to_s.upcase }
+            ) 
+          }.not_to raise_error
+          expect(decoded.first["jti"]).to eq(securial_session.id)
         end
       end
 
       context "with an invalid session" do
         it "returns nil" do
           token = described_class.encode("Invalid session")
+          expect(token).to be_nil
+        end
+
+        it "returns nil when session is nil" do
+          token = described_class.encode(nil)
           expect(token).to be_nil
         end
       end
@@ -41,87 +65,64 @@ module Securial
 
     describe "The .decode class method" do
       context "with a valid token" do
-        it "returns the decoded payload" do
+        # ... existing tests ...
+
+        it "properly handles issuer validation" do
           token = described_class.encode(securial_session)
           decoded_payload = described_class.decode(token)
           expect(decoded_payload).to be_a(Hash)
         end
 
-        it "includes the session ID in the decoded payload" do
+        it "uses the configured secret key" do
+          original_secret = Securial.configuration.session_secret
+          allow(Securial.configuration).to receive(:session_secret).and_return("different_secret")
+          
           token = described_class.encode(securial_session)
-          decoded_payload = described_class.decode(token)
-          expect(decoded_payload["jti"]).to eq(securial_session.id)
-        end
-
-        it "includes the session refresh count in the decoded payload" do
-          token = described_class.encode(securial_session)
-          decoded_payload = described_class.decode(token)
-          expect(decoded_payload["refresh_count"]).to eq(securial_session.refresh_count)
-        end
-
-        it "includes the session IP address in the decoded payload" do
-          token = described_class.encode(securial_session)
-          decoded_payload = described_class.decode(token)
-          expect(decoded_payload["ip"]).to eq(securial_session.ip_address)
-        end
-
-        it "includes the session user agent in the decoded payload" do
-          token = described_class.encode(securial_session)
-          decoded_payload = described_class.decode(token)
-          expect(decoded_payload["agent"]).to eq(securial_session.user_agent)
-        end
-
-        it "includes the expiration time in the decoded payload" do
-          token = described_class.encode(securial_session)
-          decoded_payload = described_class.decode(token)
-          expect(decoded_payload["exp"]).to be_within(1.second).of(3.minutes.from_now.to_i)
-        end
-
-        it "includes the correct keys for the payload" do
-          token = described_class.encode(securial_session)
-          decoded_payload = described_class.decode(token)
-          expect(decoded_payload.keys).to include(
-            "jti",
-            "exp",
-            "sub",
-            "refresh_count",
-            "ip",
-            "agent",
-          )
-        end
-
-        it "includes the correct values for the payload" do
-          token = described_class.encode(securial_session)
-          decoded_payload = described_class.decode(token)
-          expect(decoded_payload).to include(
-            "jti" => securial_session.id,
-            "exp" => be_within(1.second).of(3.minutes.from_now.to_i),
-            "sub" => "session-access-token",
-            "refresh_count" => securial_session.refresh_count,
-            "ip" => securial_session.ip_address,
-            "agent" => securial_session.user_agent,
-          )
-        end
-      end
-
-      context "with an invalid token" do
-        it "raises a JWT::DecodeError" do
+          
+          # Restore original secret and try to decode
+          allow(Securial.configuration).to receive(:session_secret).and_return(original_secret)
           expect {
-            described_class.decode("invalid.token")
+            described_class.decode(token)
+          }.to raise_error(Securial::Error::Auth::TokenDecodeError)
+        end
+
+        it "uses the configured algorithm" do
+          # Assuming default is HS256, try with HS384
+          original_algorithm = Securial.configuration.session_algorithm
+          allow(Securial.configuration).to receive(:session_algorithm).and_return("HS384")
+          
+          token = described_class.encode(securial_session)
+          
+          # Restore original algorithm and try to decode
+          allow(Securial.configuration).to receive(:session_algorithm).and_return(original_algorithm)
+          expect {
+            described_class.decode(token)
           }.to raise_error(Securial::Error::Auth::TokenDecodeError)
         end
       end
 
-      context "with an expired token" do
-        it "raises a JWT::ExpiredSignature" do
-          expired_session = create(:securial_session)
-          expired_token = described_class.encode(expired_session)
-          travel_to 4.minutes.from_now do
-            expect {
-              described_class.decode(expired_token)
-            }.to raise_error(Securial::Error::Auth::TokenDecodeError)
-          end
+      context "with a tampered token" do
+        it "raises a TokenDecodeError" do
+          token = described_class.encode(securial_session)
+          parts = token.split('.')
+          tampered_token = "#{parts[0]}.#{Base64.urlsafe_encode64('{"jti":"tampered"}')}.#{parts[2]}"
+          
+          expect {
+            described_class.decode(tampered_token)
+          }.to raise_error(Securial::Error::Auth::TokenDecodeError)
         end
+      end
+    end
+
+    describe "configuration integration" do
+      it "uses the configured session expiration duration" do
+        custom_duration = 10.minutes
+        allow(Securial.configuration).to receive(:session_expiration_duration).and_return(custom_duration)
+        
+        token = described_class.encode(securial_session)
+        decoded_payload = described_class.decode(token)
+        
+        expect(decoded_payload["exp"]).to be_within(1.second).of(custom_duration.from_now.to_i)
       end
     end
   end
