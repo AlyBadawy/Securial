@@ -26,13 +26,13 @@ module Securial
         it "creates a token that can be verified by JWT library directly" do
           token = described_class.encode(securial_session)
           decoded = nil
-          expect { 
+          expect {
             decoded = ::JWT.decode(
-              token, 
-              Securial.configuration.session_secret, 
-              true, 
+              token,
+              Securial.configuration.session_secret,
+              true,
               { algorithm: Securial.configuration.session_algorithm.to_s.upcase }
-            ) 
+            )
           }.not_to raise_error
           expect(decoded.first["jti"]).to eq(securial_session.id)
         end
@@ -76,9 +76,9 @@ module Securial
         it "uses the configured secret key" do
           original_secret = Securial.configuration.session_secret
           allow(Securial.configuration).to receive(:session_secret).and_return("different_secret")
-          
+
           token = described_class.encode(securial_session)
-          
+
           # Restore original secret and try to decode
           allow(Securial.configuration).to receive(:session_secret).and_return(original_secret)
           expect {
@@ -90,9 +90,9 @@ module Securial
           # Assuming default is HS256, try with HS384
           original_algorithm = Securial.configuration.session_algorithm
           allow(Securial.configuration).to receive(:session_algorithm).and_return("HS384")
-          
+
           token = described_class.encode(securial_session)
-          
+
           # Restore original algorithm and try to decode
           allow(Securial.configuration).to receive(:session_algorithm).and_return(original_algorithm)
           expect {
@@ -106,7 +106,7 @@ module Securial
           token = described_class.encode(securial_session)
           parts = token.split('.')
           tampered_token = "#{parts[0]}.#{Base64.urlsafe_encode64('{"jti":"tampered"}')}.#{parts[2]}"
-          
+
           expect {
             described_class.decode(tampered_token)
           }.to raise_error(Securial::Error::Auth::TokenDecodeError)
@@ -118,10 +118,10 @@ module Securial
       it "uses the configured session expiration duration" do
         custom_duration = 10.minutes
         allow(Securial.configuration).to receive(:session_expiration_duration).and_return(custom_duration)
-        
+
         token = described_class.encode(securial_session)
         decoded_payload = described_class.decode(token)
-        
+
         expect(decoded_payload["exp"]).to be_within(1.second).of(custom_duration.from_now.to_i)
       end
     end
