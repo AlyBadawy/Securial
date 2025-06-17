@@ -23,7 +23,7 @@ module Securial
       return if internal_rails_request?
 
       if current_user
-        return if current_user&.is_admin?
+        return if current_user.is_admin?
 
         render status: :forbidden, json: { error: "You are not authorized to perform this action" }
       else
