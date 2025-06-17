@@ -20,8 +20,6 @@ module Securial
     end
 
     def authenticate_admin!
-      return if internal_rails_request?
-
       if current_user
         return if current_user.is_admin?
 

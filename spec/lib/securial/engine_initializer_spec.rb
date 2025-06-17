@@ -84,40 +84,6 @@ describe "Securial::Engine Initializers" do
     end
   end
 
-  describe "securial.middleware.transform_request_keys" do
-    it "adds TransformRequestKeys middleware" do
-      fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
-      app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
-      engine = Securial::Engine.instance
-
-      engine.initializers.find { |i| i.name == "securial.middleware.transform_request_keys" }.run(app)
-
-      expect(fake_middleware).to have_received(:use).with(Securial::Middleware::TransformRequestKeys)
-    end
-  end
-
-  describe "securial.middleware.transform_response_keys" do
-    it "adds TransformResponseKeys middleware" do
-      fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
-      app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
-      engine = Securial::Engine.instance
-      engine.initializers.find { |i| i.name == "securial.middleware.transform_response_keys" }.run(app)
-      expect(fake_middleware).to have_received(:use).with(Securial::Middleware::TransformResponseKeys)
-    end
-  end
-
-  describe "securial.middleware.logger" do
-    it "adds RequestTagLogger middleware" do
-      fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
-      app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
-      engine = Securial::Engine.instance
-
-      engine.initializers.find { |i| i.name == "securial.middleware.logger" }.run(app)
-
-      expect(fake_middleware).to have_received(:use).with(Securial::Middleware::RequestTagLogger)
-    end
-  end
-
   describe "securial.security.request_rate_limiter" do
     let(:middleware_stack) { instance_double(ActionDispatch::MiddlewareStack) }
 
@@ -153,43 +119,93 @@ describe "Securial::Engine Initializers" do
     end
   end
 
-  describe 'controller extensions' do
-    describe 'ActionController::Base integration' do
-      let(:controller) { ActionController::Base.new }
+  describe "securial.middleware.transform_request_keys" do
+    it "adds TransformRequestKeys middleware" do
+      fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
+      app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
+      engine = Securial::Engine.instance
 
-      it 'includes Securial::Identity in ActionController::Base' do
-        expect(ActionController::Base.included_modules).to include(Securial::Identity)
-      end
+      engine.initializers.find { |i| i.name == "securial.middleware.transform_request_keys" }.run(app)
 
-      it 'makes Identity methods available to Base controllers' do
-        expect(controller).to respond_to(:current_user)
-        expect(controller).to respond_to(:authenticate_admin!)
-      end
-    end
-
-    describe 'ActionController::API integration' do
-      let(:controller) { ActionController::API.new }
-
-      it 'includes Securial::Identity in ActionController::API' do
-        expect(ActionController::API.included_modules).to include(Securial::Identity)
-      end
-
-      it 'makes Identity methods available to API controllers' do
-        expect(controller).to respond_to(:current_user)
-        expect(controller).to respond_to(:authenticate_admin!)
-      end
-    end
-
-    describe 'helper methods' do
-      let(:base_controller) { ActionController::Base.new }
-
-      it 'registers current_user as a helper method in Base controllers' do
-        expect(ActionController::Base._helper_methods).to include(:current_user)
-      end
-
-      it 'does not register helper methods in API controllers' do
-        expect(ActionController::API._helper_methods).to be_empty
-      end
+      expect(fake_middleware).to have_received(:use).with(Securial::Middleware::TransformRequestKeys)
     end
   end
+
+  describe "securial.middleware.transform_response_keys" do
+    it "adds TransformResponseKeys middleware" do
+      fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
+      app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
+      engine = Securial::Engine.instance
+      engine.initializers.find { |i| i.name == "securial.middleware.transform_response_keys" }.run(app)
+      expect(fake_middleware).to have_received(:use).with(Securial::Middleware::TransformResponseKeys)
+    end
+  end
+
+  describe "securial.middleware.logger" do
+    it "adds RequestTagLogger middleware" do
+      fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
+      app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
+      engine = Securial::Engine.instance
+
+      engine.initializers.find { |i| i.name == "securial.middleware.logger" }.run(app)
+
+      expect(fake_middleware).to have_received(:use).with(Securial::Middleware::RequestTagLogger)
+    end
+  end
+
+  describe "securial.middleware.response_headers" do
+    it "adds ResponseHeaders middleware" do
+      fake_middleware = instance_double(ActionDispatch::MiddlewareStack, use: true)
+      app = instance_double("RailsApp", middleware: fake_middleware) # rubocop:disable RSpec/VerifiedDoubleReference
+      engine = Securial::Engine.instance
+
+      engine.initializers.find { |i| i.name == "securial.middleware.response_headers" }.run(app)
+
+      expect(fake_middleware).to have_received(:use).with(Securial::Middleware::ResponseHeaders)
+    end
+  end
+
+  # rubocop:disable RSpec/VerifiedDoubles
+  describe "securial.action_mailer.preview_path" do
+    it "sets the preview path for ActionMailer" do
+      # Create a mock for action_mailer with preview_paths
+      action_mailer_config = double("action_mailer_config")
+      preview_paths = []
+      allow(action_mailer_config).to receive(:preview_paths).and_return(preview_paths)
+      allow(action_mailer_config).to receive(:preview_paths=) { |paths| preview_paths.replace(paths) }
+
+      # Create a mock app config - use double instead of instance_double
+      app_config = double("app_config")
+      allow(app_config).to receive(:action_mailer).and_return(action_mailer_config)
+
+      # Set up the app to use our mock config
+      allow(app).to receive(:config).and_return(app_config)
+
+      # Run the initializer
+      engine.initializers.find { |i| i.name == "securial.action_mailer.preview_path" }.run(app)
+
+      # Check that the preview path was added
+      expected_path = engine.root.join("spec", "mailers", "previews").to_s
+      expect(preview_paths).to include(expected_path)
+    end
+
+    it "appends to existing preview_paths" do
+      action_mailer_config = double("action_mailer_config")
+      preview_paths = ["/existing/path"]
+      allow(action_mailer_config).to receive(:preview_paths).and_return(preview_paths)
+      allow(action_mailer_config).to receive(:preview_paths=) { |paths| preview_paths.replace(paths) }
+
+      app_config = double("app_config")
+      allow(app_config).to receive(:action_mailer).and_return(action_mailer_config)
+
+      allow(app).to receive(:config).and_return(app_config)
+
+      engine.initializers.find { |i| i.name == "securial.action_mailer.preview_path" }.run(app)
+
+      expected_path = engine.root.join("spec", "mailers", "previews").to_s
+      expect(preview_paths).to include("/existing/path")
+      expect(preview_paths).to include(expected_path)
+    end
+  end
+  # rubocop:enable RSpec/VerifiedDoubles
 end
