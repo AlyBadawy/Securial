@@ -3,6 +3,7 @@ module Securial
     extend ActiveSupport::Concern
 
     included do
+      before_action :identify_user
       before_action :authenticate_user!
       helper_method :current_user if respond_to?(:helper_method)
     end
@@ -13,20 +14,26 @@ module Securial
       end
     end
 
-    def authenticate_admin!
-      authenticate_user!
-      return if current_user.blank? || current_user.is_admin?
-
-      render status: :forbidden, json: { error: "You are not authorized to perform this action" }
-    end
 
     def current_user
       Current.session&.user
     end
 
+    def authenticate_admin!
+      return if internal_rails_request?
+
+      if current_user
+        return if current_user.is_admin?
+
+        render status: :forbidden, json: { error: "You are not authorized to perform this action" }
+      else
+        authenticate_user!
+      end
+    end
+
     private
 
-    def authenticate_user!
+    def identify_user
       return if internal_rails_request?
 
       Current.session = nil
@@ -41,13 +48,17 @@ module Securial
              session.ip_address == request.remote_ip &&
              session.user_agent == request.user_agent
             Current.session = session
-            return # Authenticated
           end
         rescue Securial::Error::Auth::TokenDecodeError, ActiveRecord::RecordNotFound => e
           Securial.logger.debug "Authentication failed: #{e.message}"
         end
       end
-      # If we reach here, authentication failed
+    end
+
+    def authenticate_user!
+      return if internal_rails_request?
+      return if Current.session&.user
+
       render status: :unauthorized, json: { error: "You are not signed in" } and return
     end
 
