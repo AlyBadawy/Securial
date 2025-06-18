@@ -9,7 +9,7 @@ describe "securial_new and helpers" do
   let(:rails_options) { ["--api"] }
 
   describe "#securial_new" do
-    it "calls all steps in order" do
+    it "calls all steps in order" do # rubocop:disable RSpec/MultipleExpectations
       allow(self).to receive(:create_rails_app)
       allow(self).to receive(:add_securial_gem)
       allow(self).to receive(:install_gems)
