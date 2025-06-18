@@ -58,3 +58,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Configurable: transform response keys to either: snake_case, lowerCamelCase, or UpperCamelCase
 - Implement request rate limiting using Rack::Attack
 - Add Securial's response headers
+- Update all dependencies to latest versions
+- Add tests for the CLI
