@@ -3,9 +3,9 @@ PATH
   specs:
     securial (1.0.0)
       bcrypt (~> 3.1)
-      jbuilder (~> 2.11)
-      jwt (>= 2.10, < 4.0)
-      rack-attack (~> 6.5)
+      jbuilder (~> 2.13)
+      jwt (~> 3.0.0)
+      rack-attack (~> 6.7)
       rails (~> 8.0)
 
 GEM
