@@ -44,6 +44,17 @@ Securial.configure do |config|
   # This secret is used to sign the session tokens and ensure
   # that they cannot be tampered with. It is important to keep this
   # secret secure and not share it with anyone.
+  # It should be a long, random string to ensure security.
+  # You can generate a secure secret using a tool like `SecureRandom.hex(64)`
+  # or `SecureRandom.base64(64)`.
+  # It is recommended to change this secret periodically for security reasons.
+  # If you change this secret, all existing sessions will be invalidated,
+  # and users will need to log in again.
+  # Make sure to keep this secret safe and do not expose it in your codebase.
+  # You can use environment variables to store this secret securely.
+  # For example, you can set an environment variable `SECURIAL_SESSION_SECRET`
+  # and then use it in your configuration like this:
+  # config.session_secret = ENV['SECURIAL_SESSION_SECRET']
   # The default is "secret".
   config.session_secret = "secret"
 
@@ -56,6 +67,14 @@ Securial.configure do |config|
   ## Set the session refresh token expiration duration
   # This is the duration after which a refresh token will expire.
   # Once the refresh token expires, the user must log in again.
+  # The refresh token is used to obtain a new access token without
+  # requiring the user to log in again. It is typically used to keep
+  # the user logged in for a longer period without requiring frequent logins.
+  # The expiration time is set in seconds, minutes, or hours.
+  # The refresh token expiration duration should be longer than the access session
+  # expiration duration to allow the user to obtain a new access token
+  # without having to log in again. This allows for a better user experience
+  # by reducing the frequency of logins while still maintaining security.
   # The default is 1 week.
   config.session_refresh_token_expires_in = 1.week
 
@@ -108,14 +127,29 @@ Securial.configure do |config|
   config.password_max_length = 128
 
   ## Set the password complexity requirements
-  # This is a regular expression that defines the complexity
-  # requirements for a password. The default is a regex that
-  # requires at least one uppercase letter, one lowercase letter,
-  # one digit, and one special character.
+  # This is a regular expression (RegEx) that defines the complexity
+  # requirements for a password.
+  # The password must match this regex in order to be considered valid.
+  # The regex can include requirements such as:
+  # - At least one uppercase letter
+  # - At least one lowercase letter
+  # - At least one digit
+  # - At least one special character (e.g. !@#$%^&*)
+  # - No whitespace characters
+  # - No common passwords (e.g. "password", "123456", etc.)
+  # You can customize this regex to fit your application's security requirements.
+  # The default is a regex that requires at least one uppercase letter,
+  # one lowercase letter, one digit, and one special character.
   config.password_complexity = Securial::Helpers::RegexHelper::PASSWORD_REGEX
 
   ## Set whether passwords expire
   # Set to true if passwords should expire after a period, false to disable expiration.
+  # If password expiration is enabled, users will be required to change
+  # their password after a certain period of time. This is useful for
+  # maintaining security and ensuring that users do not use the same password
+  # for an extended period of time. It is recommended to enable password expiration
+  # to enhance security, especially for applications that handle sensitive data.
+  # The default is true.
   config.password_expires = true
 
   ## Set the password expiration duration
@@ -130,13 +164,34 @@ Securial.configure do |config|
   # This is the time after which a password reset token will be considered expired.
   # After this time, the token will no longer be valid and the user
   # will need to request a new password reset token. The expiration time
-  # is set in seconds, minutes, or hours. The default is 2 hours.
+  # is set in seconds, minutes, or hours.
+  # This is useful for ensuring that password reset tokens are not valid indefinitely,
+  # which helps to prevent unauthorized access to user accounts.
+  # It is recommended to set a reasonable expiration time for password reset tokens
+  # to balance security and user experience. A shorter expiration time
+  # can enhance security by reducing the window of opportunity for an attacker
+  # to use a stolen or intercepted token, while a longer expiration time
+  # can improve user experience by allowing users to reset their passwords
+  # without having to request a new token frequently.
+  # The expiration time is set in seconds, minutes, or hours.
+  # The default is 2 hours.
   config.reset_password_token_expires_in = 2.hours
 
   ## Set the password reset token secret
   # This secret is used to sign the password reset tokens and ensure
   # that they cannot be tampered with. It is important to keep this
   # secret secure and not share it with anyone.
+  # It should be a long, random string to ensure security.
+  # You can generate a secure secret using a tool like `SecureRandom.hex(64)`
+  # or `SecureRandom.base64(64)`.
+  # It is recommended to change this secret periodically for security reasons.
+  # If you change this secret, all existing sessions will be invalidated,
+  # and users will need to log in again.
+  # Make sure to keep this secret safe and do not expose it in your codebase.
+  # You can use environment variables to store this secret securely.
+  # For example, you can set an environment variable `SECURIAL_RESET_PASSWORD_SECRET`
+  # and then use it in your configuration like this:
+  # config.reset_password_token_secret = ENV['SECURIAL_RESET_PASSWORD_SECRET']
   config.reset_password_token_secret = "reset_secret"
 
   ##### Timestamp Configuration
