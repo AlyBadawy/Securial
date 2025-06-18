@@ -43,7 +43,7 @@ To add Securial to an existing Rails app:
   ```ruby
   Rails.application.routes.draw do
     mount Securial::Engine => "/securial"
-    ...
+
     # The rest of your routes
   end
   ```
