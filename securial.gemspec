@@ -55,7 +55,7 @@ Gem::Specification.new do |spec|
     More Info:
       review the [changelog] and [WIKI] for more info on the latest
       changes and how to use this gem/engine:
-        [changelog]:  https://github.com/AlyBadawy/Securial/blob/main/CHANGELOG.md
+        [Changelog]:  https://github.com/AlyBadawy/Securial/blob/main/CHANGELOG.md
         [WIKI]:       https://github.com/AlyBadawy/Securial/wiki
     ---
   )

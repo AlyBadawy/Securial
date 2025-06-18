@@ -1,92 +1,10 @@
 #!/usr/bin/env ruby
 
 require "fileutils"
-
-def show_version
-  begin
-    require "securial/version"
-    puts "Securial v#{Securial::VERSION}"
-  rescue LoadError
-    puts "Securial version information not available."
-  end
-end
-
-def show_help
-  puts <<~HELP
-    Securial CLI
-
-    Securial is a mountable Rails engine that provides robust, extensible
-    authentication and access control for Rails applications. It supports JWT,
-    API tokens, session-based auth, and is designed for easy integration with
-    modern web and mobile apps.
-
-    Usage:
-      securial new APP_NAME [rails_options...]    # Create a new Rails app with Securial pre-installed
-      securial -v, --version                      # Show the Securial gem version
-      securial -h, --help                         # Show this help message
-
-    Example:
-      securial new myapp --api --database=postgresql -T
-    
-    More Info:
-      review the [changelog] and [WIKI] for more info on the latest
-      changes and how to use this gem/engine:
-        [changelog]:  https://github.com/AlyBadawy/Securial/blob/main/CHANGELOG.md
-        [WIKI]:       https://github.com/AlyBadawy/Securial/wiki
-
-  HELP
-end
-
-def run(command, chdir: nil)
-  puts "→ #{command}"
-  if chdir
-    Dir.chdir(chdir) do
-      system(command) || abort("❌ Command failed: #{command}")
-    end
-  else
-    system(command) || abort("❌ Command failed: #{command}")
-  end
-end
-
-def securial_new(app_name, rails_options)
-  puts "🏗️  Creating new Rails app: #{app_name}"
-
-  # Step 1: Forward options to `rails new`
-  rails_command = ["rails", "new", app_name, *rails_options].join(" ")
-  run(rails_command)
-
-  # Step 2: Append securial gem to the Gemfile
-  puts "📦  Adding Securial gem to Gemfile"
-  gemfile_path = File.join(app_name, "Gemfile")
-  File.open(gemfile_path, "a") do |f|
-    f.puts "\ngem 'securial'"
-  end
-
-  # Step 3: Install gems
-  run("bundle install", chdir: app_name)
-
-  # Step 4: Install securial
-  puts "🔧  Installing Securial"
-  run("bin/rails generate securial:install", chdir: app_name)
-  run("bin/rails db:migrate", chdir: app_name)
-
-  # Step 5: Mount the engine
-  puts "🔗  Mounting Securial engine in routes"
-  routes_path = File.join(app_name, "config/routes.rb")
-  routes = File.read(routes_path)
-  updated = routes.sub("Rails.application.routes.draw do") do |match|
-    "#{match}\n  mount Securial::Engine => '/securial'"
-  end
-  File.write(routes_path, updated)
-
-  puts "🎉  Securial has been successfully installed in your Rails app!"
-  puts "✅  Your app is ready at: ./#{app_name}"
-  puts ""
-  puts "➡️  Next steps:"
-  puts "    cd #{app_name}"
-  puts "⚙️  Optional: Configure Securial in config/initializers/securial.rb"
-  puts "    rails server"
-end
+require_relative "../lib/securial/cli/show_version"
+require_relative "../lib/securial/cli/show_help"
+require_relative "../lib/securial/cli/run"
+require_relative "../lib/securial/cli/securial_new"
 
 case ARGV[0]
 when "-v", "--version"
