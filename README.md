@@ -8,26 +8,21 @@
 [![Coveralls](https://img.shields.io/coverallsCoverage/github/AlyBadawy/Securial?branch=main&logo=coveralls&logoColor=%233F5767&labelColor=ddeedd)
 ](https://coveralls.io/github/AlyBadawy/Securial?branch=main)
 
-> [!WARNING]
->
-> **Securial is currently in active development (major version zero).**
->
-> While the gem is functional and versioned, it is not yet considered stable. Until v1.0.0 is released, any updates may introduce breaking changes as the API and features continue to evolve. If you plan to use Securial in production, please do so with caution and pin a specific version.
->
-> You can track the roadmap and remaining tasks for the v1.0.0 release in [this GitHub issue](https://github.com/AlyBadawy/Securial/issues/5).
-
 ---
+
+### 🛡️ What is Securial?
 
 **Securial** is a mountable Rails engine that provides robust, extensible authentication and access control for Rails applications. It supports:
 
-- ✅ JWT-based authentication
-- ✅ API tokens
-- ✅ Session-based auth
-- ✅ Simple integration with web and mobile apps
-- ✅ Clean, JSON-based API responses
-- ✅ Database-agnostic support
+- 🟦 JWT-based authentication
+- 🟦 API tokens
+- 🟦 Session-based auth
+- 🟦 Simple integration with web and mobile apps
+- 🟦 Clean, JSON-based API responses
+- 🟦 Simple user management with roles
+- 🟦 Database-agnostic support
 
-### 🚀 Why Securial?
+### 👀 Why Securial?
 
 Securial was built to offer a clean, modular, and API-first authentication system for Rails developers who want full control without the black-box complexity. Whether you're building for the web, mobile, or both, Securial gives you the flexibility to implement exactly what you need — from simple JWT authentication to more advanced setups involving sessions, API tokens, and role-based access.
 
@@ -48,6 +43,8 @@ To add Securial to an existing Rails app:
   ```ruby
   Rails.application.routes.draw do
     mount Securial::Engine => "/securial"
+    ...
+    # The rest of your routes
   end
   ```
 - Run the migrations by running the command: `rails db:migrate`

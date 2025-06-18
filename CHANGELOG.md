@@ -5,26 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.0] - 2025-06-18
 
 ### Added:
 
 - Initial project structure.
 - Basic Rails engine setup.
 - _For development_: Setup `Rubocop`, `Overcommit`, `RSpec`
+- _For development_: Configure CI pipelines
+- _For development_: Add script to run tests
+- _For development_: Add generators for models, factory bot, scaffold, JBuilder
 - Add a simple smoke test
 - Add a status route with controller
-- _For development_: Configure CI pipelines
 - Add `securial` bin script
-- _For development_: Add script to run tests
-- _For development_: Add generators for models, factory bot, scaffold, jbuilder
 - Add `UUIDv7` as the default database ID key generator
-- Add Custom logger and broadcaster module
+- Add Custom logger and broadcaster (file and Stdout) module
 - Add tags to logger (request Id, IP address, User agent)
 - Separate Log files per environment
 - Implement `Securial.configuration` method with underlying classes
-- Implement configuration validation for logger settings
-- Add helper modules normalization, and regex validations
 - Add Configuration and validation for Logging
 - Add Configuration and validation for Roles
 - Add Configuration and validation for Sessions and Authorization
@@ -32,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Configuration and validation for Password options
 - Add Configuration and validation for JSON responses
 - Add Configuration and validation for Engine Security
+- Add helper modules normalization, and regex validations
 - Scaffold the `Role` model and controller.
 - Implement `User` management with scaffolding and validations
 - Add `RolesHelper`
@@ -60,3 +59,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Securial's response headers
 - Update all dependencies to latest versions
 - Add tests for the CLI
+
+---
+
+## Diffs:
+
+[1.0.0 - Init]: https://my.diffend.io/gems/securial/1.0.0
