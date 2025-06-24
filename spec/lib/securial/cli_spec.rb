@@ -27,7 +27,7 @@ RSpec.describe Securial::CLI do
 
   describe "#start" do
     it "handles invalid global option" do
-      expect { cli.start(["-d"]) }.to output(/ERROR: Illegal option\(s\): -d/).to_stdout.and raise_error(SystemExit)
+      expect { cli.start(["-d"]) }.to output(/ERROR: Illegal option\(s\): -d/).to_stderr.and output(/Usage: securial/).to_stdout.and raise_error(SystemExit)
     end
 
     it "shows version and exits" do
@@ -59,7 +59,7 @@ RSpec.describe Securial::CLI do
 
   describe "#handle_flags" do
     it "returns 1 and prints error on illegal option" do
-      expect { cli.send(:handle_flags, ["-z"]) }.to output(/ERROR: Illegal option\(s\): -z/).to_stdout
+      expect { cli.send(:handle_flags, ["-z"]) }.to output(/ERROR: Illegal option\(s\): -z/).to_stderr.and output(/Usage: securial/).to_stdout
     end
 
     it "returns nil on valid options" do
