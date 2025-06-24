@@ -7,7 +7,7 @@
 [![Tests](https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg)](https://github.com/alybadawy/securial/actions)
 [![Coveralls](https://img.shields.io/coverallsCoverage/github/AlyBadawy/Securial?branch=main&logo=coveralls&logoColor=%233F5767&labelColor=ddeedd)
 ](https://coveralls.io/github/AlyBadawy/Securial?branch=main)
-![Documents](https://img.shields.io/badge/yard-Documentation-blue?style=flat&logo=readthedocs&logoColor=%238CA1AF&label=yard&link=https%3A%2F%2Fwww.rubydoc.info%2Fgems%2Fsecurial%2Findex)
+[![Documents](https://img.shields.io/badge/yard-Documentation-blue?style=flat&logo=readthedocs&logoColor=%238CA1AF&label=yard&link=https%3A%2F%2Fwww.rubydoc.info%2Fgems%2Fsecurial%2Findex)](https://alybadawy.github.io/Securial/_index.html)
 
 ---
 
