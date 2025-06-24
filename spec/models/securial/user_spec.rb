@@ -97,7 +97,7 @@ module Securial
 
       context 'when admin role name has different casing' do
         before do
-          Securial.configuration.admin_role = 'AdMiN'
+          Securial.configuration.admin_role = :AdMiN
           user.roles << admin_role
         end
 

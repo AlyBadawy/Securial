@@ -5,6 +5,8 @@ require "rails/generators/named_base"
 module Securial
   module Generators
     class ScaffoldGenerator < Rails::Generators::NamedBase
+      desc "Creates a scaffold for a given resource, including model, controller, views, routes, and tests."
+
       include Rails::Generators::ResourceHelpers
 
       allow_incompatible_default_type!

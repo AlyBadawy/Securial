@@ -1,7 +1,7 @@
 module Securial
   module Helpers
     module KeyTransformer
-      module_function
+      extend self
 
       def camelize(str, format)
         case format

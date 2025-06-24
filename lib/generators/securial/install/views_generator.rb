@@ -5,8 +5,9 @@ module Securial
   module Generators
     module Install
       class ViewsGenerator < Rails::Generators::Base
-        source_root Securial::Engine.root.join("app", "views", "securial").to_s
         desc "Copies Securial model-related views to your application for customization."
+
+        source_root Securial::Engine.root.join("app", "views", "securial").to_s
 
         def copy_model_views
           Dir.glob(File.join(self.class.source_root, "**/*")).each do |path|

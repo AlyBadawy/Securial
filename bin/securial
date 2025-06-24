@@ -1,26 +1,9 @@
 #!/usr/bin/env ruby
 
-require "fileutils"
-require_relative "../lib/securial/cli/show_version"
-require_relative "../lib/securial/cli/show_help"
-require_relative "../lib/securial/cli/run"
-require_relative "../lib/securial/cli/securial_new"
+# Set up the load path for local development or gem installation
+lib = File.expand_path("../../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-case ARGV[0]
-when "-v", "--version"
-  show_version
-when "-h", "--help"
-  show_help
-when "new"
-  if ARGV[1]
-    app_name = ARGV[1]
-    rails_options = ARGV[2..] || []
-    securial_new(app_name, rails_options)
-  else
-    show_help
-    exit(1)
-  end
-else
-  show_help
-  exit(1)
-end
+require "securial/cli"
+
+Securial::CLI.start(ARGV)
