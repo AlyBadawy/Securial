@@ -26,7 +26,7 @@ module Securial
         parser.order!(argv)
         nil # Continue to command handling
       rescue OptionParser::InvalidOption => e
-        puts "ERROR: Illegal option(s): #{e.args.join(' ')}"
+        warn "ERROR: Illegal option(s): #{e.args.join(' ')}"
         puts parser
         1
       end
