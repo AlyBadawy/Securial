@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency                 "bcrypt",       "~> 3.1"
   spec.add_dependency                 "jbuilder",     "~> 2.13"
-  spec.add_dependency                 "jwt",          "~> 3.0.0"
+  spec.add_dependency                 "jwt",          ">= 3.0", "< 3.2"
   spec.add_dependency                 "rack-attack",  "~> 6.7"
 
   spec.post_install_message = %q(
