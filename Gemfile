@@ -25,3 +25,5 @@ gem "shoulda-matchers"
 gem "simplecov"
 gem "simplecov-lcov"
 gem "sqlite3"
+
+gem "yard", "~> 0.9.37"
