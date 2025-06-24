@@ -150,8 +150,7 @@ module Securial
         end
 
       unless result
-        puts "❌ Command failed: #{command}"
-        return 1
+        abort("❌ Command failed: #{command}")
       end
       0
     end
