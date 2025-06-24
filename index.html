@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.37
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-Securial">Securial</h1>
+
+<p><a href="https://rubygems.org/gems/securial"><img src="https://img.shields.io/gem/v/securial?logo=rubygems&amp;logoColor=ffffff&amp;logoSize=auto&amp;label=version&amp;color=violet&amp;cacheSeconds=120" alt="Gem Version"></a> <a href="https://rubygems.org/gems/securial"><img src="https://img.shields.io/gem/dt/securial.svg" alt="Gem Downloads"></a> <a href="https://github.com/AlyBadawy/Securial?tab=MIT-1-ov-file#readme"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a></p>
+
+<p><a href="https://github.com/alybadawy/securial/actions"><img src="https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg" alt="Tests"></a> <a href="https://coveralls.io/github/AlyBadawy/Securial?branch=main"><img src="https://img.shields.io/coverallsCoverage/github/AlyBadawy/Securial?branch=main&amp;logo=coveralls&amp;logoColor=%233F5767&amp;labelColor=ddeedd" alt="Coveralls "></a></p>
+<hr>
+
+<h3 id="label-F0-9F-9B-A1-EF-B8-8F+What+is+Securial-3F">🛡️ What is Securial?</h3>
+
+<p><strong>Securial</strong> is a mountable Rails engine that provides robust, extensible authentication and access control for Rails applications. It supports:</p>
+<ul><li>
+<p>🟦 JWT-based authentication</p>
+</li><li>
+<p>🟦 API tokens</p>
+</li><li>
+<p>🟦 Session-based auth</p>
+</li><li>
+<p>🟦 Simple integration with web and mobile apps</p>
+</li><li>
+<p>🟦 Clean, JSON-based API responses</p>
+</li><li>
+<p>🟦 Simple user management with roles</p>
+</li><li>
+<p>🟦 Database-agnostic support</p>
+</li></ul>
+
+<h3 id="label-F0-9F-91-80+Why+Securial-3F">👀 Why Securial?</h3>
+
+<p>Securial was built to offer a clean, modular, and API-first authentication system for Rails developers who want full control without the black-box complexity. Whether you’re building for the web, mobile, or both, Securial gives you the flexibility to implement exactly what you need — from simple JWT authentication to more advanced setups involving sessions, API tokens, and role-based access.</p>
+
+<p>It follows familiar Rails conventions, stays lightweight and database-agnostic, and keeps security at the core. With fully customizable controllers, serializers, and logic, Securial is designed to grow with your project — making it an ideal choice for everything from side projects to production-grade APIs.</p>
+
+<h2 id="label-F0-9F-9A-80+Installation">🚀 Installation</h2>
+
+<p>Securial can be installed on an existing Rails application or use the <code>securial new app_name</code> command to create a new Securial-ready Rails app.</p>
+
+<h3 id="label-Installation+on+an+existing+Rails+app-3A">Installation on an existing Rails app:</h3>
+
+<p>To add Securial to an existing Rails app:</p>
+<ul><li>
+<p>Add <code>gem &quot;securial&quot;</code> to your GemFile</p>
+</li><li>
+<p>Run <code>bundle install</code></p>
+</li><li>
+<p>Run <code>rails generate securial:install</code></p>
+</li><li>
+<p>Mount the Securial engine in your Rails application <code>config/routes.rb</code> file: "'ruby Rails.application.routes.draw do mount Securial::Engine =&gt; "/securial"</p>
+
+<h1 id="label-The+rest+of+your+routes">The rest of your routes</h1>
+
+<p> end “‘</p>
+</li><li>
+<p>Run the migrations by running the command: <code>rails db:migrate</code></p>
+</li></ul>
+
+<p>💡 Full installation steps are available in the <a href="https://github.com/AlyBadawy/Securial/wiki/Installation">Wiki › Installation</a>.</p>
+
+<h2 id="label-E2-9A-99-EF-B8-8F+Configuration">⚙️ Configuration</h2>
+
+<p><strong>Securial</strong> generates an initializer with sensible defaults and full control over logging, mailers, session settings, and roles.</p>
+
+<p>For all configuration options and examples, refer to the <a href="https://github.com/AlyBadawy/Securial/wiki/Configuration">Wiki › Configuration</a></p>
+
+<h2 id="label-F0-9F-93-A6+Usage">📦 Usage</h2>
+
+<p>After installation and mounting, <strong>Securial</strong> exposes endpoints like:</p>
+<ul><li>
+<p>GET /securial/status — Check service availability</p>
+</li><li>
+<p>POST /securial/sessions — Sign in (JWT or session)</p>
+</li><li>
+<p>DELETE /securial/sessions — Sign out</p>
+</li><li>
+<p>GET /securial/accounts/cool_username — Get a user profile by username</p>
+</li><li>
+<p>GET /securial/admins/roles — View roles</p>
+</li></ul>
+
+<p><strong>Securial</strong> returns consistent JSON API responses.</p>
+
+<p>Full details, including authentication flows and protected routes, are available in the <a href="https://github.com/AlyBadawy/Securial/wiki/Authentication">Wiki › Authentication module docs</a>.</p>
+
+<h2 id="label-F0-9F-A7-A9+Modules">🧩 Modules</h2>
+
+<p><strong>Securial</strong> is organized into modular components including:</p>
+<ul><li>
+<p>Authentication</p>
+</li><li>
+<p>User Management</p>
+</li><li>
+<p>Generators</p>
+</li><li>
+<p>Identity concern</p>
+</li><li>
+<p>Configuration</p>
+</li></ul>
+
+<p>Explore all modules in the <a href="https://github.com/AlyBadawy/Securial/wiki">Wiki</a>.</p>
+
+<h2 id="label-F0-9F-9B-A0+Development+-26+Testing">🛠 Development &amp; Testing</h2>
+<ul><li>
+<p>Clone the repo on your computer</p>
+</li><li>
+<p>Run <code>bundle install</code></p>
+</li><li>
+<p>Start coding right away 🏃‍♂️</p>
+</li></ul>
+
+<p>To run the test suite:</p>
+
+<pre class="code ruby"><code class="ruby">$ bin/test
+</code></pre>
+
+<p>View the coverage report:</p>
+
+<pre class="code ruby"><code class="ruby">$ open coverage/index.html
+</code></pre>
+
+<h2 id="label-F0-9F-A4-9D+Contributing">🤝 Contributing</h2>
+
+<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/alybadawy/securial">github.com/alybadawy/securial</a>.</p>
+<ol><li>
+<p>Fork the repo</p>
+</li><li>
+<p>Create your feature branch (git checkout -b my-feature)</p>
+</li><li>
+<p>Commit your changes (git commit -am ‘Add my feature’)</p>
+</li><li>
+<p>Push to the branch (git push origin my-feature)</p>
+</li><li>
+<p>Open a Pull Request</p>
+</li></ol>
+
+<h2 id="label-E2-9A-96-EF-B8-8F+License">⚖️ License</h2>
+
+<p>The gem is available as open source under the terms of the <a href="https://github.com/AlyBadawy/Securial?tab=MIT-1-ov-file#readme">MIT license</a>.</p>
+<hr>
+
+<p>\ <img src="https://github.com/AlyBadawy/AlyBadawy/assets/1198568/471e5332-f8d0-4b78-a333-7e207780ecc1" alt="logo-e9f16c9b"> 1</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Tue Jun 24 15:17:12 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.4).
+</div>
+
+    </div>
+  </body>
+</html>
