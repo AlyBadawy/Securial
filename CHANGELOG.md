@@ -13,7 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed:
 
-- Refactor some helper modules
+- Refactor helper modules for improved readability and maintainability.
+- Refactor CLI structure by consolidating command handling into a single class.
+- Remove deprecated CLI helper methods and integrate functionality directly into the CLI class.
+- Enhance configuration validation to ensure proper types and required fields.
+- Update tests to reflect changes in CLI structure and configuration.
 
 ### Security
 
