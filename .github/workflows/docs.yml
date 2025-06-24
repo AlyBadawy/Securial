@@ -1,4 +1,7 @@
 name: Generate and Deploy YARD Docs
+permissions:
+  contents: read
+  pages: write
 
 on:
   push:
