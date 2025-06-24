@@ -1,6 +1,7 @@
 require "rails/generators"
 require "rails/generators/named_base"
 
+# @!ignore
 module FactoryBot
   module Generators
     class ModelGenerator < Rails::Generators::NamedBase
