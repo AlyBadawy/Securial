@@ -98,7 +98,7 @@ module Securial
     end
 
     def create_rails_app(app_name, rails_options)
-      rails_command = ["rails", "new", app_name, *rails_options].join(" ")
+      rails_command = ["rails", "new", app_name, *rails_options]
       run(rails_command)
     end
 
@@ -141,12 +141,12 @@ module Securial
     end
 
     def run(command, chdir: nil)
-      puts "→ #{command}"
+      puts "→ #{command.inspect}"
       result =
         if chdir
-          Dir.chdir(chdir) { system(command) }
+          Dir.chdir(chdir) { system(*command) }
         else
-          system(command)
+          system(*command)
         end
 
       unless result
