@@ -1,4 +1,4 @@
-# Securial
+# Securial Gem
 
 [![Gem Version](https://img.shields.io/gem/v/securial?logo=rubygems&logoColor=ffffff&logoSize=auto&label=version&color=violet&cacheSeconds=120)](https://rubygems.org/gems/securial)
 [![Gem Downloads](https://img.shields.io/gem/dt/securial.svg)](https://rubygems.org/gems/securial)
@@ -7,21 +7,23 @@
 [![Tests](https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg)](https://github.com/alybadawy/securial/actions)
 [![Coveralls](https://img.shields.io/coverallsCoverage/github/AlyBadawy/Securial?branch=main&logo=coveralls&logoColor=%233F5767&labelColor=ddeedd)
 ](https://coveralls.io/github/AlyBadawy/Securial?branch=main)
-[![Documents](https://img.shields.io/badge/yard-Documentation-blue?style=flat&logo=readthedocs&logoColor=%238CA1AF&label=yard&link=https%3A%2F%2Fwww.rubydoc.info%2Fgems%2Fsecurial%2Findex)](https://alybadawy.github.io/Securial/_index.html)
+
+[![Documentation](https://img.shields.io/badge/yard-Documentation-blue?style=flat&logo=readthedocs&logoColor=%238CA1AF&label=yard&link=https%3A%2F%2Fwww.rubydoc.info%2Fgems%2Fsecurial%2Findex)](https://alybadawy.github.io/Securial/_index.html)
 
 ---
+
+## Securial
 
 ### 🛡️ What is Securial?
 
 **Securial** is a mountable Rails engine that provides robust, extensible authentication and access control for Rails applications. It supports:
 
-- 🟦 JWT-based authentication
-- 🟦 API tokens
-- 🟦 Session-based auth
-- 🟦 Simple integration with web and mobile apps
-- 🟦 Clean, JSON-based API responses
-- 🟦 Simple user management with roles
-- 🟦 Database-agnostic support
+- 🔑 JWT-based authentication
+- ↪️ API session tokens, with refresh tokens
+- 🤳 Simple integration with web and mobile apps
+- 🧹 Clean, JSON-based API responses
+- 👨‍✈️ User management with roles
+- 🫙 Database-agnostic support
 
 ### 👀 Why Securial?
 
@@ -35,7 +37,7 @@ Securial can be installed on an existing Rails application or use the `securial 
 
 ### Installation on an existing Rails app:
 
-To add Securial to an existing Rails app:
+Add Securial to an existing Rails app is as simple as 1..2..3:
 
 - Add `gem "securial"` to your GemFile
 - Run `bundle install`
