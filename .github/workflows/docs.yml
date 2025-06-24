@@ -1,12 +1,12 @@
 name: Generate and Deploy YARD Docs
 permissions:
-  contents: read
+  contents: write
   pages: write
 
 on:
   push:
     branches:
-      - main # Change this to your default branch if different
+      - main
 
 jobs:
   deploy-yard-docs:
