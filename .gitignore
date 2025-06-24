@@ -23,3 +23,6 @@ spec/tmp/
 .byebug_history
 spec/dummy/log/*
 !spec/dummy/log/.keep
+
+.yardoc
+/docs/

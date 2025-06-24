@@ -1,0 +1,33 @@
+name: Generate and Deploy YARD Docs
+permissions:
+  contents: read
+  pages: write
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch if different
+
+jobs:
+  deploy-yard-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Generate YARD documentation
+        run: bundle exec yard doc -o docs
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
