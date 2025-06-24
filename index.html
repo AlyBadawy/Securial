@@ -62,7 +62,7 @@
 
 <p><a href="https://rubygems.org/gems/securial"><img src="https://img.shields.io/gem/v/securial?logo=rubygems&amp;logoColor=ffffff&amp;logoSize=auto&amp;label=version&amp;color=violet&amp;cacheSeconds=120" alt="Gem Version"></a> <a href="https://rubygems.org/gems/securial"><img src="https://img.shields.io/gem/dt/securial.svg" alt="Gem Downloads"></a> <a href="https://github.com/AlyBadawy/Securial?tab=MIT-1-ov-file#readme"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a></p>
 
-<p><a href="https://github.com/alybadawy/securial/actions"><img src="https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg" alt="Tests"></a> <a href="https://coveralls.io/github/AlyBadawy/Securial?branch=main"><img src="https://img.shields.io/coverallsCoverage/github/AlyBadawy/Securial?branch=main&amp;logo=coveralls&amp;logoColor=%233F5767&amp;labelColor=ddeedd" alt="Coveralls "></a></p>
+<p><a href="https://github.com/alybadawy/securial/actions"><img src="https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg" alt="Tests"></a> <a href="https://coveralls.io/github/AlyBadawy/Securial?branch=main"><img src="https://img.shields.io/coverallsCoverage/github/AlyBadawy/Securial?branch=main&amp;logo=coveralls&amp;logoColor=%233F5767&amp;labelColor=ddeedd" alt="Coveralls "></a> <img src="https://img.shields.io/badge/yard-Documentation-blue?style=flat&amp;logo=readthedocs&amp;logoColor=%238CA1AF&amp;label=yard&amp;link=https%3A%2F%2Fwww.rubydoc.info%2Fgems%2Fsecurial%2Findex" alt="Documents"></p>
 <hr>
 
 <h3 id="label-F0-9F-9B-A1-EF-B8-8F+What+is+Securial-3F">🛡️ What is Securial?</h3>
@@ -104,12 +104,16 @@
 </li><li>
 <p>Run <code>rails generate securial:install</code></p>
 </li><li>
-<p>Mount the Securial engine in your Rails application <code>config/routes.rb</code> file: "'ruby Rails.application.routes.draw do mount Securial::Engine =&gt; "/securial"</p>
+<p>Mount the Securial engine in your Rails application <code>config/routes.rb</code> file:</p>
+</li></ul>
 
-<h1 id="label-The+rest+of+your+routes">The rest of your routes</h1>
+<p>“‘ruby Rails.application.routes.draw do mount Securial::Engine =&gt; “/securial”</p>
 
-<p> end “‘</p>
-</li><li>
+<pre class="code ruby"><code class="ruby"><span class='comment'># The rest of your routes
+</span></code></pre>
+
+<p>end “‘</p>
+<ul><li>
 <p>Run the migrations by running the command: <code>rails db:migrate</code></p>
 </li></ul>
 
@@ -200,7 +204,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Tue Jun 24 15:17:12 2025 by
+  Generated on Tue Jun 24 17:31:23 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>
