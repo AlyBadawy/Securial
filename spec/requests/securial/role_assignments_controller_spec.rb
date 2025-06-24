@@ -69,7 +69,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                as: :json
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
-          expect(JSON.parse(response.body)["error"]).to include("User not found")
+          expect(JSON.parse(response.body)["errors"]).to include("User not found")
         end
       end
 
@@ -88,7 +88,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                as: :json
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
-          expect(JSON.parse(response.body)["error"]).to include("Role not found")
+          expect(JSON.parse(response.body)["errors"]).to include("Role not found")
         end
       end
 
@@ -107,7 +107,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                as: :json
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
-          expect(JSON.parse(response.body)["error"]).to include("Role not found")
+          expect(JSON.parse(response.body)["errors"]).to include("Role not found")
         end
       end
 
@@ -126,7 +126,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                as: :json
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
-          expect(JSON.parse(response.body)["error"]).to include("User not found")
+          expect(JSON.parse(response.body)["errors"]).to include("User not found")
         end
       end
 
@@ -142,7 +142,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                as: :json
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
-          expect(JSON.parse(response.body)["error"]).to include("Role already assigned to user")
+          expect(JSON.parse(response.body)["errors"]).to include("Role already assigned to user")
         end
       end
     end
@@ -207,7 +207,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                  as: :json
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
-          expect(JSON.parse(response.body)["error"]).to include("User not found")
+          expect(JSON.parse(response.body)["errors"]).to include("User not found")
         end
       end
 
@@ -226,7 +226,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                  as: :json
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
-          expect(JSON.parse(response.body)["error"]).to include("Role not found")
+          expect(JSON.parse(response.body)["errors"]).to include("Role not found")
         end
       end
 
@@ -245,7 +245,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                  as: :json
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
-          expect(JSON.parse(response.body)["error"]).to include("Role not found")
+          expect(JSON.parse(response.body)["errors"]).to include("Role not found")
         end
       end
 
@@ -264,7 +264,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                  as: :json
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
-          expect(JSON.parse(response.body)["error"]).to include("User not found")
+          expect(JSON.parse(response.body)["errors"]).to include("User not found")
         end
       end
 
@@ -276,7 +276,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                  as: :json
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
-          expect(JSON.parse(response.body)["error"]).to include("Role is not assigned to user")
+          expect(JSON.parse(response.body)["errors"]).to include("Role is not assigned to user")
         end
       end
     end

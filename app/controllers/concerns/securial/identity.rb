@@ -79,7 +79,11 @@ module Securial
       if current_user
         return if current_user.is_admin?
 
-        render status: :forbidden, json: { error: "You are not authorized to perform this action" }
+        render status: :forbidden,
+               json: {
+                errors: ["You are not authorized to perform this action"],
+                instructions: "Please contact an administrator if you believe this is an error.",
+              }
       else
         authenticate_user!
       end
@@ -132,7 +136,11 @@ module Securial
       return if internal_rails_request?
       return if Current.session&.user
 
-      render status: :unauthorized, json: { error: "You are not signed in" } and return
+      render status: :unauthorized,
+             json: {
+               errors: ["You are not signed in"],
+               instructions: "Please sign in to access this resource.",
+               } and return
     end
 
     # Determines if the current request is from internal Rails controllers.

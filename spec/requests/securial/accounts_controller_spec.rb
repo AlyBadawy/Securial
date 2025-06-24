@@ -102,16 +102,16 @@ RSpec.describe Securial::AccountsController, type: :request do
           get securial.account_by_username_url(username), as: :json, headers: @valid_headers
           expect(response.content_type).to match(a_string_including("application/json"))
           res_body = JSON.parse(response.body)
-          expect(res_body["error"]).to eq("User not found")
+          expect(res_body["errors"]).to include("User not found")
         end
 
         it "does not render the user profile" do
           get securial.account_by_username_url(username), as: :json, headers: @valid_headers
           expect(response.content_type).to match(a_string_including("application/json"))
           res_body = JSON.parse(response.body)
-          expected_keys = ["error"]
+          expected_keys = ["errors"]
           expect(res_body.keys).to include(*expected_keys)
-          expect(res_body["error"]).to eq("User not found")
+          expect(res_body["errors"]).to include("User not found")
         end
       end
 
@@ -264,7 +264,7 @@ RSpec.describe Securial::AccountsController, type: :request do
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
           res_body = JSON.parse(response.body)
-          expect(res_body["error"]).to eq("Current password is incorrect")
+          expect(res_body["errors"]).to include("Current password is incorrect")
         end
 
         it "does not update the user" do
@@ -341,7 +341,7 @@ RSpec.describe Securial::AccountsController, type: :request do
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
           res_body = JSON.parse(response.body)
-          expect(res_body["error"]).to eq("Current password is incorrect")
+          expect(res_body["errors"]).to include("Current password is incorrect")
         end
 
         it "does not delete the user" do

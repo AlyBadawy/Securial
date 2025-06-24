@@ -19,11 +19,17 @@ module Securial
     private
 
     def render_404
-      render status: :not_found, json: { error: "Record not found" }
+      render status: :not_found, json: {
+        errors: ["Record not found"],
+        instructions: "Please check the requested resource and try again.",
+      }
     end
 
     def render_400(exception)
-      render status: :bad_request, json: { error: exception.message }
+      render status: :bad_request, json: {
+        errors: [exception.message],
+        instructions: "Please ensure all required parameters are provided and formatted correctly.",
+       }
     end
   end
 end

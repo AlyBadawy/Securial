@@ -7,6 +7,7 @@
 [![Tests](https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg)](https://github.com/alybadawy/securial/actions)
 [![Coveralls](https://img.shields.io/coverallsCoverage/github/AlyBadawy/Securial?branch=main&logo=coveralls&logoColor=%233F5767&labelColor=ddeedd)
 ](https://coveralls.io/github/AlyBadawy/Securial?branch=main)
+![Documents](https://img.shields.io/badge/yard-Documentation-blue?style=flat&logo=readthedocs&logoColor=%238CA1AF&label=yard&link=https%3A%2F%2Fwww.rubydoc.info%2Fgems%2Fsecurial%2Findex)
 
 ---
 
@@ -40,6 +41,7 @@ To add Securial to an existing Rails app:
 - Run `bundle install`
 - Run `rails generate securial:install`
 - Mount the Securial engine in your Rails application `config/routes.rb` file:
+
   ```ruby
   Rails.application.routes.draw do
     mount Securial::Engine => "/securial"
@@ -47,6 +49,7 @@ To add Securial to an existing Rails app:
     # The rest of your routes
   end
   ```
+
 - Run the migrations by running the command: `rails db:migrate`
 
 💡 Full installation steps are available in the [Wiki › Installation](https://github.com/AlyBadawy/Securial/wiki/Installation).

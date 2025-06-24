@@ -45,7 +45,8 @@ module Securial
       if @securial_user.save
         render :show, status: :created, location: @securial_user
       else
-        render json: { errors: @securial_user.errors.full_messages }, status: :unprocessable_entity
+        render json: {
+          errors: @securial_user.errors.full_messages }, status: :unprocessable_entity
       end
     end
 
@@ -62,10 +63,16 @@ module Securial
         if @securial_user.update(user_params)
           render :show, status: :ok, location: @securial_user
         else
-          render json: { errors: @securial_user.errors.full_messages }, status: :unprocessable_entity
+          render json: {
+            errors: @securial_user.errors.full_messages,
+            instructions: "Please ensure all required fields are filled out correctly.",
+            }, status: :unprocessable_entity
         end
       else
-        render json: { error: "Current password is incorrect" }, status: :unprocessable_entity
+        render json: {
+          errors: ["Current password is incorrect"],
+          instructions: "Please verify your current password and try again.",
+          }, status: :unprocessable_entity
       end
     end
 
@@ -81,7 +88,10 @@ module Securial
         @securial_user.destroy
         render json: { message: "Account deleted successfully" }, status: :ok
       else
-        render json: { error: "Current password is incorrect" }, status: :unprocessable_entity
+        render json: {
+          errors: ["Current password is incorrect"],
+          instructions: "Please verify your current password and try again.",
+        }, status: :unprocessable_entity
       end
     end
 
@@ -95,7 +105,10 @@ module Securial
       if @securial_user
         render :show, status: :ok, location: @securial_user
       else
-        render json: { error: "User not found" }, status: :not_found
+        render json: {
+          errors: ["User not found"],
+          instructions: "Please check the username and try again.",
+        }, status: :not_found
       end
     end
   end
