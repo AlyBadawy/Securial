@@ -1,4 +1,15 @@
 module Securial
+  # ApplicationController
+  #
+  # This is the base controller for the Securial engine, inheriting from ActionController::API.
+  # and provides common functionality for all Securial controllers, including:
+  #   - Custom view path configuration
+  #   - Common exception handling for API responses
+  #   - Standardized error rendering
+  #
+  # All other controllers in the Securial engine inherit from this controller
+  # to ensure consistent behavior across the API.
+  #
   class ApplicationController < ActionController::API
     prepend_view_path Securial::Engine.root.join("app", "views")
 
