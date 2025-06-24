@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-06-23
+
+### Fixed:
+
+- Running `securial new APP_NAME` would fail for incorrect `admin_role` type.
+
+### Changed:
+
+- Refactor some helper modules
+
+### Security
+
+- Update development libraries (rubocop, rspec-rails)
+
 ## [1.0.0] - 2025-06-18
 
 ### Added:
@@ -61,7 +75,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add tests for the CLI
 
 ---
-
-## Diffs:
-
-[1.0.0 - Init]: https://my.diffend.io/gems/securial/1.0.0

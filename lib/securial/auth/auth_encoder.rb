@@ -3,7 +3,7 @@ require "jwt"
 module Securial
   module Auth
     module AuthEncoder
-      module_function
+      extend self
 
       def encode(session)
         return nil unless session && session.class == Securial::Session
@@ -37,6 +37,8 @@ module Securial
         decoded.first
       end
 
+      private
+
       def secret
         Securial.configuration.session_secret
       end
@@ -48,8 +50,6 @@ module Securial
       def expiry_duration
         Securial.configuration.session_expiration_duration
       end
-
-      private_class_method :secret, :algorithm, :expiry_duration
     end
   end
 end

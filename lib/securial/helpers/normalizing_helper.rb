@@ -1,7 +1,7 @@
 module Securial
   module Helpers
     module NormalizingHelper
-      module_function
+      extend self
 
       def normalize_email_address(email)
         return "" if email.empty?

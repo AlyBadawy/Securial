@@ -1,6 +1,8 @@
 module Securial
   module Generators
     class JbuilderGenerator < Rails::Generators::NamedBase
+      desc "Generates Jbuilder view files for a given resource."
+
       source_root File.expand_path("templates", __dir__)
 
       argument :attributes, type: :array, default: [], banner: "field:type field:type"

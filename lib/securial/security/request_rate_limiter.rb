@@ -4,7 +4,7 @@ require "securial/config"
 module Securial
   module Security
     module RequestRateLimiter
-      module_function
+      extend self
 
       def apply! # rubocop:disable Metrics/MethodLength
         resp_status = Securial.configuration.rate_limit_response_status

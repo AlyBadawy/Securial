@@ -47,7 +47,7 @@ module Securial
 
       def roles_signature
         {
-          admin_role: { type: String, required: true, default: "admin" },
+          admin_role: { type: Symbol, required: true, default: :admin },
         }
       end
 

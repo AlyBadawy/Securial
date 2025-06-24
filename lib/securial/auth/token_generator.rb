@@ -4,22 +4,22 @@ require "securerandom"
 module Securial
   module Auth
     module TokenGenerator
-      class << self
-        def generate_refresh_token
-          secret = Securial.configuration.session_secret
-          algo = "SHA256"
+      extend self
 
-          random_data = SecureRandom.hex(32)
-          digest = OpenSSL::Digest.new(algo)
-          hmac = OpenSSL::HMAC.hexdigest(digest, secret, random_data)
+      def generate_refresh_token
+        secret = Securial.configuration.session_secret
+        algo = "SHA256"
 
-          "#{hmac}#{random_data}"
-        end
+        random_data = SecureRandom.hex(32)
+        digest = OpenSSL::Digest.new(algo)
+        hmac = OpenSSL::HMAC.hexdigest(digest, secret, random_data)
 
-        def generate_password_reset_token
-          token = SecureRandom.alphanumeric(12)
-          "#{token[0, 6]}-#{token[6, 6]}"
-        end
+        "#{hmac}#{random_data}"
+      end
+
+      def generate_password_reset_token
+        token = SecureRandom.alphanumeric(12)
+        "#{token[0, 6]}-#{token[6, 6]}"
       end
     end
   end

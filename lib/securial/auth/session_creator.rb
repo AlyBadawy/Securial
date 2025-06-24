@@ -1,7 +1,7 @@
 module Securial
   module Auth
     module SessionCreator
-      module_function
+      extend self
 
       def create_session!(user, request)
         valid_user = user && user.is_a?(Securial::User) && user.persisted?

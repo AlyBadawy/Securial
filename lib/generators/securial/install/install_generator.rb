@@ -4,9 +4,9 @@ require "rake"
 module Securial
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      source_root File.expand_path("templates", __dir__)
-
       desc "initializes Securial in your application."
+
+      source_root File.expand_path("templates", __dir__)
 
       def copy_initializer
         say_status("copying", "Securial Initializers", :green)
