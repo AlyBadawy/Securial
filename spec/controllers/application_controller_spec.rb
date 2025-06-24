@@ -52,7 +52,7 @@ module Securial
 
         it "returns a JSON error message of record not found" do
           get "/securial/test/not_found", as: :json
-          expect(JSON.parse(response.body)).to include("error" => "Record not found")
+          expect(JSON.parse(response.body)["errors"]).to include("Record not found")
         end
       end
     end
@@ -66,8 +66,8 @@ module Securial
 
         it "returns a JSON error message of bad request" do
           get "/securial/test/bad_request", as: :json
-          expect(JSON.parse(response.body)).to include(
-            "error" => "param is missing or the value is empty or invalid: param",
+          expect(JSON.parse(response.body)["errors"]).to include(
+            "param is missing or the value is empty or invalid: param",
           )
         end
       end

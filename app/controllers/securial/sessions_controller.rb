@@ -18,7 +18,7 @@ module Securial
       else
         render status: :unauthorized,
                json: {
-                 error: "Invalid email address or password.",
+                 errors: ["Invalid email address or password."],
                  instructions: "Make sure to send the correct 'email_address' and 'password' in the payload",
                }
       end
@@ -43,7 +43,10 @@ module Securial
           return
         end
       end
-      render status: :unprocessable_entity, json: { error: "Invalid or expired token." }
+      render status: :unprocessable_entity, json: {
+        error: "Invalid or expired token.",
+        instructions: "Please log in again to obtain a new access token.",
+      }
     end
 
     def revoke
@@ -69,7 +72,7 @@ module Securial
       if user.password_expired?
         render status: :forbidden,
                json: {
-                 error: "Password expired",
+                 errors: ["Password expired"],
                  instructions: "Please reset your password before logging in.",
                }
       else

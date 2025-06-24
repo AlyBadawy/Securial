@@ -118,7 +118,7 @@ RSpec.describe Securial::SessionsController, type: :request do
           expect(response.content_type).to match(a_string_including("application/json"))
           json_response = JSON.parse(response.body)
           expect(json_response).to include(
-            "error" => "Password expired",
+            "errors" => ["Password expired"],
             "instructions" => "Please reset your password before logging in."
           )
         end

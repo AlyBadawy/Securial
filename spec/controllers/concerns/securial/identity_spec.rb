@@ -69,7 +69,7 @@ module Securial
         it "returns JSON error message of Invalid encoding" do
           get "/securial/authenticate", headers: { "Authorization" => "Bearer invalid token" }, as: :json
 
-          expect(JSON.parse(response.body)).to include("error" => "You are not signed in")
+          expect(JSON.parse(response.body)["errors"]).to include("You are not signed in")
         end
       end
 
@@ -81,7 +81,7 @@ module Securial
 
         it "returns JSON error message of Missing or invalid Authorization header" do
           get "/securial/authenticate", as: :json
-          expect(JSON.parse(response.body)).to include("error" => "You are not signed in")
+          expect(JSON.parse(response.body)["errors"]).to include("You are not signed in")
         end
       end
     end
@@ -125,7 +125,7 @@ module Securial
           get "/securial/admin", headers: valid_headers, as: :json
             expect(response).not_to have_http_status(:ok)
             expect(response).to have_http_status(:forbidden)
-            expect(JSON.parse(response.body)).to include("error" => "You are not authorized to perform this action")
+            expect(JSON.parse(response.body)["errors"]).to include("You are not authorized to perform this action")
         end
       end
 
@@ -133,7 +133,7 @@ module Securial
         it "denies admin access" do
           get "/securial/admin", as: :json
           expect(response).to have_http_status(:unauthorized)
-          expect(JSON.parse(response.body)).to include("error" => "You are not signed in")
+          expect(JSON.parse(response.body)["errors"]).to include("You are not signed in")
         end
       end
     end
@@ -153,7 +153,7 @@ module Securial
           get "/securial/admin_no_user", headers: valid_headers, as: :json
             expect(response).not_to have_http_status(:ok)
             expect(response).to have_http_status(:forbidden)
-            expect(JSON.parse(response.body)).to include("error" => "You are not authorized to perform this action")
+            expect(JSON.parse(response.body)["errors"]).to include("You are not authorized to perform this action")
         end
       end
 
@@ -161,7 +161,7 @@ module Securial
         it "denies admin access" do
           get "/securial/admin_no_user", as: :json
           expect(response).to have_http_status(:unauthorized)
-          expect(JSON.parse(response.body)).to include("error" => "You are not signed in")
+          expect(JSON.parse(response.body)["errors"]).to include("You are not signed in")
         end
       end
     end
@@ -228,7 +228,7 @@ module Securial
           get "/securial/authenticate", as: :json
 
           expect(response).to have_http_status(:unauthorized)
-          expect(JSON.parse(response.body)).to include("error" => "You are not signed in")
+          expect(JSON.parse(response.body)["errors"]).to include("You are not signed in")
         end
 
         it "allows access with valid authentication" do
@@ -248,7 +248,7 @@ module Securial
           get "/securial/authenticate", headers: invalid_headers, as: :json
 
           expect(response).to have_http_status(:unauthorized)
-          expect(JSON.parse(response.body)).to include("error" => "You are not signed in")
+          expect(JSON.parse(response.body)["errors"]).to include("You are not signed in")
         end
       end
     end

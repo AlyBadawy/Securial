@@ -30,7 +30,7 @@ RSpec.describe Securial::Security::RequestRateLimiter do
       post request_path, params: { email_address: email }, headers: { "REMOTE_ADDR" => ip }
     end
     expect(response.status).to eq(429)
-    expect(JSON.parse(response.body)["error"]).to eq("Rate limit exceeded")
+    expect(JSON.parse(response.body)["errors"]).to include("Rate limit exceeded")
     expect(response.headers["Retry-After"]).to eq("60")
   end
 
@@ -39,7 +39,7 @@ RSpec.describe Securial::Security::RequestRateLimiter do
       post request_path, params: { email_address: email }, headers: { "REMOTE_ADDR" => "5.6.7.8" }
     end
     expect(response.status).to eq(429)
-    expect(JSON.parse(response.body)["error"]).to eq("Rate limit exceeded")
+    expect(JSON.parse(response.body)["errors"]).to include("Rate limit exceeded")
   end
 
   it "throttles password reset by IP" do
@@ -47,7 +47,7 @@ RSpec.describe Securial::Security::RequestRateLimiter do
       post forgot_path, params: { email_address: email }, headers: { "REMOTE_ADDR" => ip }
     end
     expect(response.status).to eq(429)
-    expect(JSON.parse(response.body)["error"]).to eq("Rate limit exceeded")
+    expect(JSON.parse(response.body)["errors"]).to include("Rate limit exceeded")
   end
 
   it "throttles password reset by email" do
@@ -55,7 +55,7 @@ RSpec.describe Securial::Security::RequestRateLimiter do
       post forgot_path, params: { email_address: email }, headers: { "REMOTE_ADDR" => "9.9.9.9" }
     end
     expect(response.status).to eq(429)
-    expect(JSON.parse(response.body)["error"]).to eq("Rate limit exceeded")
+    expect(JSON.parse(response.body)["errors"]).to include("Rate limit exceeded")
   end
 
   def post(path, params:, headers:)
