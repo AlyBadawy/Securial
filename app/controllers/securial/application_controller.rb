@@ -24,6 +24,7 @@ module Securial
     # Called automatically when an ActiveRecord::RecordNotFound exception is raised,
     # ensuring consistent error responses across the API.
     #
+    # @param [ActiveRecord::RecordNotFound] exception The exception raised when a record is not found
     # @return [void]
     def render_404
       render status: :not_found, json: {
@@ -37,6 +38,7 @@ module Securial
     # Called automatically when an ActionController::ParameterMissing exception is raised,
     # providing the client with information about the missing parameter.
     #
+    # @param [ActionController::ParameterMissing] exception The exception raised for missing parameters
     # @return [void]
     def render_400(exception)
       render status: :bad_request, json: {
