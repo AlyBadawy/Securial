@@ -52,7 +52,7 @@ module Securial
     #
     # @return [Boolean] Returns true if the session is valid, false otherwise.
     def is_valid_session?
-      revoked? || expired? ? false : true
+      !(revoked? || expired?)
     end
 
     # Checks if the session is valid for a specific request.
