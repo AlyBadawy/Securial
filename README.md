@@ -22,7 +22,7 @@
 - ↪️ API session tokens, with refresh tokens
 - 🤳 Simple integration with web and mobile apps
 - 🧹 Clean, JSON-based API responses
-- 👨‍✈️ User management with roles
+- 🧍 User management with roles
 - 🫙 Database-agnostic support
 
 ### 👀 Why Securial?

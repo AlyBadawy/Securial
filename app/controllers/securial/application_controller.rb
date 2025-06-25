@@ -1,4 +1,5 @@
 module Securial
+  #
   # ApplicationController
   #
   # This is the base controller for the Securial engine, inheriting from ActionController::API.
@@ -18,6 +19,13 @@ module Securial
 
     private
 
+    # Renders a standardized 404 Not Found JSON response.
+    #
+    # Called automatically when an ActiveRecord::RecordNotFound exception is raised,
+    # ensuring consistent error responses across the API.
+    #
+    # @param [ActiveRecord::RecordNotFound] exception The exception raised when a record is not found
+    # @return [void]
     def render_404
       render status: :not_found, json: {
         errors: ["Record not found"],
@@ -25,6 +33,13 @@ module Securial
       }
     end
 
+    # Renders a standardized 400 Bad Request JSON response.
+    #
+    # Called automatically when an ActionController::ParameterMissing exception is raised,
+    # providing the client with information about the missing parameter.
+    #
+    # @param [ActionController::ParameterMissing] exception The exception raised for missing parameters
+    # @return [void]
     def render_400(exception)
       render status: :bad_request, json: {
         errors: [exception.message],

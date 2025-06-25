@@ -11,6 +11,8 @@ module Securial
   # All actions in this controller skip standard authentication requirements to allow
   # unauthenticated users to recover their accounts.
   #
+  # Routes typically mounted at Securial/password/* in the host application.
+  #
   class PasswordsController < ApplicationController
     skip_authentication!
     before_action :set_user_by_password_token, only: %i[ reset_password ]
@@ -21,7 +23,7 @@ module Securial
     # and sends password reset instructions via email. To prevent user enumeration attacks,
     # returns the same success response regardless of whether the email exists.
     #
-    # @param email_address [String] The email address of the user requesting password reset
+    # @param [String] params[:email_address] The email address of the user requesting password reset
     # @return [void] Renders success message with 200 OK status
     def forgot_password
       if user = User.find_by(email_address: params.require(:email_address))
@@ -37,9 +39,9 @@ module Securial
     # Validates the provided token, clears it to prevent reuse, and updates
     # the user's password if the new password is valid.
     #
-    # @param token [String] The password reset token from the email
-    # @param password [String] The new password
-    # @param password_confirmation [String] Confirmation of the new password
+    # @param [String] params[:token] The password reset token from the email
+    # @param [String] params[:password] The new password
+    # @param [String] params[:password_confirmation] Confirmation of the new password
     # @return [void] Renders success message with 200 OK status or errors with 422
     def reset_password
       @user.clear_reset_password_token!
@@ -52,13 +54,22 @@ module Securial
 
     private
 
+    # Locates and validates a user by their password reset token.
+    #
+    # Sets @user instance variable if the token is valid and not expired.
+    # Renders an error response if the token is invalid or expired.
+    #
+    # @param [String] params[:token] The password reset token to validate
+    # @return [void]
     def set_user_by_password_token
-      @user = User.find_by_reset_password_token!(params[:token]) # rubocop:disable Rails/DynamicFindBy
-      unless @user.reset_password_token_valid?
+      begin
+        @user = User.find_by_reset_password_token!(params[:token]) # rubocop:disable Rails/DynamicFindBy
+        unless @user.reset_password_token_valid?
+          render status: :unprocessable_entity, json: { errors: { token: "is invalid or has expired" } } and return
+        end
+      rescue ActiveSupport::MessageVerifier::InvalidSignature, ActiveRecord::RecordNotFound
         render status: :unprocessable_entity, json: { errors: { token: "is invalid or has expired" } } and return
       end
-    rescue ActiveSupport::MessageVerifier::InvalidSignature, ActiveRecord::RecordNotFound
-      render status: :unprocessable_entity, json: { errors: { token: "is invalid or has expired" } } and return
     end
   end
 end
