@@ -1,4 +1,5 @@
 module Securial
+  #
   # RoleAssignmentsController
   #
   # Controller for managing role assignments in the Securial authorization system.
@@ -9,14 +10,17 @@ module Securial
   #
   # All operations require admin authentication and are typically used for
   # user permission management within the application.
+  #
+  # Routes typically mounted at Securial/admins/role_assignments/* in the host application.
+  #
   class RoleAssignmentsController < ApplicationController
     # Assigns a role to a user.
     #
     # Creates a new role assignment between the specified user and role.
     # Validates that the assignment doesn't already exist.
     #
-    # @param user_id [Integer] The ID of the user to assign the role to
-    # @param role_id [Integer] The ID of the role to be assigned
+    # @param [Integer] params[:user_id] The ID of the user to assign the role to
+    # @param [Integer] params[:role_id] The ID of the role to be assigned
     # @return [void] Renders the created assignment with 201 Created status or errors with 422
     def create
       return unless define_user_and_role
@@ -38,8 +42,8 @@ module Securial
     # Deletes an existing role assignment between the specified user and role.
     # Validates that the assignment exists before attempting deletion.
     #
-    # @param user_id [Integer] The ID of the user to remove the role from
-    # @param role_id [Integer] The ID of the role to be removed
+    # @param [Integer] params[:user_id] The ID of the user to remove the role from
+    # @param [Integer] params[:role_id] The ID of the role to be removed
     # @return [void] Renders the deleted assignment with 200 OK status or errors with 422
     def destroy
       return unless define_user_and_role

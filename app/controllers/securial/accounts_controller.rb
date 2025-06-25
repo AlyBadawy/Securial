@@ -27,7 +27,7 @@ module Securial
     #
     # Retrieves and displays public profile information for the requested user.
     #
-    # @param username [String] The username of the requested user profile
+    # @param [String] params[:username] The username of the requested user profile
     # @return [void] Renders user profile with 200 OK status or 404 if not found
     def show
       @securial_user = Securial::User.find_by(username: params.expect(:username))
@@ -38,7 +38,7 @@ module Securial
     #
     # Creates a new user in the system with the provided registration information.
     #
-    # @param securial_user [Hash] User attributes including email_address, password, etc.
+    # @param [Hash] params[:securial_user] User attributes including email_address, password, etc.
     # @return [void] Renders new user with 201 Created status or errors with 422
     def register
       @securial_user = Securial::User.new(user_params)
@@ -54,8 +54,8 @@ module Securial
     #
     # Allows users to modify their profile after authenticating with their current password.
     #
-    # @param current_password [String] User's current password for verification
-    # @param securial_user [Hash] Updated user attributes
+    # @param [String] current_password User's current password for verification
+    # @param [Hash] params[:securial_user] Updated user attributes
     # @return [void] Renders updated user with 200 OK status or errors with 422
     def update_profile
       @securial_user = Current.user
@@ -80,7 +80,7 @@ module Securial
     #
     # Removes the user account and all associated data after password verification.
     #
-    # @param current_password [String] User's current password for verification
+    # @param [String] params[:current_password] User's current password for verification
     # @return [void] Renders success message with 200 OK status or error with 422
     def delete_account
       @securial_user = Current.user
@@ -97,10 +97,18 @@ module Securial
 
     private
 
+    # Permits and extracts user parameters from the request.
+    #
+    # @return [ActionController::Parameters] Permitted user parameters
+    #
     def user_params
       params.expect(securial_user: [:email_address, :password, :password_confirmation, :first_name, :last_name, :phone, :username, :bio])
     end
 
+    # Renders the user profile or a not found response.
+    #
+    # @return [void] Renders user profile or not found error
+    #
     def render_user_profile
       if @securial_user
         render :show, status: :ok, location: @securial_user

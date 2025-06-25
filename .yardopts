@@ -1,2 +1,4 @@
+--private
+--title "Securial Gem Documentation"
 --exclude
 lib/generators/factory_bot/model/model_generator.rb
