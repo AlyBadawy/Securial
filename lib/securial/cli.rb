@@ -101,7 +101,7 @@ module Securial
     # Handles the 'new' command for creating Rails applications.
     #
     # Validates that an application name is provided, then delegates to
-    # securial_new to create the application.
+    # securial_new to create the application with Securial.
     #
     # @param argv [Array<String>] remaining command line arguments
     # @return [Integer] exit status code (0 for success, non-zero for errors)
@@ -127,10 +127,13 @@ module Securial
     #
     def create_option_parser
       OptionParser.new do |opts|
-        opts.banner = banner_text
+        opts.banner = "Usage: securial [options] <command> [command options]\n\n"
 
         opts.separator ""
-        opts.separator "Global options:"
+        opts.separator "Commands:"
+        opts.separator "    new APP_NAME [rails_options...]    # Create a new Rails app with Securial pre-installed"
+        opts.separator ""
+        opts.separator "Options:"
 
         opts.on("-v", "--version", "Show Securial version") do
           show_version
@@ -142,35 +145,6 @@ module Securial
           exit(0)
         end
       end
-    end
-
-    # Generates the banner text for the CLI help output.
-    #
-    # @return [String] formatted banner text
-    #
-    def banner_text
-      <<~HELP
-      Securial CLI
-
-      Securial is a mountable Rails engine that provides robust, extensible
-      authentication and access control for Rails applications. It supports JWT,
-      API tokens, session-based auth, and is designed for easy integration with
-      modern web and mobile apps.
-
-      Usage:
-        securial new APP_NAME [rails_options...]    # Create a new Rails app with Securial pre-installed
-        securial -v, --version                      # Show the Securial gem version
-        securial -h, --help                         # Show this help message
-
-      Example:
-        securial new myapp --api --database=postgresql -T
-
-      More Info:
-        review the [Changelog] and [WIKI] for more info on the latest
-        changes and how to use this gem/engine:
-          [Changelog]:  https://github.com/AlyBadawy/Securial/blob/main/CHANGELOG.md
-          [WIKI]:       https://github.com/AlyBadawy/Securial/wiki
-      HELP
     end
 
     # Displays the current Securial version.
@@ -280,9 +254,12 @@ module Securial
 
     # Runs a system command with optional directory change.
     #
+    # Executes the provided command, optionally in a different directory,
+    # and handles success/failure conditions.
+    #
     # @param command [String, Array<String>] command to run
     # @param chdir [String, nil] directory to change to before running command
-    # @return [Integer] command exit status
+    # @return [Integer] command exit status code (0 for success)
     # @raise [SystemExit] if the command fails
     #
     def run(command, chdir: nil)
