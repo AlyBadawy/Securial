@@ -6,7 +6,7 @@
 <title>
   Class: Securial::UsersController
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -103,7 +103,33 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>UsersController</p>
 
+<p>Controller for managing users in the Securial authentication system.</p>
+
+<p>This controller provides administrative CRUD operations for user management, including:</p>
+
+<pre class="code ruby"><code class="ruby">- Listing all users in the system
+- Creating new user accounts
+- Viewing user details
+- Updating user information
+- Deleting user accounts
+</code></pre>
+
+<p>All operations require admin authentication and are typically used for administrative user management rather than self-service account management.</p>
+
+<p>Routes typically mounted at Securial/admins/users/* in the host application.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -121,7 +147,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#create-instance_method" title="#create (instance method)">#<strong>create</strong>  &#x21d2; Object </a>
+      <a href="#create-instance_method" title="#create (instance method)">#<strong>create</strong>  &#x21d2; void </a>
     
 
     
@@ -135,7 +161,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new user in the system.</p>
+</div></span>
   
 </li>
 
@@ -143,7 +171,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#destroy-instance_method" title="#destroy (instance method)">#<strong>destroy</strong>  &#x21d2; Object </a>
+      <a href="#destroy-instance_method" title="#destroy (instance method)">#<strong>destroy</strong>  &#x21d2; void </a>
     
 
     
@@ -157,7 +185,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Deletes an existing user.</p>
+</div></span>
   
 </li>
 
@@ -165,7 +195,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#index-instance_method" title="#index (instance method)">#<strong>index</strong>  &#x21d2; Object </a>
+      <a href="#index-instance_method" title="#index (instance method)">#<strong>index</strong>  &#x21d2; void </a>
     
 
     
@@ -179,7 +209,57 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Lists all users in the system.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#securial_user_params-instance_method" title="#securial_user_params (instance method)">#<strong>securial_user_params</strong>  &#x21d2; ActionController::Parameters </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Permits and extracts user parameters from the request.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#set_securial_user-instance_method" title="#set_securial_user (instance method)">#<strong>set_securial_user</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Finds and sets a specific user for show, update and destroy actions.</p>
+</div></span>
   
 </li>
 
@@ -187,7 +267,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#show-instance_method" title="#show (instance method)">#<strong>show</strong>  &#x21d2; Object </a>
+      <a href="#show-instance_method" title="#show (instance method)">#<strong>show</strong>  &#x21d2; void </a>
     
 
     
@@ -201,7 +281,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Shows details for a specific user.</p>
+</div></span>
   
 </li>
 
@@ -209,7 +291,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#update-instance_method" title="#update (instance method)">#<strong>update</strong>  &#x21d2; Object </a>
+      <a href="#update-instance_method" title="#update (instance method)">#<strong>update</strong>  &#x21d2; void </a>
     
 
     
@@ -223,7 +305,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Updates an existing user.</p>
+</div></span>
   
 </li>
 
@@ -239,6 +323,11 @@
   
   
   
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationController.html" title="Securial::ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#render_400-instance_method" title="Securial::ApplicationController#render_400 (method)">#render_400</a></span>, <span class='object_link'><a href="ApplicationController.html#render_404-instance_method" title="Securial::ApplicationController#render_404 (method)">#render_404</a></span></p>
+
+  
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
@@ -247,30 +336,63 @@
       <div class="method_details first">
   <h3 class="signature first" id="create-instance_method">
   
-    #<strong>create</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>create</strong>  &#x21d2; <tt>void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Creates a new user in the system.</p>
+
+<p>Adds a new user with the provided attributes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params[:securial_user]</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>User attributes including email_address, username, etc.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre>
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
   <span class='ivar'>@securial_user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="User.html" title="Securial::User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_securial_user_params'>securial_user_params</span><span class='rparen'>)</span>
@@ -289,25 +411,58 @@
       <div class="method_details ">
   <h3 class="signature " id="destroy-instance_method">
   
-    #<strong>destroy</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>destroy</strong>  &#x21d2; <tt>void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Deletes an existing user.</p>
+
+<p>Permanently removes a user from the system.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params[:id]</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the user to delete</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-30
-31
-32
-33</pre>
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
   <span class='ivar'>@securial_user</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
@@ -321,24 +476,37 @@
       <div class="method_details ">
   <h3 class="signature " id="index-instance_method">
   
-    #<strong>index</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>index</strong>  &#x21d2; <tt>void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Lists all users in the system.</p>
+
+<p>Retrieves all users for administrative display and management.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-5
-6
-7</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
   <span class='ivar'>@securial_users</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="User.html" title="Securial::User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
@@ -349,25 +517,176 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="show-instance_method">
+  <h3 class="signature " id="securial_user_params-instance_method">
   
-    #<strong>show</strong>  &#x21d2; <tt>Object</tt> 
-  
-
+    #<strong>securial_user_params</strong>  &#x21d2; <tt>ActionController::Parameters</tt>  <span class="extras">(private)</span>
   
 
   
-</h3><table class="source_code">
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Permits and extracts user parameters from the request.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ActionController::Parameters</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Permitted user parameters</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-9
-10</pre>
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_securial_user_params'>securial_user_params</span>
+  <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_expect'>expect</span><span class='lparen'>(</span><span class='label'>securial_user:</span> <span class='lbracket'>[</span>
+                  <span class='symbol'>:email_address</span><span class='comma'>,</span>
+                  <span class='symbol'>:username</span><span class='comma'>,</span>
+                  <span class='symbol'>:first_name</span><span class='comma'>,</span>
+                  <span class='symbol'>:last_name</span><span class='comma'>,</span>
+                  <span class='symbol'>:phone</span><span class='comma'>,</span>
+                  <span class='symbol'>:bio</span><span class='comma'>,</span>
+                  <span class='symbol'>:password</span><span class='comma'>,</span>
+                  <span class='symbol'>:password_confirmation</span><span class='comma'>,</span>
+    <span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_securial_user-instance_method">
+  
+    #<strong>set_securial_user</strong>  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Finds and sets a specific user for show, update and destroy actions.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 88</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_securial_user'>set_securial_user</span>
+  <span class='ivar'>@securial_user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="User.html" title="Securial::User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="show-instance_method">
+  
+    #<strong>show</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Shows details for a specific user.</p>
+
+<p>Retrieves and displays information for a single user.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params[:id]</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the user to display</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
 <span class='kw'>end</span></pre>
@@ -379,28 +698,77 @@
       <div class="method_details ">
   <h3 class="signature " id="update-instance_method">
   
-    #<strong>update</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>update</strong>  &#x21d2; <tt>void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Updates an existing user.</p>
+
+<p>Modifies the attributes of an existing user.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params[:id]</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the user to update</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>params[:securial_user]</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Updated user attributes</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-22
-23
-24
-25
-26
-27
-28</pre>
+63
+64
+65
+66
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/users_controller.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
   <span class='kw'>if</span> <span class='ivar'>@securial_user</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_securial_user_params'>securial_user_params</span><span class='rparen'>)</span>
@@ -419,7 +787,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:54 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

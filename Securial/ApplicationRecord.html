@@ -6,7 +6,7 @@
 <title>
   Class: Securial::ApplicationRecord
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -101,7 +101,30 @@
   
 </div>
 
-<div id="subclasses">
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>ApplicationRecord</p>
+
+<p>This class serves as the base model class for all Securial models.</p>
+
+<p>It inherits from ActiveRecord::Base and provides a common functionality for all models in the Securial engine, including:</p>
+
+<pre class="code ruby"><code class="ruby">- UUIDv7 generation for the `id` field
+- Abstract class definition to ensure it is not instantiated directly
+
+- Custom behavior for the `before_create` callback to set the `id` field
+</code></pre>
+
+<p>This class can be extended to add more model functionalities as needed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
   <p class="children"><span class='object_link'><a href="Role.html" title="Securial::Role (class)">Role</a></span>, <span class='object_link'><a href="RoleAssignment.html" title="Securial::RoleAssignment (class)">RoleAssignment</a></span>, <span class='object_link'><a href="Session.html" title="Securial::Session (class)">Session</a></span>, <span class='object_link'><a href="User.html" title="Securial::User (class)">User</a></span></p>
 </div>
@@ -112,13 +135,111 @@
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#generate_uuid_v7-instance_method" title="#generate_uuid_v7 (instance method)">#<strong>generate_uuid_v7</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
 
   
+    <span class="summary_desc"><div class='inline'>
+<p>Generates a UUIDv7 for the ‘id` field if it is blank.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="generate_uuid_v7-instance_method">
+  
+    #<strong>generate_uuid_v7</strong>  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method will only set the ‘id` if it is not already present</p>
+</div>
+  </div>
+
+<p class="note returns_void">This method returns an undefined value.</p>
+<p>Generates a UUIDv7 for the ‘id` field if it is blank.</p>
+
+<p>This method is triggered by the ‘before_create` callback. The generated ID is expected to be a UUIDv7 string.</p>
+
+<p>and if the ‘id` field is of type string.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/securial/application_record.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_generate_uuid_v7'>generate_uuid_v7</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>||</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_type_for_attribute'>type_for_attribute</span><span class='lparen'>(</span><span class='symbol'>:id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>!=</span> <span class='symbol'>:string</span>
+
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='const'>Random</span><span class='period'>.</span><span class='id identifier rubyid_uuid_v7'>uuid_v7</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

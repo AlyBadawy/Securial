@@ -6,7 +6,7 @@
 <title>
   Class: Securial::Middleware::RequestTagLogger
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -162,6 +162,72 @@
 </li>
 
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#ip_from_env-instance_method" title="#ip_from_env (instance method)">#<strong>ip_from_env</strong>(env)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#request_id_from_env-instance_method" title="#request_id_from_env (instance method)">#<strong>request_id_from_env</strong>(env)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#user_agent_from_env-instance_method" title="#user_agent_from_env (instance method)">#<strong>user_agent_from_env</strong>(env)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -270,12 +336,102 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="ip_from_env-instance_method">
+  
+    #<strong>ip_from_env</strong>(env)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ip_from_env'>ip_from_env</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>action_dispatch.remote_ip</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>REMOTE_ADDR</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="request_id_from_env-instance_method">
+  
+    #<strong>request_id_from_env</strong>(env)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_request_id_from_env'>request_id_from_env</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>action_dispatch.request_id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP_X_REQUEST_ID</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="user_agent_from_env-instance_method">
+  
+    #<strong>user_agent_from_env</strong>(env)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 34</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_user_agent_from_env'>user_agent_from_env</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP_USER_AGENT</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:54 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

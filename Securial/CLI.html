@@ -6,7 +6,7 @@
 <title>
   Class: Securial::CLI
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -99,7 +99,20 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Command-line interface for the Securial gem.</p>
 
+<p>This class provides the command-line functionality for Securial, enabling users to create new Rails applications with Securial pre-installed and configured. It handles command parsing, flag processing, and orchestrates the setup of new applications.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -117,7 +130,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#start-class_method" title="start (class method)">.<strong>start</strong>(argv)  &#x21d2; Object </a>
+      <a href="#start-class_method" title="start (class method)">.<strong>start</strong>(argv)  &#x21d2; Integer </a>
     
 
     
@@ -131,7 +144,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Entry point for the CLI application.</p>
+</div></span>
   
 </li>
 
@@ -145,10 +160,322 @@
 
     <ul class="summary">
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#add_securial_gem-instance_method" title="#add_securial_gem (instance method)">#<strong>add_securial_gem</strong>(app_name)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Adds the Securial gem to the application’s Gemfile.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#create_option_parser-instance_method" title="#create_option_parser (instance method)">#<strong>create_option_parser</strong>  &#x21d2; OptionParser </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates and configures the option parser.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#create_rails_app-instance_method" title="#create_rails_app (instance method)">#<strong>create_rails_app</strong>(app_name, rails_options)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new Rails application.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#handle_commands-instance_method" title="#handle_commands (instance method)">#<strong>handle_commands</strong>(argv)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Processes commands from the command line arguments.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#handle_flags-instance_method" title="#handle_flags (instance method)">#<strong>handle_flags</strong>(argv)  &#x21d2; nil, Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Processes option flags from the command line arguments.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#handle_new_command-instance_method" title="#handle_new_command (instance method)">#<strong>handle_new_command</strong>(argv)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Handles the ‘new’ command for creating Rails applications.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#install_gems-instance_method" title="#install_gems (instance method)">#<strong>install_gems</strong>(app_name)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Installs gems for the application using Bundler.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#install_securial-instance_method" title="#install_securial (instance method)">#<strong>install_securial</strong>(app_name)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Installs and configures Securial in the application.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#mount_securial_engine-instance_method" title="#mount_securial_engine (instance method)">#<strong>mount_securial_engine</strong>(app_name)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Mounts the Securial engine in the application’s routes.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#print_final_instructions-instance_method" title="#print_final_instructions (instance method)">#<strong>print_final_instructions</strong>(app_name)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Prints final setup instructions after successful installation.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#run-instance_method" title="#run (instance method)">#<strong>run</strong>(command, chdir: nil)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Runs a system command with optional directory change.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#securial_new-instance_method" title="#securial_new (instance method)">#<strong>securial_new</strong>(app_name, rails_options)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new Rails application with Securial pre-installed.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#show_version-instance_method" title="#show_version (instance method)">#<strong>show_version</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Displays the current Securial version.</p>
+</div></span>
+  
+</li>
+
+      
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#start-instance_method" title="#start (instance method)">#<strong>start</strong>(argv)  &#x21d2; Object </a>
+      <a href="#start-instance_method" title="#start (instance method)">#<strong>start</strong>(argv)  &#x21d2; Integer </a>
     
 
     
@@ -162,7 +489,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Processes command line arguments and executes the appropriate action.</p>
+</div></span>
   
 </li>
 
@@ -179,24 +508,75 @@
       <div class="method_details first">
   <h3 class="signature first" id="start-class_method">
   
-    .<strong>start</strong>(argv)  &#x21d2; <tt>Object</tt> 
+    .<strong>start</strong>(argv)  &#x21d2; <tt>Integer</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Entry point for the CLI application.</p>
+
+<p>Creates a new CLI instance and delegates to its start method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>argv</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>command line arguments</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>exit status code (0 for success, non-zero for errors)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-7
-8
-9</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
@@ -213,31 +593,1227 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="start-instance_method">
+  <h3 class="signature first" id="add_securial_gem-instance_method">
   
-    #<strong>start</strong>(argv)  &#x21d2; <tt>Object</tt> 
-  
-
+    #<strong>add_securial_gem</strong>(app_name)  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
   
 
   
-</h3><table class="source_code">
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Adds the Securial gem to the application’s Gemfile.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>app_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the Rails application</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-11
-12
-13
-14
-15
-16
-17
-18</pre>
+197
+198
+199
+200
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 197</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_securial_gem'>add_securial_gem</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>📦  Adding Securial gem to Gemfile</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_gemfile_path'>gemfile_path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gemfile</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_gemfile_path'>gemfile_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\ngem &#39;securial&#39;</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_option_parser-instance_method">
+  
+    #<strong>create_option_parser</strong>  &#x21d2; <tt>OptionParser</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates and configures the option parser.</p>
+
+<p>Sets up the command-line options and their handlers.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>OptionParser</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>configured option parser instance</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 128</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_option_parser'>create_option_parser</span>
+  <span class='const'>OptionParser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_opts'>opts</span><span class='op'>|</span>
+    <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_banner'>banner</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Usage: securial [options] &lt;command&gt; [command options]\n\n</span><span class='tstring_end'>&quot;</span></span>
+
+    <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_separator'>separator</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_separator'>separator</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Commands:</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_separator'>separator</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    new APP_NAME [rails_options...]    # Create a new Rails app with Securial pre-installed</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_separator'>separator</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_separator'>separator</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Options:</span><span class='tstring_end'>&quot;</span></span>
+
+    <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-v</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--version</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Show Securial version</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_show_version'>show_version</span>
+      <span class='id identifier rubyid_exit'>exit</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-h</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--help</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Show this help message</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_opts'>opts</span>
+      <span class='id identifier rubyid_exit'>exit</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_rails_app-instance_method">
+  
+    #<strong>create_rails_app</strong>(app_name, rails_options)  &#x21d2; <tt>Integer</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a new Rails application.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>app_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the Rails application to create</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rails_options</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>options to pass to ‘rails new’</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>command exit status</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187
+188
+189
+190</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 187</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_rails_app'>create_rails_app</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='comma'>,</span> <span class='id identifier rubyid_rails_options'>rails_options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_rails_command'>rails_command</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rails</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_app_name'>app_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_rails_options'>rails_options</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='id identifier rubyid_rails_command'>rails_command</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="handle_commands-instance_method">
+  
+    #<strong>handle_commands</strong>(argv)  &#x21d2; <tt>Integer</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Processes commands from the command line arguments.</p>
+
+<p>Identifies the command (e.g., ‘new’) and delegates to the appropriate handler method for that command.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>argv</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>command line arguments</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>exit status code (0 for success, non-zero for errors)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_handle_commands'>handle_commands</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='id identifier rubyid_argv'>argv</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
+
+  <span class='kw'>case</span> <span class='id identifier rubyid_cmd'>cmd</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_handle_new_command'>handle_new_command</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_create_option_parser'>create_option_parser</span>
+    <span class='int'>1</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="handle_flags-instance_method">
+  
+    #<strong>handle_flags</strong>(argv)  &#x21d2; <tt>nil</tt>, <tt>Integer</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Processes option flags from the command line arguments.</p>
+
+<p>Parses options like –version and –help, executing their actions if present and removing them from the argument list.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>argv</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>command line arguments</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>nil</tt>, <tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>nil to continue processing, or exit code</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_handle_flags'>handle_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='id identifier rubyid_create_option_parser'>create_option_parser</span>
+
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_order!'>order!</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
+    <span class='kw'>nil</span> <span class='comment'># Continue to command handling
+</span>  <span class='kw'>rescue</span> <span class='const'>OptionParser</span><span class='op'>::</span><span class='const'>InvalidOption</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ERROR: Illegal option(s): </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_parser'>parser</span>
+    <span class='int'>1</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="handle_new_command-instance_method">
+  
+    #<strong>handle_new_command</strong>(argv)  &#x21d2; <tt>Integer</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Handles the ‘new’ command for creating Rails applications.</p>
+
+<p>Validates that an application name is provided, then delegates to securial_new to create the application with Securial.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>argv</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>remaining command line arguments</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>exit status code (0 for success, non-zero for errors)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 109</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_handle_new_command'>handle_new_command</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_app_name'>app_name</span> <span class='op'>=</span> <span class='id identifier rubyid_argv'>argv</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_app_name'>app_name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ERROR: Please provide an app name.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_create_option_parser'>create_option_parser</span>
+    <span class='kw'>return</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_securial_new'>securial_new</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='comma'>,</span> <span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
+  <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="install_gems-instance_method">
+  
+    #<strong>install_gems</strong>(app_name)  &#x21d2; <tt>Integer</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Installs gems for the application using Bundler.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>app_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the Rails application</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>command exit status</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 208</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_install_gems'>install_gems</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bundle install</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>chdir:</span> <span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="install_securial-instance_method">
+  
+    #<strong>install_securial</strong>(app_name)  &#x21d2; <tt>Integer</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Installs and configures Securial in the application.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>app_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the Rails application</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>command exit status</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+217
+218
+219
+220
+221</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 217</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_install_securial'>install_securial</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>🔧  Installing Securial</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bin/rails generate securial:install</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>chdir:</span> <span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bin/rails db:migrate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>chdir:</span> <span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="mount_securial_engine-instance_method">
+  
+    #<strong>mount_securial_engine</strong>(app_name)  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Mounts the Securial engine in the application’s routes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>app_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the Rails application</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+228
+229
+230
+231
+232
+233
+234
+235
+236</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 228</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_mount_securial_engine'>mount_securial_engine</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>🔗  Mounting Securial engine in routes</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_routes_path'>routes_path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config/routes.rb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_routes'>routes</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_routes_path'>routes_path</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_updated'>updated</span> <span class='op'>=</span> <span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Rails.application.routes.draw do</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_match'>match</span><span class='op'>|</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_match'>match</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n  mount Securial::Engine =&gt; &#39;/securial&#39;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_routes_path'>routes_path</span><span class='comma'>,</span> <span class='id identifier rubyid_updated'>updated</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="print_final_instructions-instance_method">
+  
+    #<strong>print_final_instructions</strong>(app_name)  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Prints final setup instructions after successful installation.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>app_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the Rails application</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 243</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_print_final_instructions'>print_final_instructions</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='heredoc_beg'>&lt;&lt;~INSTRUCTIONS</span>
+<span class='tstring_content'>    🎉  Securial has been successfully installed in your Rails app!
+</span><span class='tstring_content'>    ✅  Your app is ready at: ./</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_app_name'>app_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='tstring_content'>
+</span><span class='tstring_content'>    ➡️  Next steps:
+</span><span class='tstring_content'>        cd </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_app_name'>app_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='tstring_content'>    ⚙️  Optional: Configure Securial in config/initializers/securial.rb
+</span><span class='tstring_content'>        rails server
+</span><span class='heredoc_end'>  INSTRUCTIONS
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="run-instance_method">
+  
+    #<strong>run</strong>(command, chdir: nil)  &#x21d2; <tt>Integer</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Runs a system command with optional directory change.</p>
+
+<p>Executes the provided command, optionally in a different directory, and handles success/failure conditions.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>command</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>command to run</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>chdir</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>directory to change to before running command</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>command exit status code (0 for success)</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>SystemExit</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if the command fails</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 265</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='label'>chdir:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>→ </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_chdir'>chdir</span>
+      <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_chdir'>chdir</span><span class='lparen'>(</span><span class='id identifier rubyid_chdir'>chdir</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_system'>system</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_system'>system</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_result'>result</span>
+    <span class='id identifier rubyid_abort'>abort</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>❌ Command failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_command'>command</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="securial_new-instance_method">
+  
+    #<strong>securial_new</strong>(app_name, rails_options)  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Creates a new Rails application with Securial pre-installed.</p>
+
+<p>Orchestrates the process of creating a Rails application, adding the Securial gem, installing dependencies, and configuring the application.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>app_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the Rails application to create</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rails_options</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>options to pass to ‘rails new’</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 170</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_securial_new'>securial_new</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='comma'>,</span> <span class='id identifier rubyid_rails_options'>rails_options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>🏗️  Creating new Rails app: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_app_name'>app_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='id identifier rubyid_create_rails_app'>create_rails_app</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='comma'>,</span> <span class='id identifier rubyid_rails_options'>rails_options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_securial_gem'>add_securial_gem</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_install_gems'>install_gems</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_install_securial'>install_securial</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mount_securial_engine'>mount_securial_engine</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_print_final_instructions'>print_final_instructions</span><span class='lparen'>(</span><span class='id identifier rubyid_app_name'>app_name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="show_version-instance_method">
+  
+    #<strong>show_version</strong>  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Displays the current Securial version.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+154
+155
+156
+157
+158
+159</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 154</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_show_version'>show_version</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>securial/version</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Securial v</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Securial.html#VERSION-constant" title="Securial::VERSION (constant)">VERSION</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>rescue</span> <span class='const'>LoadError</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Securial version information not available.</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start-instance_method">
+  
+    #<strong>start</strong>(argv)  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Processes command line arguments and executes the appropriate action.</p>
+
+<p>This method handles both option flags (like –version) and commands (like ‘new’), delegating to specialized handlers and returning the appropriate exit code.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>argv</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>command line arguments</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>exit status code (0 for success, non-zero for errors)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51
+52
+53
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/cli.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
   <span class='comment'># Process options and exit if a flag was handled
@@ -257,7 +1833,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

@@ -6,7 +6,7 @@
 <title>
   Class: Securial::User
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -108,7 +108,59 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>User</p>
 
+<p>This class represents a user in the Securial authentication and authorization system.</p>
+
+<p>Users can have multiple roles assigned to them, which define their permissions and access levels within the application.</p>
+
+<p>The User model includes functionality for password reset, email normalization, and various validations to ensure data integrity.</p>
+
+<p>## Attributes</p>
+<ul><li>
+<p>‘email_address`: The user’s email address, which is normalized</p>
+</li><li>
+<p>‘username`: A unique username for the user, with specific format requirements</p>
+</li><li>
+<p>‘first_name`: The user’s first name, required and limited in length</p>
+</li><li>
+<p>‘last_name`: The user’s last name, required and limited in length</p>
+</li><li>
+<p>‘phone`: An optional phone number, limited in length</p>
+</li><li>
+<p>‘bio`: An optional biography, limited in length</p>
+</li></ul>
+
+<p>## Validations</p>
+<ul><li>
+<p>Email address must be present, unique, and formatted correctly</p>
+</li><li>
+<p>Username must be present, unique (case insensitive), and formatted correctly</p>
+</li><li>
+<p>First and last names must be present and limited in length</p>
+</li><li>
+<p>Phone and bio fields are optional but have length restrictions</p>
+</li></ul>
+
+<p>## Associations</p>
+<ul><li>
+<p>Has many role assignments, allowing users to have multiple roles</p>
+</li><li>
+<p>Has many roles through role assignments, enabling flexible permission management</p>
+</li><li>
+<p>Has many sessions, allowing for session management and tracking</p>
+</li></ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -140,7 +192,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the user has the specified role.</p>
+</div></span>
   
 </li>
 
@@ -158,7 +212,7 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="PasswordResettable.html" title="Securial::PasswordResettable (module)">PasswordResettable</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="PasswordResettable.html#clear_reset_password_token!-instance_method" title="Securial::PasswordResettable#clear_reset_password_token! (method)">#clear_reset_password_token!</a></span>, <span class='object_link'><a href="PasswordResettable.html#generate_reset_password_token!-instance_method" title="Securial::PasswordResettable#generate_reset_password_token! (method)">#generate_reset_password_token!</a></span>, <span class='object_link'><a href="PasswordResettable.html#password_expired%3F-instance_method" title="Securial::PasswordResettable#password_expired? (method)">#password_expired?</a></span>, <span class='object_link'><a href="PasswordResettable.html#reset_password_token_valid%3F-instance_method" title="Securial::PasswordResettable#reset_password_token_valid? (method)">#reset_password_token_valid?</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="PasswordResettable.html#clear_reset_password_token!-instance_method" title="Securial::PasswordResettable#clear_reset_password_token! (method)">#clear_reset_password_token!</a></span>, <span class='object_link'><a href="PasswordResettable.html#generate_reset_password_token!-instance_method" title="Securial::PasswordResettable#generate_reset_password_token! (method)">#generate_reset_password_token!</a></span>, <span class='object_link'><a href="PasswordResettable.html#password_expired%3F-instance_method" title="Securial::PasswordResettable#password_expired? (method)">#password_expired?</a></span>, <span class='object_link'><a href="PasswordResettable.html#reset_password_token_valid%3F-instance_method" title="Securial::PasswordResettable#reset_password_token_valid? (method)">#reset_password_token_valid?</a></span>, <span class='object_link'><a href="PasswordResettable.html#update_password_changed_at-instance_method" title="Securial::PasswordResettable#update_password_changed_at (method)">#update_password_changed_at</a></span></p>
 
   
   
@@ -167,6 +221,11 @@
   
   
   
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationRecord.html" title="Securial::ApplicationRecord (class)">ApplicationRecord</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationRecord.html#generate_uuid_v7-instance_method" title="Securial::ApplicationRecord#generate_uuid_v7 (method)">#generate_uuid_v7</a></span></p>
+
   
 
   <div id="instance_method_details" class="method_details_list">
@@ -185,11 +244,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Checks if the user has the specified role.</p>
+
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>role_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the role to check</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -199,6 +280,11 @@
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'>
+<p>Returns true if the user has the specified role, false otherwise.</p>
+</div>
       
     </li>
   
@@ -210,15 +296,15 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/securial/user.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'app/models/securial/user.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_admin?'>is_admin?</span>
-  <span class='id identifier rubyid_roles'>roles</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='label'>role_name:</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='period'>.</span><span class='id identifier rubyid_titleized_admin_role'>titleized_admin_role</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_roles'>roles</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='label'>role_name:</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='period'>.</span><span class='id identifier rubyid_titleized_admin_role'><span class='object_link'><a href="../Securial.html#titleized_admin_role-instance_method" title="Securial#titleized_admin_role (method)">titleized_admin_role</a></span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -230,7 +316,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

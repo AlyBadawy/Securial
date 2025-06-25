@@ -6,7 +6,7 @@
 <title>
   Module: Securial::Identity
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -140,6 +140,30 @@
 </li>
 
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#authenticate_user!-instance_method" title="#authenticate_user! (instance method)">#<strong>authenticate_user!</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Ensures a user is authenticated before proceeding.</p>
+</div></span>
+  
+</li>
+
+      
         <li class="public ">
   <span class="summary_signature">
     
@@ -159,6 +183,54 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Returns the currently authenticated user or nil if no user is authenticated.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#identify_user-instance_method" title="#identify_user (instance method)">#<strong>identify_user</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Identifies the current user from the Authorization header.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#internal_rails_request%3F-instance_method" title="#internal_rails_request? (instance method)">#<strong>internal_rails_request?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Determines if the current request is from internal Rails controllers.</p>
 </div></span>
   
 </li>
@@ -262,6 +334,63 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="authenticate_user!-instance_method">
+  
+    #<strong>authenticate_user!</strong>  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Ensures a user is authenticated before proceeding.</p>
+
+<p>This method checks if a user has been successfully identified. If not, it renders an unauthorized response and halts the request. Internal Rails requests are exempt from authentication requirements.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/securial/identity.rb', line 135</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_authenticate_user!'>authenticate_user!</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_internal_rails_request?'>internal_rails_request?</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Current.html" title="Securial::Current (class)">Current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_session'>session</span><span class='op'>&amp;.</span><span class='id identifier rubyid_user'>user</span>
+
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>status:</span> <span class='symbol'>:unauthorized</span><span class='comma'>,</span>
+         <span class='label'>json:</span> <span class='lbrace'>{</span>
+           <span class='label'>errors:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are not signed in</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+           <span class='label'>instructions:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please sign in to access this resource.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+           <span class='rbrace'>}</span> <span class='kw'>and</span> <span class='kw'>return</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="current_user-instance_method">
   
     #<strong>current_user</strong>  &#x21d2; <tt><span class='object_link'><a href="User.html" title="Securial::User (class)">Securial::User</a></span></tt><sup>?</sup> 
@@ -316,6 +445,161 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_current_user'>current_user</span>
   <span class='const'><span class='object_link'><a href="Current.html" title="Securial::Current (class)">Current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_session'>session</span><span class='op'>&amp;.</span><span class='id identifier rubyid_user'>user</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="identify_user-instance_method">
+  
+    #<strong>identify_user</strong>  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Identifies the current user from the Authorization header.</p>
+
+<p>This method attempts to identify the user by:</p>
+<ol><li>
+<p>Checking for a valid Bearer token in the Authorization header</p>
+</li><li>
+<p>Decoding the token to extract the session ID</p>
+</li><li>
+<p>Finding and validating the corresponding session</p>
+</li><li>
+<p>Ensuring IP address and user agent match for security</p>
+</li></ol>
+
+<p>If identification succeeds, the session is stored in Current.session</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/securial/identity.rb', line 106</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_identify_user'>identify_user</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_internal_rails_request?'>internal_rails_request?</span>
+
+  <span class='const'><span class='object_link'><a href="Current.html" title="Securial::Current (class)">Current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_session'>session</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_auth_header'>auth_header</span> <span class='op'>=</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_auth_header'>auth_header</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_auth_header'>auth_header</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bearer </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='id identifier rubyid_auth_header'>auth_header</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_decoded_token'>decoded_token</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Auth.html" title="Securial::Auth (module)">Auth</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Auth/AuthEncoder.html" title="Securial::Auth::AuthEncoder (module)">AuthEncoder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_decode'><span class='object_link'><a href="Auth/AuthEncoder.html#decode-instance_method" title="Securial::Auth::AuthEncoder#decode (method)">decode</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_session'>session</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Session.html" title="Securial::Session (class)">Session</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='id identifier rubyid_decoded_token'>decoded_token</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>jti</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>revoked:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_session'>session</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>&amp;&amp;</span>
+         <span class='id identifier rubyid_session'>session</span><span class='period'>.</span><span class='id identifier rubyid_is_valid_session?'>is_valid_session?</span> <span class='op'>&amp;&amp;</span>
+         <span class='id identifier rubyid_session'>session</span><span class='period'>.</span><span class='id identifier rubyid_ip_address'>ip_address</span> <span class='op'>==</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_remote_ip'>remote_ip</span> <span class='op'>&amp;&amp;</span>
+         <span class='id identifier rubyid_session'>session</span><span class='period'>.</span><span class='id identifier rubyid_user_agent'>user_agent</span> <span class='op'>==</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_user_agent'>user_agent</span>
+        <span class='const'><span class='object_link'><a href="Current.html" title="Securial::Current (class)">Current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_session'>session</span> <span class='op'>=</span> <span class='id identifier rubyid_session'>session</span>
+      <span class='kw'>end</span>
+    <span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Error.html" title="Securial::Error (module)">Error</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Error/Auth.html" title="Securial::Error::Auth (module)">Auth</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Error/Auth/TokenDecodeError.html" title="Securial::Error::Auth::TokenDecodeError (class)">TokenDecodeError</a></span></span><span class='comma'>,</span> <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>RecordNotFound</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+      <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='period'>.</span><span class='id identifier rubyid_logger'><span class='object_link'><a href="../Securial.html#logger-instance_method" title="Securial#logger (method)">logger</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authentication failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="internal_rails_request?-instance_method">
+  
+    #<strong>internal_rails_request?</strong>  &#x21d2; <tt>Boolean</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Determines if the current request is from internal Rails controllers.</p>
+
+<p>This method checks if the current controller is one of Rails’ internal controllers (Info, Mailers, Welcome) which should bypass authentication.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true if the request is from internal Rails controllers, false otherwise</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152
+153
+154
+155
+156</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/securial/identity.rb', line 152</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_internal_rails_request?'>internal_rails_request?</span>
+  <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Rails</span><span class='op'>::</span><span class='const'>InfoController</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Rails</span><span class='op'>::</span><span class='const'>InfoController</span><span class='rparen'>)</span> <span class='op'>||</span>
+  <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Rails</span><span class='op'>::</span><span class='const'>MailersController</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Rails</span><span class='op'>::</span><span class='const'>MailersController</span><span class='rparen'>)</span> <span class='op'>||</span>
+  <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Rails</span><span class='op'>::</span><span class='const'>WelcomeController</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Rails</span><span class='op'>::</span><span class='const'>WelcomeController</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -466,7 +750,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

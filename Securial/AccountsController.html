@@ -6,7 +6,7 @@
 <title>
   Class: Securial::AccountsController
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -211,6 +211,30 @@
 </li>
 
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#render_user_profile-instance_method" title="#render_user_profile (instance method)">#<strong>render_user_profile</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Renders the user profile or a not found response.</p>
+</div></span>
+  
+</li>
+
+      
         <li class="public ">
   <span class="summary_signature">
     
@@ -259,6 +283,30 @@
 </li>
 
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#user_params-instance_method" title="#user_params (instance method)">#<strong>user_params</strong>  &#x21d2; ActionController::Parameters </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Permits and extracts user parameters from the request.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -269,6 +317,11 @@
   
   
   
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationController.html" title="Securial::ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#render_400-instance_method" title="Securial::ApplicationController#render_400 (method)">#render_400</a></span>, <span class='object_link'><a href="ApplicationController.html#render_404-instance_method" title="Securial::ApplicationController#render_404 (method)">#render_404</a></span></p>
+
   
 
   <div id="instance_method_details" class="method_details_list">
@@ -300,7 +353,7 @@
   
     <li>
       
-        <span class='name'>current_password</span>
+        <span class='name'>params[:current_password]</span>
       
       
         <span class='type'>(<tt>String</tt>)</span>
@@ -428,7 +481,7 @@
   
     <li>
       
-        <span class='name'>securial_user</span>
+        <span class='name'>params[:securial_user]</span>
       
       
         <span class='type'>(<tt>Hash</tt>)</span>
@@ -479,6 +532,61 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="render_user_profile-instance_method">
+  
+    #<strong>render_user_profile</strong>  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Renders the user profile or a not found response.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_render_user_profile'>render_user_profile</span>
+  <span class='kw'>if</span> <span class='ivar'>@securial_user</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:show</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>location:</span> <span class='ivar'>@securial_user</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span>
+      <span class='label'>errors:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User not found</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>instructions:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please check the username and try again.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:not_found</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="show-instance_method">
   
     #<strong>show</strong>  &#x21d2; <tt>void</tt> 
@@ -503,7 +611,7 @@
   
     <li>
       
-        <span class='name'>username</span>
+        <span class='name'>params[:username]</span>
       
       
         <span class='type'>(<tt>String</tt>)</span>
@@ -584,7 +692,7 @@
   
     <li>
       
-        <span class='name'>securial_user</span>
+        <span class='name'>params[:securial_user]</span>
       
       
         <span class='type'>(<tt>Hash</tt>)</span>
@@ -652,12 +760,71 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="user_params-instance_method">
+  
+    #<strong>user_params</strong>  &#x21d2; <tt>ActionController::Parameters</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Permits and extracts user parameters from the request.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ActionController::Parameters</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Permitted user parameters</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_user_params'>user_params</span>
+  <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_expect'>expect</span><span class='lparen'>(</span><span class='label'>securial_user:</span> <span class='lbracket'>[</span><span class='symbol'>:email_address</span><span class='comma'>,</span> <span class='symbol'>:password</span><span class='comma'>,</span> <span class='symbol'>:password_confirmation</span><span class='comma'>,</span> <span class='symbol'>:first_name</span><span class='comma'>,</span> <span class='symbol'>:last_name</span><span class='comma'>,</span> <span class='symbol'>:phone</span><span class='comma'>,</span> <span class='symbol'>:username</span><span class='comma'>,</span> <span class='symbol'>:bio</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:54 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

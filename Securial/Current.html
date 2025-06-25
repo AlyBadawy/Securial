@@ -6,7 +6,7 @@
 <title>
   Class: Securial::Current
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -101,7 +101,28 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Current</p>
 
+<p>This class provides a way to access the current session and user throughout the application. It uses ActiveSupport::CurrentAttributes to store the session and delegate the user method to it.</p>
+
+<p>It allows you to access the current user in controllers, views, and jobs without having to pass the user object explicitly.</p>
+
+<p>Example usage:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>Current</span><span class='period'>.</span><span class='id identifier rubyid_session'>session</span> <span class='op'>=</span> <span class='id identifier rubyid_session'>session</span>
+<span class='const'>Current</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span> <span class='comment'># =&gt; returns the current user object or nil if not authenticated
+</span></code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -114,7 +135,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

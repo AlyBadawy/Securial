@@ -6,7 +6,7 @@
 <title>
   Module: Securial::Middleware
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -85,7 +85,68 @@
   
 </div>
 
-<h2>Defined Under Namespace</h2>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Namespace for Rack middleware components in the Securial framework.</p>
+
+<p>This module contains several middleware components that enhance Rails applications:</p>
+<ul><li>
+<p><span class='object_link'><a href="Middleware/RequestTagLogger.html" title="Securial::Middleware::RequestTagLogger (class)">RequestTagLogger</a></span> - Tags logs with request IDs for better traceability</p>
+</li><li>
+<p><span class='object_link'><a href="Middleware/TransformRequestKeys.html" title="Securial::Middleware::TransformRequestKeys (class)">TransformRequestKeys</a></span> - Transforms incoming request parameter keys to a consistent format</p>
+</li><li>
+<p><span class='object_link'><a href="Middleware/TransformResponseKeys.html" title="Securial::Middleware::TransformResponseKeys (class)">TransformResponseKeys</a></span> - Transforms outgoing response JSON keys to match client conventions</p>
+</li><li>
+<p><span class='object_link'><a href="Middleware/ResponseHeaders.html" title="Securial::Middleware::ResponseHeaders (class)">ResponseHeaders</a></span> - Adds security headers to responses based on configuration</p>
+</li></ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Using middleware in a Rails application (config/application.rb)</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='kw'>module</span> <span class='const'>YourApp</span>
+  <span class='kw'>class</span> <span class='const'>Application</span> <span class='op'>&lt;</span> <span class='const'>Rails</span><span class='op'>::</span><span class='const'>Application</span>
+    <span class='comment'># Add request logging with unique IDs
+</span>    <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_middleware'>middleware</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'>Middleware</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Middleware/RequestTagLogger.html" title="Securial::Middleware::RequestTagLogger (class)">RequestTagLogger</a></span></span>
+
+    <span class='comment'># Transform request keys from camelCase to snake_case
+</span>    <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_middleware'>middleware</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'>Middleware</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Middleware/TransformRequestKeys.html" title="Securial::Middleware::TransformRequestKeys (class)">TransformRequestKeys</a></span></span>
+
+    <span class='comment'># Transform response keys from snake_case to camelCase
+</span>    <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_middleware'>middleware</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'>Middleware</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Middleware/TransformResponseKeys.html" title="Securial::Middleware::TransformResponseKeys (class)">TransformResponseKeys</a></span></span>
+
+    <span class='comment'># Add security headers to all responses
+</span>    <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_middleware'>middleware</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'>Middleware</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Middleware/ResponseHeaders.html" title="Securial::Middleware::ResponseHeaders (class)">ResponseHeaders</a></span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Middleware/RequestTagLogger.html" title="Securial::Middleware::RequestTagLogger (class)">RequestTagLogger</a></span></li>
+    
+      <li><span class='object_link'><a href="Middleware/TransformRequestKeys.html" title="Securial::Middleware::TransformRequestKeys (class)">TransformRequestKeys</a></span></li>
+    
+      <li><span class='object_link'><a href="Middleware/TransformResponseKeys.html" title="Securial::Middleware::TransformResponseKeys (class)">TransformResponseKeys</a></span></li>
+    
+      <li><span class='object_link'><a href="Middleware/ResponseHeaders.html" title="Securial::Middleware::ResponseHeaders (class)">ResponseHeaders</a></span></li>
+    
+  </ul>
+
+</div><h2>Defined Under Namespace</h2>
 <p class="children">
   
     
@@ -107,7 +168,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

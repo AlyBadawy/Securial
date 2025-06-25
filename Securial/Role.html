@@ -6,7 +6,7 @@
 <title>
   Class: Securial::Role
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -103,7 +103,39 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Role</p>
 
+<p>This class represents a role in the Securial authorization system.</p>
+
+<p>Roles are used to define permissions and access levels for users within the application.</p>
+
+<p>## Attributes</p>
+<ul><li>
+<p>‘role_name`: The name of the role, which is normalized to ensure consistency.</p>
+</li></ul>
+
+<p>## Validations</p>
+<ul><li>
+<p>‘role_name` must be present and unique (case insensitive).</p>
+</li></ul>
+
+<p>## Associations</p>
+<ul><li>
+<p>Has many role assignments, allowing users to be associated with this role</p>
+</li><li>
+<p>Has many users through role assignments, enabling flexible permission management</p>
+</li></ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -117,12 +149,17 @@
   
   
   
+  <h2>Method Summary</h2>
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationRecord.html" title="Securial::ApplicationRecord (class)">ApplicationRecord</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationRecord.html#generate_uuid_v7-instance_method" title="Securial::ApplicationRecord#generate_uuid_v7 (method)">#generate_uuid_v7</a></span></p>
+
   
 
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

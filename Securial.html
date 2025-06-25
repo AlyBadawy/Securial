@@ -6,7 +6,7 @@
 <title>
   Module: Securial
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -88,8 +88,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/securial/cli.rb<span class="defines">,<br />
-  lib/securial.rb,<br /> lib/securial/auth.rb,<br /> lib/securial/error.rb,<br /> lib/securial/config.rb,<br /> lib/securial/engine.rb,<br /> lib/securial/logger.rb,<br /> lib/securial/helpers.rb,<br /> lib/securial/version.rb,<br /> lib/securial/security.rb,<br /> lib/securial/error/auth.rb,<br /> lib/securial/middleware.rb,<br /> app/models/securial/role.rb,<br /> app/models/securial/user.rb,<br /> lib/securial/error/config.rb,<br /> app/models/securial/current.rb,<br /> app/models/securial/session.rb,<br /> lib/securial/logger/builder.rb,<br /> lib/securial/config/signature.rb,<br /> lib/securial/logger/formatter.rb,<br /> lib/securial/auth/auth_encoder.rb,<br /> lib/securial/config/validation.rb,<br /> lib/securial/logger/broadcaster.rb,<br /> lib/securial/engine_initializers.rb,<br /> app/jobs/securial/application_job.rb,<br /> lib/securial/auth/session_creator.rb,<br /> lib/securial/auth/token_generator.rb,<br /> lib/securial/config/configuration.rb,<br /> lib/securial/helpers/regex_helper.rb,<br /> lib/securial/helpers/roles_helper.rb,<br /> app/models/securial/role_assignment.rb,<br /> app/mailers/securial/securial_mailer.rb,<br /> lib/securial/helpers/key_transformer.rb,<br /> app/models/securial/application_record.rb,<br /> lib/securial/error/base_securial_error.rb,<br /> app/mailers/securial/application_mailer.rb,<br /> lib/securial/helpers/normalizing_helper.rb,<br /> lib/securial/middleware/response_headers.rb,<br /> app/controllers/securial/roles_controller.rb,<br /> app/controllers/securial/users_controller.rb,<br /> app/controllers/concerns/securial/identity.rb,<br /> app/controllers/securial/status_controller.rb,<br /> lib/securial/middleware/request_tag_logger.rb,<br /> lib/securial/security/request_rate_limiter.rb,<br /> app/controllers/securial/accounts_controller.rb,<br /> app/controllers/securial/sessions_controller.rb,<br /> app/controllers/securial/passwords_controller.rb,<br /> lib/securial/middleware/transform_request_keys.rb,<br /> app/controllers/securial/application_controller.rb,<br /> lib/generators/securial/install/views_generator.rb,<br /> lib/securial/middleware/transform_response_keys.rb,<br /> app/models/concerns/securial/password_resettable.rb,<br /> lib/generators/securial/install/install_generator.rb,<br /> lib/generators/securial/jbuilder/jbuilder_generator.rb,<br /> lib/generators/securial/scaffold/scaffold_generator.rb,<br /> app/controllers/securial/role_assignments_controller.rb</span>
+    <dd>lib/securial.rb<span class="defines">,<br />
+  lib/securial/cli.rb,<br /> lib/securial/auth.rb,<br /> lib/securial/error.rb,<br /> lib/securial/config.rb,<br /> lib/securial/engine.rb,<br /> lib/securial/logger.rb,<br /> lib/securial/helpers.rb,<br /> lib/securial/version.rb,<br /> lib/securial/security.rb,<br /> lib/securial/error/auth.rb,<br /> lib/securial/middleware.rb,<br /> app/models/securial/role.rb,<br /> app/models/securial/user.rb,<br /> lib/securial/error/config.rb,<br /> app/models/securial/current.rb,<br /> app/models/securial/session.rb,<br /> lib/securial/logger/builder.rb,<br /> lib/securial/config/signature.rb,<br /> lib/securial/logger/formatter.rb,<br /> lib/securial/auth/auth_encoder.rb,<br /> lib/securial/config/validation.rb,<br /> lib/securial/logger/broadcaster.rb,<br /> lib/securial/engine_initializers.rb,<br /> app/jobs/securial/application_job.rb,<br /> lib/securial/auth/session_creator.rb,<br /> lib/securial/auth/token_generator.rb,<br /> lib/securial/config/configuration.rb,<br /> lib/securial/helpers/regex_helper.rb,<br /> lib/securial/helpers/roles_helper.rb,<br /> app/models/securial/role_assignment.rb,<br /> app/mailers/securial/securial_mailer.rb,<br /> lib/securial/helpers/key_transformer.rb,<br /> app/models/securial/application_record.rb,<br /> lib/securial/error/base_securial_error.rb,<br /> app/mailers/securial/application_mailer.rb,<br /> lib/securial/helpers/normalizing_helper.rb,<br /> lib/securial/middleware/response_headers.rb,<br /> app/controllers/securial/roles_controller.rb,<br /> app/controllers/securial/users_controller.rb,<br /> app/controllers/concerns/securial/identity.rb,<br /> app/controllers/securial/status_controller.rb,<br /> lib/securial/middleware/request_tag_logger.rb,<br /> lib/securial/security/request_rate_limiter.rb,<br /> app/controllers/securial/accounts_controller.rb,<br /> app/controllers/securial/sessions_controller.rb,<br /> app/controllers/securial/passwords_controller.rb,<br /> lib/securial/middleware/transform_request_keys.rb,<br /> app/controllers/securial/application_controller.rb,<br /> lib/generators/securial/install/views_generator.rb,<br /> lib/securial/middleware/transform_response_keys.rb,<br /> app/models/concerns/securial/password_resettable.rb,<br /> lib/generators/securial/install/install_generator.rb,<br /> lib/generators/securial/jbuilder/jbuilder_generator.rb,<br /> lib/generators/securial/scaffold/scaffold_generator.rb,<br /> app/controllers/securial/role_assignments_controller.rb</span>
 </dd>
   </dl>
   
@@ -98,7 +98,9 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>rubocop:disable Rails/Exit, Rails/Output</p>
+<p>Base error class for the Securial framework.</p>
+
+<p>This file defines the base error class that all other specialized Securial errors inherit from. It provides functionality for default error messages and customized backtrace handling.</p>
 
 
   </div>
@@ -128,7 +130,45 @@
     <dl class="constants">
       
         <dt id="VERSION-constant" class="">VERSION =
-          
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Current version of the Securial gem.</p>
+
+<p>This constant is used by the gem specification to determine the version of the gem when it is built and published to RubyGems. It follows Semantic Versioning 2.0.0.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current version in the format “major.minor.patch”</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://semver.org/" target="_parent" title="Semantic Versioning 2.0.0">Semantic Versioning 2.0.0</a></li>
+    
+  </ul>
+
+</div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1.0.1</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
@@ -144,7 +184,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#configuration-instance_method" title="#configuration (instance method)">#<strong>configuration</strong>  &#x21d2; Object </a>
+      <a href="#logger-instance_method" title="#logger (instance method)">#<strong>logger</strong>  &#x21d2; Securial::Logger::Builder </a>
     
 
     
@@ -162,34 +202,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute configuration.</p>
-</div></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#logger-instance_method" title="#logger (instance method)">#<strong>logger</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-    
-    
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute logger.</p>
+<p>Returns the logger instance used by Securial.</p>
 </div></span>
   
 </li>
@@ -211,7 +224,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#configure-instance_method" title="#configure (instance method)">#<strong>configure</strong> {|configuration| ... } &#x21d2; Object </a>
+      <a href="#configuration-instance_method" title="#configuration (instance method)">#<strong>configuration</strong>  &#x21d2; Securial::Config::Configuration </a>
     
 
     
@@ -225,7 +238,105 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets the current configuration instance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#configuration=-instance_method" title="#configuration= (instance method)">#<strong>configuration=</strong>(config)  &#x21d2; Securial::Config::Configuration </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets the configuration instance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#configure-instance_method" title="#configure (instance method)">#<strong>configure</strong> {|config| ... } &#x21d2; Securial::Config::Configuration </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Configures the Securial framework using a block.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#protected_namespace-instance_method" title="#protected_namespace (instance method)">#<strong>protected_namespace</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the namespace used for protected resources in the application.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#titleized_admin_role-instance_method" title="#titleized_admin_role (instance method)">#<strong>titleized_admin_role</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the admin role name with proper title-case formatting.</p>
+</div></span>
   
 </li>
 
@@ -238,54 +349,11 @@
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="configuration=-instance_method"></span>
-      <div class="method_details first">
-  <h3 class="signature first" id="configuration-instance_method">
-  
-    #<strong>configuration</strong>  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the value of attribute configuration.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-8
-9
-10</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/config.rb', line 8</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_configuration'>configuration</span>
-  <span class='ivar'>@configuration</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      
       <span id="logger=-instance_method"></span>
-      <div class="method_details ">
-  <h3 class="signature " id="logger-instance_method">
+      <div class="method_details first">
+  <h3 class="signature first" id="logger-instance_method">
   
-    #<strong>logger</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>logger</strong>  &#x21d2; <tt><span class='object_link'><a href="Securial/Logger/Builder.html" title="Securial::Logger::Builder (class)">Securial::Logger::Builder</a></span></tt> 
   
 
   
@@ -294,13 +362,40 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute logger.</p>
+<p>Returns the logger instance used by Securial.</p>
+
+<p>If no logger has been set, initializes a new logger instance using the Securial::Logger::Builder class, which configures the logger based on the current environment settings.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Securial/Logger/Builder.html" title="Securial::Logger::Builder (class)">Securial::Logger::Builder</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the configured logger instance</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Securial/Logger/Builder.html" title="Securial::Logger::Builder (class)">Securial::Logger::Builder</a></span></li>
+    
+  </ul>
 
 </div><table class="source_code">
   <tr>
@@ -308,12 +403,12 @@
       <pre class="lines">
 
 
-5
-6
-7</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/logger.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/logger.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_logger'>logger</span>
   <span class='ivar'>@logger</span>
@@ -331,9 +426,9 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="configure-instance_method">
+  <h3 class="signature first" id="configuration-instance_method">
   
-    #<strong>configure</strong> {|configuration| ... } &#x21d2; <tt>Object</tt> 
+    #<strong>configuration</strong>  &#x21d2; <tt><span class='object_link'><a href="Securial/Config/Configuration.html" title="Securial::Config::Configuration (class)">Securial::Config::Configuration</a></span></tt> 
   
 
   
@@ -342,20 +437,29 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Gets the current configuration instance.</p>
+
+<p>Returns the existing configuration or creates a new default configuration if one hasn’t been set yet.</p>
+
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Yields:</p>
-<ul class="yield">
+<p class="tag_title">Returns:</p>
+<ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="#configuration-instance_method" title="Securial#configuration (method)">configuration</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Securial/Config/Configuration.html" title="Securial::Config::Configuration (class)">Securial::Config::Configuration</a></span></tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'>
+<p>the current configuration instance</p>
+</div>
       
     </li>
   
@@ -367,18 +471,370 @@
       <pre class="lines">
 
 
-23
-24
-25
-26</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/config.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/config.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_configuration'>configuration</span>
+  <span class='ivar'>@configuration</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="Securial/Config.html" title="Securial::Config (module)">Config</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Securial/Config/Configuration.html" title="Securial::Config::Configuration (class)">Configuration</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Securial/Config/Configuration.html#initialize-instance_method" title="Securial::Config::Configuration#initialize (method)">new</a></span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="configuration=-instance_method">
+  
+    #<strong>configuration=</strong>(config)  &#x21d2; <tt><span class='object_link'><a href="Securial/Config/Configuration.html" title="Securial::Config::Configuration (class)">Securial::Config::Configuration</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets the configuration instance.</p>
+
+<p>Validates the provided configuration to ensure all required settings are present and have valid values.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>config</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Securial/Config/Configuration.html" title="Securial::Config::Configuration (class)">Securial::Config::Configuration</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the configuration instance to use</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Securial/Config/Configuration.html" title="Securial::Config::Configuration (class)">Securial::Config::Configuration</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the newly set configuration</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if the provided object is not a Configuration instance</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Securial::Error::Config::ValidationError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if the configuration is invalid</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52
+53
+54
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/config.rb', line 50</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_configuration='>configuration=</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Securial/Config.html" title="Securial::Config (module)">Config</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Securial/Config/Configuration.html" title="Securial::Config::Configuration (class)">Configuration</a></span></span><span class='rparen'>)</span>
+    <span class='ivar'>@configuration</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span>
+    <span class='const'><span class='object_link'><a href="" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Securial/Config.html" title="Securial::Config (module)">Config</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Securial/Config/Validation.html" title="Securial::Config::Validation (module)">Validation</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_all!'><span class='object_link'><a href="Securial/Config/Validation.html#validate_all!-instance_method" title="Securial::Config::Validation#validate_all! (method)">validate_all!</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_configuration'>configuration</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Expected an instance of Securial::Config::Configuration</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="configure-instance_method">
+  
+    #<strong>configure</strong> {|config| ... } &#x21d2; <tt><span class='object_link'><a href="Securial/Config/Configuration.html" title="Securial::Config::Configuration (class)">Securial::Config::Configuration</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Configures the Securial framework using a block.</p>
+
+<p>This method provides the conventional Ruby configuration block pattern, yielding the current configuration instance to the provided block for modification. After the block executes, the configuration is validated.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>config</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Yields the configuration instance to the block</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>config</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Securial/Config/Configuration.html" title="Securial::Config::Configuration (class)">Securial::Config::Configuration</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the configuration instance</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Securial/Config/Configuration.html" title="Securial::Config::Configuration (class)">Securial::Config::Configuration</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the updated configuration</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Securial::Error::Config::ValidationError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if the configuration is invalid</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/config.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span>
   <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_configuration'>configuration</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
   <span class='const'><span class='object_link'><a href="" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Securial/Config.html" title="Securial::Config (module)">Config</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Securial/Config/Validation.html" title="Securial::Config::Validation (module)">Validation</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_all!'><span class='object_link'><a href="Securial/Config/Validation.html#validate_all!-instance_method" title="Securial::Config::Validation#validate_all! (method)">validate_all!</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_configuration'>configuration</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_configuration'>configuration</span>
 <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="protected_namespace-instance_method">
+  
+    #<strong>protected_namespace</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the namespace used for protected resources in the application.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the protected namespace designation</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial.rb', line 37</span>
+
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="titleized_admin_role-instance_method">
+  
+    #<strong>titleized_admin_role</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the admin role name with proper title-case formatting.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the admin role title</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial.rb', line 45</span>
+
+<span class='id identifier rubyid_delegate'>delegate</span> <span class='symbol'>:protected_namespace</span><span class='comma'>,</span> <span class='label'>to:</span> <span class='const'><span class='object_link'><a href="" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Securial/Helpers.html" title="Securial::Helpers (module)">Helpers</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Securial/Helpers/RolesHelper.html" title="Securial::Helpers::RolesHelper (module)">RolesHelper</a></span></span></pre>
     </td>
   </tr>
 </table>
@@ -389,7 +845,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:32 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

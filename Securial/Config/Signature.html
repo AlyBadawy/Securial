@@ -6,7 +6,7 @@
 <title>
   Module: Securial::Config::Signature
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -188,6 +188,182 @@
 </li>
 
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#general_signature-instance_method" title="#general_signature (instance method)">#<strong>general_signature</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#logger_signature-instance_method" title="#logger_signature (instance method)">#<strong>logger_signature</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#mailer_signature-instance_method" title="#mailer_signature (instance method)">#<strong>mailer_signature</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#password_signature-instance_method" title="#password_signature (instance method)">#<strong>password_signature</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#response_signature-instance_method" title="#response_signature (instance method)">#<strong>response_signature</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#roles_signature-instance_method" title="#roles_signature (instance method)">#<strong>roles_signature</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#security_signature-instance_method" title="#security_signature (instance method)">#<strong>security_signature</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#session_signature-instance_method" title="#session_signature (instance method)">#<strong>session_signature</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -279,12 +455,334 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="general_signature-instance_method">
+  
+    #<strong>general_signature</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/config/signature.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_general_signature'>general_signature</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>app_name:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Securial</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="logger_signature-instance_method">
+  
+    #<strong>logger_signature</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/config/signature.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_logger_signature'>logger_signature</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>log_to_file:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='lbracket'>[</span><span class='const'>TrueClass</span><span class='comma'>,</span> <span class='const'>FalseClass</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_test?'>test?</span> <span class='op'>?</span> <span class='kw'>false</span> <span class='op'>:</span> <span class='kw'>true</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>log_file_level:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>log_to_file</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>allowed_values:</span> <span class='const'><span class='object_link'><a href="#LOG_LEVELS-constant" title="Securial::Config::Signature::LOG_LEVELS (constant)">LOG_LEVELS</a></span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='symbol'>:debug</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>log_to_stdout:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='lbracket'>[</span><span class='const'>TrueClass</span><span class='comma'>,</span> <span class='const'>FalseClass</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_test?'>test?</span> <span class='op'>?</span> <span class='kw'>false</span> <span class='op'>:</span> <span class='kw'>true</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>log_stdout_level:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>log_to_stdout</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>allowed_values:</span> <span class='const'><span class='object_link'><a href="#LOG_LEVELS-constant" title="Securial::Config::Signature::LOG_LEVELS (constant)">LOG_LEVELS</a></span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='symbol'>:debug</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="mailer_signature-instance_method">
+  
+    #<strong>mailer_signature</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/config/signature.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_mailer_signature'>mailer_signature</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>mailer_sender:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>no-reply@example.com</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>mailer_sign_up_enabled:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='lbracket'>[</span><span class='const'>TrueClass</span><span class='comma'>,</span> <span class='const'>FalseClass</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='kw'>true</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>mailer_sign_up_subject:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mailer_sign_up_enabled</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SECURIAL: Welcome to Our Service</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>mailer_sign_in_enabled:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='lbracket'>[</span><span class='const'>TrueClass</span><span class='comma'>,</span> <span class='const'>FalseClass</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='kw'>true</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>mailer_sign_in_subject:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mailer_sign_in_enabled</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SECURIAL: Sign In Notification</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>mailer_update_account_enabled:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='lbracket'>[</span><span class='const'>TrueClass</span><span class='comma'>,</span> <span class='const'>FalseClass</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='kw'>true</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>mailer_update_account_subject:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mailer_update_account_enabled</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SECURIAL: Account Update Notification</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>mailer_forgot_password_subject:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SECURIAL: Password Reset Instructions</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="password_signature-instance_method">
+  
+    #<strong>password_signature</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/config/signature.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_password_signature'>password_signature</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>password_min_length:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Numeric</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='int'>8</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>password_max_length:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Numeric</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='int'>128</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>password_complexity:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Regexp</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='const'><span class='object_link'><a href="../../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Helpers.html" title="Securial::Helpers (module)">Helpers</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Helpers/RegexHelper.html" title="Securial::Helpers::RegexHelper (module)">RegexHelper</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Helpers/RegexHelper.html#PASSWORD_REGEX-constant" title="Securial::Helpers::RegexHelper::PASSWORD_REGEX (constant)">PASSWORD_REGEX</a></span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>password_expires:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='lbracket'>[</span><span class='const'>TrueClass</span><span class='comma'>,</span> <span class='const'>FalseClass</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='kw'>true</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>password_expires_in:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>ActiveSupport</span><span class='op'>::</span><span class='const'>Duration</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>password_expires</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='int'>90</span><span class='period'>.</span><span class='id identifier rubyid_days'>days</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>reset_password_token_expires_in:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>ActiveSupport</span><span class='op'>::</span><span class='const'>Duration</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_hours'>hours</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>reset_password_token_secret:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>reset_secret</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="response_signature-instance_method">
+  
+    #<strong>response_signature</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90
+91
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/config/signature.rb', line 88</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_response_signature'>response_signature</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>response_keys_format:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>allowed_values:</span>
+      <span class='const'><span class='object_link'><a href="#RESPONSE_KEYS_FORMATS-constant" title="Securial::Config::Signature::RESPONSE_KEYS_FORMATS (constant)">RESPONSE_KEYS_FORMATS</a></span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='symbol'>:snake_case</span><span class='comma'>,</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>timestamps_in_response:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>allowed_values:</span> <span class='const'><span class='object_link'><a href="#TIMESTAMP_OPTIONS-constant" title="Securial::Config::Signature::TIMESTAMP_OPTIONS (constant)">TIMESTAMP_OPTIONS</a></span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='symbol'>:all</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="roles_signature-instance_method">
+  
+    #<strong>roles_signature</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/config/signature.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_roles_signature'>roles_signature</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>admin_role:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='symbol'>:admin</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="security_signature-instance_method">
+  
+    #<strong>security_signature</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+96
+97
+98
+99
+100
+101
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/config/signature.rb', line 96</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_security_signature'>security_signature</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>security_headers:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>allowed_values:</span> <span class='const'><span class='object_link'><a href="#SECURITY_HEADERS-constant" title="Securial::Config::Signature::SECURITY_HEADERS (constant)">SECURITY_HEADERS</a></span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='symbol'>:strict</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>rate_limiting_enabled:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='lbracket'>[</span><span class='const'>TrueClass</span><span class='comma'>,</span> <span class='const'>FalseClass</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='kw'>true</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>rate_limit_requests_per_minute:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Numeric</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rate_limiting_enabled</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='int'>60</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>rate_limit_response_status:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Numeric</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rate_limiting_enabled</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='int'>429</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>rate_limit_response_message:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rate_limiting_enabled</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Too many requests, please try again later.</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="session_signature-instance_method">
+  
+    #<strong>session_signature</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/securial/config/signature.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_session_signature'>session_signature</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>session_expiration_duration:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>ActiveSupport</span><span class='op'>::</span><span class='const'>Duration</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='int'>3</span><span class='period'>.</span><span class='id identifier rubyid_minutes'>minutes</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>session_secret:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>secret</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>session_algorithm:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>allowed_values:</span> <span class='const'><span class='object_link'><a href="#SESSION_ALGORITHMS-constant" title="Securial::Config::Signature::SESSION_ALGORITHMS (constant)">SESSION_ALGORITHMS</a></span></span><span class='comma'>,</span> <span class='label'>default:</span> <span class='symbol'>:hs256</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>session_refresh_token_expires_in:</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='const'>ActiveSupport</span><span class='op'>::</span><span class='const'>Duration</span><span class='comma'>,</span> <span class='label'>required:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

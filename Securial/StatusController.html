@@ -6,7 +6,7 @@
 <title>
   Class: Securial::StatusController
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -103,7 +103,31 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>StatusController</p>
 
+<p>Controller for checking system status and authentication state.</p>
+
+<p>This controller provides a simple endpoint for checking if the Securial system is operational and retrieving basic information about the current authentication state, if applicable. This endpoint is publicly accessible and does not require authentication.</p>
+
+<p>Typically used for:</p>
+
+<pre class="code ruby"><code class="ruby">- Health checks from monitoring systems
+- Client applications to verify API availability
+- Testing authentication status without making authenticated requests
+</code></pre>
+
+<p>Routes typically mounted at Securial/status/* in the host application.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -121,7 +145,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#show-instance_method" title="#show (instance method)">#<strong>show</strong>  &#x21d2; Object </a>
+      <a href="#show-instance_method" title="#show (instance method)">#<strong>show</strong>  &#x21d2; void </a>
     
 
     
@@ -135,7 +159,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Shows the current Securial Engine status.</p>
+</div></span>
   
 </li>
 
@@ -151,6 +177,11 @@
   
   
   
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationController.html" title="Securial::ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#render_400-instance_method" title="Securial::ApplicationController#render_400 (method)">#render_400</a></span>, <span class='object_link'><a href="ApplicationController.html#render_404-instance_method" title="Securial::ApplicationController#render_404 (method)">#render_404</a></span></p>
+
+  
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
@@ -159,26 +190,39 @@
       <div class="method_details first">
   <h3 class="signature first" id="show-instance_method">
   
-    #<strong>show</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>show</strong>  &#x21d2; <tt>void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Shows the current Securial Engine status.</p>
+
+<p>Provides information about the engine’s operational state and, if the request includes a valid authentication token, the current user. This endpoint is always accessible without authentication.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-5
-6
-7
-8
-9</pre>
+29
+30
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/status_controller.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/status_controller.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
   <span class='ivar'>@current_user</span> <span class='op'>=</span> <span class='id identifier rubyid_current_user'>current_user</span>
@@ -195,7 +239,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:54 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

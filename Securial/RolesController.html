@@ -6,7 +6,7 @@
 <title>
   Class: Securial::RolesController
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -120,6 +120,8 @@
 
 <p>All operations require admin authentication and are typically used for setting up and managing the application’s permission structure.</p>
 
+<p>Routes typically mounted at Securial/admins/roles/* in the host application.</p>
+
 
   </div>
 </div>
@@ -213,6 +215,54 @@
 </li>
 
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#securial_role_params-instance_method" title="#securial_role_params (instance method)">#<strong>securial_role_params</strong>  &#x21d2; ActionController::Parameters </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Permits and extracts role parameters from the request.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#set_securial_role-instance_method" title="#set_securial_role (instance method)">#<strong>set_securial_role</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Finds and sets a specific role for show, update and destroy actions.</p>
+</div></span>
+  
+</li>
+
+      
         <li class="public ">
   <span class="summary_signature">
     
@@ -271,6 +321,11 @@
   
   
   
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationController.html" title="Securial::ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#render_400-instance_method" title="Securial::ApplicationController#render_400 (method)">#render_400</a></span>, <span class='object_link'><a href="ApplicationController.html#render_404-instance_method" title="Securial::ApplicationController#render_404 (method)">#render_404</a></span></p>
+
   
 
   <div id="instance_method_details" class="method_details_list">
@@ -400,13 +455,13 @@
       <pre class="lines">
 
 
+76
+77
 78
-79
-80
-81</pre>
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/roles_controller.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/roles_controller.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
   <span class='ivar'>@securial_role</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
@@ -445,15 +500,135 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/roles_controller.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/roles_controller.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
   <span class='ivar'>@securial_roles</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Role.html" title="Securial::Role (class)">Role</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="securial_role_params-instance_method">
+  
+    #<strong>securial_role_params</strong>  &#x21d2; <tt>ActionController::Parameters</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Permits and extracts role parameters from the request.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ActionController::Parameters</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Permitted role parameters</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/roles_controller.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_securial_role_params'>securial_role_params</span>
+  <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_expect'>expect</span><span class='lparen'>(</span><span class='label'>securial_role:</span> <span class='lbracket'>[</span><span class='symbol'>:role_name</span><span class='comma'>,</span> <span class='symbol'>:hide_from_profile</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_securial_role-instance_method">
+  
+    #<strong>set_securial_role</strong>  &#x21d2; <tt>void</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Finds and sets a specific role for show, update and destroy actions.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params[:id]</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the role to find</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+87
+88
+89</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/roles_controller.rb', line 87</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_securial_role'>set_securial_role</span>
+  <span class='ivar'>@securial_role</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Role.html" title="Securial::Role (class)">Role</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -508,11 +683,11 @@
       <pre class="lines">
 
 
-35
-36</pre>
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/roles_controller.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/roles_controller.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
 <span class='kw'>end</span></pre>
@@ -585,16 +760,16 @@
       <pre class="lines">
 
 
+62
 63
 64
 65
 66
 67
-68
-69</pre>
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/roles_controller.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/roles_controller.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
   <span class='kw'>if</span> <span class='ivar'>@securial_role</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_securial_role_params'>securial_role_params</span><span class='rparen'>)</span>
@@ -613,7 +788,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:54 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

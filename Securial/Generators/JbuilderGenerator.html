@@ -6,7 +6,7 @@
 <title>
   Class: Securial::Generators::JbuilderGenerator
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -116,6 +116,94 @@
 
     <ul class="summary">
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#attributes_names-instance_method" title="#attributes_names (instance method)">#<strong>attributes_names</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#create_index_file-instance_method" title="#create_index_file (instance method)">#<strong>create_index_file</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#create_resource_file-instance_method" title="#create_resource_file (instance method)">#<strong>create_resource_file</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#create_show_file-instance_method" title="#create_show_file (instance method)">#<strong>create_show_file</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
         <li class="public ">
   <span class="summary_signature">
     
@@ -138,6 +226,72 @@
 </li>
 
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#status_behavior-instance_method" title="#status_behavior (instance method)">#<strong>status_behavior</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#status_color-instance_method" title="#status_color (instance method)">#<strong>status_color</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#view_path-instance_method" title="#view_path (instance method)">#<strong>view_path</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -149,7 +303,139 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="create_view_files-instance_method">
+  <h3 class="signature first" id="attributes_names-instance_method">
+  
+    #<strong>attributes_names</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/generators/securial/jbuilder/jbuilder_generator.rb', line 18</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_attributes_names'>attributes_names</span>
+  <span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_index_file-instance_method">
+  
+    #<strong>create_index_file</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/generators/securial/jbuilder/jbuilder_generator.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_index_file'>create_index_file</span>
+  <span class='ivar'>@index_path_name</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_view_path'>view_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index.json.jbuilder</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_say_status'>say_status</span><span class='lparen'>(</span><span class='id identifier rubyid_status_behavior'>status_behavior</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  </span><span class='embexpr_beg'>#{</span><span class='ivar'>@index_path_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_status_color'>status_color</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_test?'>test?</span>
+  <span class='id identifier rubyid_template'>template</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index.json.erb</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@index_path_name</span><span class='comma'>,</span> <span class='label'>verbose:</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_resource_file-instance_method">
+  
+    #<strong>create_resource_file</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/generators/securial/jbuilder/jbuilder_generator.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_resource_file'>create_resource_file</span>
+  <span class='ivar'>@resource_path_name</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_view_path'>view_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_singular_table_name'>singular_table_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.json.jbuilder</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_say_status'>say_status</span><span class='lparen'>(</span><span class='id identifier rubyid_status_behavior'>status_behavior</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  </span><span class='embexpr_beg'>#{</span><span class='ivar'>@resource_path_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_status_color'>status_color</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_test?'>test?</span>
+  <span class='id identifier rubyid_template'>template</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_resource.json.erb</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@resource_path_name</span><span class='comma'>,</span> <span class='label'>verbose:</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_show_file-instance_method">
+  
+    #<strong>create_show_file</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/generators/securial/jbuilder/jbuilder_generator.rb', line 34</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_show_file'>create_show_file</span>
+  <span class='ivar'>@show_path_name</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_view_path'>view_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>show.json.jbuilder</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_say_status'>say_status</span><span class='lparen'>(</span><span class='id identifier rubyid_status_behavior'>status_behavior</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  </span><span class='embexpr_beg'>#{</span><span class='ivar'>@show_path_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_status_color'>status_color</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_test?'>test?</span>
+  <span class='id identifier rubyid_template'>template</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>show.json.erb</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@show_path_name</span><span class='comma'>,</span> <span class='label'>verbose:</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_view_files-instance_method">
   
     #<strong>create_view_files</strong>  &#x21d2; <tt>Object</tt> 
   
@@ -182,12 +468,104 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="status_behavior-instance_method">
+  
+    #<strong>status_behavior</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/generators/securial/jbuilder/jbuilder_generator.rb', line 45</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_status_behavior'>status_behavior</span>
+  <span class='id identifier rubyid_behavior'>behavior</span> <span class='op'>==</span> <span class='symbol'>:invoke</span> <span class='op'>?</span> <span class='symbol'>:create</span> <span class='op'>:</span> <span class='symbol'>:remove</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="status_color-instance_method">
+  
+    #<strong>status_color</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/generators/securial/jbuilder/jbuilder_generator.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_status_color'>status_color</span>
+  <span class='id identifier rubyid_behavior'>behavior</span> <span class='op'>==</span> <span class='symbol'>:invoke</span> <span class='op'>?</span> <span class='symbol'>:green</span> <span class='op'>:</span> <span class='symbol'>:red</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="view_path-instance_method">
+  
+    #<strong>view_path</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/generators/securial/jbuilder/jbuilder_generator.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_view_path'>view_path</span>
+  <span class='id identifier rubyid_base_path'>base_path</span> <span class='op'>=</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_test?'>test?</span> <span class='op'>?</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tmp/app/views/securial</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>app/views/securial</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@view_path</span> <span class='op'>||=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_base_path'>base_path</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_pluralize'>pluralize</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:54 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

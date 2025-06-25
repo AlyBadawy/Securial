@@ -6,7 +6,7 @@
 <title>
   Class: Securial::RoleAssignmentsController
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -118,6 +118,8 @@
 
 <p>All operations require admin authentication and are typically used for user permission management within the application.</p>
 
+<p>Routes typically mounted at Securial/admins/role_assignments/* in the host application.</p>
+
 
   </div>
 </div>
@@ -163,6 +165,30 @@
 </li>
 
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#define_user_and_role-instance_method" title="#define_user_and_role (instance method)">#<strong>define_user_and_role</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Looks up and validates the existence of both the user and role.</p>
+</div></span>
+  
+</li>
+
+      
         <li class="public ">
   <span class="summary_signature">
     
@@ -187,6 +213,30 @@
 </li>
 
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#securial_role_assignment_params-instance_method" title="#securial_role_assignment_params (instance method)">#<strong>securial_role_assignment_params</strong>  &#x21d2; ActionController::Parameters </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Permits and extracts role assignment parameters from the request.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -197,6 +247,11 @@
   
   
   
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationController.html" title="Securial::ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#render_400-instance_method" title="Securial::ApplicationController#render_400 (method)">#render_400</a></span>, <span class='object_link'><a href="ApplicationController.html#render_404-instance_method" title="Securial::ApplicationController#render_404 (method)">#render_404</a></span></p>
+
   
 
   <div id="instance_method_details" class="method_details_list">
@@ -228,7 +283,7 @@
   
     <li>
       
-        <span class='name'>user_id</span>
+        <span class='name'>params[:user_id]</span>
       
       
         <span class='type'>(<tt>Integer</tt>)</span>
@@ -244,7 +299,7 @@
   
     <li>
       
-        <span class='name'>role_id</span>
+        <span class='name'>params[:role_id]</span>
       
       
         <span class='type'>(<tt>Integer</tt>)</span>
@@ -267,10 +322,6 @@
       <pre class="lines">
 
 
-21
-22
-23
-24
 25
 26
 27
@@ -280,10 +331,14 @@
 31
 32
 33
-34</pre>
+34
+35
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/role_assignments_controller.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/role_assignments_controller.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_define_user_and_role'>define_user_and_role</span>
@@ -298,6 +353,101 @@
   <span class='ivar'>@securial_role_assignment</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="RoleAssignment.html" title="Securial::RoleAssignment (class)">RoleAssignment</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_securial_role_assignment_params'>securial_role_assignment_params</span><span class='rparen'>)</span>
   <span class='ivar'>@securial_role_assignment</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
   <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:show</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:created</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="define_user_and_role-instance_method">
+  
+    #<strong>define_user_and_role</strong>  &#x21d2; <tt>Boolean</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Looks up and validates the existence of both the user and role.</p>
+
+<p>Sets @securial_user and @securial_role instance variables if both exist. Renders error responses if either cannot be found.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true if both user and role were found, false otherwise</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/role_assignments_controller.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_define_user_and_role'>define_user_and_role</span>
+  <span class='ivar'>@securial_user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="User.html" title="Securial::User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_expect'>expect</span><span class='lparen'>(</span><span class='label'>securial_role_assignment:</span> <span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='symbol'>:user_id</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='ivar'>@securial_role</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Role.html" title="Securial::Role (class)">Role</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_expect'>expect</span><span class='lparen'>(</span><span class='label'>securial_role_assignment:</span> <span class='lbracket'>[</span><span class='symbol'>:role_id</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='symbol'>:role_id</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@securial_user</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span>
+      <span class='label'>errors:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User not found</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>instructions:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please check the user ID and try again.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:unprocessable_entity</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='ivar'>@securial_role</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span>
+      <span class='label'>errors:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Role not found</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>instructions:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please check the role ID and try again.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:unprocessable_entity</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -329,7 +479,7 @@
   
     <li>
       
-        <span class='name'>user_id</span>
+        <span class='name'>params[:user_id]</span>
       
       
         <span class='type'>(<tt>Integer</tt>)</span>
@@ -345,7 +495,7 @@
   
     <li>
       
-        <span class='name'>role_id</span>
+        <span class='name'>params[:role_id]</span>
       
       
         <span class='type'>(<tt>Integer</tt>)</span>
@@ -368,10 +518,6 @@
       <pre class="lines">
 
 
-44
-45
-46
-47
 48
 49
 50
@@ -380,10 +526,14 @@
 53
 54
 55
-56</pre>
+56
+57
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/role_assignments_controller.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/role_assignments_controller.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_define_user_and_role'>define_user_and_role</span>
@@ -403,12 +553,71 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="securial_role_assignment_params-instance_method">
+  
+    #<strong>securial_role_assignment_params</strong>  &#x21d2; <tt>ActionController::Parameters</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Permits and extracts role assignment parameters from the request.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ActionController::Parameters</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Permitted role assignment parameters</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/role_assignments_controller.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_securial_role_assignment_params'>securial_role_assignment_params</span>
+  <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_expect'>expect</span><span class='lparen'>(</span><span class='label'>securial_role_assignment:</span> <span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='comma'>,</span> <span class='symbol'>:role_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:54 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

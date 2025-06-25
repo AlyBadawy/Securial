@@ -6,7 +6,7 @@
 <title>
   Class: Securial::Session
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -103,7 +103,56 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Session</p>
 
+<p># This class represents a user session in the Securial authentication system. # It is used to manage user sessions, including session creation, validation, and refresh functionality.</p>
+
+<p>## Attributes</p>
+<ul><li>
+<p>‘user_id`: The ID of the user associated with the session</p>
+</li><li>
+<p>‘ip_address`: The IP address from which the session was created</p>
+</li><li>
+<p>‘user_agent`: The user agent string of the browser or client used to create</p>
+</li></ul>
+
+<p>the session</p>
+<ul><li>
+<p>‘refresh_token`: A token used to refresh the session</p>
+</li><li>
+<p>‘refresh_token_expires_at`: The expiration time of the refresh token</p>
+</li><li>
+<p>‘refresh_count`: The number of times the session has been refreshed</p>
+</li><li>
+<p>‘last_refreshed_at`: The timestamp of the last time the session was refreshed</p>
+</li><li>
+<p>‘revoked`: A boolean indicating whether the session has been revoked</p>
+</li></ul>
+
+<p>## Associations</p>
+<ul><li>
+<p>Belongs to a user, linking the session to a specific user</p>
+</li></ul>
+
+<p>## Validations</p>
+<ul><li>
+<p>‘ip_address`: Must be present</p>
+</li><li>
+<p>‘user_agent`: Must be present</p>
+</li><li>
+<p>‘refresh_token`: Must be present</p>
+</li></ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -135,7 +184,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the session has expired based on the refresh token expiration time.</p>
+</div></span>
   
 </li>
 
@@ -157,7 +208,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the session is valid based on its state.</p>
+</div></span>
   
 </li>
 
@@ -179,7 +232,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the session is valid for a specific request.</p>
+</div></span>
   
 </li>
 
@@ -187,7 +242,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#refresh!-instance_method" title="#refresh! (instance method)">#<strong>refresh!</strong>  &#x21d2; Object </a>
+      <a href="#refresh!-instance_method" title="#refresh! (instance method)">#<strong>refresh!</strong>  &#x21d2; void </a>
     
 
     
@@ -201,7 +256,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Refreshes the session by generating a new refresh token and updating the session attributes.</p>
+</div></span>
   
 </li>
 
@@ -209,7 +266,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#revoke!-instance_method" title="#revoke! (instance method)">#<strong>revoke!</strong>  &#x21d2; Object </a>
+      <a href="#revoke!-instance_method" title="#revoke! (instance method)">#<strong>revoke!</strong>  &#x21d2; void </a>
     
 
     
@@ -223,7 +280,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Revokes the session by setting the ‘revoked` attribute to true.</p>
+</div></span>
   
 </li>
 
@@ -245,7 +304,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the session is revoked.</p>
+</div></span>
   
 </li>
 
@@ -260,6 +321,11 @@
   
   
   
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationRecord.html" title="Securial::ApplicationRecord (class)">ApplicationRecord</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationRecord.html#generate_uuid_v7-instance_method" title="Securial::ApplicationRecord#generate_uuid_v7 (method)">#generate_uuid_v7</a></span></p>
+
   
 
   <div id="instance_method_details" class="method_details_list">
@@ -278,6 +344,10 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Checks if the session has expired based on the refresh token expiration time.</p>
+
+<p>A session is considered expired if the ‘refresh_token_expires_at` time is in the past.</p>
+
 
   </div>
 </div>
@@ -293,6 +363,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>Returns true if the session has expired, false otherwise.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -303,10 +378,10 @@
       <pre class="lines">
 
 
-36</pre>
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 114</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expired?'>expired?</span><span class='semicolon'>;</span> <span class='id identifier rubyid_refresh_token_expires_at'>refresh_token_expires_at</span> <span class='op'>&lt;</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -326,6 +401,10 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Checks if the session is valid based on its state.</p>
+
+<p>A session is considered valid if it is not revoked and has not expired.</p>
+
 
   </div>
 </div>
@@ -341,6 +420,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>Returns true if the session is valid, false otherwise.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -351,15 +435,15 @@
       <pre class="lines">
 
 
-13
-14
-15</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_valid_session?'>is_valid_session?</span>
-  <span class='id identifier rubyid_revoked?'>revoked?</span> <span class='op'>||</span> <span class='id identifier rubyid_expired?'>expired?</span> <span class='op'>?</span> <span class='kw'>false</span> <span class='op'>:</span> <span class='kw'>true</span>
+  <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_revoked?'>revoked?</span> <span class='op'>||</span> <span class='id identifier rubyid_expired?'>expired?</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -378,11 +462,35 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Checks if the session is valid for a specific request.</p>
+
+<p>A session is valid for a request if it is not revoked, has not expired, and the IP address and user agent match those of the request.</p>
+
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>request</span>
+      
+      
+        <span class='type'>(<tt>ActionDispatch::Request</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The request to validate against</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -392,6 +500,11 @@
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'>
+<p>Returns true if the session is valid for the request, false otherwise.</p>
+</div>
       
     </li>
   
@@ -403,12 +516,12 @@
       <pre class="lines">
 
 
-17
-18
-19</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_valid_session_request?'>is_valid_session_request?</span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_is_valid_session?'>is_valid_session?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_ip_address'>ip_address</span> <span class='op'>==</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_ip'>ip</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_user_agent'>user_agent</span> <span class='op'>==</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_user_agent'>user_agent</span>
@@ -421,7 +534,7 @@
       <div class="method_details ">
   <h3 class="signature " id="refresh!-instance_method">
   
-    #<strong>refresh!</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>refresh!</strong>  &#x21d2; <tt>void</tt> 
   
 
   
@@ -430,11 +543,40 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method uses the Securial::Auth::TokenGenerator to</p>
+</div>
+  </div>
+
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>The refresh token expiration duration is configured in Securial.configuration.session_refresh_token_expires_in.</p>
+</div>
+  </div>
+
+<p class="note returns_void">This method returns an undefined value.</p>
+<p>Refreshes the session by generating a new refresh token and updating the session attributes.</p>
+
+<p>This method raises an error if the session is revoked or expired.</p>
+
+<p>generate a new refresh token and updates the session’s attributes accordingly.</p>
+
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_session'>session</span><span class='period'>.</span><span class='id identifier rubyid_refresh!'>refresh!</span> <span class='comment'># =&gt; Updates the session with a new refresh token</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -445,9 +587,35 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>if the session is revoked</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Error/Auth/TokenExpiredError.html" title="Securial::Error::Auth::TokenExpiredError (class)">Securial::Error::Auth::TokenExpiredError</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if the session is expired</p>
+</div>
+      
     </li>
   
 </ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Auth/TokenGenerator.html" title="Securial::Auth::TokenGenerator (module)">Auth::TokenGenerator</a></span></li>
+    
+  </ul>
 
 </div><table class="source_code">
   <tr>
@@ -455,22 +623,22 @@
       <pre class="lines">
 
 
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33</pre>
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_refresh!'>refresh!</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Error.html" title="Securial::Error (module)">Error</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Error/Auth.html" title="Securial::Error::Auth (module)">Auth</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Error/Auth/TokenRevokedError.html" title="Securial::Error::Auth::TokenRevokedError (class)">TokenRevokedError</a></span></span> <span class='kw'>if</span> <span class='id identifier rubyid_revoked?'>revoked?</span>
@@ -493,24 +661,71 @@
       <div class="method_details ">
   <h3 class="signature " id="revoke!-instance_method">
   
-    #<strong>revoke!</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>revoke!</strong>  &#x21d2; <tt>void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method does not delete the session record; it only marks it as revoked.</p>
+</div>
+  </div>
+
+<p class="note returns_void">This method returns an undefined value.</p>
+<p>Revokes the session by setting the ‘revoked` attribute to true.</p>
+
+<p>This method updates the session record in the database to indicate that the session is no longer valid.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_session'>session</span><span class='period'>.</span><span class='id identifier rubyid_revoke!'>revoke!</span> <span class='comment'># =&gt; Updates the session to be revoked</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ActiveRecord::RecordInvalid</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if the update fails due to validation errors</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-9
-10
-11</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_revoke!'>revoke!</span>
   <span class='id identifier rubyid_update!'>update!</span><span class='lparen'>(</span><span class='label'>revoked:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -532,11 +747,36 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method checks the ‘revoked` attribute of the session.</p>
+</div>
+  </div>
+
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method is used to determine if the session is still active or has been revoked</p>
+</div>
+  </div>
+
+
+<p>Checks if the session is revoked.</p>
+
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_session'>session</span><span class='period'>.</span><span class='id identifier rubyid_revoked?'>revoked?</span> <span class='comment'># =&gt; true or false</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -547,9 +787,21 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>Returns true if the session is revoked, false otherwise.</p>
+</div>
+      
     </li>
   
 </ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>#revoked</li>
+    
+  </ul>
 
 </div><table class="source_code">
   <tr>
@@ -557,10 +809,10 @@
       <pre class="lines">
 
 
-35</pre>
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/models/securial/session.rb', line 107</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_revoked?'>revoked?</span><span class='semicolon'>;</span> <span class='id identifier rubyid_revoked'>revoked</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -573,7 +825,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

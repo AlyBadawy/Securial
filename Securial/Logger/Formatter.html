@@ -6,7 +6,7 @@
 <title>
   Module: Securial::Logger::Formatter
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Securial Gem Documentation
   
 </title>
 
@@ -83,7 +83,20 @@
   
 </div>
 
-<h2>Defined Under Namespace</h2>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Formatting utilities for Securial’s logging system.</p>
+
+<p>This module contains formatter classes and constants that determine how log messages are presented. It provides both colored output for terminal environments and plain text output for file logging.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
 <p class="children">
   
     
@@ -103,7 +116,36 @@
     <dl class="constants">
       
         <dt id="COLORS-constant" class="">COLORS =
-          
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Terminal color codes for different log severity levels.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash{String =&gt; String}</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Mapping of severity names to ANSI color codes</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DEBUG</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\e[36m</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>   <span class='comment'># cyan
@@ -118,20 +160,67 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>white</p>
+<p>ANSI code to reset terminal colors.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Terminal color reset sequence</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\e[0m</span><span class='tstring_end'>&quot;</span></span></pre></dd>
       
         <dt id="SEVERITY_WIDTH-constant" class="">SEVERITY_WIDTH =
-          
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Width used for severity level padding in log output.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Number of characters to use for severity field</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
         </dt>
         <dd><pre class="code"><span class='int'>5</span></pre></dd>
       
@@ -149,7 +238,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 24 20:08:33 2025 by
+  Generated on Wed Jun 25 16:32:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>
