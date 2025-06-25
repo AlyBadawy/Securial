@@ -40,7 +40,7 @@ module Securial
     # the user's password if the new password is valid.
     #
     # @param [String] params[:token] The password reset token from the email
-    # @param [String] params[:password ] The new password
+    # @param [String] params[:password] The new password
     # @param [String] params[:password_confirmation] Confirmation of the new password
     # @return [void] Renders success message with 200 OK status or errors with 422
     def reset_password
