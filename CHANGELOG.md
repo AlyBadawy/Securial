@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Implemented Yard documentation for `Securial::Identity` Concern
 - Implemented Yard documentation for User management (`AccountsController`, and `PasswordsController`)
+- Implemented YARD documentation across all controllers
 
 ## [1.0.1] - 2025-06-23
 
