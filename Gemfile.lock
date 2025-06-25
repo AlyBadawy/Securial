@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    securial (1.0.1)
+    securial (1.0.2)
       bcrypt (~> 3.1)
       jbuilder (~> 2.13)
       jwt (>= 3.0, < 3.2)
