@@ -1,14 +1,16 @@
 # Securial Gem
 
 [![Gem Version](https://img.shields.io/gem/v/securial?logo=rubygems&logoColor=ffffff&logoSize=auto&label=version&color=violet&cacheSeconds=120)](https://rubygems.org/gems/securial)
-[![Gem Downloads](https://img.shields.io/gem/dt/securial.svg)](https://rubygems.org/gems/securial)
-[![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/AlyBadawy/Securial?tab=MIT-1-ov-file#readme)
-
+[![Downloads](https://img.shields.io/gem/dt/securial.svg)](https://rubygems.org/gems/securial)
 [![Tests](https://github.com/alybadawy/securial/actions/workflows/ci.yml/badge.svg)](https://github.com/alybadawy/securial/actions)
 [![Coveralls](https://img.shields.io/coverallsCoverage/github/AlyBadawy/Securial?branch=main&logo=coveralls&logoColor=%233F5767&labelColor=ddeedd)
 ](https://coveralls.io/github/AlyBadawy/Securial?branch=main)
 
-[![Documentation](https://img.shields.io/badge/yard-Documentation-blue?style=flat&logo=readthedocs&logoColor=%238CA1AF&label=yard&link=https%3A%2F%2Fwww.rubydoc.info%2Fgems%2Fsecurial%2Findex)](https://alybadawy.github.io/Securial/_index.html)
+
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/AlyBadawy/Securial?tab=MIT-1-ov-file#readme)
+[![Documentation](https://img.shields.io/badge/yard-Documentation-cyan?style=flat&logo=readthedocs&logoColor=%238CA1AF&label=yard)](https://alybadawy.github.io/Securial/_index.html)
+[![Wiki](https://img.shields.io/badge/Wiki-Github_Wiki-orange?style=flat&logo=wikibooks&logoColor=%23F5CD0E&label=Wiki)](https://github.com/alybadawy/securial/wiki)
+
 
 ---
 
