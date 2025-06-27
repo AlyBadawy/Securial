@@ -1,14 +1,74 @@
+# @title Securial Configuration Signature
+#
+# Configuration schema definition and validation rules for the Securial framework.
+#
+# This module defines the complete configuration schema for Securial, including
+# all available configuration options, their types, default values, and validation
+# rules. It serves as the single source of truth for what configuration options
+# are available and how they should be validated.
+#
+# @example Getting the complete configuration schema
+#   schema = Securial::Config::Signature.config_signature
+#   # => { app_name: { type: String, required: true, default: "Securial" }, ... }
+#
+# @example Getting default configuration values
+#   defaults = Securial::Config::Signature.default_config_attributes
+#   # => { app_name: "Securial", log_to_file: true, ... }
+#
 module Securial
   module Config
+    # Configuration schema definition and validation rules.
+    #
+    # This module provides the complete schema for Securial's configuration system,
+    # defining all available options, their types, validation rules, and default values.
+    # It's used by the configuration system to validate user-provided settings.
+    #
     module Signature
-      LOG_LEVELS         = %i[debug info warn error fatal unknown].freeze
+      # Valid log levels for the logging system.
+      #
+      # @return [Array<Symbol>] Available log levels from least to most severe
+      #
+      LOG_LEVELS = %i[debug info warn error fatal unknown].freeze
+
+      # Supported JWT signing algorithms for session tokens.
+      #
+      # @return [Array<Symbol>] HMAC algorithms supported for JWT signing
+      #
       SESSION_ALGORITHMS = %i[hs256 hs384 hs512].freeze
-      SECURITY_HEADERS   = %i[strict default none].freeze
-      TIMESTAMP_OPTIONS  = %i[all admins_only none].freeze
+
+      # Security header configuration options.
+      #
+      # @return [Array<Symbol>] Available security header policies
+      #
+      SECURITY_HEADERS = %i[strict default none].freeze
+
+      # Timestamp inclusion options for API responses.
+      #
+      # @return [Array<Symbol>] Who should see timestamps in responses
+      #
+      TIMESTAMP_OPTIONS = %i[all admins_only none].freeze
+
+      # Available key format transformations for API responses.
+      #
+      # @return [Array<Symbol>] Supported key case formats
+      #
       RESPONSE_KEYS_FORMATS = %i[snake_case lowerCamelCase UpperCamelCase].freeze
 
       extend self
 
+      # Returns the complete configuration schema for Securial.
+      #
+      # Combines all configuration sections into a single schema hash that defines
+      # every available configuration option, its type, validation rules, and
+      # default value.
+      #
+      # @return [Hash] Complete configuration schema with validation rules
+      #
+      # @example
+      #   schema = config_signature
+      #   app_name_config = schema[:app_name]
+      #   # => { type: String, required: true, default: "Securial" }
+      #
       def config_signature
         [
           general_signature,
@@ -22,6 +82,18 @@ module Securial
         ].reduce({}, :merge)
       end
 
+      # Extracts default values from the configuration schema.
+      #
+      # Transforms the complete configuration schema to return only the default
+      # values for each configuration option, suitable for initializing a new
+      # configuration instance.
+      #
+      # @return [Hash] Default values for all configuration options
+      #
+      # @example
+      #   defaults = default_config_attributes
+      #   # => { app_name: "Securial", session_expiration_duration: 3.minutes, ... }
+      #
       def default_config_attributes
         config_signature.transform_values do |options|
           options[:default]
@@ -30,12 +102,22 @@ module Securial
 
       private
 
+      # General application configuration options.
+      #
+      # @return [Hash] Schema for general application settings
+      # @api private
+      #
       def general_signature
         {
           app_name: { type: String, required: true, default: "Securial" },
         }
       end
 
+      # Logging system configuration options.
+      #
+      # @return [Hash] Schema for logging configuration
+      # @api private
+      #
       def logger_signature
         {
           log_to_file: { type: [TrueClass, FalseClass], required: true, default: Rails.env.test? ? false : true },
@@ -45,12 +127,22 @@ module Securial
         }
       end
 
+      # User role and permission configuration options.
+      #
+      # @return [Hash] Schema for role management settings
+      # @api private
+      #
       def roles_signature
         {
           admin_role: { type: Symbol, required: true, default: :admin },
         }
       end
 
+      # Session and JWT token configuration options.
+      #
+      # @return [Hash] Schema for session management settings
+      # @api private
+      #
       def session_signature
         {
           session_expiration_duration: { type: ActiveSupport::Duration, required: true, default: 3.minutes },
@@ -60,6 +152,11 @@ module Securial
         }
       end
 
+      # Email and notification configuration options.
+      #
+      # @return [Hash] Schema for mailer settings
+      # @api private
+      #
       def mailer_signature
         {
           mailer_sender: { type: String, required: true, default: "no-reply@example.com" },
@@ -73,6 +170,11 @@ module Securial
         }
       end
 
+      # Password policy and security configuration options.
+      #
+      # @return [Hash] Schema for password management settings
+      # @api private
+      #
       def password_signature
         {
           password_min_length: { type: Numeric, required: true, default: 8 },
@@ -85,14 +187,23 @@ module Securial
         }
       end
 
+      # API response formatting configuration options.
+      #
+      # @return [Hash] Schema for response formatting settings
+      # @api private
+      #
       def response_signature
         {
-          response_keys_format: { type: Symbol, required: true, allowed_values:
-            RESPONSE_KEYS_FORMATS, default: :snake_case, },
+          response_keys_format: { type: Symbol, required: true, allowed_values: RESPONSE_KEYS_FORMATS, default: :snake_case },
           timestamps_in_response: { type: Symbol, required: true, allowed_values: TIMESTAMP_OPTIONS, default: :all },
         }
       end
 
+      # Security and rate limiting configuration options.
+      #
+      # @return [Hash] Schema for security settings
+      # @api private
+      #
       def security_signature
         {
           security_headers: { type: Symbol, required: true, allowed_values: SECURITY_HEADERS, default: :strict },
