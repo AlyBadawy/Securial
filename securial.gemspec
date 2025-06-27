@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.date                           = Time.now.utc.strftime('%Y-%m-%d')
 
   spec.metadata["homepage_uri"]       = spec.homepage
-  spec.metadata['release_date']       = Time.now.utc.strftime('%Y-%m-%d')
+  spec.metadata["release_date"]       = Time.now.utc.strftime('%Y-%m-%d')
   spec.metadata["allowed_push_host"]  = "https://rubygems.org"
   spec.metadata["source_code_uri"]    = "https://github.com/AlyBadawy/Securial"
   spec.metadata["documentation_uri"]  = "https://alybadawy.github.io/Securial/_index.html"
