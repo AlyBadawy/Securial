@@ -44,10 +44,7 @@ module Securial
       #
       # @example
       #   middleware = TransformResponseKeys.new(app)
-      #
-      # @deprecated Use `Securial.configuration.response_keys_format` instead of format parameter
-      #
-      def initialize(app, format: :lowerCamelCase)
+      def initialize(app)
         @app = app
       end
 
