@@ -46,9 +46,13 @@ This Code of Conduct applies within all community spaces, and also applies when 
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at [security@securial-project.org](mailto:security@securial-project.org). All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement by:
 
-All community leaders are obligated to respect the privacy and security of the reporter of any incident.
+- **Creating a private issue**: Use GitHub's private vulnerability reporting feature or create an issue with the `conduct-violation` label
+- **Contacting maintainers directly**: Send a direct message to project maintainers through GitHub
+- **Email reporting**: Contact the project maintainer at [1198568+AlyBadawy@users.noreply.github.com](mailto:1198568+AlyBadawy@users.noreply.github.com)
+
+All complaints will be reviewed and investigated promptly and fairly. All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
 ## Enforcement Guidelines
 
@@ -82,11 +86,13 @@ Community leaders will follow these Community Impact Guidelines in determining t
 
 If you discover a security vulnerability in Securial, please report it responsibly:
 
-1. **Do not** create a public GitHub issue
+1. **Do not** create a public GitHub issue for security vulnerabilities
 2. **Do not** discuss the vulnerability in public forums
-3. **Do** email details to [security@securial-project.org](mailto:security@securial-project.org)
+3. **Do** use GitHub's [private vulnerability reporting](https://github.com/AlyBadawy/Securial/security/advisories/new) feature
 4. **Do** provide sufficient information to reproduce the issue
 5. **Do** allow reasonable time for the maintainers to address the issue before public disclosure
+
+Alternatively, you can email security concerns directly to [1198568+AlyBadawy@users.noreply.github.com](mailto:1198568+AlyBadawy@users.noreply.github.com).
 
 We are committed to working with security researchers and will acknowledge your contribution to improving Securial's security.
 
@@ -105,6 +111,6 @@ https://www.contributor-covenant.org/translations.
 
 ---
 
-**Questions or concerns?** Please contact the project maintainers at [security@securial-project.org](mailto:security@securial-project.org).
+**Questions or concerns?** Please contact the project maintainers through GitHub issues or email [1198568+AlyBadawy@users.noreply.github.com](mailto:1198568+AlyBadawy@users.noreply.github.com).
 
-_Last updated: June 26, 2025_
+_Last updated: June 27, 2025_
