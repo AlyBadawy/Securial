@@ -6,5 +6,5 @@ module Securial
   #
   # @see https://semver.org/ Semantic Versioning 2.0.0
   # @return [String] the current version in the format "major.minor.patch"
-  VERSION = "1.0.2".freeze
+  VERSION = "1.0.3".freeze
 end
