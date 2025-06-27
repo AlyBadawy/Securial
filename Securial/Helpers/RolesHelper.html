@@ -93,7 +93,20 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Helper methods for role management and formatting.</p>
 
+<p>This module provides utility methods for working with user roles, including namespace generation for protected routes and role name formatting for user interfaces. It centralizes role-related logic to ensure consistent behavior across the application.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -111,7 +124,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#protected_namespace-instance_method" title="#protected_namespace (instance method)">#<strong>protected_namespace</strong>  &#x21d2; Object </a>
+      <a href="#protected_namespace-instance_method" title="#protected_namespace (instance method)">#<strong>protected_namespace</strong>  &#x21d2; String </a>
     
 
     
@@ -125,7 +138,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Generates a namespace string for protected admin routes.</p>
+</div></span>
   
 </li>
 
@@ -133,7 +148,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#titleized_admin_role-instance_method" title="#titleized_admin_role (instance method)">#<strong>titleized_admin_role</strong>  &#x21d2; Object </a>
+      <a href="#titleized_admin_role-instance_method" title="#titleized_admin_role (instance method)">#<strong>titleized_admin_role</strong>  &#x21d2; String </a>
     
 
     
@@ -147,7 +162,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Formats the admin role name for user interface display.</p>
+</div></span>
   
 </li>
 
@@ -164,24 +181,87 @@
       <div class="method_details first">
   <h3 class="signature first" id="protected_namespace-instance_method">
   
-    #<strong>protected_namespace</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>protected_namespace</strong>  &#x21d2; <tt>String</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Generates a namespace string for protected admin routes.</p>
+
+<p>Converts the configured admin role into a pluralized, underscored namespace suitable for use in Rails routing and controller organization. This ensures admin routes are consistently organized under the appropriate namespace.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>With default admin role</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='comment'># When Securial.configuration.admin_role = :admin
+</span><span class='id identifier rubyid_protected_namespace'>protected_namespace</span>
+<span class='comment'># =&gt; &quot;admins&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>With custom admin role</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='comment'># When Securial.configuration.admin_role = :super_admin
+</span><span class='id identifier rubyid_protected_namespace'>protected_namespace</span>
+<span class='comment'># =&gt; &quot;super_admins&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>With spaced role name</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='comment'># When Securial.configuration.admin_role = &quot;Site Administrator&quot;
+</span><span class='id identifier rubyid_protected_namespace'>protected_namespace</span>
+<span class='comment'># =&gt; &quot;site_administrators&quot;</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The pluralized, underscored admin role namespace</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-7
-8
-9</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/helpers/roles_helper.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/helpers/roles_helper.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_protected_namespace'>protected_namespace</span>
   <span class='const'><span class='object_link'><a href="../../Securial.html" title="Securial (module)">Securial</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configuration'><span class='object_link'><a href="../../Securial.html#configuration-instance_method" title="Securial#configuration (method)">configuration</a></span></span><span class='period'>.</span><span class='id identifier rubyid_admin_role'>admin_role</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='period'>.</span><span class='id identifier rubyid_underscore'>underscore</span><span class='period'>.</span><span class='id identifier rubyid_pluralize'>pluralize</span>
@@ -194,24 +274,87 @@
       <div class="method_details ">
   <h3 class="signature " id="titleized_admin_role-instance_method">
   
-    #<strong>titleized_admin_role</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>titleized_admin_role</strong>  &#x21d2; <tt>String</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Formats the admin role name for user interface display.</p>
+
+<p>Converts the configured admin role into a human-readable, title-cased string suitable for display in user interfaces, form labels, and user-facing messages.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>With default admin role</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='comment'># When Securial.configuration.admin_role = :admin
+</span><span class='id identifier rubyid_titleized_admin_role'>titleized_admin_role</span>
+<span class='comment'># =&gt; &quot;Admin&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>With underscored role name</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='comment'># When Securial.configuration.admin_role = :super_admin
+</span><span class='id identifier rubyid_titleized_admin_role'>titleized_admin_role</span>
+<span class='comment'># =&gt; &quot;Super Admin&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>With already formatted role</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='comment'># When Securial.configuration.admin_role = &quot;Site Administrator&quot;
+</span><span class='id identifier rubyid_titleized_admin_role'>titleized_admin_role</span>
+<span class='comment'># =&gt; &quot;Site Administrator&quot;</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The title-cased admin role name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-11
-12
-13</pre>
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/helpers/roles_helper.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/helpers/roles_helper.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_titleized_admin_role'>titleized_admin_role</span>
   <span class='const'><span class='object_link'><a href="../../Securial.html" title="Securial (module)">Securial</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configuration'><span class='object_link'><a href="../../Securial.html#configuration-instance_method" title="Securial#configuration (method)">configuration</a></span></span><span class='period'>.</span><span class='id identifier rubyid_admin_role'>admin_role</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='period'>.</span><span class='id identifier rubyid_titleize'>titleize</span>
@@ -226,7 +369,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Jun 26 18:51:44 2025 by
+  Generated on Fri Jun 27 14:09:55 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

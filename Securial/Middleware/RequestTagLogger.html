@@ -99,7 +99,20 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Rack middleware that adds request context tags to log messages.</p>
 
+<p>This middleware intercepts requests and wraps the application call with tagged logging, ensuring all log messages generated during request processing include relevant request metadata for better traceability and debugging.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -117,7 +130,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#call-instance_method" title="#call (instance method)">#<strong>call</strong>(env)  &#x21d2; Object </a>
+      <a href="#call-instance_method" title="#call (instance method)">#<strong>call</strong>(env)  &#x21d2; Array </a>
     
 
     
@@ -131,7 +144,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Processes the request with tagged logging context.</p>
+</div></span>
   
 </li>
 
@@ -156,7 +171,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of RequestTagLogger.</p>
+<p>Initializes the middleware with the Rack application and logger.</p>
 </div></span>
   
 </li>
@@ -165,7 +180,7 @@
         <li class="private ">
   <span class="summary_signature">
     
-      <a href="#ip_from_env-instance_method" title="#ip_from_env (instance method)">#<strong>ip_from_env</strong>(env)  &#x21d2; Object </a>
+      <a href="#ip_from_env-instance_method" title="#ip_from_env (instance method)">#<strong>ip_from_env</strong>(env)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -176,10 +191,12 @@
   <span class="note title private">private</span>
   
   
-  
+  <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Extracts the client IP address from the Rack environment.</p>
+</div></span>
   
 </li>
 
@@ -187,7 +204,7 @@
         <li class="private ">
   <span class="summary_signature">
     
-      <a href="#request_id_from_env-instance_method" title="#request_id_from_env (instance method)">#<strong>request_id_from_env</strong>(env)  &#x21d2; Object </a>
+      <a href="#request_id_from_env-instance_method" title="#request_id_from_env (instance method)">#<strong>request_id_from_env</strong>(env)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -198,10 +215,12 @@
   <span class="note title private">private</span>
   
   
-  
+  <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Extracts the request ID from the Rack environment.</p>
+</div></span>
   
 </li>
 
@@ -209,7 +228,7 @@
         <li class="private ">
   <span class="summary_signature">
     
-      <a href="#user_agent_from_env-instance_method" title="#user_agent_from_env (instance method)">#<strong>user_agent_from_env</strong>(env)  &#x21d2; Object </a>
+      <a href="#user_agent_from_env-instance_method" title="#user_agent_from_env (instance method)">#<strong>user_agent_from_env</strong>(env)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -220,10 +239,12 @@
   <span class="note title private">private</span>
   
   
-  
+  <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Extracts the user agent string from the Rack environment.</p>
+</div></span>
   
 </li>
 
@@ -246,13 +267,59 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of RequestTagLogger.</p>
+<p>Initializes the middleware with the Rack application and logger.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_middleware'>middleware</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Securial::Middleware::RequestTagLogger (class)">RequestTagLogger</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>app</span>
+      
+      
+        <span class='type'>(<tt>#<span class='object_link'><a href="#call-instance_method" title="Securial::Middleware::RequestTagLogger#call (method)">call</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The Rack application to wrap</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logger</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Logger.html" title="Securial::Logger (module)">Logger</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Securial.logger</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The logger instance to use for tagging (defaults to Securial.logger)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -260,13 +327,13 @@
       <pre class="lines">
 
 
-4
-5
-6
-7</pre>
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='id identifier rubyid_logger'>logger</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Securial.html" title="Securial (module)">Securial</a></span></span><span class='period'>.</span><span class='id identifier rubyid_logger'><span class='object_link'><a href="../../Securial.html#logger-instance_method" title="Securial#logger (method)">logger</a></span></span><span class='rparen'>)</span>
   <span class='ivar'>@app</span> <span class='op'>=</span> <span class='id identifier rubyid_app'>app</span>
@@ -287,35 +354,102 @@
       <div class="method_details first">
   <h3 class="signature first" id="call-instance_method">
   
-    #<strong>call</strong>(env)  &#x21d2; <tt>Object</tt> 
+    #<strong>call</strong>(env)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Processes the request with tagged logging context.</p>
+
+<p>Extracts request metadata from the Rack environment and applies them as tags to all log messages generated during the request processing. Tags are automatically removed after the request completes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Request processing with tags</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='comment'># All log messages during this request will include:
+</span><span class='comment'># - Request ID (if available)
+</span><span class='comment'># - IP address (if available)
+</span><span class='comment'># - User agent (if available)
+</span><span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_middleware'>middleware</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>env</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The Rack environment hash</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The Rack response array [status, headers, body]</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22</pre>
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request_id'>request_id</span> <span class='op'>=</span> <span class='id identifier rubyid_request_id_from_env'>request_id_from_env</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
@@ -339,24 +473,79 @@
       <div class="method_details ">
   <h3 class="signature " id="ip_from_env-instance_method">
   
-    #<strong>ip_from_env</strong>(env)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+    #<strong>ip_from_env</strong>(env)  &#x21d2; <tt>String</tt><sup>?</sup>  <span class="extras">(private)</span>
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+<p>Extracts the client IP address from the Rack environment.</p>
+
+<p>Prioritizes ActionDispatch’s processed remote IP (which handles proxy headers) over the raw REMOTE_ADDR to ensure accurate client identification behind load balancers and proxies.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>env</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The Rack environment hash</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The client IP address if found, nil otherwise</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-30
-31
-32</pre>
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ip_from_env'>ip_from_env</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>action_dispatch.remote_ip</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>REMOTE_ADDR</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
@@ -369,24 +558,79 @@
       <div class="method_details ">
   <h3 class="signature " id="request_id_from_env-instance_method">
   
-    #<strong>request_id_from_env</strong>(env)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+    #<strong>request_id_from_env</strong>(env)  &#x21d2; <tt>String</tt><sup>?</sup>  <span class="extras">(private)</span>
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+<p>Extracts the request ID from the Rack environment.</p>
+
+<p>Looks for request ID in ActionDispatch’s request_id or the X-Request-ID header, providing request traceability across multiple services and log aggregation systems.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>env</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The Rack environment hash</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The request ID if found, nil otherwise</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-26
-27
-28</pre>
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_request_id_from_env'>request_id_from_env</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>action_dispatch.request_id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP_X_REQUEST_ID</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
@@ -399,24 +643,79 @@
       <div class="method_details ">
   <h3 class="signature " id="user_agent_from_env-instance_method">
   
-    #<strong>user_agent_from_env</strong>(env)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+    #<strong>user_agent_from_env</strong>(env)  &#x21d2; <tt>String</tt><sup>?</sup>  <span class="extras">(private)</span>
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+<p>Extracts the user agent string from the Rack environment.</p>
+
+<p>Retrieves the HTTP User-Agent header to provide context about the client application or browser making the request.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>env</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The Rack environment hash</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user agent string if found, nil otherwise</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-34
-35
-36</pre>
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/request_tag_logger.rb', line 114</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_agent_from_env'>user_agent_from_env</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP_USER_AGENT</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
@@ -431,7 +730,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Jun 26 18:51:45 2025 by
+  Generated on Fri Jun 27 14:09:56 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

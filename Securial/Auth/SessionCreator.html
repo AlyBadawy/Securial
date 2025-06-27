@@ -93,7 +93,22 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates and manages user authentication sessions.</p>
 
+<p>This module provides methods to create new authenticated sessions for users, including proper validation of inputs, generation of refresh tokens, and setting up session metadata such as IP addresses and user agents.</p>
+
+<p>Created sessions are automatically set as the current session context and include all necessary tokens and expiration information for secure authentication management.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -111,7 +126,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#create_session!-instance_method" title="#create_session! (instance method)">#<strong>create_session!</strong>(user, request)  &#x21d2; Object </a>
+      <a href="#create_session!-instance_method" title="#create_session! (instance method)">#<strong>create_session!</strong>(user, request)  &#x21d2; Securial::Session<sup>?</sup> </a>
     
 
     
@@ -125,7 +140,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new authenticated session for the given user and request.</p>
+</div></span>
   
 </li>
 
@@ -142,37 +159,130 @@
       <div class="method_details first">
   <h3 class="signature first" id="create_session!-instance_method">
   
-    #<strong>create_session!</strong>(user, request)  &#x21d2; <tt>Object</tt> 
+    #<strong>create_session!</strong>(user, request)  &#x21d2; <tt><span class='object_link'><a href="../Session.html" title="Securial::Session (class)">Securial::Session</a></span></tt><sup>?</sup> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a new authenticated session for the given user and request.</p>
+
+<p>Validates the provided user and request objects, then creates a new session record with appropriate metadata and tokens. The newly created session is automatically set as the current session context.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Creating a session after successful authentication</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../User.html" title="Securial::User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_authenticate'>authenticate</span><span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
+<span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span>
+  <span class='id identifier rubyid_session'>session</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Securial::Auth::SessionCreator (module)">SessionCreator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_session!'>create_session!</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
+  <span class='comment'># User is now authenticated with active session
+</span><span class='kw'>end</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Handling validation failures</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='comment'># Invalid user (not persisted)
+</span><span class='id identifier rubyid_new_user'>new_user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../User.html" title="Securial::User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='id identifier rubyid_session'>session</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Securial::Auth::SessionCreator (module)">SessionCreator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_session!'>create_session!</span><span class='lparen'>(</span><span class='id identifier rubyid_new_user'>new_user</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; nil</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../User.html" title="Securial::User (class)">Securial::User</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user object to create a session for</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>request</span>
+      
+      
+        <span class='type'>(<tt>ActionDispatch::Request</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The HTTP request object containing metadata</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Session.html" title="Securial::Session (class)">Securial::Session</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The created session object, or nil if validation fails</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21</pre>
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/auth/session_creator.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/auth/session_creator.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_session!'>create_session!</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_valid_user'>valid_user</span> <span class='op'>=</span> <span class='id identifier rubyid_user'>user</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../User.html" title="Securial::User (class)">User</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_persisted?'>persisted?</span>
@@ -200,7 +310,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Jun 26 18:51:44 2025 by
+  Generated on Fri Jun 27 14:09:55 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>

@@ -98,15 +98,39 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Base error class for the Securial framework.</p>
+<p>Rack middleware for adding request context to log messages.</p>
 
-<p>This file defines the base error class that all other specialized Securial errors inherit from. It provides functionality for default error messages and customized backtrace handling.</p>
+<p>This middleware automatically tags all log messages within a request with contextual information like request ID, IP address, and user agent. This enables better tracking and debugging of requests across the application by providing consistent context in all log entries.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Adding middleware to Rails application</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='comment'># config/application.rb
+</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_middleware'>middleware</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span> <span class='const'>Securial</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Securial/Middleware.html" title="Securial::Middleware (module)">Middleware</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Securial/Middleware/RequestTagLogger.html" title="Securial::Middleware::RequestTagLogger (class)">RequestTagLogger</a></span></span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Log output with request tags</p>
+</div></h5>
+      
+      <pre class="example code"><code># Without middleware:
+[2024-06-27 10:30:15] INFO  -- User authentication successful
+
+# With middleware:
+[2024-06-27 10:30:15] INFO  -- [abc123-def456] [IP:192.168.1.100] [UA:Mozilla/5.0...] User authentication successful</code></pre>
+    
+  </div>
+
 
 </div><h2>Defined Under Namespace</h2>
 <p class="children">
@@ -845,7 +869,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Jun 26 18:51:44 2025 by
+  Generated on Fri Jun 27 14:09:55 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>
