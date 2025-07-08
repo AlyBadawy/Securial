@@ -43,4 +43,21 @@ RSpec.describe Securial::Config::Configuration do
       }.to raise_error(Securial::Error::Config::InvalidConfigurationError)
     end
   end
+
+  describe ".configure" do
+    it "yields the configuration instance to the block" do
+      expect { |b| Securial.configure(&b) }.to yield_with_args(Securial.configuration)
+    end
+
+    it "validates the configuration after yielding" do
+      allow(Securial::Config::Validation).to receive(:validate_all!).with(Securial.configuration)
+      Securial.configure { }
+      expect(Securial::Config::Validation).to have_received(:validate_all!).with(Securial.configuration)
+    end
+
+    it "returns the updated configuration instance" do
+      config = Securial.configure { |c| c.app_name = "NewApp" }
+      expect(config.app_name).to eq("NewApp")
+    end
+  end
 end
