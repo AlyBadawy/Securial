@@ -16,7 +16,7 @@ module Securial
       def create_log_file
         say_status("creating", "Securial Log file", :green)
         log_dir = Rails.root.join("log")
-        securial_log = log_dir.join("securial-development.log")
+        securial_log = log_dir.join("securial-#{Rails.env}.log")
 
         FileUtils.mkdir_p(log_dir) unless File.directory?(log_dir)
         FileUtils.touch(securial_log) unless File.exist?(securial_log)

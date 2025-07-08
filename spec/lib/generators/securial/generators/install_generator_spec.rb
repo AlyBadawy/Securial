@@ -41,7 +41,7 @@ RSpec.describe Securial::Generators::InstallGenerator, type: :generator do
 
     it "creates the log file" do
       run_generator
-      expect(File.exist?(File.join(destination_root, "log", "securial-development.log"))).to be true
+      expect(File.exist?(File.join(destination_root, "log", "securial-#{Rails.env}.log"))).to be true
     end
 
     context "when log directory already exists" do
@@ -55,7 +55,7 @@ RSpec.describe Securial::Generators::InstallGenerator, type: :generator do
 
       it "creates the log file" do
         run_generator
-        expect(File.exist?(File.join(destination_root, "log", "securial-development.log"))).to be true
+        expect(File.exist?(File.join(destination_root, "log", "securial-#{Rails.env}.log"))).to be true
       end
     end
 
