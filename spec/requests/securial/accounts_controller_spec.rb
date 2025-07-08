@@ -29,6 +29,13 @@ RSpec.describe Securial::AccountsController, type: :request do
   before do
     @signed_in_user = create(:securial_user)
     @valid_headers = auth_headers(user: @signed_in_user)
+    Securial.configuration.enable_other_profiles = true
+    Rails.application.reload_routes!
+  end
+
+  after do
+    Securial.configuration.enable_other_profiles = false
+    Rails.application.reload_routes!
   end
 
   describe "/accounts" do
@@ -63,18 +70,18 @@ RSpec.describe Securial::AccountsController, type: :request do
       end
     end
 
-    describe "GET 'account/:username'" do
+    describe "GET 'profile/:username'" do
       context "when username exists" do
         it "renders a successful response" do
           create(:securial_user, username: "testUser")
-          get securial.account_by_username_url("testUser"), as: :json, headers: @valid_headers
+          get securial.profile_by_username_url("testUser"), as: :json, headers: @valid_headers
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(response).to be_successful
         end
 
         it "renders a JSON response with the correct keys" do
           create(:securial_user, username: "testUser1")
-          get securial.account_by_username_url("testUser1"), as: :json, headers: @valid_headers
+          get securial.profile_by_username_url("testUser1"), as: :json, headers: @valid_headers
           res_body = JSON.parse(response.body)
 
           expect(res_body.keys).to include(*expected_keys)
@@ -82,7 +89,7 @@ RSpec.describe Securial::AccountsController, type: :request do
 
         it "renders the user profile" do
           create(:securial_user, username: "testUser2")
-          get securial.account_by_username_url("testUser2"), as: :json, headers: @valid_headers
+          get securial.profile_by_username_url("testUser2"), as: :json, headers: @valid_headers
           res_body = JSON.parse(response.body)
           expect(res_body["username"]).to eq("testUser2")
           expect(res_body["roles"]).to be_an(Array)
@@ -94,19 +101,19 @@ RSpec.describe Securial::AccountsController, type: :request do
         let(:username) { "non_existent_username" }
 
         it "renders a not found response" do
-          get securial.account_by_username_url(username), as: :json, headers: @valid_headers
+          get securial.profile_by_username_url(username), as: :json, headers: @valid_headers
           expect(response).to have_http_status(:not_found)
         end
 
         it "renders an error message" do
-          get securial.account_by_username_url(username), as: :json, headers: @valid_headers
+          get securial.profile_by_username_url(username), as: :json, headers: @valid_headers
           expect(response.content_type).to match(a_string_including("application/json"))
           res_body = JSON.parse(response.body)
           expect(res_body["errors"]).to include("User not found")
         end
 
         it "does not render the user profile" do
-          get securial.account_by_username_url(username), as: :json, headers: @valid_headers
+          get securial.profile_by_username_url(username), as: :json, headers: @valid_headers
           expect(response.content_type).to match(a_string_including("application/json"))
           res_body = JSON.parse(response.body)
           expected_keys = ["errors"]
@@ -120,8 +127,8 @@ RSpec.describe Securial::AccountsController, type: :request do
           create(:securial_user, username: "testUser3")
         end
 
-        it_behaves_like "unauthorized request", :get, -> { securial.account_by_username_url("testUser3") }, :no_token
-        it_behaves_like "unauthorized request", :get, -> { securial.account_by_username_url("testUser3") }, :invalid_token
+        it_behaves_like "unauthorized request", :get, -> { securial.profile_by_username_url("testUser3") }, :no_token
+        it_behaves_like "unauthorized request", :get, -> { securial.profile_by_username_url("testUser3") }, :invalid_token
       end
     end
 
