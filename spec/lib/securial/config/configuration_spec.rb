@@ -44,7 +44,7 @@ RSpec.describe Securial::Config::Configuration do
     end
   end
 
-  describe "#configure" do
+  describe ".configure" do
     it "yields the configuration instance to the block" do
       expect { |b| Securial.configure(&b) }.to yield_with_args(Securial.configuration)
     end
