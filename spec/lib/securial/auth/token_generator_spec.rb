@@ -67,4 +67,142 @@ RSpec.describe Securial::Auth::TokenGenerator do
       expect(token.delete('-')).to match(/\A[a-zA-Z0-9]{12}\z/)
     end
   end
+
+  describe ".friendly_token" do
+    context "with default length" do
+      subject(:method) { described_class.friendly_token }
+
+      it "returns a string of length 20" do
+        expect(method.length).to eq(20)
+      end
+
+      it "contains only URL-safe characters" do
+        # URL-safe base64 characters plus our substitutions
+        allowed_chars = /\A[A-Za-z0-9\-_sxyz]+\z/
+        expect(method).to match(allowed_chars)
+      end
+
+      it "does not contain problematic characters" do
+        # Characters that were replaced: l, I, O, 0
+        expect(method).not_to include("l", "I", "O", "0")
+      end
+
+      it "generates unique tokens on multiple calls" do
+        tokens = Array.new(100) { described_class.friendly_token }
+        expect(tokens.uniq.length).to eq(100)
+      end
+    end
+
+    context "with custom length" do
+      subject(:method) { described_class.friendly_token(custom_length) }
+
+      let(:custom_length) { 32 }
+
+
+      it "returns a string of specified length" do
+        expect(method.length).to eq(custom_length)
+      end
+
+      it "contains only URL-safe characters" do
+        allowed_chars = /\A[A-Za-z0-9\-_sxyz]+\z/
+        expect(method).to match(allowed_chars)
+      end
+
+      it "does not contain problematic characters" do
+        expect(method).not_to include("l", "I", "O", "0")
+      end
+    end
+
+    context "with various lengths" do
+      [1, 5, 10, 16, 50, 100].each do |length|
+        it "returns correct length for #{length} characters" do
+          token = described_class.friendly_token(length)
+          expect(token.length).to eq(length)
+        end
+      end
+    end
+
+    describe "character substitution" do
+      before do
+        # Mock SecureRandom to return a predictable string containing problematic chars
+        allow(SecureRandom).to receive(:urlsafe_base64).and_return("lIO0abcdef")
+      end
+
+      it "replaces problematic characters with safe alternatives" do
+        token = described_class.friendly_token(10)
+        expect(token).to eq("sxyzabcdef")
+      end
+    end
+
+    describe "edge cases" do
+      it "handles length of 0" do
+        token = described_class.friendly_token(0)
+        expect(token).to eq("")
+      end
+
+      it "handles very small lengths" do
+        token = described_class.friendly_token(1)
+        expect(token.length).to eq(1)
+      end
+
+      it "handles very large lengths" do
+        token = described_class.friendly_token(1000)
+        expect(token.length).to eq(1000)
+      end
+    end
+
+    describe "security properties" do
+      it "generates tokens with sufficient entropy" do
+        # Test that generated tokens have good distribution
+        tokens = Array.new(1000) { described_class.friendly_token(10) }
+
+        # Check that we have a good variety of characters
+        all_chars = tokens.join.chars.uniq
+        expect(all_chars.length).to be > 20 # Should have good character variety
+      end
+
+      it "is deterministic given the same SecureRandom output" do
+        allow(SecureRandom).to receive(:urlsafe_base64).and_return("abcdefghijklmnopqrstuvwxyz")
+
+        token1 = described_class.friendly_token(10)
+        token2 = described_class.friendly_token(10)
+
+        expect(token1).to eq(token2)
+      end
+    end
+
+    describe "URL safety" do
+      it "generates tokens that are URL-safe" do
+        token = described_class.friendly_token(50)
+
+        # Should not contain characters that need URL encoding
+        expect(token).not_to include("+", "/", "=")
+
+        # Should be safe to use in URLs without encoding
+        encoded = CGI.escape(token)
+        expect(encoded).to eq(token)
+      end
+    end
+
+    describe "readability improvements" do
+      it "avoids visually similar characters" do
+        tokens = Array.new(100) { described_class.friendly_token(50) }
+        combined = tokens.join
+
+        # Should not contain easily confused characters
+        expect(combined).not_to include("l") # looks like 1 or I
+        expect(combined).not_to include("I") # looks like 1 or l
+        expect(combined).not_to include("O") # looks like 0
+        expect(combined).not_to include("0") # looks like O
+      end
+
+      it "uses replacement characters consistently" do
+        # Mock to ensure our replacements are used
+        allow(SecureRandom).to receive(:urlsafe_base64).and_return("l" * 50)
+
+        token = described_class.friendly_token(20)
+        expect(token).to eq("s" * 20)
+      end
+    end
+  end
 end
