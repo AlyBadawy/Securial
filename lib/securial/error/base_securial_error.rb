@@ -42,7 +42,7 @@ module Securial
       # @return [String, nil] The current default message for this error class
       #
       def self.default_message(message = nil)
-        self._default_message = message if message
+        self._default_message = message
         self._default_message
       end
 

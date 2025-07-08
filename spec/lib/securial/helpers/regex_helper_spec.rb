@@ -83,5 +83,18 @@ module Securial
         expect(described_class.valid_username?('123user')).to be false
       end
     end
+
+    describe "#valid_password?" do
+      it 'returns true for valid passwords' do
+        expect(described_class.valid_password?('MyPass123!')).to be true
+        expect(described_class.valid_password?('Secure@2024')).to be true
+      end
+
+      it 'returns false for invalid passwords' do
+        expect(described_class.valid_password?('password')).to be false
+        expect(described_class.valid_password?('PASSWORD123')).to be false
+        expect(described_class.valid_password?('123Password!')).to be false
+      end
+    end
   end
 end

@@ -19,7 +19,7 @@ module Securial
         securial_log = log_dir.join("securial-#{Rails.env}.log")
 
         FileUtils.mkdir_p(log_dir) unless File.directory?(log_dir)
-        FileUtils.touch(securial_log) unless File.exist?(securial_log)
+        FileUtils.touch(securial_log)
       end
 
       def install_migrations
