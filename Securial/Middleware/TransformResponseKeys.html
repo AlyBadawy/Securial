@@ -175,10 +175,10 @@
 </li>
 
       
-        <li class="public deprecated">
+        <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(app, format: :lowerCamelCase)  &#x21d2; TransformResponseKeys </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(app)  &#x21d2; TransformResponseKeys </a>
     
 
     
@@ -190,12 +190,12 @@
   
   
   
-  <span class="deprecated note title">deprecated</span>
+  
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'>
-<p>Use ‘Securial.configuration.response_keys_format` instead of format parameter</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Initializes the middleware with the Rack application and optional format.</p>
 </div></span>
   
 </li>
@@ -234,7 +234,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(app, format: :lowerCamelCase)  &#x21d2; <tt><span class='object_link'><a href="" title="Securial::Middleware::TransformResponseKeys (class)">TransformResponseKeys</a></span></tt> 
+    #<strong>initialize</strong>(app)  &#x21d2; <tt><span class='object_link'><a href="" title="Securial::Middleware::TransformResponseKeys (class)">TransformResponseKeys</a></span></tt> 
   
 
   
@@ -242,10 +242,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'>
-<p>Use ‘Securial.configuration.response_keys_format` instead of format parameter</p>
-</div></div>
-
+    
 <p>Initializes the middleware with the Rack application and optional format.</p>
 
 <p>The format parameter is deprecated in favor of the global configuration setting ‘Securial.configuration.response_keys_format`.</p>
@@ -289,8 +286,6 @@
         <span class='type'>(<tt>Symbol</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>:lowerCamelCase</tt>)</em>
-      
       
         &mdash;
         <div class='inline'>
@@ -308,14 +303,14 @@
       <pre class="lines">
 
 
-50
-51
-52</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/middleware/transform_response_keys.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/transform_response_keys.rb', line 47</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='label'>format:</span> <span class='symbol'>:lowerCamelCase</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_app'>app</span><span class='rparen'>)</span>
   <span class='ivar'>@app</span> <span class='op'>=</span> <span class='id identifier rubyid_app'>app</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -423,6 +418,9 @@
       <pre class="lines">
 
 
+71
+72
+73
 74
 75
 76
@@ -439,13 +437,10 @@
 87
 88
 89
-90
-91
-92
-93</pre>
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/middleware/transform_response_keys.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/transform_response_keys.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='ivar'>@app</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
@@ -551,14 +546,14 @@
       <pre class="lines">
 
 
+117
+118
+119
 120
-121
-122
-123
-124</pre>
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/middleware/transform_response_keys.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/transform_response_keys.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extract_body'>extract_body</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_response_body'>response_body</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -638,12 +633,12 @@
       <pre class="lines">
 
 
-103
-104
-105</pre>
+100
+101
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/securial/middleware/transform_response_keys.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/securial/middleware/transform_response_keys.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_json_response?'>json_response?</span><span class='lparen'>(</span><span class='id identifier rubyid_headers'>headers</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>application/json</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -658,7 +653,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jul  8 13:45:21 2025 by
+  Generated on Tue Jul  8 14:25:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>
