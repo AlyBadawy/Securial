@@ -244,4 +244,13 @@ Securial.configure do |config|
   # the rate limit. The default is "Too many requests, please try again later."
   # This is only applied if `rate_limiting_enabled` is set to true.
   config.rate_limit_response_message = "Too many requests, please try again later."
+
+  ## Set whether to enable other user profiles
+  # This allows users to view other users' profiles by their username.
+  # If this is set to true, users can access profiles of other users
+  # by visiting the URL `/profiles/:username`, where `:username` is the username
+  # of the user whose profile they want to view.
+  # If this is set to false, users can only view their own profile
+  # by visiting the URL `/accounts/me`.
+  config.enable_other_profiles = false
 end

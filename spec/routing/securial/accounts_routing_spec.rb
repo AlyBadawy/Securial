@@ -8,8 +8,14 @@ RSpec.describe Securial::AccountsController, type: :routing do
       expect(get: "/accounts/me").to route_to("securial/accounts#me", format: :json)
     end
 
-    it "routes to GET '/accounts/account/cool_user' to get user profile by username" do
-      expect(get: "/accounts/account/cool_user").to route_to("securial/accounts#show", username: "cool_user", format: :json)
+    it "routes to GET '/profiles/cool_user' to get user profile by username" do
+      Securial.configuration.enable_other_profiles = true
+      Rails.application.reload_routes!
+      expect(get: "/profiles/cool_user").to route_to("securial/accounts#show", username: "cool_user", format: :json)
+
+      Securial.configuration.enable_other_profiles = false
+      Rails.application.reload_routes!
+      expect(get: "/profiles/cool_user").not_to be_routable
     end
 
     it "routes to POST '/accounts/register' to register a new account" do

@@ -211,6 +211,7 @@ module Securial
           rate_limit_requests_per_minute: { type: Numeric, required: "rate_limiting_enabled", default: 60 },
           rate_limit_response_status: { type: Numeric, required: "rate_limiting_enabled", default: 429 },
           rate_limit_response_message: { type: String, required: "rate_limiting_enabled", default: "Too many requests, please try again later." },
+          enable_other_profiles: { type: [TrueClass, FalseClass], required: true, default: false },
         }
       end
     end

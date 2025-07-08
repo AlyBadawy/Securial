@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added:
+
+- Added a configuration for allowing other profiles non-admins
+
 ### Changed:
 
 - Deprecated: Formatter param in the `TransformResponseKeys` middleware initializer
+- Other user's profile are hidden by default (BREAKING CHANGE)
 
 ## [1.1.0] - 2025-07-08
 

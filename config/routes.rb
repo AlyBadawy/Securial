@@ -17,7 +17,6 @@ Securial::Engine.routes.draw do
 
     scope "accounts" do
       get "me", to: "accounts#me", as: :me
-      get "account/:username", to: "accounts#show", as: :account_by_username
       post "register", to: "accounts#register", as: :register
       put "update", to: "accounts#update_profile", as: :update_profile
       # post "update_avatar", to: "accounts#update_avatar"
@@ -39,6 +38,12 @@ Securial::Engine.routes.draw do
     scope "password" do
       post "forgot", to: "passwords#forgot_password", as: :forgot_password
       put "reset", to: "passwords#reset_password", as: :reset_password
+    end
+
+    if Securial.configuration.enable_other_profiles
+      scope "profiles" do
+        get ":username", to: "accounts#show", as: :profile_by_username
+      end
     end
   end
 end
