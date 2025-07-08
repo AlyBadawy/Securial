@@ -40,10 +40,8 @@ Securial::Engine.routes.draw do
       put "reset", to: "passwords#reset_password", as: :reset_password
     end
 
-    if Securial.configuration.enable_other_profiles
-      scope "profiles" do
-        get ":username", to: "accounts#show", as: :profile_by_username
-      end
+    scope "profiles" do
+      get ":username", to: "accounts#show", as: :profile_by_username
     end
   end
 end

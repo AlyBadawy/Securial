@@ -26,12 +26,20 @@ module Securial
     # Shows a specific user's profile by username.
     #
     # Retrieves and displays public profile information for the requested user.
+    # Requires the `enable_other_profiles` configuration to be true.
     #
     # @param [String] params[:username] The username of the requested user profile
     # @return [void] Renders user profile with 200 OK status or 404 if not found
     def show
-      @securial_user = Securial::User.find_by(username: params.expect(:username))
-      render_user_profile
+      if Securial.configuration.enable_other_profiles
+        @securial_user = Securial::User.find_by(username: params.expect(:username))
+        render_user_profile
+      else
+        render json: {
+          errors: ["User profiles are not enabled"],
+          instructions: "Please contact support for assistance.",
+        }, status: :forbidden
+      end
     end
 
     # Registers a new user account.
