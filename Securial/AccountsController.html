@@ -376,21 +376,21 @@
       <pre class="lines">
 
 
-85
-86
-87
-88
-89
-90
-91
-92
 93
 94
 95
-96</pre>
+96
+97
+98
+99
+100
+101
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_account'>delete_account</span>
   <span class='ivar'>@securial_user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Current.html" title="Securial::Current (class)">Current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span>
@@ -504,18 +504,18 @@
       <pre class="lines">
 
 
-43
-44
-45
-46
-47
-48
-49
-50
-51</pre>
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register'>register</span>
   <span class='ivar'>@securial_user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="User.html" title="Securial::User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_user_params'>user_params</span><span class='rparen'>)</span>
@@ -557,19 +557,19 @@
       <pre class="lines">
 
 
-112
-113
-114
-115
-116
-117
-118
-119
 120
-121</pre>
+121
+122
+123
+124
+125
+126
+127
+128
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_render_user_profile'>render_user_profile</span>
   <span class='kw'>if</span> <span class='ivar'>@securial_user</span>
@@ -600,7 +600,7 @@
     <p class="note returns_void">This method returns an undefined value.</p>
 <p>Shows a specific user’s profile by username.</p>
 
-<p>Retrieves and displays public profile information for the requested user.</p>
+<p>Retrieves and displays public profile information for the requested user. Requires the ‘enable_other_profiles` configuration to be true.</p>
 
 
   </div>
@@ -634,17 +634,31 @@
       <pre class="lines">
 
 
-32
 33
 34
-35</pre>
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
-  <span class='ivar'>@securial_user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="User.html" title="Securial::User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>username:</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_expect'>expect</span><span class='lparen'>(</span><span class='symbol'>:username</span><span class='rparen'>)</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_render_user_profile'>render_user_profile</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configuration'><span class='object_link'><a href="../Securial.html#configuration-instance_method" title="Securial#configuration (method)">configuration</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enable_other_profiles'>enable_other_profiles</span>
+    <span class='ivar'>@securial_user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Securial.html" title="Securial (module)">Securial</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="User.html" title="Securial::User (class)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>username:</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_expect'>expect</span><span class='lparen'>(</span><span class='symbol'>:username</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_render_user_profile'>render_user_profile</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span>
+      <span class='label'>errors:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User profiles are not enabled</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>instructions:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please contact support for assistance.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:forbidden</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -715,14 +729,6 @@
       <pre class="lines">
 
 
-60
-61
-62
-63
-64
-65
-66
-67
 68
 69
 70
@@ -732,10 +738,18 @@
 74
 75
 76
-77</pre>
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_profile'>update_profile</span>
   <span class='ivar'>@securial_user</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Current.html" title="Securial::Current (class)">Current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span>
@@ -804,12 +818,12 @@
       <pre class="lines">
 
 
-104
-105
-106</pre>
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/securial/accounts_controller.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_params'>user_params</span>
   <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_expect'>expect</span><span class='lparen'>(</span><span class='label'>securial_user:</span> <span class='lbracket'>[</span><span class='symbol'>:email_address</span><span class='comma'>,</span> <span class='symbol'>:password</span><span class='comma'>,</span> <span class='symbol'>:password_confirmation</span><span class='comma'>,</span> <span class='symbol'>:first_name</span><span class='comma'>,</span> <span class='symbol'>:last_name</span><span class='comma'>,</span> <span class='symbol'>:phone</span><span class='comma'>,</span> <span class='symbol'>:username</span><span class='comma'>,</span> <span class='symbol'>:bio</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -824,7 +838,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jul  8 14:25:52 2025 by
+  Generated on Tue Jul  8 15:13:28 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>
