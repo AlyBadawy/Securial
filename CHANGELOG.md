@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Deprecated: Formatter param in the `TransformResponseKeys` middleware initializer
 
+## [1.1.0] - 2025-07-08
+
+### Changed:
+
+- Securial post install message to include colorized messages
+
+### Security:
+
+- Update dependencies: JWT, Sqlite, Faker, Overcommit
+
 ## [1.0.2] - 2025-06-25
 
 ### Added:
