@@ -62,7 +62,7 @@ module Securial
                        controller_specs: true,
                        request_specs: true,
                        model_specs: true
-      g.fixture_replacement :factory_bot, dir: "lib/securial/factories"
+      g.fixture_replacement :factory_bot
       g.template_engine :jbuilder
     end
   end
