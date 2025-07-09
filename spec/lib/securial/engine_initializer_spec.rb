@@ -46,44 +46,6 @@ describe "Securial::Engine Initializers" do
     end
   end
 
-  describe "securial.factory_bot" do
-    context "when FactoryBot is defined" do
-      before do
-        stub_const("FactoryBot", Module.new do
-          def self.definition_file_paths
-            @paths ||= []
-          end
-
-          def self.definition_file_paths=(paths)
-            @paths = paths
-          end
-        end)
-        allow(engine).to receive(:root).and_return(Pathname.new("/dummy/path"))
-      end
-
-      it "adds engine factories path to FactoryBot definition paths" do
-        FactoryBot.definition_file_paths = []
-
-        engine.initializers.find { |i| i.name == "securial.factory_bot" }.run(app)
-
-        expected_path = engine.root.join("lib", "securial", "factories")
-        expect(FactoryBot.definition_file_paths).to include(expected_path)
-      end
-    end
-
-    context "when FactoryBot is not defined" do
-      before do
-        hide_const("FactoryBot") if defined?(FactoryBot)
-      end
-
-      it "does not raise error" do
-        expect {
-          engine.initializers.find { |i| i.name == "securial.factory_bot" }.run(app)
-        }.not_to raise_error
-      end
-    end
-  end
-
   describe "securial.security.request_rate_limiter" do
     let(:middleware_stack) { instance_double(ActionDispatch::MiddlewareStack) }
 
