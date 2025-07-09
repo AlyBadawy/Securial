@@ -5,4 +5,4 @@ echo "Preparing test database..."
 RAILS_ENV=test bundle exec rails db:schema:load
 
 echo "Running tests..."
-bundle exec rspec "$@"      
+bundle exec rspec "$@" 

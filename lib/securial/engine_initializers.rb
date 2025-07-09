@@ -9,13 +9,6 @@ module Securial
       ]
     end
 
-    initializer "securial.factory_bot", after: "factory_bot.set_factory_paths" do
-      if defined?(FactoryBot)
-        FactoryBot.definition_file_paths << Engine.root.join("lib", "securial", "factories")
-        require_relative "../generators/factory_bot/model/model_generator"
-      end
-    end
-
     initializer "securial.security.request_rate_limiter" do |app|
       if Securial.configuration.rate_limiting_enabled
         Securial::Security::RequestRateLimiter.apply!
