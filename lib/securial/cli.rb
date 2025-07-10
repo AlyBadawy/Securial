@@ -205,8 +205,10 @@ module Securial
 
       config["default"] ||= {}
       return if config["default"]["adapter"].blank?
-      return if config["default"]["adapter"] == "sqlite3" 
+      return unless ["mysql2", "postgresql"].include?(config["default"]["adapter"])
       config["default"]["host"] = "<%= ENV.fetch(\"RAILS_DATABASE_HOST\", \"localhost\") %>"
+      config["default"]["username"] = "<%= ENV.fetch(\"DB_USERNAME\") { \"postgres\" } %>"
+      config["default"]["password"] = "<%= ENV.fetch(\"DB_PASSWORD\") { \"postgres\" } %>"
 
       # Dump YAML manually to preserve formatting
       yaml = config.to_yaml.gsub(/'(<%= .*? %>)'/, '\1') # Unquote the ERB
