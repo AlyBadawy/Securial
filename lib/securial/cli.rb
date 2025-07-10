@@ -14,6 +14,8 @@
 #   $ securial new myapi --api --database=postgresql
 #
 require "optparse"
+require "yaml"
+require "erb"
 
 # rubocop:disable Rails/Exit, Rails/Output
 
@@ -171,6 +173,7 @@ module Securial
       puts "🏗️  Creating new Rails app: #{app_name}"
 
       create_rails_app(app_name, rails_options)
+      update_database_yml_host(app_name)
       add_securial_gem(app_name)
       install_gems(app_name)
       install_securial(app_name)
@@ -187,6 +190,29 @@ module Securial
     def create_rails_app(app_name, rails_options)
       rails_command = ["rails", "new", app_name, *rails_options]
       run(rails_command)
+    end
+
+    # Adds DB_HOST env. variable to as default host in `database.yml`.
+    #
+    # @param app_name [String] name of the Rails application
+    # @return [void]
+    #
+    def update_database_yml_host(app_name)
+      db_config_path = File.join(app_name, "config", "database.yml")
+      raw = File.read(db_config_path)
+      rendered = ERB.new(raw).result
+      config = YAML.safe_load(rendered, aliases: true) || {}
+
+      config["default"] ||= {}
+      return if config["default"]["adapter"].blank?
+      return unless ["mysql2", "postgresql"].include?(config["default"]["adapter"])
+      config["default"]["host"] = "<%= ENV.fetch(\"DB_HOST\", \"localhost\") %>"
+      config["default"]["username"] = "<%= ENV.fetch(\"DB_USERNAME\") { \"postgres\" } %>"
+      config["default"]["password"] = "<%= ENV.fetch(\"DB_PASSWORD\") { \"postgres\" } %>"
+
+      # Dump YAML manually to preserve formatting
+      yaml = config.to_yaml.gsub(/['"](<%= .*? %>)['"]/, '\1') # Unquote the ERB
+      File.write(db_config_path, yaml)
     end
 
     # Adds the Securial gem to the application's Gemfile.
