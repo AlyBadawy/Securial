@@ -206,7 +206,7 @@ module Securial
       config["default"] ||= {}
       return if config["default"]["adapter"].blank?
       return unless ["mysql2", "postgresql"].include?(config["default"]["adapter"])
-      config["default"]["host"] = "<%= ENV.fetch(\"RAILS_DATABASE_HOST\", \"localhost\") %>"
+      config["default"]["host"] = "<%= ENV.fetch(\"DB_HOST\", \"localhost\") %>"
       config["default"]["username"] = "<%= ENV.fetch(\"DB_USERNAME\") { \"postgres\" } %>"
       config["default"]["password"] = "<%= ENV.fetch(\"DB_PASSWORD\") { \"postgres\" } %>"
 
