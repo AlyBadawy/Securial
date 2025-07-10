@@ -200,7 +200,7 @@ module Securial
     def update_database_yml_host(app_name) # rubocop:disable Metrics/MethodLength
       db_config_path = File.join(app_name, "config", "database.yml")
 
-      # Step 1: Parse ERB + YAML to validate adapter
+      # Step 1: Parse to check adapter
       raw = File.read(db_config_path)
       rendered = ERB.new(raw).result
       config = YAML.safe_load(rendered, aliases: true) || {}
@@ -235,7 +235,6 @@ module Securial
         # Exit `default:` block when another top-level key appears
         inside_default = false if inside_default && line =~ /^\S/ && line !~ /^\s/
       end
-
       File.write(db_config_path, updated_lines.join)
     end
 
