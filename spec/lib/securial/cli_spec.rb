@@ -6,6 +6,7 @@ RSpec.describe Securial::CLI do
 
   before do
     allow(cli).to receive(:create_rails_app)
+    allow(cli).to receive(:update_database_yml_host)
     allow(cli).to receive(:add_securial_gem)
     allow(cli).to receive(:install_gems)
     allow(cli).to receive(:install_securial)
@@ -150,6 +151,7 @@ RSpec.describe Securial::CLI do
   describe "#securial_new" do
     before do
       allow(cli).to receive(:create_rails_app)
+      allow(cli).to receive(:update_database_yml_host)
       allow(cli).to receive(:add_securial_gem)
       allow(cli).to receive(:install_gems)
       allow(cli).to receive(:install_securial)
@@ -171,6 +173,7 @@ RSpec.describe Securial::CLI do
       }.to output(/🏗️  Creating new Rails app: myapp/).to_stdout
 
       expect(cli).to have_received(:create_rails_app)
+      expect(cli).to have_received(:update_database_yml_host)
       expect(cli).to have_received(:add_securial_gem)
       expect(cli).to have_received(:install_gems)
       expect(cli).to have_received(:install_securial)
