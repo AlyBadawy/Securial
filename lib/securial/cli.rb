@@ -204,7 +204,7 @@ module Securial
       config = YAML.safe_load(rendered, aliases: true) || {}
 
       config["default"] ||= {}
-      return if config["default"]["adapter"].blank?
+      return unless config["default"]["adapter"].is_a?(String) && !config["default"]["adapter"].empty?
       return unless ["mysql2", "postgresql"].include?(config["default"]["adapter"])
       config["default"]["host"] = "<%= ENV.fetch(\"DB_HOST\", \"localhost\") %>"
       config["default"]["username"] = "<%= ENV.fetch(\"DB_USERNAME\") { \"postgres\" } %>"
