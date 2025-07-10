@@ -211,7 +211,7 @@ module Securial
       config["default"]["password"] = "<%= ENV.fetch(\"DB_PASSWORD\") { \"postgres\" } %>"
 
       # Dump YAML manually to preserve formatting
-      yaml = config.to_yaml.gsub(/'(<%= .*? %>)'/, '\1') # Unquote the ERB
+      yaml = config.to_yaml.gsub(/['"](<%= .*? %>)['"]/, '\1') # Unquote the ERB
       File.write(db_config_path, yaml)
     end
 
