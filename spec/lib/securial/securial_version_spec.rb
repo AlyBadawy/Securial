@@ -13,7 +13,7 @@ RSpec.describe Securial do
     end
 
     it "is the correct version" do
-      expect(version).to eq("2.1.3")
+      expect(version).to eq("2.1.5")
     end
 
     it "has three version segments" do

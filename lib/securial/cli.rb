@@ -197,22 +197,55 @@ module Securial
     # @param app_name [String] name of the Rails application
     # @return [void]
     #
-    def update_database_yml_host(app_name)
+    def update_database_yml_host(app_name) # rubocop:disable Metrics/MethodLength
       db_config_path = File.join(app_name, "config", "database.yml")
+
+      # Step 1: Parse to check adapter
       raw = File.read(db_config_path)
       rendered = ERB.new(raw).result
       config = YAML.safe_load(rendered, aliases: true) || {}
 
-      config["default"] ||= {}
-      return unless config["default"]["adapter"].is_a?(String) && !config["default"]["adapter"].empty?
-      return unless ["mysql2", "postgresql"].include?(config["default"]["adapter"])
-      config["default"]["host"] = "<%= ENV.fetch(\"DB_HOST\", \"localhost\") %>"
-      config["default"]["username"] = "<%= ENV.fetch(\"DB_USERNAME\") { \"postgres\" } %>"
-      config["default"]["password"] = "<%= ENV.fetch(\"DB_PASSWORD\") { \"postgres\" } %>"
+      adapter = config.dig("default", "adapter")
+      return unless adapter.is_a?(String) && %w[postgresql mysql2].include?(adapter)
 
-      # Dump YAML manually to preserve formatting
-      yaml = config.to_yaml.gsub(/['"](<%= .*? %>)['"]/, '\1') # Unquote the ERB
-      File.write(db_config_path, yaml)
+      # Step 2: Modify the raw file line-by-line to preserve anchors and formatting
+      lines = File.readlines(db_config_path)
+      inside_default = false
+      updated_lines = []
+
+      lines.each_with_index do |line, index|
+        if line =~ /^default:/
+          inside_default = true
+          updated_lines << line
+          next
+        end
+
+        if inside_default
+          # Break out of default block when another top-level key appears
+          if line =~ /^\S/ && line !~ /^\s/
+            inside_default = false
+          end
+
+          # Skip existing host/username/password lines
+          next if line =~ /^\s*(host|username|password):/
+        end
+
+        updated_lines << line
+      end
+
+      # Find index of `default:` line to insert after
+      insert_index = updated_lines.find_index { |l| l =~ /^default:/ }
+      return unless insert_index
+
+      injection = [
+        "  host: <%= ENV.fetch(\"DB_HOST\", \"localhost\") %>",
+        "  username: <%= ENV.fetch(\"DB_USERNAME\") { \"postgres\" } %>",
+        "  password: <%= ENV.fetch(\"DB_PASSWORD\") { \"postgres\" } %>",
+      ]
+
+      updated_lines.insert(insert_index + 1, *injection)
+
+      File.write(db_config_path, updated_lines.join)
     end
 
     # Adds the Securial gem to the application's Gemfile.
