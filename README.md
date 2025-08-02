@@ -12,11 +12,14 @@
 [![Wiki](https://img.shields.io/badge/Wiki-Github_Wiki-orange?style=flat&logo=wikibooks&logoColor=%23F5CD0E&label=Wiki)](https://github.com/alybadawy/securial/wiki)
 
 
+
 ---
 
 ## Overview
 
 ### 🛡️ What is Securial?
+
+<img align="right" width="400" height="400" alt="Securial Logo"  src="https://github.com/user-attachments/assets/0950aba1-de3e-467d-a335-55f2fa47a8ac" />
 
 **Securial** is a mountable Rails engine that provides robust, extensible authentication and access control for Rails applications. It supports:
 
@@ -124,5 +127,5 @@ The gem is available as open source under the terms of the [MIT license](https:/
 
 ---
 
-\
+
 ![logo-e9f16c9b 1](https://github.com/AlyBadawy/AlyBadawy/assets/1198568/471e5332-f8d0-4b78-a333-7e207780ecc1)
