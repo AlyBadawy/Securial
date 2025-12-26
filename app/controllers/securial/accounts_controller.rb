@@ -54,7 +54,7 @@ module Securial
         render :show, status: :created, location: @securial_user
       else
         render json: {
-          errors: @securial_user.errors.full_messages }, status: :unprocessable_entity
+          errors: @securial_user.errors.full_messages }, status: :unprocessable_content
       end
     end
 
@@ -74,13 +74,13 @@ module Securial
           render json: {
             errors: @securial_user.errors.full_messages,
             instructions: "Please ensure all required fields are filled out correctly.",
-            }, status: :unprocessable_entity
+            }, status: :unprocessable_content
         end
       else
         render json: {
           errors: ["Current password is incorrect"],
           instructions: "Please verify your current password and try again.",
-          }, status: :unprocessable_entity
+          }, status: :unprocessable_content
       end
     end
 
@@ -99,7 +99,7 @@ module Securial
         render json: {
           errors: ["Current password is incorrect"],
           instructions: "Please verify your current password and try again.",
-        }, status: :unprocessable_entity
+        }, status: :unprocessable_content
       end
     end
 
