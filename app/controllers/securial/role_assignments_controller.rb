@@ -29,7 +29,7 @@ module Securial
         render json: {
           errors: ["Role already assigned to user"],
           instructions: "Please check the user's current roles before assigning a new one.",
-          }, status: :unprocessable_entity
+          }, status: :unprocessable_content
         return
       end
       @securial_role_assignment = RoleAssignment.new(securial_role_assignment_params)
@@ -55,7 +55,7 @@ module Securial
         render json: {
           errors: ["Role is not assigned to user"],
           instructions: "Please check the user's current roles before attempting to remove a role.",
-          }, status: :unprocessable_entity
+          }, status: :unprocessable_content
       end
     end
 
@@ -74,14 +74,14 @@ module Securial
         render json: {
           errors: ["User not found"],
           instructions: "Please check the user ID and try again.",
-          }, status: :unprocessable_entity
+          }, status: :unprocessable_content
         return false
       end
       if @securial_role.nil?
         render json: {
           errors: ["Role not found"],
           instructions: "Please check the role ID and try again.",
-        }, status: :unprocessable_entity
+        }, status: :unprocessable_content
         return false
       end
 

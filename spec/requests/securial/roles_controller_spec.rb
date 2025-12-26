@@ -131,7 +131,7 @@ RSpec.describe Securial::RolesController, type: :request do
       it "renders a JSON response with errors for the new role" do
         post securial.roles_path,
              params: { securial_role: invalid_attributes }, headers: @admin_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
@@ -174,7 +174,7 @@ RSpec.describe Securial::RolesController, type: :request do
             params: { securial_role: invalid_attributes },
             headers: @admin_headers,
             as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end

@@ -99,7 +99,7 @@ RSpec.describe Securial::PasswordsController, type: :request do
               password: "New_password0",
               password_confirmation: "New_password0",
             }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(JSON.parse(response.body)).to eq(
           { "errors" => { "token" => "is invalid or has expired" } }
         )
@@ -144,7 +144,7 @@ RSpec.describe Securial::PasswordsController, type: :request do
                                   password: "New_password0",
                                   password_confirmation: "New_password0",
                                 }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(JSON.parse(response.body)).to eq(
           { "errors" => { "token" => "is invalid or has expired" } }
         )

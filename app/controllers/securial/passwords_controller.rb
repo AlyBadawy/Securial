@@ -48,7 +48,7 @@ module Securial
       if @user.update(params.permit(:password, :password_confirmation))
         render status: :ok, json: { message: "Password has been reset." }
       else
-        render status: :unprocessable_entity, json: { errors: @user.errors }
+        render status: :unprocessable_content, json: { errors: @user.errors }
       end
     end
 
@@ -65,10 +65,10 @@ module Securial
       begin
         @user = User.find_by_reset_password_token!(params[:token]) # rubocop:disable Rails/DynamicFindBy
         unless @user.reset_password_token_valid?
-          render status: :unprocessable_entity, json: { errors: { token: "is invalid or has expired" } } and return
+          render status: :unprocessable_content, json: { errors: { token: "is invalid or has expired" } } and return
         end
       rescue ActiveSupport::MessageVerifier::InvalidSignature, ActiveRecord::RecordNotFound
-        render status: :unprocessable_entity, json: { errors: { token: "is invalid or has expired" } } and return
+        render status: :unprocessable_content, json: { errors: { token: "is invalid or has expired" } } and return
       end
     end
   end

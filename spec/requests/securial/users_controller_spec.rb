@@ -123,7 +123,7 @@ RSpec.describe Securial::UsersController, type: :request do
       it "renders a JSON response with errors for the new user" do
         post securial.users_path,
              params: { securial_user: invalid_attributes }, headers: @admin_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
@@ -166,7 +166,7 @@ RSpec.describe Securial::UsersController, type: :request do
     context "with invalid parameters" do
       it "renders a JSON response with errors for the user" do
         put securial.user_path(securial_user), params: { securial_user: invalid_attributes }, headers: @admin_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
