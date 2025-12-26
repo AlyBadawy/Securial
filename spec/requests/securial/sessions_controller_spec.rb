@@ -178,7 +178,7 @@ RSpec.describe Securial::SessionsController, type: :request do
       Securial::Current.session.revoke!
       put securial.refresh_session_url, params: { refresh_token: @signed_in_session.refresh_token }, headers: @valid_headers, as: :json
       expect(response).not_to be_successful
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
 
     it "returns 422 unprocessable entity when refresh_token is invalid" do
@@ -186,7 +186,7 @@ RSpec.describe Securial::SessionsController, type: :request do
       expect(Securial::Current.session).not_to be_nil
       put securial.refresh_session_url, params: { refresh_token: "invalid" }, headers: @valid_headers, as: :json
       expect(response).not_to be_successful
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
   end
 

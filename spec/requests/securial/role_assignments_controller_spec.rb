@@ -57,7 +57,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
              params: { securial_role_assignment: invalid_attributes },
              headers: @admin_headers,
              as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
 
@@ -67,7 +67,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                params: { securial_role_assignment: invalid_attributes },
                headers: @admin_headers,
                as: :json
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(JSON.parse(response.body)["errors"]).to include("User not found")
         end
@@ -86,7 +86,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                params: { securial_role_assignment: invalid_attributes },
                headers: @admin_headers,
                as: :json
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(JSON.parse(response.body)["errors"]).to include("Role not found")
         end
@@ -105,7 +105,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                params: { securial_role_assignment: invalid_attributes },
                headers: @admin_headers,
                as: :json
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(JSON.parse(response.body)["errors"]).to include("Role not found")
         end
@@ -124,7 +124,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                params: { securial_role_assignment: invalid_attributes },
                headers: @admin_headers,
                as: :json
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(JSON.parse(response.body)["errors"]).to include("User not found")
         end
@@ -140,7 +140,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                params: { securial_role_assignment: valid_attributes },
                headers: @admin_headers,
                as: :json
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(JSON.parse(response.body)["errors"]).to include("Role already assigned to user")
         end
@@ -195,7 +195,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                params: { securial_role_assignment: invalid_attributes },
                headers: @admin_headers,
                as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
 
@@ -205,7 +205,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                  params: { securial_role_assignment: invalid_attributes },
                  headers: @admin_headers,
                  as: :json
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(JSON.parse(response.body)["errors"]).to include("User not found")
         end
@@ -224,7 +224,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                  params: { securial_role_assignment: invalid_attributes },
                  headers: @admin_headers,
                  as: :json
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(JSON.parse(response.body)["errors"]).to include("Role not found")
         end
@@ -243,7 +243,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                  params: { securial_role_assignment: invalid_attributes },
                  headers: @admin_headers,
                  as: :json
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(JSON.parse(response.body)["errors"]).to include("Role not found")
         end
@@ -262,7 +262,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                  params: { securial_role_assignment: invalid_attributes },
                  headers: @admin_headers,
                  as: :json
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(JSON.parse(response.body)["errors"]).to include("User not found")
         end
@@ -274,7 +274,7 @@ RSpec.describe Securial::RoleAssignmentsController, type: :request do
                  params: { securial_role_assignment: valid_attributes },
                  headers: @admin_headers,
                  as: :json
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(JSON.parse(response.body)["errors"]).to include("Role is not assigned to user")
         end

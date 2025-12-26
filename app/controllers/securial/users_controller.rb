@@ -49,7 +49,7 @@ module Securial
       if @securial_user.save
         render :show, status: :created, location: @securial_user
       else
-        render json: @securial_user.errors, status: :unprocessable_entity
+        render json: @securial_user.errors, status: :unprocessable_content
       end
     end
 
@@ -64,7 +64,7 @@ module Securial
       if @securial_user.update(securial_user_params)
         render :show, status: :ok, location: @securial_user
       else
-        render json: @securial_user.errors, status: :unprocessable_entity
+        render json: @securial_user.errors, status: :unprocessable_content
       end
     end
 
