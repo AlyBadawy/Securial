@@ -399,7 +399,7 @@
   <span class='kw'>if</span> <span class='ivar'>@securial_role</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
     <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:show</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:created</span><span class='comma'>,</span> <span class='label'>location:</span> <span class='ivar'>@securial_role</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@securial_role</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:unprocessable_entity</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@securial_role</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:unprocessable_content</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -775,7 +775,7 @@
   <span class='kw'>if</span> <span class='ivar'>@securial_role</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_securial_role_params'>securial_role_params</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:show</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@securial_role</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:unprocessable_entity</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@securial_role</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:unprocessable_content</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -788,7 +788,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Dec 26 03:17:19 2025 by
+  Generated on Fri Dec 26 04:32:07 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>
