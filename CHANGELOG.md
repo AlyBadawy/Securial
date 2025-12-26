@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2025-12-25
+
+### Changed:
+
+- Now requires Ruby 4
+- Now requires minimum of Rails 8.1
+
+### Security:
+
+- Update and patch a lot of CVEs.
+
 ## [2.1.0] - 2025-07-08
 
 ### Changed:
