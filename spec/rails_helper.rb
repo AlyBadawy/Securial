@@ -25,7 +25,10 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = true
-  config.before(:each) { Securial::Current.reset_all }
+  config.before(:each) do
+    Securial::Current.session = nil
+    Securial::Current.clear_all
+  end
   Rails.application.routes.default_url_options[:host] = "test.host"
 
 

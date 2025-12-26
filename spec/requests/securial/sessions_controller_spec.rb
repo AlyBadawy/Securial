@@ -139,10 +139,9 @@ RSpec.describe Securial::SessionsController, type: :request do
   describe "DELETE '/logout'" do
     context "when user is signed in" do
       it "logs out the current user" do
-        Securial::Current.session = @signed_in_session
-        expect(Securial::Current.session).not_to be_nil
+        expect(@signed_in_session).not_to be_revoked
         delete securial.logout_url, headers: @valid_headers, as: :json
-        expect(Securial::Current.session).to be_nil
+        expect(@signed_in_session.reload).to be_revoked
       end
 
       it "returns 204 no content" do
@@ -205,14 +204,6 @@ RSpec.describe Securial::SessionsController, type: :request do
       expect(response).to have_http_status(:not_found)
     end
 
-    it "clears the current session if it is revoked" do
-      Securial::Current.session = @signed_in_session
-      expect(Securial::Current.session).not_to be_nil
-      delete securial.revoke_session_by_id_url(@signed_in_session), headers: @valid_headers, as: :json
-      expect(response).to have_http_status(:no_content)
-      expect(Securial::Current.session).to be_nil
-    end
-
     it "does not clear the current session if a different session is revoked" do
       Securial::Current.session = @signed_in_session
       expect(Securial::Current.session).not_to be_nil
@@ -234,10 +225,12 @@ RSpec.describe Securial::SessionsController, type: :request do
   describe "DELETE /revoke_all" do
     context "when user is signed in" do
       it "revokes all sessions for the current user" do
-        Securial::Current.session = @signed_in_session
-        expect(Securial::Current.session).not_to be_nil
+        expect(@signed_in_session).not_to be_revoked
+        another_session = create(:securial_session, user: @signed_in_user)
+        expect(another_session).not_to be_revoked
         delete securial.revoke_all_sessions_url, headers: @valid_headers, as: :json
-        expect(Securial::Current.session).to be_nil
+        expect(@signed_in_session.reload).to be_revoked
+        expect(another_session.reload).to be_revoked
       end
 
       it "returns 204 no content" do
