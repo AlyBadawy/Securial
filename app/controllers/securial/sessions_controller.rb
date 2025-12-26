@@ -91,7 +91,7 @@ module Securial
           return
         end
       end
-      render status: :unprocessable_entity, json: {
+      render status: :unprocessable_content, json: {
         error: "Invalid or expired token.",
         instructions: "Please log in again to obtain a new access token.",
       }
